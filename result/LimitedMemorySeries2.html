@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->LimitedMemorySeries2<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div><i xmlns="http://topcoder.com">Due to some infrastructure limits the memory limit is set to 13 MB. Note that this should correspond to an actual memory limit of only 1 MB. If your solution allocates more than 1 MB of memory, it may exceed the memory limit.</i>
+
+<p xmlns="http://topcoder.com">
+You are given an array X[0..n-1] of integers.
+For each i between 0 and n-1, inclusive, the radius of element i is the largest k with the following properties:
+<ul>
+<li>Both i-k and i+k are valid indices into the array. That is, i-k &amp;gt;= 0 and i+k &amp;lt; n.</li>
+<li>The value X[i] is the strict maximum among the values X[i-k], X[i-k+1], ..., X[i+k]. (Here, "strict" means that the values at all other indices must be strictly smaller.)</li>
+</ul>
+</p>
+
+<p xmlns="http://topcoder.com">
+For example, in the array X = {4,4,4,4,4} the radius of each element is 0, and in the array X = {10,20,30,20} the radius of element 2 (0-based index) is 1.
+</p>
+
+<p xmlns="http://topcoder.com">
+Your task is to find the radius of each element of X and to compute the sum of all those radii.
+Right now, this seems like a fairly standard problem.
+Here's the catch: the memory limit in this problem is really small.
+So small that you cannot even store the array X into memory.
+</p>
+
+<p xmlns="http://topcoder.com">
+You are given the <type>int</type> <b>n</b> and the <type>long</type>s <b>x0</b>, <b>a</b>, and <b>b</b>.
+Use the following pseudocode to generate the array X:
+</p>
+
+<pre xmlns="http://topcoder.com">
+X[0] = x0
+for i = 1 to n-1:
+        X[i] = ((X[i-1] XOR a) + b) AND ((2^50) - 1)
+</pre>
+
+<p xmlns="http://topcoder.com">
+In the above pseudocode, XOR and AND are the standard operators "bitwise xor" and "bitwise and".
+</p>
+
+<p xmlns="http://topcoder.com">
+Return the sum of radii of all elements of X, modulo 1,000,000,007.
+</p></div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>LimitedMemorySeries2</span></dd><dt>Method:</dt><dd><span>getSum</span></dd><dt>Parameters:</dt><dd><span>int, long, long, long</span></dd><dt>Returns:</dt><dd><span>int</span></dd><dt>Method signature:</dt><dd><span>int getSum(int n, long x0, long a, long b)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul><li><span>n will be between 1 and 10,000,000, inclusive.</span></li><li><span>x0, a and b will be between 0 and 2^50-1, inclusive.</span></li></ul></div><div><h3>Examples</h3><ol><li><div><p>6</p>
+<p>2</p>
+<p>23</p>
+<p>1</p>
+<p>Returns: 2</p>
+<p>In this case, the generated array is X = {2,22,2,22,2,22}.
+The radii of its elements are {0,1,0,1,0,0}.
+The correct return value is 0+1+0+1+0+0 = 2.</p></div></li><li><div><p>100</p>
+<p>0</p>
+<p>0</p>
+<p>1</p>
+<p>Returns: 0</p>
+<p>Here, the generated array is {0,1,...,99}. The radius of each element is zero, so the answer is zero in this case.</p></div></li><li><div><p>234234</p>
+<p>1125899906842623</p>
+<p>123456789123456</p>
+<p>987654321549687</p>
+<p>Returns: 1144970</p>
+<p>Don't forget, the answer is modulo 1,000,000,007.</p></div></li><li><div><p>10000000</p>
+<p>12345678912345</p>
+<p>98765094309812</p>
+<p>34893049812392</p>
+<p>Returns: 65420804</p>
+<p>It is highly recommended to test this example in the arena before submitting.</p></div></li><li><div><p>10000000</p>
+<p>919405913686397</p>
+<p>435</p>
+<p>984557581885702</p>
+<p>Returns: 59187021</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>855859211881701</p>
+<p>4532757</p>
+<p>710232277029369</p>
+<p>Returns: 63064035</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>656550547216500</p>
+<p>55</p>
+<p>319120322593520</p>
+<p>Returns: 64371741</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>970703546903500</p>
+<p>1</p>
+<p>984487975029672</p>
+<p>Returns: 61086430</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>801476426458547</p>
+<p>143</p>
+<p>283191171063138</p>
+<p>Returns: 58890552</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>141236631427901</p>
+<p>517421407138713</p>
+<p>2347471235</p>
+<p>Returns: 51137161</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>916705792766850</p>
+<p>624208016149967</p>
+<p>164391124</p>
+<p>Returns: 47520284</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>428169619690735</p>
+<p>508250208386189</p>
+<p>7059</p>
+<p>Returns: 31911984</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>28749931095389</p>
+<p>136959188778033</p>
+<p>6143269135663</p>
+<p>Returns: 65312376</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>1081276367319426</p>
+<p>219849097955790</p>
+<p>112528</p>
+<p>Returns: 45873053</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>1077259477770770</p>
+<p>723553764979016</p>
+<p>977240047792228</p>
+<p>Returns: 71709074</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>111442327901272</p>
+<p>146187247012515</p>
+<p>810046970448726</p>
+<p>Returns: 73441218</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>199482668147564</p>
+<p>644044773195590</p>
+<p>667840478278999</p>
+<p>Returns: 67159689</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>346828935566815</p>
+<p>457675799540604</p>
+<p>239693049537114</p>
+<p>Returns: 68833441</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>96101156858524</p>
+<p>913584117912794</p>
+<p>773440904197055</p>
+<p>Returns: 66269303</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>63774665713524</p>
+<p>650657124127325</p>
+<p>1035861666890490</p>
+<p>Returns: 67241886</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>1019998219314527</p>
+<p>404348521940236</p>
+<p>995463678735255</p>
+<p>Returns: 68718822</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>850692769952795</p>
+<p>1002043089473914</p>
+<p>963600728982863</p>
+<p>Returns: 62714268</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>249028254918452</p>
+<p>432304830505867</p>
+<p>73413409618794</p>
+<p>Returns: 72726400</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>1092023580108291</p>
+<p>223116484302907</p>
+<p>11384654141460</p>
+<p>Returns: 69875832</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>0</p>
+<p>0</p>
+<p>1</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>0</p>
+<p>0</p>
+<p>1125899906842623</p>
+<p>Returns: 1</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>1002884201842624</p>
+<p>0</p>
+<p>24603141</p>
+<p>Returns: 4999999</p>
+<p></p></div></li><li><div><p>10000000</p>
+<p>1125899906842622</p>
+<p>0</p>
+<p>1125899906842622</p>
+<p>Returns: 0</p></div></li><li><div><p>10000000</p>
+<p>5000000</p>
+<p>0</p>
+<p>1125899906842623</p>
+<p>Returns: 4999998</p></div></li><li><div><p>10000000</p>
+<p>1125899906842623</p>
+<p>0</p>
+<p>1125899906842623</p>
+<p>Returns: 0</p></div></li><li><div><p>10000000</p>
+<p>0</p>
+<p>0</p>
+<p>1125899906842622</p>
+<p>Returns: 1</p></div></li><li><div><p>10000000</p>
+<p>1125899794251507</p>
+<p>0</p>
+<p>1125898780830115</p>
+<p>Returns: 9000090</p></div></li><li><div><p>10000000</p>
+<p>2</p>
+<p>23</p>
+<p>1</p>
+<p>Returns: 4999999</p></div></li><li><div><p>10000000</p>
+<p>999999999999</p>
+<p>0</p>
+<p>1125899906842623</p>
+<p>Returns: 0</p></div></li><li><div><p>10000000</p>
+<p>1073741824</p>
+<p>0</p>
+<p>1125899906842623</p>
+<p>Returns: 0</p></div></li></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/14096/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"14096\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"14096\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"14096\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"14096\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"14096\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\n"])</script><script>self.__next_f.push([1,"f:T722,"])</script><script>self.__next_f.push([1,"\u003ci xmlns=\"http://topcoder.com\"\u003eDue to some infrastructure limits the memory limit is set to 13 MB. Note that this should correspond to an actual memory limit of only 1 MB. If your solution allocates more than 1 MB of memory, it may exceed the memory limit.\u003c/i\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nYou are given an array X[0..n-1] of integers.\nFor each i between 0 and n-1, inclusive, the radius of element i is the largest k with the following properties:\n\u003cul\u003e\n\u003cli\u003eBoth i-k and i+k are valid indices into the array. That is, i-k \u0026amp;gt;= 0 and i+k \u0026amp;lt; n.\u003c/li\u003e\n\u003cli\u003eThe value X[i] is the strict maximum among the values X[i-k], X[i-k+1], ..., X[i+k]. (Here, \"strict\" means that the values at all other indices must be strictly smaller.)\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nFor example, in the array X = {4,4,4,4,4} the radius of each element is 0, and in the array X = {10,20,30,20} the radius of element 2 (0-based index) is 1.\n\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nYour task is to find the radius of each element of X and to compute the sum of all those radii.\nRight now, this seems like a fairly standard problem.\nHere's the catch: the memory limit in this problem is really small.\nSo small that you cannot even store the array X into memory.\n\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nYou are given the \u003ctype\u003eint\u003c/type\u003e \u003cb\u003en\u003c/b\u003e and the \u003ctype\u003elong\u003c/type\u003es \u003cb\u003ex0\u003c/b\u003e, \u003cb\u003ea\u003c/b\u003e, and \u003cb\u003eb\u003c/b\u003e.\nUse the following pseudocode to generate the array X:\n\u003c/p\u003e\n\n\u003cpre xmlns=\"http://topcoder.com\"\u003e\nX[0] = x0\nfor i = 1 to n-1:\n        X[i] = ((X[i-1] XOR a) + b) AND ((2^50) - 1)\n\u003c/pre\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nIn the above pseudocode, XOR and AND are the standard operators \"bitwise xor\" and \"bitwise and\".\n\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nReturn the sum of radii of all elements of X, modulo 1,000,000,007.\n\u003c/p\u003e"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"LimitedMemorySeries2\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"LimitedMemorySeries2\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"getSum\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int, long, long, long\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int getSum(int n, long x0, long a, long b)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"n will be between 1 and 10,000,000, inclusive.\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"x0, a and b will be between 0 and 2^50-1, inclusive.\"}}]}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e23\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\\n\u003cp\u003eIn this case, the generated array is X = {2,22,2,22,2,22}.\\nThe radii of its elements are {0,1,0,1,0,0}.\\nThe correct return value is 0+1+0+1+0+0 = 2.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e100\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003eHere, the generated array is {0,1,...,99}. The radius of each element is zero, so the answer is zero in this case.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e234234\u003c/p\u003e\\n\u003cp\u003e1125899906842623\u003c/p\u003e\\n\u003cp\u003e123456789123456\u003c/p\u003e\\n\u003cp\u003e987654321549687\u003c/p\u003e\\n\u003cp\u003eReturns: 1144970\u003c/p\u003e\\n\u003cp\u003eDon't forget, the answer is modulo 1,000,000,007.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e12345678912345\u003c/p\u003e\\n\u003cp\u003e98765094309812\u003c/p\u003e\\n\u003cp\u003e34893049812392\u003c/p\u003e\\n\u003cp\u003eReturns: 65420804\u003c/p\u003e\\n\u003cp\u003eIt is highly recommended to test this example in the arena before submitting.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e919405913686397\u003c/p\u003e\\n\u003cp\u003e435\u003c/p\u003e\\n\u003cp\u003e984557581885702\u003c/p\u003e\\n\u003cp\u003eReturns: 59187021\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e855859211881701\u003c/p\u003e\\n\u003cp\u003e4532757\u003c/p\u003e\\n\u003cp\u003e710232277029369\u003c/p\u003e\\n\u003cp\u003eReturns: 63064035\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e656550547216500\u003c/p\u003e\\n\u003cp\u003e55\u003c/p\u003e\\n\u003cp\u003e319120322593520\u003c/p\u003e\\n\u003cp\u003eReturns: 64371741\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e970703546903500\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e984487975029672\u003c/p\u003e\\n\u003cp\u003eReturns: 61086430\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"8\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e801476426458547\u003c/p\u003e\\n\u003cp\u003e143\u003c/p\u003e\\n\u003cp\u003e283191171063138\u003c/p\u003e\\n\u003cp\u003eReturns: 58890552\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"9\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e141236631427901\u003c/p\u003e\\n\u003cp\u003e517421407138713\u003c/p\u003e\\n\u003cp\u003e2347471235\u003c/p\u003e\\n\u003cp\u003eReturns: 51137161\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"10\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e916705792766850\u003c/p\u003e\\n\u003cp\u003e624208016149967\u003c/p\u003e\\n\u003cp\u003e164391124\u003c/p\u003e\\n\u003cp\u003eReturns: 47520284\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"11\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e428169619690735\u003c/p\u003e\\n\u003cp\u003e508250208386189\u003c/p\u003e\\n\u003cp\u003e7059\u003c/p\u003e\\n\u003cp\u003eReturns: 31911984\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"12\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e28749931095389\u003c/p\u003e\\n\u003cp\u003e136959188778033\u003c/p\u003e\\n\u003cp\u003e6143269135663\u003c/p\u003e\\n\u003cp\u003eReturns: 65312376\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"13\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e1081276367319426\u003c/p\u003e\\n\u003cp\u003e219849097955790\u003c/p\u003e\\n\u003cp\u003e112528\u003c/p\u003e\\n\u003cp\u003eReturns: 45873053\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"14\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e1077259477770770\u003c/p\u003e\\n\u003cp\u003e723553764979016\u003c/p\u003e\\n\u003cp\u003e977240047792228\u003c/p\u003e\\n\u003cp\u003eReturns: 71709074\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"15\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e111442327901272\u003c/p\u003e\\n\u003cp\u003e146187247012515\u003c/p\u003e\\n\u003cp\u003e810046970448726\u003c/p\u003e\\n\u003cp\u003eReturns: 73441218\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"16\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e199482668147564\u003c/p\u003e\\n\u003cp\u003e644044773195590\u003c/p\u003e\\n\u003cp\u003e667840478278999\u003c/p\u003e\\n\u003cp\u003eReturns: 67159689\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"17\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e346828935566815\u003c/p\u003e\\n\u003cp\u003e457675799540604\u003c/p\u003e\\n\u003cp\u003e239693049537114\u003c/p\u003e\\n\u003cp\u003eReturns: 68833441\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"18\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e96101156858524\u003c/p\u003e\\n\u003cp\u003e913584117912794\u003c/p\u003e\\n\u003cp\u003e773440904197055\u003c/p\u003e\\n\u003cp\u003eReturns: 66269303\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"19\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e63774665713524\u003c/p\u003e\\n\u003cp\u003e650657124127325\u003c/p\u003e\\n\u003cp\u003e1035861666890490\u003c/p\u003e\\n\u003cp\u003eReturns: 67241886\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"20\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e1019998219314527\u003c/p\u003e\\n\u003cp\u003e404348521940236\u003c/p\u003e\\n\u003cp\u003e995463678735255\u003c/p\u003e\\n\u003cp\u003eReturns: 68718822\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"21\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e850692769952795\u003c/p\u003e\\n\u003cp\u003e1002043089473914\u003c/p\u003e\\n\u003cp\u003e963600728982863\u003c/p\u003e\\n\u003cp\u003eReturns: 62714268\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"22\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e249028254918452\u003c/p\u003e\\n\u003cp\u003e432304830505867\u003c/p\u003e\\n\u003cp\u003e73413409618794\u003c/p\u003e\\n\u003cp\u003eReturns: 72726400\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"23\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e1092023580108291\u003c/p\u003e\\n\u003cp\u003e223116484302907\u003c/p\u003e\\n\u003cp\u003e11384654141460\u003c/p\u003e\\n\u003cp\u003eReturns: 69875832\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"24\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"25\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e1125899906842623\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"26\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e1002884201842624\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e24603141\u003c/p\u003e\\n\u003cp\u003eReturns: 4999999\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"27\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e1125899906842622\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e1125899906842622\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"28\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e5000000\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e1125899906842623\u003c/p\u003e\\n\u003cp\u003eReturns: 4999998\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"29\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e1125899906842623\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e1125899906842623\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"30\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e1125899906842622\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"31\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e1125899794251507\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e1125898780830115\u003c/p\u003e\\n\u003cp\u003eReturns: 9000090\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"32\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e23\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 4999999\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"33\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e999999999999\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e1125899906842623\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"34\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000000\u003c/p\u003e\\n\u003cp\u003e1073741824\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e1125899906842623\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\"}}]}]]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->TwoPerLine<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div><p xmlns="http://topcoder.com">
+You have an <b>N</b> by <b>N</b> grid.
+You also have <b>T</b> identical tokens.
+</p>
+<p xmlns="http://topcoder.com">
+You want to place the tokens into the grid. Each token must be placed into one of the grid cells. Each grid cell must contain at most one token.
+</p>
+<p xmlns="http://topcoder.com">
+There is one extra constraint: each row and each column of the grid must contain at most two tokens.
+</p>
+<p xmlns="http://topcoder.com">
+Count all valid placements of tokens and return their count modulo 10^9 + 7.
+</p></div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>TwoPerLine</span></dd><dt>Method:</dt><dd><span>count</span></dd><dt>Parameters:</dt><dd><span>int, int</span></dd><dt>Returns:</dt><dd><span>int</span></dd><dt>Method signature:</dt><dd><span>int count(int N, int T)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul><li><span>N will be between 1 and 200, inclusive.</span></li><li><span>T will be between 0 and 2*N, inclusive.</span></li></ul></div><div><h3>Examples</h3><ol><li><div><p>3</p>
+<p>6</p>
+<p>Returns: 6</p>
+<p>We are placing 6 tokens into a 3x3 grid. One valid placement of six tokens is shown below (O is a token, . is an empty cell).
+
+OO.
+O.O
+.OO
+
+The other five can be obtained from this one by permuting its rows.</p></div></li><li><div><p>7</p>
+<p>0</p>
+<p>Returns: 1</p>
+<p>There is exactly one way to place zero tokens onto a 7x7 grid. The result is an empty grid.</p></div></li><li><div><p>100</p>
+<p>3</p>
+<p>Returns: 584328838</p>
+<p>Almost all of the (100*100 choose 3) ways of placing three tokens onto a 100x100 grid are valid. The only invalid placements are those where all three tokens ended in the same line. There is exactly 200 * (100 choose 3) of those. Thus, the exact number of valid placements is 166584330000. The return value shown above is this number modulo 10^9 + 7.</p></div></li><li><div><p>1</p>
+<p>0</p>
+<p>Returns: 1</p>
+<p></p></div></li><li><div><p>1</p>
+<p>1</p>
+<p>Returns: 1</p>
+<p></p></div></li><li><div><p>1</p>
+<p>2</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>6</p>
+<p>4</p>
+<p>Returns: 51525</p>
+<p></p></div></li><li><div><p>100</p>
+<p>181</p>
+<p>Returns: 813278664</p>
+<p></p></div></li><li><div><p>157</p>
+<p>102</p>
+<p>Returns: 73227014</p>
+<p></p></div></li><li><div><p>183</p>
+<p>112</p>
+<p>Returns: 243801774</p>
+<p></p></div></li><li><div><p>36</p>
+<p>6</p>
+<p>Returns: 786792188</p>
+<p></p></div></li><li><div><p>154</p>
+<p>23</p>
+<p>Returns: 836289050</p>
+<p></p></div></li><li><div><p>34</p>
+<p>52</p>
+<p>Returns: 200465292</p>
+<p></p></div></li><li><div><p>136</p>
+<p>147</p>
+<p>Returns: 430424726</p>
+<p></p></div></li><li><div><p>4</p>
+<p>0</p>
+<p>Returns: 1</p>
+<p></p></div></li><li><div><p>146</p>
+<p>279</p>
+<p>Returns: 682920116</p>
+<p></p></div></li><li><div><p>77</p>
+<p>89</p>
+<p>Returns: 405177918</p>
+<p></p></div></li><li><div><p>40</p>
+<p>0</p>
+<p>Returns: 1</p>
+<p></p></div></li><li><div><p>197</p>
+<p>373</p>
+<p>Returns: 441394066</p>
+<p></p></div></li><li><div><p>158</p>
+<p>275</p>
+<p>Returns: 863736280</p>
+<p></p></div></li><li><div><p>165</p>
+<p>195</p>
+<p>Returns: 378906769</p>
+<p></p></div></li><li><div><p>188</p>
+<p>88</p>
+<p>Returns: 514967992</p>
+<p></p></div></li><li><div><p>3</p>
+<p>2</p>
+<p>Returns: 36</p>
+<p></p></div></li><li><div><p>149</p>
+<p>256</p>
+<p>Returns: 636184264</p>
+<p></p></div></li><li><div><p>199</p>
+<p>321</p>
+<p>Returns: 825502260</p>
+<p></p></div></li><li><div><p>4</p>
+<p>5</p>
+<p>Returns: 2304</p>
+<p></p></div></li><li><div><p>185</p>
+<p>256</p>
+<p>Returns: 859640243</p>
+<p></p></div></li><li><div><p>8</p>
+<p>12</p>
+<p>Returns: 37908395</p>
+<p></p></div></li><li><div><p>3</p>
+<p>1</p>
+<p>Returns: 9</p>
+<p></p></div></li><li><div><p>200</p>
+<p>400</p>
+<p>Returns: 538644596</p>
+<p></p></div></li><li><div><p>149</p>
+<p>149</p>
+<p>Returns: 431217920</p>
+<p></p></div></li><li><div><p>2</p>
+<p>1</p>
+<p>Returns: 4</p>
+<p></p></div></li><li><div><p>95</p>
+<p>77</p>
+<p>Returns: 832218780</p>
+<p></p></div></li><li><div><p>102</p>
+<p>150</p>
+<p>Returns: 865330388</p>
+<p></p></div></li><li><div><p>23</p>
+<p>40</p>
+<p>Returns: 824606079</p>
+<p></p></div></li><li><div><p>3</p>
+<p>6</p>
+<p>Returns: 6</p>
+<p></p></div></li><li><div><p>2</p>
+<p>2</p>
+<p>Returns: 6</p>
+<p></p></div></li><li><div><p>8</p>
+<p>6</p>
+<p>Returns: 50092896</p>
+<p></p></div></li><li><div><p>4</p>
+<p>1</p>
+<p>Returns: 16</p>
+<p></p></div></li><li><div><p>9</p>
+<p>7</p>
+<p>Returns: 972234649</p>
+<p></p></div></li><li><div><p>114</p>
+<p>96</p>
+<p>Returns: 921620001</p>
+<p></p></div></li><li><div><p>198</p>
+<p>265</p>
+<p>Returns: 368826939</p>
+<p></p></div></li><li><div><p>162</p>
+<p>220</p>
+<p>Returns: 4899766</p>
+<p></p></div></li><li><div><p>145</p>
+<p>10</p>
+<p>Returns: 344255684</p>
+<p></p></div></li><li><div><p>145</p>
+<p>119</p>
+<p>Returns: 410221390</p>
+<p></p></div></li><li><div><p>3</p>
+<p>5</p>
+<p>Returns: 45</p>
+<p></p></div></li><li><div><p>159</p>
+<p>200</p>
+<p>Returns: 840009081</p>
+<p></p></div></li><li><div><p>4</p>
+<p>6</p>
+<p>Returns: 2040</p>
+<p></p></div></li><li><div><p>105</p>
+<p>126</p>
+<p>Returns: 110057190</p>
+<p></p></div></li><li><div><p>139</p>
+<p>139</p>
+<p>Returns: 557551678</p>
+<p></p></div></li><li><div><p>4</p>
+<p>8</p>
+<p>Returns: 90</p>
+<p></p></div></li><li><div><p>3</p>
+<p>0</p>
+<p>Returns: 1</p>
+<p></p></div></li><li><div><p>57</p>
+<p>83</p>
+<p>Returns: 432711857</p>
+<p></p></div></li><li><div><p>24</p>
+<p>37</p>
+<p>Returns: 576934749</p>
+<p></p></div></li><li><div><p>90</p>
+<p>92</p>
+<p>Returns: 203018858</p>
+<p></p></div></li><li><div><p>73</p>
+<p>56</p>
+<p>Returns: 250380668</p>
+<p></p></div></li><li><div><p>99</p>
+<p>174</p>
+<p>Returns: 730770289</p>
+<p></p></div></li><li><div><p>80</p>
+<p>48</p>
+<p>Returns: 379382873</p>
+<p></p></div></li><li><div><p>44</p>
+<p>1</p>
+<p>Returns: 1936</p>
+<p></p></div></li><li><div><p>95</p>
+<p>14</p>
+<p>Returns: 618504871</p>
+<p></p></div></li><li><div><p>26</p>
+<p>3</p>
+<p>Returns: 51122500</p>
+<p></p></div></li><li><div><p>102</p>
+<p>127</p>
+<p>Returns: 755545097</p>
+<p></p></div></li><li><div><p>45</p>
+<p>70</p>
+<p>Returns: 419514843</p>
+<p></p></div></li><li><div><p>26</p>
+<p>45</p>
+<p>Returns: 154141195</p>
+<p></p></div></li><li><div><p>190</p>
+<p>335</p>
+<p>Returns: 689385675</p>
+<p></p></div></li><li><div><p>16</p>
+<p>30</p>
+<p>Returns: 103889317</p>
+<p></p></div></li><li><div><p>81</p>
+<p>96</p>
+<p>Returns: 594823507</p>
+<p></p></div></li><li><div><p>2</p>
+<p>3</p>
+<p>Returns: 4</p>
+<p></p></div></li><li><div><p>146</p>
+<p>105</p>
+<p>Returns: 117868877</p>
+<p></p></div></li><li><div><p>24</p>
+<p>44</p>
+<p>Returns: 356842416</p>
+<p></p></div></li><li><div><p>4</p>
+<p>2</p>
+<p>Returns: 120</p>
+<p></p></div></li><li><div><p>24</p>
+<p>29</p>
+<p>Returns: 86524105</p>
+<p></p></div></li><li><div><p>76</p>
+<p>90</p>
+<p>Returns: 419529688</p>
+<p></p></div></li><li><div><p>105</p>
+<p>60</p>
+<p>Returns: 1176475</p>
+<p></p></div></li><li><div><p>191</p>
+<p>17</p>
+<p>Returns: 322771262</p>
+<p></p></div></li><li><div><p>130</p>
+<p>77</p>
+<p>Returns: 70273168</p>
+<p></p></div></li><li><div><p>97</p>
+<p>83</p>
+<p>Returns: 139040705</p>
+<p></p></div></li><li><div><p>124</p>
+<p>160</p>
+<p>Returns: 700110135</p>
+<p></p></div></li><li><div><p>41</p>
+<p>37</p>
+<p>Returns: 285909441</p>
+<p></p></div></li><li><div><p>3</p>
+<p>4</p>
+<p>Returns: 90</p>
+<p></p></div></li><li><div><p>2</p>
+<p>4</p>
+<p>Returns: 1</p>
+<p></p></div></li><li><div><p>172</p>
+<p>227</p>
+<p>Returns: 455682000</p>
+<p></p></div></li><li><div><p>184</p>
+<p>329</p>
+<p>Returns: 198911610</p>
+<p></p></div></li><li><div><p>4</p>
+<p>7</p>
+<p>Returns: 816</p>
+<p></p></div></li><li><div><p>99</p>
+<p>131</p>
+<p>Returns: 299772030</p>
+<p></p></div></li><li><div><p>119</p>
+<p>104</p>
+<p>Returns: 263445438</p>
+<p></p></div></li><li><div><p>175</p>
+<p>75</p>
+<p>Returns: 363892302</p>
+<p></p></div></li><li><div><p>15</p>
+<p>8</p>
+<p>Returns: 483214106</p>
+<p></p></div></li><li><div><p>50</p>
+<p>53</p>
+<p>Returns: 931454683</p>
+<p></p></div></li><li><div><p>13</p>
+<p>21</p>
+<p>Returns: 738512158</p>
+<p></p></div></li><li><div><p>156</p>
+<p>88</p>
+<p>Returns: 706983831</p>
+<p></p></div></li><li><div><p>137</p>
+<p>0</p>
+<p>Returns: 1</p>
+<p></p></div></li><li><div><p>195</p>
+<p>57</p>
+<p>Returns: 166556429</p>
+<p></p></div></li><li><div><p>3</p>
+<p>3</p>
+<p>Returns: 78</p>
+<p></p></div></li><li><div><p>4</p>
+<p>4</p>
+<p>Returns: 1428</p>
+<p></p></div></li><li><div><p>62</p>
+<p>34</p>
+<p>Returns: 316419122</p>
+<p></p></div></li><li><div><p>123</p>
+<p>78</p>
+<p>Returns: 831362710</p>
+<p></p></div></li><li><div><p>159</p>
+<p>176</p>
+<p>Returns: 587775706</p>
+<p></p></div></li><li><div><p>194</p>
+<p>311</p>
+<p>Returns: 951220504</p>
+<p></p></div></li><li><div><p>118</p>
+<p>51</p>
+<p>Returns: 289905863</p>
+<p></p></div></li><li><div><p>30</p>
+<p>10</p>
+<p>Returns: 257165387</p>
+<p></p></div></li><li><div><p>125</p>
+<p>195</p>
+<p>Returns: 973741334</p>
+<p></p></div></li><li><div><p>14</p>
+<p>11</p>
+<p>Returns: 765480213</p>
+<p></p></div></li><li><div><p>151</p>
+<p>222</p>
+<p>Returns: 875515158</p>
+<p></p></div></li><li><div><p>26</p>
+<p>27</p>
+<p>Returns: 926529691</p>
+<p></p></div></li><li><div><p>156</p>
+<p>296</p>
+<p>Returns: 529161964</p>
+<p></p></div></li><li><div><p>2</p>
+<p>0</p>
+<p>Returns: 1</p>
+<p></p></div></li><li><div><p>4</p>
+<p>3</p>
+<p>Returns: 528</p>
+<p></p></div></li></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/16346/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"16346\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"16346\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"16346\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"16346\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"16346\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\n"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"TwoPerLine\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp xmlns=\\\"http://topcoder.com\\\"\u003e\\nYou have an \u003cb\u003eN\u003c/b\u003e by \u003cb\u003eN\u003c/b\u003e grid.\\nYou also have \u003cb\u003eT\u003c/b\u003e identical tokens.\\n\u003c/p\u003e\\n\u003cp xmlns=\\\"http://topcoder.com\\\"\u003e\\nYou want to place the tokens into the grid. Each token must be placed into one of the grid cells. Each grid cell must contain at most one token.\\n\u003c/p\u003e\\n\u003cp xmlns=\\\"http://topcoder.com\\\"\u003e\\nThere is one extra constraint: each row and each column of the grid must contain at most two tokens.\\n\u003c/p\u003e\\n\u003cp xmlns=\\\"http://topcoder.com\\\"\u003e\\nCount all valid placements of tokens and return their count modulo 10^9 + 7.\\n\u003c/p\u003e\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"TwoPerLine\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"count\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int, int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int count(int N, int T)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"N will be between 1 and 200, inclusive.\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"T will be between 0 and 2*N, inclusive.\"}}]}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\\n\u003cp\u003eWe are placing 6 tokens into a 3x3 grid. One valid placement of six tokens is shown below (O is a token, . is an empty cell).\\n\\nOO.\\nO.O\\n.OO\\n\\nThe other five can be obtained from this one by permuting its rows.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003eThere is exactly one way to place zero tokens onto a 7x7 grid. The result is an empty grid.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e100\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 584328838\u003c/p\u003e\\n\u003cp\u003eAlmost all of the (100*100 choose 3) ways of placing three tokens onto a 100x100 grid are valid. The only invalid placements are those where all three tokens ended in the same line. There is exactly 200 * (100 choose 3) of those. Thus, the exact number of valid placements is 166584330000. The return value shown above is this number modulo 10^9 + 7.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003eReturns: 51525\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e100\u003c/p\u003e\\n\u003cp\u003e181\u003c/p\u003e\\n\u003cp\u003eReturns: 813278664\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"8\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e157\u003c/p\u003e\\n\u003cp\u003e102\u003c/p\u003e\\n\u003cp\u003eReturns: 73227014\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"9\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e183\u003c/p\u003e\\n\u003cp\u003e112\u003c/p\u003e\\n\u003cp\u003eReturns: 243801774\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"10\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e36\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003eReturns: 786792188\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"11\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e154\u003c/p\u003e\\n\u003cp\u003e23\u003c/p\u003e\\n\u003cp\u003eReturns: 836289050\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"12\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e34\u003c/p\u003e\\n\u003cp\u003e52\u003c/p\u003e\\n\u003cp\u003eReturns: 200465292\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"13\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e136\u003c/p\u003e\\n\u003cp\u003e147\u003c/p\u003e\\n\u003cp\u003eReturns: 430424726\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"14\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"15\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e146\u003c/p\u003e\\n\u003cp\u003e279\u003c/p\u003e\\n\u003cp\u003eReturns: 682920116\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"16\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e77\u003c/p\u003e\\n\u003cp\u003e89\u003c/p\u003e\\n\u003cp\u003eReturns: 405177918\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"17\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e40\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"18\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e197\u003c/p\u003e\\n\u003cp\u003e373\u003c/p\u003e\\n\u003cp\u003eReturns: 441394066\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"19\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e158\u003c/p\u003e\\n\u003cp\u003e275\u003c/p\u003e\\n\u003cp\u003eReturns: 863736280\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"20\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e165\u003c/p\u003e\\n\u003cp\u003e195\u003c/p\u003e\\n\u003cp\u003eReturns: 378906769\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"21\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e188\u003c/p\u003e\\n\u003cp\u003e88\u003c/p\u003e\\n\u003cp\u003eReturns: 514967992\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"22\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: 36\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"23\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e149\u003c/p\u003e\\n\u003cp\u003e256\u003c/p\u003e\\n\u003cp\u003eReturns: 636184264\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"24\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e199\u003c/p\u003e\\n\u003cp\u003e321\u003c/p\u003e\\n\u003cp\u003eReturns: 825502260\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"25\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: 2304\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"26\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e185\u003c/p\u003e\\n\u003cp\u003e256\u003c/p\u003e\\n\u003cp\u003eReturns: 859640243\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"27\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003e12\u003c/p\u003e\\n\u003cp\u003eReturns: 37908395\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"28\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"29\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e200\u003c/p\u003e\\n\u003cp\u003e400\u003c/p\u003e\\n\u003cp\u003eReturns: 538644596\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"30\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e149\u003c/p\u003e\\n\u003cp\u003e149\u003c/p\u003e\\n\u003cp\u003eReturns: 431217920\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"31\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"32\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e95\u003c/p\u003e\\n\u003cp\u003e77\u003c/p\u003e\\n\u003cp\u003eReturns: 832218780\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"33\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e102\u003c/p\u003e\\n\u003cp\u003e150\u003c/p\u003e\\n\u003cp\u003eReturns: 865330388\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"34\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e23\u003c/p\u003e\\n\u003cp\u003e40\u003c/p\u003e\\n\u003cp\u003eReturns: 824606079\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"35\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"36\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"37\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003eReturns: 50092896\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"38\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 16\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"39\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003eReturns: 972234649\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"40\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e114\u003c/p\u003e\\n\u003cp\u003e96\u003c/p\u003e\\n\u003cp\u003eReturns: 921620001\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"41\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e198\u003c/p\u003e\\n\u003cp\u003e265\u003c/p\u003e\\n\u003cp\u003eReturns: 368826939\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"42\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e162\u003c/p\u003e\\n\u003cp\u003e220\u003c/p\u003e\\n\u003cp\u003eReturns: 4899766\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"43\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e145\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: 344255684\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"44\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e145\u003c/p\u003e\\n\u003cp\u003e119\u003c/p\u003e\\n\u003cp\u003eReturns: 410221390\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"45\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: 45\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"46\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e159\u003c/p\u003e\\n\u003cp\u003e200\u003c/p\u003e\\n\u003cp\u003eReturns: 840009081\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"47\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003eReturns: 2040\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"48\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e105\u003c/p\u003e\\n\u003cp\u003e126\u003c/p\u003e\\n\u003cp\u003eReturns: 110057190\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"49\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e139\u003c/p\u003e\\n\u003cp\u003e139\u003c/p\u003e\\n\u003cp\u003eReturns: 557551678\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"50\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003eReturns: 90\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"51\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"52\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e57\u003c/p\u003e\\n\u003cp\u003e83\u003c/p\u003e\\n\u003cp\u003eReturns: 432711857\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"53\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e24\u003c/p\u003e\\n\u003cp\u003e37\u003c/p\u003e\\n\u003cp\u003eReturns: 576934749\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"54\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e90\u003c/p\u003e\\n\u003cp\u003e92\u003c/p\u003e\\n\u003cp\u003eReturns: 203018858\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"55\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e73\u003c/p\u003e\\n\u003cp\u003e56\u003c/p\u003e\\n\u003cp\u003eReturns: 250380668\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"56\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e99\u003c/p\u003e\\n\u003cp\u003e174\u003c/p\u003e\\n\u003cp\u003eReturns: 730770289\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"57\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e80\u003c/p\u003e\\n\u003cp\u003e48\u003c/p\u003e\\n\u003cp\u003eReturns: 379382873\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"58\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e44\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 1936\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"59\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e95\u003c/p\u003e\\n\u003cp\u003e14\u003c/p\u003e\\n\u003cp\u003eReturns: 618504871\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"60\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e26\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 51122500\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"61\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e102\u003c/p\u003e\\n\u003cp\u003e127\u003c/p\u003e\\n\u003cp\u003eReturns: 755545097\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"62\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e45\u003c/p\u003e\\n\u003cp\u003e70\u003c/p\u003e\\n\u003cp\u003eReturns: 419514843\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"63\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e26\u003c/p\u003e\\n\u003cp\u003e45\u003c/p\u003e\\n\u003cp\u003eReturns: 154141195\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"64\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e190\u003c/p\u003e\\n\u003cp\u003e335\u003c/p\u003e\\n\u003cp\u003eReturns: 689385675\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"65\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e16\u003c/p\u003e\\n\u003cp\u003e30\u003c/p\u003e\\n\u003cp\u003eReturns: 103889317\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"66\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e81\u003c/p\u003e\\n\u003cp\u003e96\u003c/p\u003e\\n\u003cp\u003eReturns: 594823507\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"67\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"68\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e146\u003c/p\u003e\\n\u003cp\u003e105\u003c/p\u003e\\n\u003cp\u003eReturns: 117868877\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"69\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e24\u003c/p\u003e\\n\u003cp\u003e44\u003c/p\u003e\\n\u003cp\u003eReturns: 356842416\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"70\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: 120\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"71\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e24\u003c/p\u003e\\n\u003cp\u003e29\u003c/p\u003e\\n\u003cp\u003eReturns: 86524105\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"72\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e76\u003c/p\u003e\\n\u003cp\u003e90\u003c/p\u003e\\n\u003cp\u003eReturns: 419529688\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"73\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e105\u003c/p\u003e\\n\u003cp\u003e60\u003c/p\u003e\\n\u003cp\u003eReturns: 1176475\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"74\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e191\u003c/p\u003e\\n\u003cp\u003e17\u003c/p\u003e\\n\u003cp\u003eReturns: 322771262\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"75\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e130\u003c/p\u003e\\n\u003cp\u003e77\u003c/p\u003e\\n\u003cp\u003eReturns: 70273168\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"76\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e97\u003c/p\u003e\\n\u003cp\u003e83\u003c/p\u003e\\n\u003cp\u003eReturns: 139040705\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"77\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e124\u003c/p\u003e\\n\u003cp\u003e160\u003c/p\u003e\\n\u003cp\u003eReturns: 700110135\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"78\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e41\u003c/p\u003e\\n\u003cp\u003e37\u003c/p\u003e\\n\u003cp\u003eReturns: 285909441\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"79\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003eReturns: 90\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"80\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"81\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e172\u003c/p\u003e\\n\u003cp\u003e227\u003c/p\u003e\\n\u003cp\u003eReturns: 455682000\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"82\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e184\u003c/p\u003e\\n\u003cp\u003e329\u003c/p\u003e\\n\u003cp\u003eReturns: 198911610\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"83\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003eReturns: 816\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"84\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e99\u003c/p\u003e\\n\u003cp\u003e131\u003c/p\u003e\\n\u003cp\u003eReturns: 299772030\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"85\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e119\u003c/p\u003e\\n\u003cp\u003e104\u003c/p\u003e\\n\u003cp\u003eReturns: 263445438\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"86\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e175\u003c/p\u003e\\n\u003cp\u003e75\u003c/p\u003e\\n\u003cp\u003eReturns: 363892302\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"87\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e15\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003eReturns: 483214106\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"88\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e50\u003c/p\u003e\\n\u003cp\u003e53\u003c/p\u003e\\n\u003cp\u003eReturns: 931454683\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"89\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e13\u003c/p\u003e\\n\u003cp\u003e21\u003c/p\u003e\\n\u003cp\u003eReturns: 738512158\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"90\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e156\u003c/p\u003e\\n\u003cp\u003e88\u003c/p\u003e\\n\u003cp\u003eReturns: 706983831\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"91\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e137\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"92\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e195\u003c/p\u003e\\n\u003cp\u003e57\u003c/p\u003e\\n\u003cp\u003eReturns: 166556429\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"93\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 78\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"94\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003eReturns: 1428\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"95\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e62\u003c/p\u003e\\n\u003cp\u003e34\u003c/p\u003e\\n\u003cp\u003eReturns: 316419122\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"96\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e123\u003c/p\u003e\\n\u003cp\u003e78\u003c/p\u003e\\n\u003cp\u003eReturns: 831362710\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"97\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e159\u003c/p\u003e\\n\u003cp\u003e176\u003c/p\u003e\\n\u003cp\u003eReturns: 587775706\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"98\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e194\u003c/p\u003e\\n\u003cp\u003e311\u003c/p\u003e\\n\u003cp\u003eReturns: 951220504\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"99\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e118\u003c/p\u003e\\n\u003cp\u003e51\u003c/p\u003e\\n\u003cp\u003eReturns: 289905863\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"100\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e30\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: 257165387\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"101\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e125\u003c/p\u003e\\n\u003cp\u003e195\u003c/p\u003e\\n\u003cp\u003eReturns: 973741334\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"102\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e14\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003eReturns: 765480213\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"103\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e151\u003c/p\u003e\\n\u003cp\u003e222\u003c/p\u003e\\n\u003cp\u003eReturns: 875515158\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"104\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e26\u003c/p\u003e\\n\u003cp\u003e27\u003c/p\u003e\\n\u003cp\u003eReturns: 926529691\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"105\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e156\u003c/p\u003e\\n\u003cp\u003e296\u003c/p\u003e\\n\u003cp\u003eReturns: 529161964\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"106\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"107\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 528\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}]]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

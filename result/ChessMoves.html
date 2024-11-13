@@ -1,0 +1,189 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->ChessMoves<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div><pre xmlns="http://topcoder.com">PROBLEM STATEMENT
+
+Chess is an ancient game played on a board with 64 discrete positions, arranged
+in an 8x8 grid.  Each player starts with 16 pieces of a specific color - one
+player's pieces are all white (the "white player"), the others are all black
+(the "black player").  Players alternate taking turns.  During each turn, the
+player can move one of his own pieces in a piece-specific manner.  No piece can
+ever occupy more than one position at a time.  Two pieces can never occupy the
+same position at one time.  Opponents' pieces can be "taken" by one of the
+player's pieces and removed from the game by moving the player's piece into the
+position of the of that opponent's piece.  The goal is to threaten the
+opponent's king in such a way that he can not escape the threat (checkmate).
+
+Each player starts with 8 pawns - which start the game filling the
+second-closest row to the player.  Pawns may move forward (that is: away from
+their player's side) one position, if that next position is empty.  Pawns may
+also move forward two positions, if both spaces ahead of them are empty and the
+pawn is still in its original position (that is, it has not yet moved this
+game), at the player's option.  Pawns may not take enemy pieces that are
+directly in front of them.  However, if an enemy piece is immediately
+diagonally in front of it (that is: one space forward, and one space left or
+right), the pawn may opt to move diagonally and take this piece.
+
+Each player starts with 2 knights.  Knights may move 2 spaces in any one
+straight direction (that is: forward, backward, left or right), followed by 1
+space in a perpendicular direction.  This path need not be clear of pieces, and
+the target area must be empty, or contain an enemy piece (which is taken if the
+knight moves there).  The knights are the only pieces in the game that can jump
+over other pieces and don't need a clear path in order to move.
+
+Each player starts with 2 rooks.  Rooks may move any number of unoccupied
+positions in any one straight direction (that is: forward, backward, left or
+right).  They may also take an enemy piece if there is an unblocked path in a
+straight direction from the rook to that piece.
+
+Each player starts with 2 bishops.  Bishops may move any number of unoccupied
+positions in any one diagonal direction (that is: forward-left, backward-left,
+forward-right or backward-right).  They may also take an enemy piece if there
+is an unblocked path in a diagonal direction from the bishop to that piece.
+
+Each player starts with 1 queen.  Queens may move any number of unoccupied
+positions in any one diagonal or straight direction (that is: forward,
+backward, left, right, forward-left, backward-left, forward-right or
+backward-right).  They may also take an enemy piece if there is an unblocked
+path in a straight or diagonal direction from the queen to that piece.
+
+Each player has 1 king.  Kings may move to any one unoccupied position that is
+adjacent in any one diagonal or straight direction (that is: forward, backward,
+left, right, forward-left, backward-left, forward-right or backward-right).
+They may also take an enemy piece that is in any one unoccupied position that
+is adjacent in any one diagonal or straight direction from the king.
+
+If the opponent has a valid move which would take the player's king, the king
+is said to be in "check".  The player is never allowed to make a move which
+leaves his king in check.  This also implies that if the player's king is in
+check, the player MUST make a move that gets his king out of check.  No moves
+that fail to do this can be made.
+
+Create a class ChessMoves that contains the method number, which takes a
+String[] board and, for each player, returns the total number of possible moves
+that can legally be made if it is that player's turn, or -1 if the opponent of
+that player is already in check.  This answer should be returned as an int[]
+with the first element for the black player and the second element for the
+white player.
+
+The board will be represented as a String[] - with each element representing a
+row of the board, row 0 (zero) being the row closest to the black player, and
+row 7 (seven) being the row closest to the white player.  Each element will
+contain exactly one character for each location on the board, in order from
+left to right.  Empty locations will be represented by a period ('.').  Black
+pieces will be represented by capital letters.  White pieces will be
+represented by lower-case letters.  Kings are represented by 'K' and 'k',
+queens by 'Q' and 'q', knights by 'N' and 'n', bishops by 'B' and 'b', rooks by
+'R' and 'r', and pawns by 'P' and 'p'.
+
+DEFINITION
+Class: ChessMoves
+Method: number
+Parameters: String[]
+Returns: int[]
+Method signature (be sure your method is public):  int[] number(String[] board);
+
+
+NOTES
+- For those who know chess, pawn promotions, en passant, castling, and
+stalemates are not included.  Pawns simply stop if they reach the opponent's
+edge of the board.
+- The board will not necessarily represent a truly valid chess game state - for
+example, a player may have two bishops on the same diagonal even though this is
+impossible in normal chess.  Only the limitations listed in the "TopCoder will
+ensure" section (below) will be enforced.  Read them carefully and assume
+nothing else.
+- Note that 'K' stands for king, not knight.  'N' stands for knight.  Each type
+of piece other than a knight is represented by its first letter.
+- A piece can put the opponent's king in check even if moving that piece to
+actually take the opponent's king would expose your own king to check from one
+of the opponent's pieces (see example #1 for clarification).
+
+
+TopCoder will ensure the validity of the inputs.  Inputs are valid if all of
+the following criteria are met:
+- board will have exactly 8 elements.
+- each element of board will be exactly 8 characters in length.
+- board will contain exactly 1 king of each color ('K' and 'k').
+- board will not contain more than 1 queen of each color ('Q' and 'q').
+- board will not contain more than 2 knights of each color ('N' and 'n').
+- board will not contain more than 2 bishops of each color ('B' and 'b').
+- board will not contain more than 2 rooks of each color ('R' and 'r').
+- board will not contain more than 8 pawns of each color ('P' and 'p').
+- Each element of board will contain only the characters 'K', 'Q', 'N', 'B',
+'R', 'P', 'k', 'q', 'n', 'b', 'r', 'p' and period ('.').
+- Black pawns will never be in row 0.
+- White pawns will never be in row 7.
+- The board will not be arranged such that both players' kings are in check.
+
+EXAMPLES
+
+(1)
+board =
+{".K..R...","........","........","....q...","........","........","....k...",".
+......."}
+returns: {5,-1}
+This board looks like this:
+	. K . . R . . .
+	. . . . . . . .
+	. . . . . . . .
+	. . . . q . . .
+	. . . . . . . .
+	. . . . . . . .
+	. . . . k . . .
+	. . . . . . . .
+
+
+The black king ('K') is in check - because the white queen ('q') can take it -
+even though if the white queen ('q') were to actually move and take the black
+king, the black rook ('R') would have the white king ('k') in check.  Thus,
+while moving the queen would normally be an illegal move (since you can't move
+such that you place your king into check), it may still place the opponent's
+king in check.  The black player must move to get out of check - he can move
+his rook to kill the white queen, or can move his king left, left-forward,
+forward, or right - for a total of 5 possible moves.
+
+(2)
+board =
+{"RNBQKBNR","PPPPPPPP","........","........","........","........","pppppppp","r
+nbqkbnr"}
+returns: {20,20}
+This is the standard starting position.  Each player can move any one of his 8
+pawns in one of two ways, or either one of his two knights in one of two ways
+as well - totalling 20 possible opening moves.
+
+(3)
+board =
+{"RNBQKBNR",".PPPPPPP","........","........","........","........","pppppppp","r
+nbqkbnr"}
+returns: {24,20}
+Removing the right-most black pawn from example 1 reduces the number of pawn
+moves available to the black player by two, but allows him to move his rook to
+any one of 6 possible locations.
+
+(4)
+board =
+{".NBQKBNR",".PPPPPPP","........","....R...","........","........","pppp.ppp","r
+nbqkbnr"}
+returns: {-1,3}
+The black player has the white player in check, and the white player has only 3
+possible moves that can get him out of it.  He can move his queen or his
+right-most bishop to block the attack, or he can block the attack with his
+right-most knight.
+
+(5)
+board =
+{".K......","........",".......P","........","........","........","........","q
+rrk...."}
+returns: {0,-1}
+The white player has the black player in check which he can not escape
+(checkmate).
+
+(6)
+board =
+{".K......","..Q.....","...b....","........","........","........","........",".
+.k....."}
+returns: {-1,6}
+
+(7)
+board =
+{".K......","..Q.....","...b....","........","........","........","........",".
+....k.."}
+returns: {5,15}</pre></div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>ChessMoves</span></dd><dt>Method:</dt><dd><span>number</span></dd><dt>Parameters:</dt><dd><span>String[]</span></dd><dt>Returns:</dt><dd><span>int[]</span></dd><dt>Method signature:</dt><dd><span>int[] number(String[] param0)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul></ul></div><div><h3>Examples</h3><ol></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/821/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"821\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"821\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"821\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"821\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"821\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\nf:T230b,"])</script><script>self.__next_f.push([1,"\u003cpre xmlns=\"http://topcoder.com\"\u003ePROBLEM STATEMENT\n\nChess is an ancient game played on a board with 64 discrete positions, arranged\nin an 8x8 grid.  Each player starts with 16 pieces of a specific color - one\nplayer's pieces are all white (the \"white player\"), the others are all black\n(the \"black player\").  Players alternate taking turns.  During each turn, the\nplayer can move one of his own pieces in a piece-specific manner.  No piece can\never occupy more than one position at a time.  Two pieces can never occupy the\nsame position at one time.  Opponents' pieces can be \"taken\" by one of the\nplayer's pieces and removed from the game by moving the player's piece into the\nposition of the of that opponent's piece.  The goal is to threaten the\nopponent's king in such a way that he can not escape the threat (checkmate).\n\nEach player starts with 8 pawns - which start the game filling the\nsecond-closest row to the player.  Pawns may move forward (that is: away from\ntheir player's side) one position, if that next position is empty.  Pawns may\nalso move forward two positions, if both spaces ahead of them are empty and the\npawn is still in its original position (that is, it has not yet moved this\ngame), at the player's option.  Pawns may not take enemy pieces that are\ndirectly in front of them.  However, if an enemy piece is immediately\ndiagonally in front of it (that is: one space forward, and one space left or\nright), the pawn may opt to move diagonally and take this piece.\n\nEach player starts with 2 knights.  Knights may move 2 spaces in any one\nstraight direction (that is: forward, backward, left or right), followed by 1\nspace in a perpendicular direction.  This path need not be clear of pieces, and\nthe target area must be empty, or contain an enemy piece (which is taken if the\nknight moves there).  The knights are the only pieces in the game that can jump\nover other pieces and don't need a clear path in order to move.\n\nEach player starts with 2 rooks.  Rooks may move any number of unoccupied\npositions in any one straight direction (that is: forward, backward, left or\nright).  They may also take an enemy piece if there is an unblocked path in a\nstraight direction from the rook to that piece.\n\nEach player starts with 2 bishops.  Bishops may move any number of unoccupied\npositions in any one diagonal direction (that is: forward-left, backward-left,\nforward-right or backward-right).  They may also take an enemy piece if there\nis an unblocked path in a diagonal direction from the bishop to that piece.\n\nEach player starts with 1 queen.  Queens may move any number of unoccupied\npositions in any one diagonal or straight direction (that is: forward,\nbackward, left, right, forward-left, backward-left, forward-right or\nbackward-right).  They may also take an enemy piece if there is an unblocked\npath in a straight or diagonal direction from the queen to that piece.\n\nEach player has 1 king.  Kings may move to any one unoccupied position that is\nadjacent in any one diagonal or straight direction (that is: forward, backward,\nleft, right, forward-left, backward-left, forward-right or backward-right).\nThey may also take an enemy piece that is in any one unoccupied position that\nis adjacent in any one diagonal or straight direction from the king.\n\nIf the opponent has a valid move which would take the player's king, the king\nis said to be in \"check\".  The player is never allowed to make a move which\nleaves his king in check.  This also implies that if the player's king is in\ncheck, the player MUST make a move that gets his king out of check.  No moves\nthat fail to do this can be made.\n\nCreate a class ChessMoves that contains the method number, which takes a\nString[] board and, for each player, returns the total number of possible moves\nthat can legally be made if it is that player's turn, or -1 if the opponent of\nthat player is already in check.  This answer should be returned as an int[]\nwith the first element for the black player and the second element for the\nwhite player.\n\nThe board will be represented as a String[] - with each element representing a\nrow of the board, row 0 (zero) being the row closest to the black player, and\nrow 7 (seven) being the row closest to the white player.  Each element will\ncontain exactly one character for each location on the board, in order from\nleft to right.  Empty locations will be represented by a period ('.').  Black\npieces will be represented by capital letters.  White pieces will be\nrepresented by lower-case letters.  Kings are represented by 'K' and 'k',\nqueens by 'Q' and 'q', knights by 'N' and 'n', bishops by 'B' and 'b', rooks by\n'R' and 'r', and pawns by 'P' and 'p'.\n\nDEFINITION\nClass: ChessMoves\nMethod: number\nParameters: String[]\nReturns: int[]\nMethod signature (be sure your method is public):  int[] number(String[] board);\n\n\nNOTES\n- For those who know chess, pawn promotions, en passant, castling, and\nstalemates are not included.  Pawns simply stop if they reach the opponent's\nedge of the board.\n- The board will not necessarily represent a truly valid chess game state - for\nexample, a player may have two bishops on the same diagonal even though this is\nimpossible in normal chess.  Only the limitations listed in the \"TopCoder will\nensure\" section (below) will be enforced.  Read them carefully and assume\nnothing else.\n- Note that 'K' stands for king, not knight.  'N' stands for knight.  Each type\nof piece other than a knight is represented by its first letter.\n- A piece can put the opponent's king in check even if moving that piece to\nactually take the opponent's king would expose your own king to check from one\nof the opponent's pieces (see example #1 for clarification).\n\n\nTopCoder will ensure the validity of the inputs.  Inputs are valid if all of\nthe following criteria are met:\n- board will have exactly 8 elements.\n- each element of board will be exactly 8 characters in length.\n- board will contain exactly 1 king of each color ('K' and 'k').\n- board will not contain more than 1 queen of each color ('Q' and 'q').\n- board will not contain more than 2 knights of each color ('N' and 'n').\n- board will not contain more than 2 bishops of each color ('B' and 'b').\n- board will not contain more than 2 rooks of each color ('R' and 'r').\n- board will not contain more than 8 pawns of each color ('P' and 'p').\n- Each element of board will contain only the characters 'K', 'Q', 'N', 'B',\n'R', 'P', 'k', 'q', 'n', 'b', 'r', 'p' and period ('.').\n- Black pawns will never be in row 0.\n- White pawns will never be in row 7.\n- The board will not be arranged such that both players' kings are in check.\n\nEXAMPLES\n\n(1)\nboard =\n{\".K..R...\",\"........\",\"........\",\"....q...\",\"........\",\"........\",\"....k...\",\".\n.......\"}\nreturns: {5,-1}\nThis board looks like this:\n\t. K . . R . . .\n\t. . . . . . . .\n\t. . . . . . . .\n\t. . . . q . . .\n\t. . . . . . . .\n\t. . . . . . . .\n\t. . . . k . . .\n\t. . . . . . . .\n\n\nThe black king ('K') is in check - because the white queen ('q') can take it -\neven though if the white queen ('q') were to actually move and take the black\nking, the black rook ('R') would have the white king ('k') in check.  Thus,\nwhile moving the queen would normally be an illegal move (since you can't move\nsuch that you place your king into check), it may still place the opponent's\nking in check.  The black player must move to get out of check - he can move\nhis rook to kill the white queen, or can move his king left, left-forward,\nforward, or right - for a total of 5 possible moves.\n\n(2)\nboard =\n{\"RNBQKBNR\",\"PPPPPPPP\",\"........\",\"........\",\"........\",\"........\",\"pppppppp\",\"r\nnbqkbnr\"}\nreturns: {20,20}\nThis is the standard starting position.  Each player can move any one of his 8\npawns in one of two ways, or either one of his two knights in one of two ways\nas well - totalling 20 possible opening moves.\n\n(3)\nboard =\n{\"RNBQKBNR\",\".PPPPPPP\",\"........\",\"........\",\"........\",\"........\",\"pppppppp\",\"r\nnbqkbnr\"}\nreturns: {24,20}\nRemoving the right-most black pawn from example 1 reduces the number of pawn\nmoves available to the black player by two, but allows him to move his rook to\nany one of 6 possible locations.\n\n(4)\nboard =\n{\".NBQKBNR\",\".PPPPPPP\",\"........\",\"....R...\",\"........\",\"........\",\"pppp.ppp\",\"r\nnbqkbnr\"}\nreturns: {-1,3}\nThe black player has the white player in check, and the white player has only 3\npossible moves that can get him out of it.  He can move his queen or his\nright-most bishop to block the attack, or he can block the attack with his\nright-most knight.\n\n(5)\nboard =\n{\".K......\",\"........\",\".......P\",\"........\",\"........\",\"........\",\"........\",\"q\nrrk....\"}\nreturns: {0,-1}\nThe white player has the black player in check which he can not escape\n(checkmate).\n\n(6)\nboard =\n{\".K......\",\"..Q.....\",\"...b....\",\"........\",\"........\",\"........\",\"........\",\".\n.k.....\"}\nreturns: {-1,6}\n\n(7)\nboard =\n{\".K......\",\"..Q.....\",\"...b....\",\"........\",\"........\",\"........\",\"........\",\".\n....k..\"}\nreturns: {5,15}\u003c/pre\u003e"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"ChessMoves\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"ChessMoves\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"number\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String[]\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int[]\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int[] number(String[] param0)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

@@ -1,0 +1,728 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->TextEditorNavigation<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div>When programming, I don't like to take my fingers off the keyboard, and hence, I don't use the mouse.  So, when navigating my source, I like to do so in such a way as to minimize keystrokes.  My text editor supports the following keystrokes: left, right, up, down, home, end, top, bottom, word left and word right.  The word left and word right keystrokes position the cursor at a word beginning; a word beginning is the first letter of the word.  None of the keystrokes cause the cursor to wrap.  When moving the cursor vertically, my text editor does not change the cursor's horizontal position.  So, if the cursor is at column 50 and the up arrow is pressed, moving the cursor to a row with only 10 characters, only the row changes.  My text editor does not allow the cursor to be positioned left of the first column, above the first row or below the last row.  
+
+<br xmlns="http://topcoder.com"/><br xmlns="http://topcoder.com"/>The keys left, right, up, down, home, end, top, bottom, word left and word
+right behave as described below:
+
+<br xmlns="http://topcoder.com"/><br xmlns="http://topcoder.com"/>1.  left, right, up and down - move the cursor one position in the indicated direction (see notes).  
+<br xmlns="http://topcoder.com"/>2.  home - causes the cursor to move to column 0 of the current row.
+<br xmlns="http://topcoder.com"/>3.  end - causes the cursor to move to the last character of <b xmlns="http://topcoder.com">source</b> in the current row.
+<br xmlns="http://topcoder.com"/>4.  top - causes the cursor to move to the top row (row 0) retaining its column position.
+<br xmlns="http://topcoder.com"/>5.  bottom - causes the cursor to move to the bottom row retaining its column position.
+<br xmlns="http://topcoder.com"/>6. word left - causes the cursor to jump to the first word beginning that is strictly left of the cursor position, if one exists.  Otherwise does nothing. 
+<br xmlns="http://topcoder.com"/>7. word right - causes the cursor to jump to the first word beginning that is strictly right of the cursor position, if one exists.  Otherwise does nothing.
+
+<br xmlns="http://topcoder.com"/><br xmlns="http://topcoder.com"/>You will be given a <type xmlns="http://topcoder.com">String[]</type> <b xmlns="http://topcoder.com">source</b> representing the source code, a <type xmlns="http://topcoder.com">int[]</type> <b xmlns="http://topcoder.com">start</b> representing the starting position of the cursor and a <type xmlns="http://topcoder.com">int[]</type> <b xmlns="http://topcoder.com">finish</b> representing the ending position of the cursor.  The first int in both <b xmlns="http://topcoder.com">start</b> and <b xmlns="http://topcoder.com">finish</b> specifies the 0-indexed row and the second int specifies the 0-indexed column.  You are to calculate and return the minimum number of keystrokes required to get from <b xmlns="http://topcoder.com">start</b> to <b xmlns="http://topcoder.com">finish</b>.</div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>TextEditorNavigation</span></dd><dt>Method:</dt><dd><span>keystrokes</span></dd><dt>Parameters:</dt><dd><span>String[], int[], int[]</span></dd><dt>Returns:</dt><dd><span>int</span></dd><dt>Method signature:</dt><dd><span>int keystrokes(String[] source, int[] start, int[] finish)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Notes</h3><ul><li>For the purposes of this problem, we use the convention that the cursor covers each character.  Some editors (normally in &quot;insert mode&quot;) have the cursor preceding each character.</li><li>A keypress may not have any effect.  For example, pressing up in the top row does nothing, pressing left in the first column does nothing and pressing down in the bottom row does nothing.  Pressing right always has an effect.</li></ul></div><div><h3>Constraints</h3><ul><li><span>source will contain between 1 and 50 elements, inclusive.</span></li><li><span>Each element of source will contain between 1 and 50 characters, inclusive.</span></li><li><span>Each character must be a letter ('a'-'z', 'A'-'Z') or ' '.</span></li><li><span>start and finish will each contain exactly 2 elements.</span></li><li><span>start and finish will each represent character positions that exist in source.</span></li></ul></div><div><h3>Examples</h3><ol><li><div><p>{"AAAAA AAA AAAAAAAAAAAAA  AAAA",
+ "AA   AAAAAAAAA AAAA     AAAA",
+ "BBBBBBBBBBBBBBBBBBBBBBBBBBB",
+ "BBBBBBB BBBBBBBBBB BBBBBBB",
+ "CCC CCCC CCCCCC      CCCC",
+ "DDDDDDDDDDDDDDDDDDD"}</p>
+<p>{5, 7}</p>
+<p>{2, 2}</p>
+<p>Returns: 6</p>
+<p>This can be achieved by the following keystrokes in the given order: home, top, down, down, right, right.</p></div></li><li><div><p>{"A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "BB BB BB BB BB BB BB BB BB BB BB BB BB BB BB BB BB",
+ "CCC CCC CCC CCC CCC CCC CCC CCC CCC CCC CCC CCC CC",
+ "DDDD DDDD DDDD DDDD DDDD DDDD DDDD DDDD DDDD DDDD ",
+ "EEEEE EEEEE EEEEE EEEEE EEEEE EEEEE EEEEE EEEEE EE",
+ "FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF ",
+ "GGG GGG GGG GGG GGG GGG GGG GGG GGG GGG GGG GGG GG",
+ "HHHHHHHHHHH HHHHHHHHHH HHHHHHHHHH HHHHHHHHHH HHHHH",
+ "IIIIIIIIIIIIIII IIIIIIIIIIIIIII IIIIIIIIIIIIIII   ",
+ "JJJJJJJJ JJJJJJJJ JJJJJJJJ JJJJJJJJ JJJJJJJJ JJJJJ",
+ "KKKKKKKKKKKKKKKKKKKKKKKKKK KKKKKKKKKKKKKKKKKKKKKKK",
+ "LLLLLLLLLL LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+ "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+ "N N N N N N N N N N N N N N N N N N N N N N N N N ",
+ "OOOOO OOOO OOO OO O O OO OOO OOOO OOOOO OOOOOO OOO",
+ "PPPPPPP PPPPPP PPPPP PPPP PPP PP P P PP PPP PPPP P",
+ "QQQQQQ QQQQQ QQQQ QQQ QQ Q Q QQ QQQ QQQQ QQQQQ QQQ",
+ "ZZZZ ZZ ZZZ ZZ ZZZZ ZZ ZZZ ZZ ZZZZ ZZ ZZZ ZZ ZZZZ ",
+ "SSS S SSS S SSS S SSS S SSS S SSS S SSS S SSS S SS",
+ "TT TT TT TT TT TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"}</p>
+<p>{12, 20}</p>
+<p>{4, 36}</p>
+<p>Returns: 8</p></div></li><li><div><p>{"A A A A AAAAAAA A A A A A A A A A A",
+ "B BBBBB B B B B BBBBB B B B B B B B B"}</p>
+<p>{1, 0}</p>
+<p>{1, 22}</p>
+<p>Returns: 6</p></div></li><li><div><p>{"AAAAAAAAAAAAAA A A A A A A A A A A"}</p>
+<p>{0, 2}</p>
+<p>{0, 15}</p>
+<p>Returns: 1</p></div></li><li><div><p>{"A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "N N N N N N N N N N N N N N N N N N N N N N N N N ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ " O O O O O O O O O O O O OO O O O O O O O O O O O ",
+ " P P P P P P P P P P P P P PP P P P P P P P P P P ",
+ " Q Q Q Q Q Q Q Q Q Q Q Q Q Q QQ Q Q Q Q Q Q Q Q Q ",
+ " R R R R R R R R R R R R R R R RR R R R R R R R R ",
+ " S S S S S S S S S S S S S S S S SS S S S S S S S ",
+ " T T T T T T T T T T T T T T T T T TT T T T T T T ",
+ " U U U U U U U U U U U U U U U U U U UU U U U U U ",
+ " V V V V V V V V V V V V V V V V V V V VV V V V V ",
+ " W W W W W W W W W W W W W W W W W W W W WW W W W ",
+ " X X X X X X X X X X X X X X X X X X X X X XX X X ",
+ " Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y YY Y ",
+ " Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z ZZZ"}</p>
+<p>{49, 49}</p>
+<p>{38, 26}</p>
+<p>Returns: 23</p></div></li><li><div><p>{"AAA", "BB", "CCC"}</p>
+<p>{1, 1}</p>
+<p>{1, 1}</p>
+<p>Returns: 0</p></div></li><li><div><p>{"AAAAA AAA AAAAAAAAAAAAA  AAAA",
+ "AA   AAAAAAAAA AAAA     AAAA",
+ "BBBBBBBBBBBBBBBBBBBBBBBBBBB",
+ "BBBBBBB BBBBBBBBBB BBBBBBB",
+ "CCC CCCC CCCCCC      CCCC",
+ "DDDDDDDDDDDDDDDDDDD"}</p>
+<p>{2, 17}</p>
+<p>{1, 2}</p>
+<p>Returns: 4</p></div></li><li><div><p>{"AAAAA"}</p>
+<p>{0, 2}</p>
+<p>{0, 1}</p>
+<p>Returns: 1</p></div></li><li><div><p>{"AAAAA"}</p>
+<p>{0, 2}</p>
+<p>{0, 3}</p>
+<p>Returns: 1</p></div></li><li><div><p>{"AAAAA", "BBBBB", "CCCCC"}</p>
+<p>{2, 2}</p>
+<p>{1, 2}</p>
+<p>Returns: 1</p></div></li><li><div><p>{"AAAAA", "BBBBB", "CCCCC"}</p>
+<p>{0, 2}</p>
+<p>{1, 2}</p>
+<p>Returns: 1</p></div></li><li><div><p>{"AAAAAA"}</p>
+<p>{0, 4}</p>
+<p>{0, 0}</p>
+<p>Returns: 1</p></div></li><li><div><p>{"AAAAAA"}</p>
+<p>{0, 1}</p>
+<p>{0, 5}</p>
+<p>Returns: 1</p></div></li><li><div><p>{"AAAAAAA", "BBB", "CCCCCCC"}</p>
+<p>{2, 5}</p>
+<p>{0, 5}</p>
+<p>Returns: 1</p></div></li><li><div><p>{"AAAAAAA", "BBB", "CCCCCCC"}</p>
+<p>{0, 5}</p>
+<p>{2, 5}</p>
+<p>Returns: 1</p></div></li><li><div><p>{"AAAAAA AAA"}</p>
+<p>{0, 9}</p>
+<p>{0, 7}</p>
+<p>Returns: 1</p></div></li><li><div><p>{"AAAAAA AAA"}</p>
+<p>{0, 2}</p>
+<p>{0, 7}</p>
+<p>Returns: 1</p></div></li><li><div><p>{"AAAAA AAA",
+ "BBBBB BBBBB BBBBB",
+ "CCC CC CC",
+ "DDD DDDD",
+ "E E E E E E E E E",
+ "FFFFFFFFFFFFFFFFFFFF"}</p>
+<p>{0, 0}</p>
+<p>{4, 12}</p>
+<p>Returns: 5</p></div></li><li><div><p>{"A A A A A A A A A A A A A A A A A A ",
+ "B BBBBBBBBBBBBBBBBBBB B B B B B B B ",
+ "C C C C C C C C C C C C C C C C C C ",
+ "D D D D D D D D D D D D D D D D D D ",
+ "E E E E E E E E E E E E E E E E E E ",
+ "F F F F F F F F F F F F F F F F F F ",
+ "G G G G G G G G G G G X G G G G G G "}</p>
+<p>{6, 2}</p>
+<p>{6, 22}</p>
+<p>Returns: 4</p></div></li><li><div><p>{" A A "}</p>
+<p>{0,1}</p>
+<p>{0,3}</p>
+<p>Returns: 1</p></div></li><li><div><p>{" A A "}</p>
+<p>{0,3}</p>
+<p>{0,1}</p>
+<p>Returns: 1</p></div></li><li><div><p>{
+"AAAAAA",
+"AAAAAAAAAAA"
+}</p>
+<p>{1,10}</p>
+<p>{0,5}</p>
+<p>Returns: 2</p></div></li><li><div><p>{"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA A A",
+ "B B B B B B B B BBBB B B BBBBBBBB B B",
+ "FFFFXFFFFFFFFFFFF        F F F F F F F F F F F",
+ "CCCCCCCCCCCCCCCCCCC",
+ "DDDDDDDDDDDDDDDDDDDDDDDD",
+ "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"}</p>
+<p>{2, 4}</p>
+<p>{1, 16}</p>
+<p>Returns: 5</p>
+<p>This can be achieved by the following keystrokes: home, top, down, down, right and right.</p></div></li><li><div><p>{"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA A A",
+ "B B B B B B B B BB B B B BBBBBBB B B",
+ "FFFFXFFFFFFFFFFFF        F F F F F F F F F F F",
+ "CCCCCCCCCCCCCCCCCCC",
+ "DDDDDDDDDDDDDDDDDDDDDDDD",
+ "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"}</p>
+<p>{2, 4}</p>
+<p>{1, 16}</p>
+<p>Returns: 5</p></div></li><li><div><p>{"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+ "ZZZZZZ ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ",
+ "A A A A A A A A A A A A A A A A A A A A A S A",
+ "B B B Bbbbbbbbbbbbbbbb B BBB B B B B",
+ "FFFFXFFFFFFFFFFFF        F F F F F F F F F F F",
+ "CCCCCCCCCCCCCCCCCCC",
+ "DDDDDDDDDDDDDDDDDDDDDDDD",
+ "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"}</p>
+<p>{2, 42}</p>
+<p>{2, 23}</p>
+<p>Returns: 6</p></div></li><li><div><p>{"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+ "Z Z Z Z Z Z Z ZZzZZZ Z z Z Z Z Z ZZZZZZZZZZZZZZZZ",
+ "AAAAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAA S A A",
+ "B B B B b bbbbbbbb bfBbBBBBBBBBBB B B B b x",
+ "FFFFXFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+ "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+ "DDDDDDDDDDDDDDDDDDDDDDCDDDDDDDDDDDDDDdeaefae",
+ "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"}</p>
+<p>{2, 42}</p>
+<p>{2, 14}</p>
+<p>Returns: 9</p></div></li><li><div><p>{"   S",
+"X EQUALS ZERO",
+"Y EQUALS THIRTY",
+"Z EQUALS X TIMES Y",
+"CRUNCH NUMFERS X Y Z"}</p>
+<p>{0, 3}</p>
+<p>{4, 10}</p>
+<p>Returns: 4</p></div></li><li><div><p>{"Send MESSAGE To RECIPIENT",
+ "If Not Success Then Bail",
+ "Get DATA From Storage",
+ "If DATA ELEMENT ZERO Equals ZERO Then Bail",
+ "Send DATA ELEMENT ZERO To RECIPIENT",
+ "Cleanup",
+ "Exit"}</p>
+<p>{0, 0}</p>
+<p>{4, 18}</p>
+<p>Returns: 6</p></div></li><li><div><p>{"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+ "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+ "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+ "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",
+ "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
+ "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+ "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
+ "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH",
+ "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII",
+ "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ",
+ "KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK",
+ "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+ "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+ "NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN",
+ "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+ "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP",
+ "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ",
+ "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR",
+ "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",
+ "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+ "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU",
+ "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV",
+ "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+ "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY",
+ "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ",
+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+ "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+ "cccccccccccccccccccccccccccccccccccccccccccccccccc",
+ "dddddddddddddddddddddddddddddddddddddddddddddddddd",
+ "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+ "ffffffffffffffffffffffffffffffffffffffffffffffffff",
+ "gggggggggggggggggggggggggggggggggggggggggggggggggg",
+ "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
+ "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
+ "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+ "llllllllllllllllllllllllllllllllllllllllllllllllll",
+ "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
+ "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+ "oooooooooooooooooooooooooooooooooooooooooooooooooo",
+ "pppppppppppppppppppppppppppppppppppppppppppppppppp",
+ "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
+ "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+ "ssssssssssssssssssssssssssssssssssssssssssssssssss",
+ "tttttttttttttttttttttttttttttttttttttttttttttttttt",
+ "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu",
+ "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv",
+ "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+ "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}</p>
+<p>{0, 0}</p>
+<p>{24, 24}</p>
+<p>Returns: 48</p></div></li><li><div><p>{"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+ "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+ "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+ "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",
+ "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
+ "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+ "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
+ "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH",
+ "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII",
+ "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ",
+ "KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK",
+ "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+ "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+ "NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN",
+ "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+ "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP",
+ "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ",
+ "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR",
+ "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",
+ "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+ "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU",
+ "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV",
+ "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+ "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY",
+ "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ",
+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+ "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+ "cccccccccccccccccccccccccccccccccccccccccccccccccc",
+ "dddddddddddddddddddddddddddddddddddddddddddddddddd",
+ "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+ "ffffffffffffffffffffffffffffffffffffffffffffffffff",
+ "gggggggggggggggggggggggggggggggggggggggggggggggggg",
+ "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
+ "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
+ "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+ "llllllllllllllllllllllllllllllllllllllllllllllllll",
+ "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
+ "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+ "oooooooooooooooooooooooooooooooooooooooooooooooooo",
+ "pppppppppppppppppppppppppppppppppppppppppppppppppp",
+ "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
+ "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+ "ssssssssssssssssssssssssssssssssssssssssssssssssss",
+ "tttttttttttttttttttttttttttttttttttttttttttttttttt",
+ "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu",
+ "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv",
+ "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+ "xxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxx"}</p>
+<p>{0, 0}</p>
+<p>{23, 23}</p>
+<p>Returns: 27</p></div></li><li><div><p>{"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+ "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+ "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+ "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",
+ "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
+ "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+ "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
+ "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH",
+ "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII",
+ "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ",
+ "KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK",
+ "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+ "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+ "NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN",
+ "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+ "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP",
+ "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ",
+ "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR",
+ "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",
+ "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+ "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU",
+ "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV",
+ "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+ "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY",
+ "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ",
+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+ "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+ "cccccccccccccccccccccccccccccccccccccccccccccccccc",
+ "dddddddddddddddddddddddddddddddddddddddddddddddddd",
+ "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+ "ffffffffffffffffffffffffffffffffffffffffffffffffff",
+ "gggggggggggggggggggggggggggggggggggggggggggggggggg",
+ "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
+ "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
+ "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+ "llllllllllllllllllllllllllllllllllllllllllllllllll",
+ "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
+ "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+ "oooooooooooooooooooooooooooooooooooooooooooooooooo",
+ "pppppppppppppppppppppppppppppppppppppppppppppppppp",
+ "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
+ "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+ "ssssssssssssssssssssssssssssssssssssssssssssssssss",
+ "tttttttttttttttttttttttttttttttttttttttttttttttttt",
+ "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu",
+ "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv",
+ "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+ "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}</p>
+<p>{0, 49}</p>
+<p>{24, 25}</p>
+<p>Returns: 48</p></div></li><li><div><p>{"                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ", 
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  ",
+ "                                                  "}</p>
+<p>{49, 0}</p>
+<p>{24, 24}</p>
+<p>Returns: 49</p></div></li><li><div><p>{"    sdlfjasdlfkjasdflakjdsfalksjdfasldkjfasdlfkjad",
+ "      adslfkjadslfkjasdflkajsdfalskdjfasldfkjasdlj",
+ "        adlsfjasdlfkjasdflkjasdflajsdfalksdjfadslf",
+ "          adslfjasdlfjasdlfkjsadflkjsadlfkjasdlfkj",
+ "        adslkjfasdlkfjasdlfkjasdlfkjasdflkjasdlkaj",
+ "      asldkfjasldfkjasdlfkjasdflkjasdflkjasdflkjas",
+ "    adslfkjasdlkfjasdlfkjasdflkjasdflkjasdflkjasdl"}</p>
+<p>{6, 47}</p>
+<p>{3, 5}</p>
+<p>Returns: 5</p></div></li><li><div><p>{"    sdlfjasdlfkjasdflakjdsfalksjdfasldkj          ",
+"      adslfkjadslfkjasdflkajsdfalskdjfas          ",
+"        adlsfjasdlfkjasdflkjasdflajsdfal          ",
+"          adslfjasdlfjasdlfkjsadflkjsadl          ",
+"        adslkjfasdlkfjasdlfkjasdlfkjasdflk        ",
+"      asldkfjasldfkjasdlfkjasdflkjasdflkjasd      ",
+"    adslfkjasdlkfjasdlfkjasdflkjasdflkjasdflkj"}</p>
+<p>{3, 25}</p>
+<p>{0, 46}</p>
+<p>Returns: 4</p></div></li><li><div><p>{"A PC to do CAD huh  Sounds reasonable",
+ "Aurthor go out and buy us five new PCs",
+ "Dont you want to think about this for a minute",
+ "No every second counts and we want to be ahead of",
+ "the competition",
+ "       OK Greate idea Please place lOOk worth of",
+ "unmarked bills in my suitcase and Ill be on my way"}</p>
+<p>{0, 11}</p>
+<p>{1, 15}</p>
+<p>Returns: 2</p></div></li><li><div><p>{"A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ "b b b b b b b b b b b b b b b b b b b b b b b b b ",
+ "C C C C C C C C C C C C C C C C C C C C C C C C C ",
+ "d d d d d d d d d d d d d d d d d d d d d d d d d ",
+ "E E E E E E E E E E E E E E E E E E E E E E E E E ",
+ "f f f f f f f f f f f f f f f f f f f f f f f f f ",
+ "G G G G G G G G G G G G G G G G G G G G G G G G G ",
+ "h h h h h h h h h h h h h h h h h h h h h h h h h ",
+ "I I I I I I I I I I I I I I I I I I I I I I I I I ",
+ "j j j j j j j j j j j j j j j j j j j j j j j j j ",
+ "K K K K K K K K K K K K K K K K K K K K K K K K K ",
+ "l l l l l l l l l l l l l l l l l l l l l l l l l ",
+ "M M M M M M M M M M M M M M M M M M M M M M M M M ",
+ "n n n n n n n n n n n n n n n n n n n n n n n n n ",
+ "O O O O O O O O O O O O O O O O O O O O O O O O O ",
+ "p p p p p p p p p p p p p p p p p p p p p p p p p ",
+ "Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q ",
+ "r r r r r r r r r r r r r r r r r r r r r r r r r ",
+ "S S S S S S S S S S S S S S S S S S S S S S S S S ",
+ "t t t t t t t t t t t t t t t t t t t t t t t t t ",
+ "U U U U U U U U U U U U U U U U U U U U U U U U U ",
+ "v v v v v v v v v v v v v v v v v v v v v v v v v ",
+ "W W W W W W W W W W W W W W W W W W W W W W W W W ",
+ "x x x x x x x x x x x x x x x x x x x x x x x x x ",
+ "Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y ",
+ "z z z z z z z z z z z z z z z z z z z z z z z z z ",
+ "a a a a a a a a a a a a a a a a a a a a a a a a a ",
+ "B B B B B B B B B B B B B B B B B B B B B B B B B ",
+ "c c c c c c c c c c c c c c c c c c c c c c c c c ",
+ "D D D D D D D D D D D D D D D D D D D D D D D D D ",
+ "e e e e e e e e e e e e e e e e e e e e e e e e e ",
+ "F F F F F F F F F F F F F F F F F F F F F F F F F ",
+ "g g g g g g g g g g g g g g g g g g g g g g g g g ",
+ "H H H H H H H H H H H H H H H H H H H H H H H H H ",
+ "i i i i i i i i i i i i i i i i i i i i i i i i i ",
+ "J J J J J J J J J J J J J J J J J J J J J J J J J ",
+ "k k k k k k k k k k k k k k k k k k k k k k k k k ",
+ "L L L L L L L L L L L L L L L L L L L L L L L L L ",
+ "m m m m m m m m m m m m m m m m m m m m m m m m m ",
+ "N N N N N N N N N N N N N N N N N N N N N N N N N ",
+ "o o o o o o o o o o o o o o o o o o o o o o o o o ",
+ "P P P P P P P P P P P P P P P P P P P P P P P P P ",
+ "q q q q q q q q q q q q q q q q q q q q q q q q q ",
+ "R R R R R R R R R R R R R R R R R R R R R R R R R ",
+ "s s s s s s s s s s s s s s s s s s s s s s s s s ",
+ "T T T T T T T T T T T T T T T T T T T T T T T T T ",
+ "u u u u u u u u u u u u u u u u u u u u u u u u u ",
+ "V V V V V V V V V V V V V V V V V V V V V V V V V ",
+ "w w w w w w w w w w w w w w w w w w w w w w w w w ",
+ "X X X X X X X X X X X X X X X X X X X X X X X X X "}</p>
+<p>{49, 49}</p>
+<p>{16, 36}</p>
+<p>Returns: 24</p></div></li><li><div><p>{"A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ " b b b b b b b b b b b b b b b b b b b b b b b b b",
+ "C C C C C C C C C C C C C C C C C C C C C C C C C ",
+ " d d d d d d d d d d d d d d d d d d d d d d d d d",
+ "E E E E E E E E E E E E E E E E E E E E E E E E E ",
+ " f f f f f f f f f f f f f f f f f f f f f f f f f",
+ "G G G G G G G G G G G G G G G G G G G G G G G G G ",
+ " h h h h h h h h h h h h h h h h h h h h h h h h h",
+ "I I I I I I I I I I I I I I I I I I I I I I I I I ",
+ " j j j j j j j j j j j j j j j j j j j j j j j j j",
+ "K K K K K K K K K K K K K K K K K K K K K K K K K ",
+ " l l l l l l l l l l l l l l l l l l l l l l l l l",
+ "M M M M M M M M M M M M M M M M M M M M M M M M M ",
+ " n n n n n n n n n n n n n n n n n n n n n n n n n",
+ "O O O O O O O O O O O O O O O O O O O O O O O O O ",
+ " p p p p p p p p p p p p p p p p p p p p p p p p p",
+ "Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q ",
+ " r r r r r r r r r r r r r r r r r r r r r r r r r",
+ "S S S S S S S S S S S S S S S S S S S S S S S S S ",
+ " t t t t t t t t t t t t t t t t t t t t t t t t t",
+ "U U U U U U U U U U U U U U U U U U U U U U U U U ",
+ " v v v v v v v v v v v v v v v v v v v v v v v v v",
+ "W W W W W W W W W W W W W W W W W W W W W W W W W ",
+ " x x x x x x x x x x x x x x x x x x x x x x x x x",
+ "Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y ",
+ " z z z z z z z z z z z z z z z z z z z z z z z z z",
+ "a a a a a a a a a a a a a a a a a a a a a a a a a ",
+ " B B B B B B B B B B B B B B B B B B B B B B B B B",
+ "c c c c c c c c c c c c c c c c c c c c c c c c c ",
+ " D D D D D D D D D D D D D D D D D D D D D D D D D",
+ "e e e e e e e e e e e e e e e e e e e e e e e e e ",
+ " F F F F F F F F F F F F F F F F F F F F F F F F F",
+ "g g g g g g g g g g g g g g g g g g g g g g g g g ",
+ " H H H H H H H H H H H H H H H H H H H H H H H H H",
+ "i i i i i i i i i i i i i i i i i i i i i i i i i ",
+ " J J J J J J J J J J J J J J J J J J J J J J J J J",
+ "k k k k k k k k k k k k k k k k k k k k k k k k k ",
+ " L L L L L L L L L L L L L L L L L L L L L L L L L",
+ "m m m m m m m m m m m m m m m m m m m m m m m m m ",
+ " N N N N N N N N N N N N N N N N N N N N N N N N N",
+ "o o o o o o o o o o o o o o o o o o o o o o o o o ",
+ " P P P P P P P P P P P P P P P P P P P P P P P P P",
+ "q q q q q q q q q q q q q q q q q q q q q q q q q ",
+ " R R R R R R R R R R R R R R R R R R R R R R R R R",
+ "s s s s s s s s s s s s s s s s s s s s s s s s s ",
+ " T T T T T T T T T T T T T T T T T T T T T T T T T",
+ "u u u u u u u u u u u u u u u u u u u u u u u u u ",
+ " V V V V V V V V V V V V V V V V V V V V V V V V V",
+ "w w w w w w w w w w w w w w w w w w w w w w w w w ",
+ " X X X X X X X X X X X X X X X X X X X X X X X X X"}</p>
+<p>{49, 49}</p>
+<p>{16, 36}</p>
+<p>Returns: 24</p></div></li><li><div><p>{"A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ " b b b b b b b b b b b b b b b b b b b b b b b b b",
+ "C C C C C C C C C C C C C C C C C C C C C C C C C ",
+ " d d d d d d d d d d d d d d d d d d d d d d d d d",
+ "E E E E E E E E E E E E E E E E E E E E E E E E E ",
+ " f f f f f f f f f f f f f f f f f f f f f f f f f",
+ "G G G G G G G G G G G G G G G G G G G G G G G G G ",
+ " h h h h h h h h h h h h h h h h h h h h h h h h h",
+ "I I I I I I I I I I I I I I I I I I I I I I I I I ",
+ " j j j j j j j j j j j j j j j j j j j j j j j j j",
+ "K K K K K K K K K K K K K K K K K K K K K K K K K ",
+ " l l l l l l l l l l l l l l l l l l l l l l l l l",
+ "M M M M M M M M M M M M M M M M M M M M M M M M M ",
+ " n n n n n n n n n n n n n n n n n n n n n n n n n",
+ "O O O O O O O O O O O O O O O O O O O O O O O O O ",
+ " p p p p p p p p p p p p p p p p p p p p p p p p p",
+ "Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q ",
+ " r r r r r r r r r r r r r r r r r r r r r r r r r",
+ "S S S S S S S S S S S S S S S S S S S S S S S S S ",
+ " t t t t t t t t t t t t t t t t t t t t t t t t t",
+ "U U U U U U U U U U U U U U U U U U U U U U U U U ",
+ " v v v v v v v v v v v v v v v v v v v v v v v v v",
+ "W W W W W W W W W W W W W W W W W W W W W W W W W ",
+ " x x x x x x x x x x x x x x x x x x x x x x x x x",
+ "Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y ",
+ " z z z z z z z z z z z z z z z z z z z z z z z z z",
+ "a a a a a a a a a a a a a a a a a a a a a a a a a ",
+ " B B B B B B B B B B B B B B B B B B B B B B B B B",
+ "c c c c c c c c c c c c c c c c c c c c c c c c c ",
+ " D D D D D D D D D D D D D D D D D D D D D D D D D",
+ "e e e e e e e e e e e e e e e e e e e e e e e e e ",
+ " F F F F F F F F F F F F F F F F F F F F F F F F F",
+ "g g g g g g g g g g g g g g g g g g g g g g g g g ",
+ " H H H H H H H H H H H H H H H H H H H H H H H H H",
+ "i i i i i i i i i i i i i i i i i i i i i i i i i ",
+ " J J J J J J J J J J J J J J J J J J J J J J J J J",
+ "k k k k k k k k k k k k k k k k k k k k k k k k k ",
+ " L L L L L L L L L L L L L L L L L L L L L L L L L",
+ "m m m m m m m m m m m m m m m m m m m m m m m m m ",
+ " N N N N N N N N N N N N N N N N N N N N N N N N N",
+ "o o o o o o o o o o o o o o o o o o o o o o o o o ",
+ " P P P P P P P P P P P P P P P P P P P P P P P P P",
+ "q q q q q q q q q q q q q q q q q q q q q q q q q ",
+ " R R R R R R R R R R R R R R R R R R R R R R R R R",
+ "s s s s s s s s s s s s s s s s s s s s s s s s s ",
+ " T T T T T T T T T T T T T T T T T T T T T T T T T",
+ "u u u u u u u u u u u u u u u u u u u u u u u u u ",
+ " V V V V V V V V V V V V V V V V V V V V V V V V V",
+ "w w w w w w w w w w w w w w w w w w w w w w w w w ",
+ " X X X X X X X X X X X X X X X X X X X X X X X X X"}</p>
+<p>{3, 3}</p>
+<p>{28, 47}</p>
+<p>Returns: 24</p></div></li><li><div><p>{"A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ " b b b b b b b b b b b b b b b b b b b b b b b b b",
+ "C C C C C C C C C C C C C C C C C C C C C C C C C ",
+ " d d d d d d d d d d d d d d d d d d d d d d d d d",
+ "E E E E E E E E E E E E E E E E E E E E E E E E E ",
+ " f f f f f f f f f f f f f f f f f f f f f f f f f",
+ "G G G G G G G G G G G G G G G G G G G G G G G G G ",
+ " h h h h h h h h h h h h h h h h h h h h h h h h h",
+ "I I I I I I I I I I I I I I I I I I I I I I I I I ",
+ " j j j j j j j j j j j j j j j j j j j j j j j j j",
+ "K K K K K K K K K K K K K K K K K K K K K K K K K ",
+ " l l l l l l l l l l l l l l l l l l l l l l l l l",
+ "M M M M M M M M M M M M M M M M M M M M M M M M M ",
+ " n n n n n n n n n n n n n n n n n n n n n n n n n",
+ "O O O O O O O O O O O O O O O O O O O O O O O O O ",
+ " p p p p p p p p p p p p p p p p p p p p p p p p p",
+ "Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q ",
+ " r r r r r r r r r r r r r r r r r r r r r r r r r",
+ "S S S S S S S S S S S S S S S S S S S S S S S S S ",
+ " t t t t t t t t t t t t t t t t t t t t t t t t t",
+ "U U U U U U U U U U U U U U U U U U U U U U U U U ",
+ " v v v v v v v v v v v v v v v v v v v v v v v v v",
+ "W W W W W W W W W W W W W W W W W W W W W W W W W ",
+ " x x x x x x x x x x x x x x x x x x x x x x x x x",
+ "Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y ",
+ " z z z z z z z z z z z z z z z z z z z z z z z z z",
+ "a a a a a a a a a a a a a a a a a a a a a a a a a ",
+ " B B B B B B B B B B B B B B B B B B B B B B B B B",
+ "c c c c c c c c c c c c c c c c c c c c c c c c c ",
+ " D D D D D D D D D D D D D D D D D D D D D D D D D",
+ "e e e e e e e e e e e e e e e e e e e e e e e e e ",
+ " F F F F F F F F F F F F F F F F F F F F F F F F F",
+ "g g g g g g g g g g g g g g g g g g g g g g g g g ",
+ " H H H H H H H H H H H H H H H H H H H H H H H H H",
+ "i i i i i i i i i i i i i i i i i i i i i i i i i ",
+ " J J J J J J J J J J J J J J J J J J J J J J J J J",
+ "k k k k k k k k k k k k k k k k k k k k k k k k k ",
+ " L L L L L L L L L L L L L L L L L L L L L L L L L",
+ "m m m m m m m m m m m m m m m m m m m m m m m m m ",
+ " N N N N N N N N N N N N N N N N N N N N N N N N N",
+ "o o o o o o o o o o o o o o o o o o o o o o o o o ",
+ " P P P P P P P P P P P P P P P P P P P P P P P P P",
+ "q q q q q q q q q q q q q q q q q q q q q q q q q ",
+ " R R R R R R R R R R R R R R R R R R R R R R R R R",
+ "s s s s s s s s s s s s s s s s s s s s s s s s s ",
+ " T T T T T T T T T T T T T T T T T T T T T T T T T",
+ "u u u u u u u u u u u u u u u u u u u u u u u u u ",
+ " V V V V V V V V V V V V V V V V V V V V V V V V V",
+ "w w w w w w w w w w w w w w w w w w w w w w w w w ",
+ " X X X X X X X X X X X X X X X X X X X X X X X X X"}</p>
+<p>{13, 0}</p>
+<p>{38, 27}</p>
+<p>Returns: 24</p></div></li><li><div><p>{"A A A A A A A A A A A A A A A A A A A A A A A A A ",
+ " b b b b b b b b b b b b b b b b b b b b b b b b b",
+ "C C C C C C C C C C C C C C C C C C C C C C C C C ",
+ " d d d d d d d d d d d d d d d d d d d d d d d d d",
+ "E E E E E E E E E E E E E E E E E E E E E E E E E ",
+ " f f f f f f f f f f f f f f f f f f f f f f f f f",
+ "G G G G G G G G G G G G G G G G G G G G G G G G G ",
+ " h h h h h h h h h h h h h h h h h h h h h h h h h",
+ "I I I I I I I I I I I I I I I I I I I I I I I I I ",
+ " j j j j j j j j j j j j j j j j j j j j j j j j j",
+ "K K K K K K K K K K K K K K K K K K K K K K K K K ",
+ " l l l l l l l l l l l l l l l l l l l l l l l l l",
+ "M M M M M M M M M M M M M M M M M M M M M M M M M ",
+ " n n n n n n n n n n n n n n n n n n n n n n n n n",
+ "O O O O O O O O O O O O O O O O O O O O O O O O O ",
+ " p p p p p p p p p p p p p p p p p p p p p p p p p",
+ "Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q ",
+ " r r r r r r r r r r r r r r r r r r r r r r r r r",
+ "S S S S S S S S S S S S S S S S S S S S S S S S S ",
+ " t t t t t t t t t t t t t t t t t t t t t t t t t",
+ "U U U U U U U U U U U U U U U U U U U U U U U U U ",
+ " v v v v v v v v v v v v v v v v v v v v v v v v v",
+ "W W W W W W W W W W W W W W W W W W W W W W W W W ",
+ " x x x x x x x x x x x x x x x x x x x x x x x x x",
+ "Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y ",
+ " z z z z z z z z z z z z z z z z z z z z z z z z z",
+ "a a a a a a a a a a a a a a a a a a a a a a a a a ",
+ " B B B B B B B B B B B B B B B B B B B B B B B B B",
+ "c c c c c c c c c c c c c c c c c c c c c c c c c ",
+ " D D D D D D D D D D D D D D D D D D D D D D D D D",
+ "e e e e e e e e e e e e e e e e e e e e e e e e e ",
+ " F F F F F F F F F F F F F F F F F F F F F F F F F",
+ "g g g g g g g g g g g g g g g g g g g g g g g g g ",
+ " H H H H H H H H H H H H H H H H H H H H H H H H H",
+ "i i i i i i i i i i i i i i i i i i i i i i i i i ",
+ " J J J J J J J J J J J J J J J J J J J J J J J J J",
+ "k k k k k k k k k k k k k k k k k k k k k k k k k ",
+ " L L L L L L L L L L L L L L L L L L L L L L L L L",
+ "m m m m m m m m m m m m m m m m m m m m m m m m m ",
+ " N N N N N N N N N N N N N N N N N N N N N N N N N",
+ "o o o o o o o o o o o o o o o o o o o o o o o o o ",
+ " P P P P P P P P P P P P P P P P P P P P P P P P P",
+ "q q q q q q q q q q q q q q q q q q q q q q q q q ",
+ " R R R R R R R R R R R R R R R R R R R R R R R R R",
+ "s s s s s s s s s s s s s s s s s s s s s s s s s ",
+ " T T T T T T T T T T T T T T T T T T T T T T T T T",
+ "u u u u u u u u u u u u u u u u u u u u u u u u u ",
+ " V V V V V V V V V V V V V V V V V V V V V V V V V",
+ "w w w w w w w w w w w w w w w w w w w w w w w w w ",
+ " X X X X X X X X X X X X X X X X X X X X X X X X X"}</p>
+<p>{1, 27}</p>
+<p>{28, 47}</p>
+<p>Returns: 24</p></div></li><li><div><p>{"A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "N N N N N N N N N N N N N N N N N N N N N N N N N ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", "A A A A A A A A A A A A A A A A A A A A A A A A A ", " O O O O O O O O O O O O OO O O O O O O O O O O O ", " P P P P P P P P P P P P P PP P P P P P P P P P P ", " Q Q Q Q Q Q Q Q Q Q Q Q Q Q QQ Q Q Q Q Q Q Q Q Q ", " R R R R R R R R R R R R R R R RR R R R R R R R R ", " S S S S S S S S S S S S S S S S SS S S S S S S S ", " T T T T T T T T T T T T T T T T T TT T T T T T T ", " U U U U U U U U U U U U U U U U U U UU U U U U U ", " V V V V V V V V V V V V V V V V V V V VV V V V V ", " W W W W W W W W W W W W W W W W W W W W WW W W W ", " X X X X X X X X X X X X X X X X X X X X X XX X X ", " Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y YY Y ", " Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z ZZZ" }</p>
+<p>{49, 49 }</p>
+<p>{38, 26 }</p>
+<p>Returns: 23</p></div></li><li><div><p>{"AAAAA AAA AAAAAAAAAAAAA  AAAA", "AA   AAAAAAAAA AAAA     AAAA", "BBBBBBBBBBBBBBBBBBBBBBBBBBB", "BBBBBBB BBBBBBBBBB BBBBBBB", "CCC CCCC CCCCCC      CCCC", "DDDDDDDDDDDDDDDDDDD" }</p>
+<p>{2, 17 }</p>
+<p>{1, 2 }</p>
+<p>Returns: 4</p></div></li></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/6571/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"6571\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"6571\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"6571\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"6571\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"6571\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\nf:Tb80,"])</script><script>self.__next_f.push([1,"When programming, I don't like to take my fingers off the keyboard, and hence, I don't use the mouse.  So, when navigating my source, I like to do so in such a way as to minimize keystrokes.  My text editor supports the following keystrokes: left, right, up, down, home, end, top, bottom, word left and word right.  The word left and word right keystrokes position the cursor at a word beginning; a word beginning is the first letter of the word.  None of the keystrokes cause the cursor to wrap.  When moving the cursor vertically, my text editor does not change the cursor's horizontal position.  So, if the cursor is at column 50 and the up arrow is pressed, moving the cursor to a row with only 10 characters, only the row changes.  My text editor does not allow the cursor to be positioned left of the first column, above the first row or below the last row.  \n\n\u003cbr xmlns=\"http://topcoder.com\"/\u003e\u003cbr xmlns=\"http://topcoder.com\"/\u003eThe keys left, right, up, down, home, end, top, bottom, word left and word\nright behave as described below:\n\n\u003cbr xmlns=\"http://topcoder.com\"/\u003e\u003cbr xmlns=\"http://topcoder.com\"/\u003e1.  left, right, up and down - move the cursor one position in the indicated direction (see notes).  \n\u003cbr xmlns=\"http://topcoder.com\"/\u003e2.  home - causes the cursor to move to column 0 of the current row.\n\u003cbr xmlns=\"http://topcoder.com\"/\u003e3.  end - causes the cursor to move to the last character of \u003cb xmlns=\"http://topcoder.com\"\u003esource\u003c/b\u003e in the current row.\n\u003cbr xmlns=\"http://topcoder.com\"/\u003e4.  top - causes the cursor to move to the top row (row 0) retaining its column position.\n\u003cbr xmlns=\"http://topcoder.com\"/\u003e5.  bottom - causes the cursor to move to the bottom row retaining its column position.\n\u003cbr xmlns=\"http://topcoder.com\"/\u003e6. word left - causes the cursor to jump to the first word beginning that is strictly left of the cursor position, if one exists.  Otherwise does nothing. \n\u003cbr xmlns=\"http://topcoder.com\"/\u003e7. word right - causes the cursor to jump to the first word beginning that is strictly right of the cursor position, if one exists.  Otherwise does nothing.\n\n\u003cbr xmlns=\"http://topcoder.com\"/\u003e\u003cbr xmlns=\"http://topcoder.com\"/\u003eYou will be given a \u003ctype xmlns=\"http://topcoder.com\"\u003eString[]\u003c/type\u003e \u003cb xmlns=\"http://topcoder.com\"\u003esource\u003c/b\u003e representing the source code, a \u003ctype xmlns=\"http://topcoder.com\"\u003eint[]\u003c/type\u003e \u003cb xmlns=\"http://topcoder.com\"\u003estart\u003c/b\u003e representing the starting position of the cursor and a \u003ctype xmlns=\"http://topcoder.com\"\u003eint[]\u003c/type\u003e \u003cb xmlns=\"http://topcoder.com\"\u003efinish\u003c/b\u003e representing the ending position of the cursor.  The first int in both \u003cb xmlns=\"http://topcoder.com\"\u003estart\u003c/b\u003e and \u003cb xmlns=\"http://topcoder.com\"\u003efinish\u003c/b\u003e specifies the 0-indexed row and the second int specifies the 0-indexed column.  You are to calculate and return the minimum number of keystrokes required to get from \u003cb xmlns=\"http://topcoder.com\"\u003estart\u003c/b\u003e to \u003cb xmlns=\"http://topcoder.com\"\u003efinish\u003c/b\u003e."])</script><script>self.__next_f.push([1,"10:T483,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"BB BB BB BB BB BB BB BB BB BB BB BB BB BB BB BB BB\",\n \"CCC CCC CCC CCC CCC CCC CCC CCC CCC CCC CCC CCC CC\",\n \"DDDD DDDD DDDD DDDD DDDD DDDD DDDD DDDD DDDD DDDD \",\n \"EEEEE EEEEE EEEEE EEEEE EEEEE EEEEE EEEEE EEEEE EE\",\n \"FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF \",\n \"GGG GGG GGG GGG GGG GGG GGG GGG GGG GGG GGG GGG GG\",\n \"HHHHHHHHHHH HHHHHHHHHH HHHHHHHHHH HHHHHHHHHH HHHHH\",\n \"IIIIIIIIIIIIIII IIIIIIIIIIIIIII IIIIIIIIIIIIIII   \",\n \"JJJJJJJJ JJJJJJJJ JJJJJJJJ JJJJJJJJ JJJJJJJJ JJJJJ\",\n \"KKKKKKKKKKKKKKKKKKKKKKKKKK KKKKKKKKKKKKKKKKKKKKKKK\",\n \"LLLLLLLLLL LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL\",\n \"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\",\n \"N N N N N N N N N N N N N N N N N N N N N N N N N \",\n \"OOOOO OOOO OOO OO O O OO OOO OOOO OOOOO OOOOOO OOO\",\n \"PPPPPPP PPPPPP PPPPP PPPP PPP PP P P PP PPP PPPP P\",\n \"QQQQQQ QQQQQ QQQQ QQQ QQ Q Q QQ QQQ QQQQ QQQQQ QQQ\",\n \"ZZZZ ZZ ZZZ ZZ ZZZZ ZZ ZZZ ZZ ZZZZ ZZ ZZZ ZZ ZZZZ \",\n \"SSS S SSS S SSS S SSS S SSS S SSS S SSS S SSS S SS\",\n \"TT TT TT TT TT TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT\"}\u003c/p\u003e\n\u003cp\u003e{12, 20}\u003c/p\u003e\n\u003cp\u003e{4, 36}\u003c/p\u003e\n\u003cp\u003eReturns: 8\u003c/p\u003e"])</script><script>self.__next_f.push([1,"11:Taf7,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"N N N N N N N N N N N N N N N N N N N N N N N N N \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \" O O O O O O O O O O O O OO O O O O O O O O O O O \",\n \" P P P P P P P P P P P P P PP P P P P P P P P P P \",\n \" Q Q Q Q Q Q Q Q Q Q Q Q Q Q QQ Q Q Q Q Q Q Q Q Q \",\n \" R R R R R R R R R R R R R R R RR R R R R R R R R \",\n \" S S S S S S S S S S S S S S S S SS S S S S S S S \",\n \" T T T T T T T T T T T T T T T T T TT T T T T T T \",\n \" U U U U U U U U U U U U U U U U U U UU U U U U U \",\n \" V V V V V V V V V V V V V V V V V V V VV V V V V \",\n \" W W W W W W W W W W W W W W W W W W W W WW W W W \",\n \" X X X X X X X X X X X X X X X X X X X X X XX X X \",\n \" Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y YY Y \",\n \" Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z ZZZ\"}\u003c/p\u003e\n\u003cp\u003e{49, 49}\u003c/p\u003e\n\u003cp\u003e{38, 26}\u003c/p\u003e\n\u003cp\u003eReturns: 23\u003c/p\u003e"])</script><script>self.__next_f.push([1,"12:Taf5,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n \"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\",\n \"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\",\n \"DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD\",\n \"EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\",\n \"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF\",\n \"GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG\",\n \"HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\",\n \"IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII\",\n \"JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ\",\n \"KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK\",\n \"LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL\",\n \"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\",\n \"NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN\",\n \"OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\",\n \"PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP\",\n \"QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ\",\n \"RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR\",\n \"SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS\",\n \"TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT\",\n \"UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU\",\n \"VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV\",\n \"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW\",\n \"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\",\n \"YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY\",\n \"ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ\",\n \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\n \"cccccccccccccccccccccccccccccccccccccccccccccccccc\",\n \"dddddddddddddddddddddddddddddddddddddddddddddddddd\",\n \"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\",\n \"ffffffffffffffffffffffffffffffffffffffffffffffffff\",\n \"gggggggggggggggggggggggggggggggggggggggggggggggggg\",\n \"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\",\n \"iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii\",\n \"jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj\",\n \"kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\",\n \"llllllllllllllllllllllllllllllllllllllllllllllllll\",\n \"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\",\n \"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn\",\n \"oooooooooooooooooooooooooooooooooooooooooooooooooo\",\n \"pppppppppppppppppppppppppppppppppppppppppppppppppp\",\n \"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\",\n \"rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr\",\n \"ssssssssssssssssssssssssssssssssssssssssssssssssss\",\n \"tttttttttttttttttttttttttttttttttttttttttttttttttt\",\n \"uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu\",\n \"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv\",\n \"wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww\",\n \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"}\u003c/p\u003e\n\u003cp\u003e{0, 0}\u003c/p\u003e\n\u003cp\u003e{24, 24}\u003c/p\u003e\n\u003cp\u003eReturns: 48\u003c/p\u003e"])</script><script>self.__next_f.push([1,"13:Taf5,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n \"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\",\n \"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\",\n \"DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD\",\n \"EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\",\n \"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF\",\n \"GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG\",\n \"HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\",\n \"IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII\",\n \"JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ\",\n \"KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK\",\n \"LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL\",\n \"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\",\n \"NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN\",\n \"OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\",\n \"PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP\",\n \"QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ\",\n \"RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR\",\n \"SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS\",\n \"TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT\",\n \"UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU\",\n \"VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV\",\n \"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW\",\n \"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\",\n \"YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY\",\n \"ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ\",\n \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\n \"cccccccccccccccccccccccccccccccccccccccccccccccccc\",\n \"dddddddddddddddddddddddddddddddddddddddddddddddddd\",\n \"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\",\n \"ffffffffffffffffffffffffffffffffffffffffffffffffff\",\n \"gggggggggggggggggggggggggggggggggggggggggggggggggg\",\n \"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\",\n \"iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii\",\n \"jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj\",\n \"kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\",\n \"llllllllllllllllllllllllllllllllllllllllllllllllll\",\n \"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\",\n \"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn\",\n \"oooooooooooooooooooooooooooooooooooooooooooooooooo\",\n \"pppppppppppppppppppppppppppppppppppppppppppppppppp\",\n \"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\",\n \"rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr\",\n \"ssssssssssssssssssssssssssssssssssssssssssssssssss\",\n \"tttttttttttttttttttttttttttttttttttttttttttttttttt\",\n \"uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu\",\n \"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv\",\n \"wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww\",\n \"xxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxx\"}\u003c/p\u003e\n\u003cp\u003e{0, 0}\u003c/p\u003e\n\u003cp\u003e{23, 23}\u003c/p\u003e\n\u003cp\u003eReturns: 27\u003c/p\u003e"])</script><script>self.__next_f.push([1,"14:Taf6,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n \"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\",\n \"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\",\n \"DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD\",\n \"EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\",\n \"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF\",\n \"GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG\",\n \"HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\",\n \"IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII\",\n \"JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ\",\n \"KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK\",\n \"LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL\",\n \"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\",\n \"NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN\",\n \"OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\",\n \"PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP\",\n \"QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ\",\n \"RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR\",\n \"SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS\",\n \"TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT\",\n \"UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU\",\n \"VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV\",\n \"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW\",\n \"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\",\n \"YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY\",\n \"ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ\",\n \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\n \"cccccccccccccccccccccccccccccccccccccccccccccccccc\",\n \"dddddddddddddddddddddddddddddddddddddddddddddddddd\",\n \"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\",\n \"ffffffffffffffffffffffffffffffffffffffffffffffffff\",\n \"gggggggggggggggggggggggggggggggggggggggggggggggggg\",\n \"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\",\n \"iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii\",\n \"jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj\",\n \"kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\",\n \"llllllllllllllllllllllllllllllllllllllllllllllllll\",\n \"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\",\n \"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn\",\n \"oooooooooooooooooooooooooooooooooooooooooooooooooo\",\n \"pppppppppppppppppppppppppppppppppppppppppppppppppp\",\n \"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\",\n \"rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr\",\n \"ssssssssssssssssssssssssssssssssssssssssssssssssss\",\n \"tttttttttttttttttttttttttttttttttttttttttttttttttt\",\n \"uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu\",\n \"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv\",\n \"wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww\",\n \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"}\u003c/p\u003e\n\u003cp\u003e{0, 49}\u003c/p\u003e\n\u003cp\u003e{24, 25}\u003c/p\u003e\n\u003cp\u003eReturns: 48\u003c/p\u003e"])</script><script>self.__next_f.push([1,"15:Taf7,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \", \n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \",\n \"                                                  \"}\u003c/p\u003e\n\u003cp\u003e{49, 0}\u003c/p\u003e\n\u003cp\u003e{24, 24}\u003c/p\u003e\n\u003cp\u003eReturns: 49\u003c/p\u003e"])</script><script>self.__next_f.push([1,"16:Taf7,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \"b b b b b b b b b b b b b b b b b b b b b b b b b \",\n \"C C C C C C C C C C C C C C C C C C C C C C C C C \",\n \"d d d d d d d d d d d d d d d d d d d d d d d d d \",\n \"E E E E E E E E E E E E E E E E E E E E E E E E E \",\n \"f f f f f f f f f f f f f f f f f f f f f f f f f \",\n \"G G G G G G G G G G G G G G G G G G G G G G G G G \",\n \"h h h h h h h h h h h h h h h h h h h h h h h h h \",\n \"I I I I I I I I I I I I I I I I I I I I I I I I I \",\n \"j j j j j j j j j j j j j j j j j j j j j j j j j \",\n \"K K K K K K K K K K K K K K K K K K K K K K K K K \",\n \"l l l l l l l l l l l l l l l l l l l l l l l l l \",\n \"M M M M M M M M M M M M M M M M M M M M M M M M M \",\n \"n n n n n n n n n n n n n n n n n n n n n n n n n \",\n \"O O O O O O O O O O O O O O O O O O O O O O O O O \",\n \"p p p p p p p p p p p p p p p p p p p p p p p p p \",\n \"Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q \",\n \"r r r r r r r r r r r r r r r r r r r r r r r r r \",\n \"S S S S S S S S S S S S S S S S S S S S S S S S S \",\n \"t t t t t t t t t t t t t t t t t t t t t t t t t \",\n \"U U U U U U U U U U U U U U U U U U U U U U U U U \",\n \"v v v v v v v v v v v v v v v v v v v v v v v v v \",\n \"W W W W W W W W W W W W W W W W W W W W W W W W W \",\n \"x x x x x x x x x x x x x x x x x x x x x x x x x \",\n \"Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y \",\n \"z z z z z z z z z z z z z z z z z z z z z z z z z \",\n \"a a a a a a a a a a a a a a a a a a a a a a a a a \",\n \"B B B B B B B B B B B B B B B B B B B B B B B B B \",\n \"c c c c c c c c c c c c c c c c c c c c c c c c c \",\n \"D D D D D D D D D D D D D D D D D D D D D D D D D \",\n \"e e e e e e e e e e e e e e e e e e e e e e e e e \",\n \"F F F F F F F F F F F F F F F F F F F F F F F F F \",\n \"g g g g g g g g g g g g g g g g g g g g g g g g g \",\n \"H H H H H H H H H H H H H H H H H H H H H H H H H \",\n \"i i i i i i i i i i i i i i i i i i i i i i i i i \",\n \"J J J J J J J J J J J J J J J J J J J J J J J J J \",\n \"k k k k k k k k k k k k k k k k k k k k k k k k k \",\n \"L L L L L L L L L L L L L L L L L L L L L L L L L \",\n \"m m m m m m m m m m m m m m m m m m m m m m m m m \",\n \"N N N N N N N N N N N N N N N N N N N N N N N N N \",\n \"o o o o o o o o o o o o o o o o o o o o o o o o o \",\n \"P P P P P P P P P P P P P P P P P P P P P P P P P \",\n \"q q q q q q q q q q q q q q q q q q q q q q q q q \",\n \"R R R R R R R R R R R R R R R R R R R R R R R R R \",\n \"s s s s s s s s s s s s s s s s s s s s s s s s s \",\n \"T T T T T T T T T T T T T T T T T T T T T T T T T \",\n \"u u u u u u u u u u u u u u u u u u u u u u u u u \",\n \"V V V V V V V V V V V V V V V V V V V V V V V V V \",\n \"w w w w w w w w w w w w w w w w w w w w w w w w w \",\n \"X X X X X X X X X X X X X X X X X X X X X X X X X \"}\u003c/p\u003e\n\u003cp\u003e{49, 49}\u003c/p\u003e\n\u003cp\u003e{16, 36}\u003c/p\u003e\n\u003cp\u003eReturns: 24\u003c/p\u003e"])</script><script>self.__next_f.push([1,"17:Taf7,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \" b b b b b b b b b b b b b b b b b b b b b b b b b\",\n \"C C C C C C C C C C C C C C C C C C C C C C C C C \",\n \" d d d d d d d d d d d d d d d d d d d d d d d d d\",\n \"E E E E E E E E E E E E E E E E E E E E E E E E E \",\n \" f f f f f f f f f f f f f f f f f f f f f f f f f\",\n \"G G G G G G G G G G G G G G G G G G G G G G G G G \",\n \" h h h h h h h h h h h h h h h h h h h h h h h h h\",\n \"I I I I I I I I I I I I I I I I I I I I I I I I I \",\n \" j j j j j j j j j j j j j j j j j j j j j j j j j\",\n \"K K K K K K K K K K K K K K K K K K K K K K K K K \",\n \" l l l l l l l l l l l l l l l l l l l l l l l l l\",\n \"M M M M M M M M M M M M M M M M M M M M M M M M M \",\n \" n n n n n n n n n n n n n n n n n n n n n n n n n\",\n \"O O O O O O O O O O O O O O O O O O O O O O O O O \",\n \" p p p p p p p p p p p p p p p p p p p p p p p p p\",\n \"Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q \",\n \" r r r r r r r r r r r r r r r r r r r r r r r r r\",\n \"S S S S S S S S S S S S S S S S S S S S S S S S S \",\n \" t t t t t t t t t t t t t t t t t t t t t t t t t\",\n \"U U U U U U U U U U U U U U U U U U U U U U U U U \",\n \" v v v v v v v v v v v v v v v v v v v v v v v v v\",\n \"W W W W W W W W W W W W W W W W W W W W W W W W W \",\n \" x x x x x x x x x x x x x x x x x x x x x x x x x\",\n \"Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y \",\n \" z z z z z z z z z z z z z z z z z z z z z z z z z\",\n \"a a a a a a a a a a a a a a a a a a a a a a a a a \",\n \" B B B B B B B B B B B B B B B B B B B B B B B B B\",\n \"c c c c c c c c c c c c c c c c c c c c c c c c c \",\n \" D D D D D D D D D D D D D D D D D D D D D D D D D\",\n \"e e e e e e e e e e e e e e e e e e e e e e e e e \",\n \" F F F F F F F F F F F F F F F F F F F F F F F F F\",\n \"g g g g g g g g g g g g g g g g g g g g g g g g g \",\n \" H H H H H H H H H H H H H H H H H H H H H H H H H\",\n \"i i i i i i i i i i i i i i i i i i i i i i i i i \",\n \" J J J J J J J J J J J J J J J J J J J J J J J J J\",\n \"k k k k k k k k k k k k k k k k k k k k k k k k k \",\n \" L L L L L L L L L L L L L L L L L L L L L L L L L\",\n \"m m m m m m m m m m m m m m m m m m m m m m m m m \",\n \" N N N N N N N N N N N N N N N N N N N N N N N N N\",\n \"o o o o o o o o o o o o o o o o o o o o o o o o o \",\n \" P P P P P P P P P P P P P P P P P P P P P P P P P\",\n \"q q q q q q q q q q q q q q q q q q q q q q q q q \",\n \" R R R R R R R R R R R R R R R R R R R R R R R R R\",\n \"s s s s s s s s s s s s s s s s s s s s s s s s s \",\n \" T T T T T T T T T T T T T T T T T T T T T T T T T\",\n \"u u u u u u u u u u u u u u u u u u u u u u u u u \",\n \" V V V V V V V V V V V V V V V V V V V V V V V V V\",\n \"w w w w w w w w w w w w w w w w w w w w w w w w w \",\n \" X X X X X X X X X X X X X X X X X X X X X X X X X\"}\u003c/p\u003e\n\u003cp\u003e{49, 49}\u003c/p\u003e\n\u003cp\u003e{16, 36}\u003c/p\u003e\n\u003cp\u003eReturns: 24\u003c/p\u003e"])</script><script>self.__next_f.push([1,"18:Taf5,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \" b b b b b b b b b b b b b b b b b b b b b b b b b\",\n \"C C C C C C C C C C C C C C C C C C C C C C C C C \",\n \" d d d d d d d d d d d d d d d d d d d d d d d d d\",\n \"E E E E E E E E E E E E E E E E E E E E E E E E E \",\n \" f f f f f f f f f f f f f f f f f f f f f f f f f\",\n \"G G G G G G G G G G G G G G G G G G G G G G G G G \",\n \" h h h h h h h h h h h h h h h h h h h h h h h h h\",\n \"I I I I I I I I I I I I I I I I I I I I I I I I I \",\n \" j j j j j j j j j j j j j j j j j j j j j j j j j\",\n \"K K K K K K K K K K K K K K K K K K K K K K K K K \",\n \" l l l l l l l l l l l l l l l l l l l l l l l l l\",\n \"M M M M M M M M M M M M M M M M M M M M M M M M M \",\n \" n n n n n n n n n n n n n n n n n n n n n n n n n\",\n \"O O O O O O O O O O O O O O O O O O O O O O O O O \",\n \" p p p p p p p p p p p p p p p p p p p p p p p p p\",\n \"Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q \",\n \" r r r r r r r r r r r r r r r r r r r r r r r r r\",\n \"S S S S S S S S S S S S S S S S S S S S S S S S S \",\n \" t t t t t t t t t t t t t t t t t t t t t t t t t\",\n \"U U U U U U U U U U U U U U U U U U U U U U U U U \",\n \" v v v v v v v v v v v v v v v v v v v v v v v v v\",\n \"W W W W W W W W W W W W W W W W W W W W W W W W W \",\n \" x x x x x x x x x x x x x x x x x x x x x x x x x\",\n \"Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y \",\n \" z z z z z z z z z z z z z z z z z z z z z z z z z\",\n \"a a a a a a a a a a a a a a a a a a a a a a a a a \",\n \" B B B B B B B B B B B B B B B B B B B B B B B B B\",\n \"c c c c c c c c c c c c c c c c c c c c c c c c c \",\n \" D D D D D D D D D D D D D D D D D D D D D D D D D\",\n \"e e e e e e e e e e e e e e e e e e e e e e e e e \",\n \" F F F F F F F F F F F F F F F F F F F F F F F F F\",\n \"g g g g g g g g g g g g g g g g g g g g g g g g g \",\n \" H H H H H H H H H H H H H H H H H H H H H H H H H\",\n \"i i i i i i i i i i i i i i i i i i i i i i i i i \",\n \" J J J J J J J J J J J J J J J J J J J J J J J J J\",\n \"k k k k k k k k k k k k k k k k k k k k k k k k k \",\n \" L L L L L L L L L L L L L L L L L L L L L L L L L\",\n \"m m m m m m m m m m m m m m m m m m m m m m m m m \",\n \" N N N N N N N N N N N N N N N N N N N N N N N N N\",\n \"o o o o o o o o o o o o o o o o o o o o o o o o o \",\n \" P P P P P P P P P P P P P P P P P P P P P P P P P\",\n \"q q q q q q q q q q q q q q q q q q q q q q q q q \",\n \" R R R R R R R R R R R R R R R R R R R R R R R R R\",\n \"s s s s s s s s s s s s s s s s s s s s s s s s s \",\n \" T T T T T T T T T T T T T T T T T T T T T T T T T\",\n \"u u u u u u u u u u u u u u u u u u u u u u u u u \",\n \" V V V V V V V V V V V V V V V V V V V V V V V V V\",\n \"w w w w w w w w w w w w w w w w w w w w w w w w w \",\n \" X X X X X X X X X X X X X X X X X X X X X X X X X\"}\u003c/p\u003e\n\u003cp\u003e{3, 3}\u003c/p\u003e\n\u003cp\u003e{28, 47}\u003c/p\u003e\n\u003cp\u003eReturns: 24\u003c/p\u003e"])</script><script>self.__next_f.push([1,"19:Taf6,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \" b b b b b b b b b b b b b b b b b b b b b b b b b\",\n \"C C C C C C C C C C C C C C C C C C C C C C C C C \",\n \" d d d d d d d d d d d d d d d d d d d d d d d d d\",\n \"E E E E E E E E E E E E E E E E E E E E E E E E E \",\n \" f f f f f f f f f f f f f f f f f f f f f f f f f\",\n \"G G G G G G G G G G G G G G G G G G G G G G G G G \",\n \" h h h h h h h h h h h h h h h h h h h h h h h h h\",\n \"I I I I I I I I I I I I I I I I I I I I I I I I I \",\n \" j j j j j j j j j j j j j j j j j j j j j j j j j\",\n \"K K K K K K K K K K K K K K K K K K K K K K K K K \",\n \" l l l l l l l l l l l l l l l l l l l l l l l l l\",\n \"M M M M M M M M M M M M M M M M M M M M M M M M M \",\n \" n n n n n n n n n n n n n n n n n n n n n n n n n\",\n \"O O O O O O O O O O O O O O O O O O O O O O O O O \",\n \" p p p p p p p p p p p p p p p p p p p p p p p p p\",\n \"Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q \",\n \" r r r r r r r r r r r r r r r r r r r r r r r r r\",\n \"S S S S S S S S S S S S S S S S S S S S S S S S S \",\n \" t t t t t t t t t t t t t t t t t t t t t t t t t\",\n \"U U U U U U U U U U U U U U U U U U U U U U U U U \",\n \" v v v v v v v v v v v v v v v v v v v v v v v v v\",\n \"W W W W W W W W W W W W W W W W W W W W W W W W W \",\n \" x x x x x x x x x x x x x x x x x x x x x x x x x\",\n \"Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y \",\n \" z z z z z z z z z z z z z z z z z z z z z z z z z\",\n \"a a a a a a a a a a a a a a a a a a a a a a a a a \",\n \" B B B B B B B B B B B B B B B B B B B B B B B B B\",\n \"c c c c c c c c c c c c c c c c c c c c c c c c c \",\n \" D D D D D D D D D D D D D D D D D D D D D D D D D\",\n \"e e e e e e e e e e e e e e e e e e e e e e e e e \",\n \" F F F F F F F F F F F F F F F F F F F F F F F F F\",\n \"g g g g g g g g g g g g g g g g g g g g g g g g g \",\n \" H H H H H H H H H H H H H H H H H H H H H H H H H\",\n \"i i i i i i i i i i i i i i i i i i i i i i i i i \",\n \" J J J J J J J J J J J J J J J J J J J J J J J J J\",\n \"k k k k k k k k k k k k k k k k k k k k k k k k k \",\n \" L L L L L L L L L L L L L L L L L L L L L L L L L\",\n \"m m m m m m m m m m m m m m m m m m m m m m m m m \",\n \" N N N N N N N N N N N N N N N N N N N N N N N N N\",\n \"o o o o o o o o o o o o o o o o o o o o o o o o o \",\n \" P P P P P P P P P P P P P P P P P P P P P P P P P\",\n \"q q q q q q q q q q q q q q q q q q q q q q q q q \",\n \" R R R R R R R R R R R R R R R R R R R R R R R R R\",\n \"s s s s s s s s s s s s s s s s s s s s s s s s s \",\n \" T T T T T T T T T T T T T T T T T T T T T T T T T\",\n \"u u u u u u u u u u u u u u u u u u u u u u u u u \",\n \" V V V V V V V V V V V V V V V V V V V V V V V V V\",\n \"w w w w w w w w w w w w w w w w w w w w w w w w w \",\n \" X X X X X X X X X X X X X X X X X X X X X X X X X\"}\u003c/p\u003e\n\u003cp\u003e{13, 0}\u003c/p\u003e\n\u003cp\u003e{38, 27}\u003c/p\u003e\n\u003cp\u003eReturns: 24\u003c/p\u003e"])</script><script>self.__next_f.push([1,"1a:Taf6,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"A A A A A A A A A A A A A A A A A A A A A A A A A \",\n \" b b b b b b b b b b b b b b b b b b b b b b b b b\",\n \"C C C C C C C C C C C C C C C C C C C C C C C C C \",\n \" d d d d d d d d d d d d d d d d d d d d d d d d d\",\n \"E E E E E E E E E E E E E E E E E E E E E E E E E \",\n \" f f f f f f f f f f f f f f f f f f f f f f f f f\",\n \"G G G G G G G G G G G G G G G G G G G G G G G G G \",\n \" h h h h h h h h h h h h h h h h h h h h h h h h h\",\n \"I I I I I I I I I I I I I I I I I I I I I I I I I \",\n \" j j j j j j j j j j j j j j j j j j j j j j j j j\",\n \"K K K K K K K K K K K K K K K K K K K K K K K K K \",\n \" l l l l l l l l l l l l l l l l l l l l l l l l l\",\n \"M M M M M M M M M M M M M M M M M M M M M M M M M \",\n \" n n n n n n n n n n n n n n n n n n n n n n n n n\",\n \"O O O O O O O O O O O O O O O O O O O O O O O O O \",\n \" p p p p p p p p p p p p p p p p p p p p p p p p p\",\n \"Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q \",\n \" r r r r r r r r r r r r r r r r r r r r r r r r r\",\n \"S S S S S S S S S S S S S S S S S S S S S S S S S \",\n \" t t t t t t t t t t t t t t t t t t t t t t t t t\",\n \"U U U U U U U U U U U U U U U U U U U U U U U U U \",\n \" v v v v v v v v v v v v v v v v v v v v v v v v v\",\n \"W W W W W W W W W W W W W W W W W W W W W W W W W \",\n \" x x x x x x x x x x x x x x x x x x x x x x x x x\",\n \"Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y \",\n \" z z z z z z z z z z z z z z z z z z z z z z z z z\",\n \"a a a a a a a a a a a a a a a a a a a a a a a a a \",\n \" B B B B B B B B B B B B B B B B B B B B B B B B B\",\n \"c c c c c c c c c c c c c c c c c c c c c c c c c \",\n \" D D D D D D D D D D D D D D D D D D D D D D D D D\",\n \"e e e e e e e e e e e e e e e e e e e e e e e e e \",\n \" F F F F F F F F F F F F F F F F F F F F F F F F F\",\n \"g g g g g g g g g g g g g g g g g g g g g g g g g \",\n \" H H H H H H H H H H H H H H H H H H H H H H H H H\",\n \"i i i i i i i i i i i i i i i i i i i i i i i i i \",\n \" J J J J J J J J J J J J J J J J J J J J J J J J J\",\n \"k k k k k k k k k k k k k k k k k k k k k k k k k \",\n \" L L L L L L L L L L L L L L L L L L L L L L L L L\",\n \"m m m m m m m m m m m m m m m m m m m m m m m m m \",\n \" N N N N N N N N N N N N N N N N N N N N N N N N N\",\n \"o o o o o o o o o o o o o o o o o o o o o o o o o \",\n \" P P P P P P P P P P P P P P P P P P P P P P P P P\",\n \"q q q q q q q q q q q q q q q q q q q q q q q q q \",\n \" R R R R R R R R R R R R R R R R R R R R R R R R R\",\n \"s s s s s s s s s s s s s s s s s s s s s s s s s \",\n \" T T T T T T T T T T T T T T T T T T T T T T T T T\",\n \"u u u u u u u u u u u u u u u u u u u u u u u u u \",\n \" V V V V V V V V V V V V V V V V V V V V V V V V V\",\n \"w w w w w w w w w w w w w w w w w w w w w w w w w \",\n \" X X X X X X X X X X X X X X X X X X X X X X X X X\"}\u003c/p\u003e\n\u003cp\u003e{1, 27}\u003c/p\u003e\n\u003cp\u003e{28, 47}\u003c/p\u003e\n\u003cp\u003eReturns: 24\u003c/p\u003e"])</script><script>self.__next_f.push([1,"1b:Tac9,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"N N N N N N N N N N N N N N N N N N N N N N N N N \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \"A A A A A A A A A A A A A A A A A A A A A A A A A \", \" O O O O O O O O O O O O OO O O O O O O O O O O O \", \" P P P P P P P P P P P P P PP P P P P P P P P P P \", \" Q Q Q Q Q Q Q Q Q Q Q Q Q Q QQ Q Q Q Q Q Q Q Q Q \", \" R R R R R R R R R R R R R R R RR R R R R R R R R \", \" S S S S S S S S S S S S S S S S SS S S S S S S S \", \" T T T T T T T T T T T T T T T T T TT T T T T T T \", \" U U U U U U U U U U U U U U U U U U UU U U U U U \", \" V V V V V V V V V V V V V V V V V V V VV V V V V \", \" W W W W W W W W W W W W W W W W W W W W WW W W W \", \" X X X X X X X X X X X X X X X X X X X X X XX X X \", \" Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y YY Y \", \" Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z ZZZ\" }\u003c/p\u003e\n\u003cp\u003e{49, 49 }\u003c/p\u003e\n\u003cp\u003e{38, 26 }\u003c/p\u003e\n\u003cp\u003eReturns: 23\u003c/p\u003e"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"TextEditorNavigation\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"TextEditorNavigation\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"keystrokes\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String[], int[], int[]\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int keystrokes(String[] source, int[] start, int[] finish)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Notes\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":\"For the purposes of this problem, we use the convention that the cursor covers each character.  Some editors (normally in \\\"insert mode\\\") have the cursor preceding each character.\"}],[\"$\",\"li\",\"1\",{\"children\":\"A keypress may not have any effect.  For example, pressing up in the top row does nothing, pressing left in the first column does nothing and pressing down in the bottom row does nothing.  Pressing right always has an effect.\"}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"source will contain between 1 and 50 elements, inclusive.\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Each element of source will contain between 1 and 50 characters, inclusive.\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Each character must be a letter ('a'-'z', 'A'-'Z') or ' '.\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"start and finish will each contain exactly 2 elements.\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"start and finish will each represent character positions that exist in source.\"}}]}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"AAAAA AAA AAAAAAAAAAAAA  AAAA\\\",\\n \\\"AA   AAAAAAAAA AAAA     AAAA\\\",\\n \\\"BBBBBBBBBBBBBBBBBBBBBBBBBBB\\\",\\n \\\"BBBBBBB BBBBBBBBBB BBBBBBB\\\",\\n \\\"CCC CCCC CCCCCC      CCCC\\\",\\n \\\"DDDDDDDDDDDDDDDDDDD\\\"}\u003c/p\u003e\\n\u003cp\u003e{5, 7}\u003c/p\u003e\\n\u003cp\u003e{2, 2}\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\\n\u003cp\u003eThis can be achieved by the following keystrokes in the given order: home, top, down, down, right, right.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$10\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"A A A A AAAAAAA A A A A A A A A A A\\\",\\n \\\"B BBBBB B B B B BBBBB B B B B B B B B\\\"}\u003c/p\u003e\\n\u003cp\u003e{1, 0}\u003c/p\u003e\\n\u003cp\u003e{1, 22}\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"AAAAAAAAAAAAAA A A A A A A A A A A\\\"}\u003c/p\u003e\\n\u003cp\u003e{0, 2}\u003c/p\u003e\\n\u003cp\u003e{0, 15}\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$11\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"AAA\\\", \\\"BB\\\", \\\"CCC\\\"}\u003c/p\u003e\\n\u003cp\u003e{1, 1}\u003c/p\u003e\\n\u003cp\u003e{1, 1}\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"AAAAA AAA AAAAAAAAAAAAA  AAAA\\\",\\n \\\"AA   AAAAAAAAA AAAA     AAAA\\\",\\n \\\"BBBBBBBBBBBBBBBBBBBBBBBBBBB\\\",\\n \\\"BBBBBBB BBBBBBBBBB BBBBBBB\\\",\\n \\\"CCC CCCC CCCCCC      CCCC\\\",\\n \\\"DDDDDDDDDDDDDDDDDDD\\\"}\u003c/p\u003e\\n\u003cp\u003e{2, 17}\u003c/p\u003e\\n\u003cp\u003e{1, 2}\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"AAAAA\\\"}\u003c/p\u003e\\n\u003cp\u003e{0, 2}\u003c/p\u003e\\n\u003cp\u003e{0, 1}\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"8\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"AAAAA\\\"}\u003c/p\u003e\\n\u003cp\u003e{0, 2}\u003c/p\u003e\\n\u003cp\u003e{0, 3}\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"9\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"AAAAA\\\", \\\"BBBBB\\\", \\\"CCCCC\\\"}\u003c/p\u003e\\n\u003cp\u003e{2, 2}\u003c/p\u003e\\n\u003cp\u003e{1, 2}\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"10\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"AAAAA\\\", \\\"BBBBB\\\", \\\"CCCCC\\\"}\u003c/p\u003e\\n\u003cp\u003e{0, 2}\u003c/p\u003e\\n\u003cp\u003e{1, 2}\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"11\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"AAAAAA\\\"}\u003c/p\u003e\\n\u003cp\u003e{0, 4}\u003c/p\u003e\\n\u003cp\u003e{0, 0}\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"12\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"AAAAAA\\\"}\u003c/p\u003e\\n\u003cp\u003e{0, 1}\u003c/p\u003e\\n\u003cp\u003e{0, 5}\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"13\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"AAAAAAA\\\", \\\"BBB\\\", \\\"CCCCCCC\\\"}\u003c/p\u003e\\n\u003cp\u003e{2, 5}\u003c/p\u003e\\n\u003cp\u003e{0, 5}\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"14\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"AAAAAAA\\\", \\\"BBB\\\", \\\"CCCCCCC\\\"}\u003c/p\u003e\\n\u003cp\u003e{0, 5}\u003c/p\u003e\\n\u003cp\u003e{2, 5}\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"15\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"AAAAAA AAA\\\"}\u003c/p\u003e\\n\u003cp\u003e{0, 9}\u003c/p\u003e\\n\u003cp\u003e{0, 7}\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"16\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"AAAAAA AAA\\\"}\u003c/p\u003e\\n\u003cp\u003e{0, 2}\u003c/p\u003e\\n\u003cp\u003e{0, 7}\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"17\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"AAAAA AAA\\\",\\n \\\"BBBBB BBBBB BBBBB\\\",\\n \\\"CCC CC CC\\\",\\n \\\"DDD DDDD\\\",\\n \\\"E E E E E E E E E\\\",\\n \\\"FFFFFFFFFFFFFFFFFFFF\\\"}\u003c/p\u003e\\n\u003cp\u003e{0, 0}\u003c/p\u003e\\n\u003cp\u003e{4, 12}\u003c/p\u003e\\n\u003cp\u003eReturns: 5\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"18\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"A A A A A A A A A A A A A A A A A A \\\",\\n \\\"B BBBBBBBBBBBBBBBBBBB B B B B B B B \\\",\\n \\\"C C C C C C C C C C C C C C C C C C \\\",\\n \\\"D D D D D D D D D D D D D D D D D D \\\",\\n \\\"E E E E E E E E E E E E E E E E E E \\\",\\n \\\"F F F F F F F F F F F F F F F F F F \\\",\\n \\\"G G G G G G G G G G G X G G G G G G \\\"}\u003c/p\u003e\\n\u003cp\u003e{6, 2}\u003c/p\u003e\\n\u003cp\u003e{6, 22}\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"19\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\" A A \\\"}\u003c/p\u003e\\n\u003cp\u003e{0,1}\u003c/p\u003e\\n\u003cp\u003e{0,3}\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"20\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\" A A \\\"}\u003c/p\u003e\\n\u003cp\u003e{0,3}\u003c/p\u003e\\n\u003cp\u003e{0,1}\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"21\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\n\\\"AAAAAA\\\",\\n\\\"AAAAAAAAAAA\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e{1,10}\u003c/p\u003e\\n\u003cp\u003e{0,5}\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"22\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA A A\\\",\\n \\\"B B B B B B B B BBBB B B BBBBBBBB B B\\\",\\n \\\"FFFFXFFFFFFFFFFFF        F F F F F F F F F F F\\\",\\n \\\"CCCCCCCCCCCCCCCCCCC\\\",\\n \\\"DDDDDDDDDDDDDDDDDDDDDDDD\\\",\\n \\\"EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\\\"}\u003c/p\u003e\\n\u003cp\u003e{2, 4}\u003c/p\u003e\\n\u003cp\u003e{1, 16}\u003c/p\u003e\\n\u003cp\u003eReturns: 5\u003c/p\u003e\\n\u003cp\u003eThis can be achieved by the following keystrokes: home, top, down, down, right and right.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"23\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA A A\\\",\\n \\\"B B B B B B B B BB B B B BBBBBBB B B\\\",\\n \\\"FFFFXFFFFFFFFFFFF        F F F F F F F F F F F\\\",\\n \\\"CCCCCCCCCCCCCCCCCCC\\\",\\n \\\"DDDDDDDDDDDDDDDDDDDDDDDD\\\",\\n \\\"EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\\\"}\u003c/p\u003e\\n\u003cp\u003e{2, 4}\u003c/p\u003e\\n\u003cp\u003e{1, 16}\u003c/p\u003e\\n\u003cp\u003eReturns: 5\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"24\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW\\\",\\n \\\"ZZZZZZ ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ\\\",\\n \\\"A A A A A A A A A A A A A A A A A A A A A S A\\\",\\n \\\"B B B Bbbbbbbbbbbbbbbb B BBB B B B B\\\",\\n \\\"FFFFXFFFFFFFFFFFF        F F F F F F F F F F F\\\",\\n \\\"CCCCCCCCCCCCCCCCCCC\\\",\\n \\\"DDDDDDDDDDDDDDDDDDDDDDDD\\\",\\n \\\"EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\\\"}\u003c/p\u003e\\n\u003cp\u003e{2, 42}\u003c/p\u003e\\n\u003cp\u003e{2, 23}\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"25\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW\\\",\\n \\\"Z Z Z Z Z Z Z ZZzZZZ Z z Z Z Z Z ZZZZZZZZZZZZZZZZ\\\",\\n \\\"AAAAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAA S A A\\\",\\n \\\"B B B B b bbbbbbbb bfBbBBBBBBBBBB B B B b x\\\",\\n \\\"FFFFXFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF\\\",\\n \\\"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\\\",\\n \\\"DDDDDDDDDDDDDDDDDDDDDDCDDDDDDDDDDDDDDdeaefae\\\",\\n \\\"EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\\\"}\u003c/p\u003e\\n\u003cp\u003e{2, 42}\u003c/p\u003e\\n\u003cp\u003e{2, 14}\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"26\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"   S\\\",\\n\\\"X EQUALS ZERO\\\",\\n\\\"Y EQUALS THIRTY\\\",\\n\\\"Z EQUALS X TIMES Y\\\",\\n\\\"CRUNCH NUMFERS X Y Z\\\"}\u003c/p\u003e\\n\u003cp\u003e{0, 3}\u003c/p\u003e\\n\u003cp\u003e{4, 10}\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"27\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"Send MESSAGE To RECIPIENT\\\",\\n \\\"If Not Success Then Bail\\\",\\n \\\"Get DATA From Storage\\\",\\n \\\"If DATA ELEMENT ZERO Equals ZERO Then Bail\\\",\\n \\\"Send DATA ELEMENT ZERO To RECIPIENT\\\",\\n \\\"Cleanup\\\",\\n \\\"Exit\\\"}\u003c/p\u003e\\n\u003cp\u003e{0, 0}\u003c/p\u003e\\n\u003cp\u003e{4, 18}\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"28\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$12\"}}]}],[\"$\",\"li\",\"29\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$13\"}}]}],[\"$\",\"li\",\"30\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$14\"}}]}],[\"$\",\"li\",\"31\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$15\"}}]}],[\"$\",\"li\",\"32\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"    sdlfjasdlfkjasdflakjdsfalksjdfasldkjfasdlfkjad\\\",\\n \\\"      adslfkjadslfkjasdflkajsdfalskdjfasldfkjasdlj\\\",\\n \\\"        adlsfjasdlfkjasdflkjasdflajsdfalksdjfadslf\\\",\\n \\\"          adslfjasdlfjasdlfkjsadflkjsadlfkjasdlfkj\\\",\\n \\\"        adslkjfasdlkfjasdlfkjasdlfkjasdflkjasdlkaj\\\",\\n \\\"      asldkfjasldfkjasdlfkjasdflkjasdflkjasdflkjas\\\",\\n \\\"    adslfkjasdlkfjasdlfkjasdflkjasdflkjasdflkjasdl\\\"}\u003c/p\u003e\\n\u003cp\u003e{6, 47}\u003c/p\u003e\\n\u003cp\u003e{3, 5}\u003c/p\u003e\\n\u003cp\u003eReturns: 5\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"33\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"    sdlfjasdlfkjasdflakjdsfalksjdfasldkj          \\\",\\n\\\"      adslfkjadslfkjasdflkajsdfalskdjfas          \\\",\\n\\\"        adlsfjasdlfkjasdflkjasdflajsdfal          \\\",\\n\\\"          adslfjasdlfjasdlfkjsadflkjsadl          \\\",\\n\\\"        adslkjfasdlkfjasdlfkjasdlfkjasdflk        \\\",\\n\\\"      asldkfjasldfkjasdlfkjasdflkjasdflkjasd      \\\",\\n\\\"    adslfkjasdlkfjasdlfkjasdflkjasdflkjasdflkj\\\"}\u003c/p\u003e\\n\u003cp\u003e{3, 25}\u003c/p\u003e\\n\u003cp\u003e{0, 46}\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"34\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"A PC to do CAD huh  Sounds reasonable\\\",\\n \\\"Aurthor go out and buy us five new PCs\\\",\\n \\\"Dont you want to think about this for a minute\\\",\\n \\\"No every second counts and we want to be ahead of\\\",\\n \\\"the competition\\\",\\n \\\"       OK Greate idea Please place lOOk worth of\\\",\\n \\\"unmarked bills in my suitcase and Ill be on my way\\\"}\u003c/p\u003e\\n\u003cp\u003e{0, 11}\u003c/p\u003e\\n\u003cp\u003e{1, 15}\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"35\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$16\"}}]}],[\"$\",\"li\",\"36\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$17\"}}]}],[\"$\",\"li\",\"37\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$18\"}}]}],[\"$\",\"li\",\"38\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$19\"}}]}],[\"$\",\"li\",\"39\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$1a\"}}]}],[\"$\",\"li\",\"40\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$1b\"}}]}],[\"$\",\"li\",\"41\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"AAAAA AAA AAAAAAAAAAAAA  AAAA\\\", \\\"AA   AAAAAAAAA AAAA     AAAA\\\", \\\"BBBBBBBBBBBBBBBBBBBBBBBBBBB\\\", \\\"BBBBBBB BBBBBBBBBB BBBBBBB\\\", \\\"CCC CCCC CCCCCC      CCCC\\\", \\\"DDDDDDDDDDDDDDDDDDD\\\" }\u003c/p\u003e\\n\u003cp\u003e{2, 17 }\u003c/p\u003e\\n\u003cp\u003e{1, 2 }\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\"}}]}]]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

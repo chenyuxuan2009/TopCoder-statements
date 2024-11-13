@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->Fractionalization<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div><p xmlns="http://topcoder.com">
+In modern western square dancing, the dancers execute <i>calls</i>, according to definitions they have memorized.
+Each call is either an atomic unit, or made up of a sequence of other calls.
+Experienced dancers are expected to be able to dance not only all the calls they have learned,
+but also fractions of calls.
+For example, given the list of calls and their definitions below:
+</p>
+<pre xmlns="http://topcoder.com">
+
+    Trade:          Hinge Hinge
+    CenterTwoTrade: CenterTwoHinge CenterTwoHinge
+    SpinTheTop:     Trade FanTheTop
+    HotFootSpin:    FanTheTop CenterTwoTrade SpinTheTop
+</pre>
+<p xmlns="http://topcoder.com">
+the call "HotFootSpin" has three parts: "FanTheTop" (an atomic unit), "CenterTwoTrade" (which has two parts), and "SpinTheTop" (which also has two parts).
+Each part of a call is given equal weight, regardless of how many parts it itself is made up of.
+So, for example, "1/3 HotFootSpin" is simply "FanTheTop", and "2/3 HotFootSpin" is "FanTheTop" followed by "CenterTwoTrade".
+Other fractionalizations of "HotFootSpin" are also possible.
+For example, even though the call has three parts, the dancers could do "1/2 HotFootSpin" by doing the first part, followed by 1/2 of the second part.
+So "1/2 HotFootSpin" is "FanTheTop" followed by "CenterTwoHinge".
+</p>
+
+<p xmlns="http://topcoder.com">
+Now consider "3/4 HotFootSpin".
+After doing the first 2/3 of the call, the dancers would have 1/12 (3/4 - 2/3) left to do.
+This final 1/12 of the call is 1/4 of the final third: "1/4 SpinTheTop".
+"SpinTheTop" has only two parts, so 1/4 of it is 1/2 of its first part: "1/2 Trade", which is "Hinge".
+Therefore, "3/4 HotFootSpin" is "FanTheTop", followed by "CenterTwoTrade", followed by "Hinge".
+</p>
+
+<p xmlns="http://topcoder.com">
+You will be given a <type>String[]</type> <b>definitions</b>, a fraction <b>m</b>/<b>n</b>, and a <type>String</type> <b>danceCall</b>.
+Each element of <b>definitions</b> will be formatted as follows:
+the name of the call being defined,
+followed by a single colon (':'),
+followed by a single space,
+and then a list of 2 or more calls each separated by a single space.
+The name of each call will consist solely of lowercase and uppercase letters and is case-sensitive.
+Calls that appear in the definitions of other calls, but do not have a definition themselves, are atomic units and cannot be fractionalized.
+No definition can refer to a call that is defined later in the list of definitions.
+</p>
+
+<p xmlns="http://topcoder.com">
+You are to return the list of calls as a <type>String[]</type> that the dancers should perform in order to execute "<b>m</b>/<b>n</b> <b>danceCall</b>".
+Whenever the dancers are to execute a call in its entirety, simply name that call rather than listing its parts.
+Do not use other definitions to simplify the list of calls you return.  For example, given the following definitions:
+</p>
+<pre xmlns="http://topcoder.com">
+
+    A: One Two
+    B: One Two Three
+    C: One Two Three Four
+</pre>
+
+<p xmlns="http://topcoder.com">
+for "3/4 C", you should return { "One", "Two", "Three" }, and not { "B" }.
+If the given fractionalization is not possible, return a <type>String[]</type> with the single element: "ILLEGAL".
+</p>
+</div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>Fractionalization</span></dd><dt>Method:</dt><dd><span>partial</span></dd><dt>Parameters:</dt><dd><span>String[], int, int, String</span></dd><dt>Returns:</dt><dd><span>String[]</span></dd><dt>Method signature:</dt><dd><span>String[] partial(String[] definitions, int m, int n, String danceCall)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul><li><span>definitions will contain between 1 and 6 elements, inclusive.</span></li><li><span>Each element of definitions will contain between 6 and 50 characters, inclusive, and be formatted as specified in the problem statement.</span></li><li><span>n will be between 2 and 100, inclusive.</span></li><li><span>m will be between 1 and n-1, inclusive.</span></li><li><span>danceCall will contain between 1 and 50 letters, inclusive.</span></li></ul></div><div><h3>Examples</h3><ol><li><div><p>{ "FiveParts: One Two Three Four Five" }</p>
+<p>2</p>
+<p>5</p>
+<p>"FiveParts"</p>
+<p>Returns: {"One", "Two" }</p></div></li><li><div><p>{ "Trade: Hinge Hinge",
+  "TradeThreeTimes: Trade Trade Trade" }</p>
+<p>5</p>
+<p>6</p>
+<p>"TradeThreeTimes"</p>
+<p>Returns: {"Trade", "Trade", "Hinge" }</p></div></li><li><div><p>{ "Trade: Hinge Hinge",
+  "CenterTwoTrade: CenterTwoHinge CenterTwoHinge",
+  "SpinTheTop: Trade FanTheTop",
+  "HotFootSpin: FanTheTop CenterTwoTrade SpinTheTop" }</p>
+<p>1</p>
+<p>3</p>
+<p>"HotFootSpin"</p>
+<p>Returns: {"FanTheTop" }</p></div></li><li><div><p>{ "Trade: Hinge Hinge",
+  "CenterTwoTrade: CenterTwoHinge CenterTwoHinge",
+  "SpinTheTop: Trade FanTheTop",
+  "HotFootSpin: FanTheTop CenterTwoTrade SpinTheTop" }</p>
+<p>1</p>
+<p>2</p>
+<p>"HotFootSpin"</p>
+<p>Returns: {"FanTheTop", "CenterTwoHinge" }</p></div></li><li><div><p>{ "Trade: Hinge Hinge",
+  "CenterTwoTrade: CenterTwoHinge CenterTwoHinge",
+  "SpinTheTop: Trade FanTheTop",
+  "HotFootSpin: FanTheTop CenterTwoTrade SpinTheTop" }</p>
+<p>3</p>
+<p>4</p>
+<p>"HotFootSpin"</p>
+<p>Returns: {"FanTheTop", "CenterTwoTrade", "Hinge" }</p>
+<p>This example is explained in the problem statement.</p></div></li><li><div><p>{ "Trade: Hinge Hinge",
+  "CenterTwoTrade: CenterTwoHinge CenterTwoHinge",
+  "SpinTheTop: Trade FanTheTop",
+  "HotFootSpin: FanTheTop CenterTwoTrade SpinTheTop" }</p>
+<p>6</p>
+<p>7</p>
+<p>"HotFootSpin"</p>
+<p>Returns: {"ILLEGAL" }</p></div></li><li><div><p>{ "A: ILLEGAL ILLEGAL",
+  "B: A A",
+  "C: B B",
+  "E: ILLEGAL C" }</p>
+<p>9</p>
+<p>16</p>
+<p>"E"</p>
+<p>Returns: {"ILLEGAL", "ILLEGAL" }</p></div></li><li><div><p>{ "A: One Two",
+  "B: One Two Three",
+  "C: One Two Three Four" }</p>
+<p>3</p>
+<p>4</p>
+<p>"C"</p>
+<p>Returns: {"One", "Two", "Three" }</p>
+<p>This is the final example in the problem statement.</p></div></li><li><div><p>{ "A: X Y Z",
+  "B: A A A" }</p>
+<p>7</p>
+<p>23</p>
+<p>"B"</p>
+<p>Returns: {"ILLEGAL" }</p></div></li><li><div><p>{ "A: B C",
+  "D: E F" }</p>
+<p>1</p>
+<p>2</p>
+<p>"G"</p>
+<p>Returns: {"ILLEGAL" }</p>
+<p>"G" does not have a definition, and is therefore an atomic unit.
+Atomic units cannot be fractionalized.</p></div></li><li><div><p>{ "CastThree: Hinge Hinge Hinge",
+  "Slip: CentersHinge CentersHinge",
+  "Diff: CastThree Slip CastThree",
+  "CrazyDiff: Diff Diff Diff Diff" }</p>
+<p>1</p>
+<p>36</p>
+<p>"CrazyDiff"</p>
+<p>Returns: {"Hinge" }</p></div></li><li><div><p>{ "CastThree: Hinge Hinge Hinge",
+  "Slip: CentersHinge CentersHinge",
+  "Diff: CastThree Slip CastThree",
+  "CrazyDiff: Diff Diff Diff Diff" }</p>
+<p>7</p>
+<p>12</p>
+<p>"CrazyDiff"</p>
+<p>Returns: {"Diff", "Diff", "CastThree" }</p></div></li><li><div><p>{ "C: c c c",
+  "S: s s",
+  "d: C S C",
+  "D: d d d d" }</p>
+<p>2</p>
+<p>3</p>
+<p>"D"</p>
+<p>Returns: {"d", "d", "C", "S" }</p></div></li><li><div><p>{ "C: c c c",
+  "S: s s",
+  "d: C S C",
+  "D: d d d d" }</p>
+<p>7</p>
+<p>9</p>
+<p>"D"</p>
+<p>Returns: {"d", "d", "d", "c" }</p></div></li><li><div><p>{ "C: c c c",
+  "S: s s",
+  "d: C S C",
+  "D: d d d d" }</p>
+<p>5</p>
+<p>6</p>
+<p>"D"</p>
+<p>Returns: {"d", "d", "d", "C" }</p></div></li><li><div><p>{ "C: c c c",
+  "S: s s",
+  "d: C S C",
+  "D: d d d d" }</p>
+<p>35</p>
+<p>36</p>
+<p>"D"</p>
+<p>Returns: {"d", "d", "d", "C", "S", "c", "c" }</p></div></li><li><div><p>{ "A: a a a a a a a a a a a a a a a a a a a a a",
+  "B: A A A A A A A A A A A A A A A A A A A A A A",
+  "C: B B B B B B B B B B B B B B B B B B B B B B B B",
+  "D: C C C C C C C C C C C C C C C C C C C C C C C C",
+  "E: D D D D D D D D D D D D D D D D D D D D D D D D",
+  "F: E E E E E E E E E E E E E E E E E E E E E E E E" }</p>
+<p>4</p>
+<p>7</p>
+<p>"F"</p>
+<p>Returns: {"E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "D", "D", "D", "D", "D", "D", "D", "D", "D", "D", "D", "D", "D", "D", "D", "D", "D", "C", "C", "C", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "A", "A", "A", "A", "A", "A", "a", "a", "a", "a", "a", "a" }</p></div></li><li><div><p>{ "A: a a a a a a a a a a a a a a a a a a a a a a",
+  "B: A A A A A A A A A A A A A A A A A A A A A",
+  "C: B B B B B B B B B B B B B B B B B B B B B B B B",
+  "D: C C C C C C C C C C C C C C C C C C C C C C C C",
+  "E: D D D D D D D D D D D D D D D D D D D D D D D D",
+  "F: E E E E E E E E E E E E E E E E E E E E E E E E" }</p>
+<p>3</p>
+<p>11</p>
+<p>"F"</p>
+<p>Returns: {"E", "E", "E", "E", "E", "E", "D", "D", "D", "D", "D", "D", "D", "D", "D", "D", "D", "D", "D", "C", "C", "B", "B", "B", "B", "A", "A", "A", "A", "A", "A", "A", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a" }</p></div></li><li><div><p>{ "A: a a a a a a a a a a a a a a a a a a a a a",
+  "B: A A A A A A A A A A A A A A A A A A A A A A",
+  "C: B B B B B B B B B B B B B B B B B B B B B B B B",
+  "D: C C C C C C C C C C C C C C C C C C C C C C C C",
+  "E: D D D D D D D D D D D D D D D D D D D D D D D D",
+  "F: E E E E E E E E E E E E E E E E E E E E E E E E" }</p>
+<p>1</p>
+<p>84</p>
+<p>"F"</p>
+<p>Returns: {"D", "D", "D", "D", "D", "D", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a" }</p></div></li><li><div><p>{ "A: a a a a a a a a a a a a a a a a a a a a a a",
+  "B: A A A A A A A A A A A A A A A A A A A A A A A A",
+  "C: B B B B B B B B B B B B B B B B B B B B B B B B",
+  "D: C C C C C C C C C C C C C C C C C C C C C C C C",
+  "E: D D D D D D D D D D D D D D D D D D D D D",
+  "F: E E E E E E E E E E E E E E E E E E E E E E E E" }</p>
+<p>98</p>
+<p>99</p>
+<p>"F"</p>
+<p>Returns: {"E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "D", "D", "D", "D", "D", "D", "D", "D", "D", "D", "D", "D", "D", "D", "D", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "a", "a", "a", "a", "a", "a" }</p></div></li><li><div><p>{ "A: a a a a a a a a a a a a a a a a a a a a a a",
+  "B: A A A A A A A A A A A A A A A A A A A A A A A A",
+  "C: B B B B B B B B B B B B B B B B B B B B B B B B",
+  "D: C C C C C C C C C C C C C C C C C C C C C C C C",
+  "E: D D D D D D D D D D D D D D D D D D D D D",
+  "F: E E E E E E E E E E E E E E E E E E E E E E E E" }</p>
+<p>53</p>
+<p>73</p>
+<p>"F"</p>
+<p>Returns: {"ILLEGAL" }</p></div></li><li><div><p>{ "A: B B" }</p>
+<p>1</p>
+<p>2</p>
+<p>"a"</p>
+<p>Returns: {"ILLEGAL" }</p></div></li></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/5958/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"5958\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"5958\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"5958\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"5958\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"5958\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\nf:Tcac,"])</script><script>self.__next_f.push([1,"\u003cp xmlns=\"http://topcoder.com\"\u003e\nIn modern western square dancing, the dancers execute \u003ci\u003ecalls\u003c/i\u003e, according to definitions they have memorized.\nEach call is either an atomic unit, or made up of a sequence of other calls.\nExperienced dancers are expected to be able to dance not only all the calls they have learned,\nbut also fractions of calls.\nFor example, given the list of calls and their definitions below:\n\u003c/p\u003e\n\u003cpre xmlns=\"http://topcoder.com\"\u003e\n\n    Trade:          Hinge Hinge\n    CenterTwoTrade: CenterTwoHinge CenterTwoHinge\n    SpinTheTop:     Trade FanTheTop\n    HotFootSpin:    FanTheTop CenterTwoTrade SpinTheTop\n\u003c/pre\u003e\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nthe call \"HotFootSpin\" has three parts: \"FanTheTop\" (an atomic unit), \"CenterTwoTrade\" (which has two parts), and \"SpinTheTop\" (which also has two parts).\nEach part of a call is given equal weight, regardless of how many parts it itself is made up of.\nSo, for example, \"1/3 HotFootSpin\" is simply \"FanTheTop\", and \"2/3 HotFootSpin\" is \"FanTheTop\" followed by \"CenterTwoTrade\".\nOther fractionalizations of \"HotFootSpin\" are also possible.\nFor example, even though the call has three parts, the dancers could do \"1/2 HotFootSpin\" by doing the first part, followed by 1/2 of the second part.\nSo \"1/2 HotFootSpin\" is \"FanTheTop\" followed by \"CenterTwoHinge\".\n\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nNow consider \"3/4 HotFootSpin\".\nAfter doing the first 2/3 of the call, the dancers would have 1/12 (3/4 - 2/3) left to do.\nThis final 1/12 of the call is 1/4 of the final third: \"1/4 SpinTheTop\".\n\"SpinTheTop\" has only two parts, so 1/4 of it is 1/2 of its first part: \"1/2 Trade\", which is \"Hinge\".\nTherefore, \"3/4 HotFootSpin\" is \"FanTheTop\", followed by \"CenterTwoTrade\", followed by \"Hinge\".\n\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nYou will be given a \u003ctype\u003eString[]\u003c/type\u003e \u003cb\u003edefinitions\u003c/b\u003e, a fraction \u003cb\u003em\u003c/b\u003e/\u003cb\u003en\u003c/b\u003e, and a \u003ctype\u003eString\u003c/type\u003e \u003cb\u003edanceCall\u003c/b\u003e.\nEach element of \u003cb\u003edefinitions\u003c/b\u003e will be formatted as follows:\nthe name of the call being defined,\nfollowed by a single colon (':'),\nfollowed by a single space,\nand then a list of 2 or more calls each separated by a single space.\nThe name of each call will consist solely of lowercase and uppercase letters and is case-sensitive.\nCalls that appear in the definitions of other calls, but do not have a definition themselves, are atomic units and cannot be fractionalized.\nNo definition can refer to a call that is defined later in the list of definitions.\n\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nYou are to return the list of calls as a \u003ctype\u003eString[]\u003c/type\u003e that the dancers should perform in order to execute \"\u003cb\u003em\u003c/b\u003e/\u003cb\u003en\u003c/b\u003e \u003cb\u003edanceCall\u003c/b\u003e\".\nWhenever the dancers are to execute a call in its entirety, simply name that call rather than listing its parts.\nDo not use other definitions to simplify the list of calls you return.  For example, given the following definitions:\n\u003c/p\u003e\n\u003cpre xmlns=\"http://topcoder.com\"\u003e\n\n    A: One Two\n    B: One Two Three\n    C: One Two Three Four\n\u003c/pre\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nfor \"3/4 C\", you should return { \"One\", \"Two\", \"Three\" }, and not { \"B\" }.\nIf the given fractionalization is not possible, return a \u003ctype\u003eString[]\u003c/type\u003e with the single element: \"ILLEGAL\".\n\u003c/p\u003e\n"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"Fractionalization\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Fractionalization\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"partial\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String[], int, int, String\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String[]\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String[] partial(String[] definitions, int m, int n, String danceCall)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"definitions will contain between 1 and 6 elements, inclusive.\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Each element of definitions will contain between 6 and 50 characters, inclusive, and be formatted as specified in the problem statement.\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"n will be between 2 and 100, inclusive.\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"m will be between 1 and n-1, inclusive.\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"danceCall will contain between 1 and 50 letters, inclusive.\"}}]}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"FiveParts: One Two Three Four Five\\\" }\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e\\\"FiveParts\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"One\\\", \\\"Two\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"Trade: Hinge Hinge\\\",\\n  \\\"TradeThreeTimes: Trade Trade Trade\\\" }\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003e\\\"TradeThreeTimes\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"Trade\\\", \\\"Trade\\\", \\\"Hinge\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"Trade: Hinge Hinge\\\",\\n  \\\"CenterTwoTrade: CenterTwoHinge CenterTwoHinge\\\",\\n  \\\"SpinTheTop: Trade FanTheTop\\\",\\n  \\\"HotFootSpin: FanTheTop CenterTwoTrade SpinTheTop\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e\\\"HotFootSpin\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"FanTheTop\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"Trade: Hinge Hinge\\\",\\n  \\\"CenterTwoTrade: CenterTwoHinge CenterTwoHinge\\\",\\n  \\\"SpinTheTop: Trade FanTheTop\\\",\\n  \\\"HotFootSpin: FanTheTop CenterTwoTrade SpinTheTop\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e\\\"HotFootSpin\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"FanTheTop\\\", \\\"CenterTwoHinge\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"Trade: Hinge Hinge\\\",\\n  \\\"CenterTwoTrade: CenterTwoHinge CenterTwoHinge\\\",\\n  \\\"SpinTheTop: Trade FanTheTop\\\",\\n  \\\"HotFootSpin: FanTheTop CenterTwoTrade SpinTheTop\\\" }\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e\\\"HotFootSpin\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"FanTheTop\\\", \\\"CenterTwoTrade\\\", \\\"Hinge\\\" }\u003c/p\u003e\\n\u003cp\u003eThis example is explained in the problem statement.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"Trade: Hinge Hinge\\\",\\n  \\\"CenterTwoTrade: CenterTwoHinge CenterTwoHinge\\\",\\n  \\\"SpinTheTop: Trade FanTheTop\\\",\\n  \\\"HotFootSpin: FanTheTop CenterTwoTrade SpinTheTop\\\" }\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003e\\\"HotFootSpin\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"ILLEGAL\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"A: ILLEGAL ILLEGAL\\\",\\n  \\\"B: A A\\\",\\n  \\\"C: B B\\\",\\n  \\\"E: ILLEGAL C\\\" }\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003e16\u003c/p\u003e\\n\u003cp\u003e\\\"E\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"ILLEGAL\\\", \\\"ILLEGAL\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"A: One Two\\\",\\n  \\\"B: One Two Three\\\",\\n  \\\"C: One Two Three Four\\\" }\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e\\\"C\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"One\\\", \\\"Two\\\", \\\"Three\\\" }\u003c/p\u003e\\n\u003cp\u003eThis is the final example in the problem statement.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"8\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"A: X Y Z\\\",\\n  \\\"B: A A A\\\" }\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003e23\u003c/p\u003e\\n\u003cp\u003e\\\"B\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"ILLEGAL\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"9\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"A: B C\\\",\\n  \\\"D: E F\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e\\\"G\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"ILLEGAL\\\" }\u003c/p\u003e\\n\u003cp\u003e\\\"G\\\" does not have a definition, and is therefore an atomic unit.\\nAtomic units cannot be fractionalized.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"10\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"CastThree: Hinge Hinge Hinge\\\",\\n  \\\"Slip: CentersHinge CentersHinge\\\",\\n  \\\"Diff: CastThree Slip CastThree\\\",\\n  \\\"CrazyDiff: Diff Diff Diff Diff\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e36\u003c/p\u003e\\n\u003cp\u003e\\\"CrazyDiff\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"Hinge\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"11\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"CastThree: Hinge Hinge Hinge\\\",\\n  \\\"Slip: CentersHinge CentersHinge\\\",\\n  \\\"Diff: CastThree Slip CastThree\\\",\\n  \\\"CrazyDiff: Diff Diff Diff Diff\\\" }\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003e12\u003c/p\u003e\\n\u003cp\u003e\\\"CrazyDiff\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"Diff\\\", \\\"Diff\\\", \\\"CastThree\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"12\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"C: c c c\\\",\\n  \\\"S: s s\\\",\\n  \\\"d: C S C\\\",\\n  \\\"D: d d d d\\\" }\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e\\\"D\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"d\\\", \\\"d\\\", \\\"C\\\", \\\"S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"13\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"C: c c c\\\",\\n  \\\"S: s s\\\",\\n  \\\"d: C S C\\\",\\n  \\\"D: d d d d\\\" }\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003e\\\"D\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"d\\\", \\\"d\\\", \\\"d\\\", \\\"c\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"14\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"C: c c c\\\",\\n  \\\"S: s s\\\",\\n  \\\"d: C S C\\\",\\n  \\\"D: d d d d\\\" }\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003e\\\"D\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"d\\\", \\\"d\\\", \\\"d\\\", \\\"C\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"15\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"C: c c c\\\",\\n  \\\"S: s s\\\",\\n  \\\"d: C S C\\\",\\n  \\\"D: d d d d\\\" }\u003c/p\u003e\\n\u003cp\u003e35\u003c/p\u003e\\n\u003cp\u003e36\u003c/p\u003e\\n\u003cp\u003e\\\"D\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"d\\\", \\\"d\\\", \\\"d\\\", \\\"C\\\", \\\"S\\\", \\\"c\\\", \\\"c\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"16\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"A: a a a a a a a a a a a a a a a a a a a a a\\\",\\n  \\\"B: A A A A A A A A A A A A A A A A A A A A A A\\\",\\n  \\\"C: B B B B B B B B B B B B B B B B B B B B B B B B\\\",\\n  \\\"D: C C C C C C C C C C C C C C C C C C C C C C C C\\\",\\n  \\\"E: D D D D D D D D D D D D D D D D D D D D D D D D\\\",\\n  \\\"F: E E E E E E E E E E E E E E E E E E E E E E E E\\\" }\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003e\\\"F\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"17\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"A: a a a a a a a a a a a a a a a a a a a a a a\\\",\\n  \\\"B: A A A A A A A A A A A A A A A A A A A A A\\\",\\n  \\\"C: B B B B B B B B B B B B B B B B B B B B B B B B\\\",\\n  \\\"D: C C C C C C C C C C C C C C C C C C C C C C C C\\\",\\n  \\\"E: D D D D D D D D D D D D D D D D D D D D D D D D\\\",\\n  \\\"F: E E E E E E E E E E E E E E E E E E E E E E E E\\\" }\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003e\\\"F\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"C\\\", \\\"C\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"18\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"A: a a a a a a a a a a a a a a a a a a a a a\\\",\\n  \\\"B: A A A A A A A A A A A A A A A A A A A A A A\\\",\\n  \\\"C: B B B B B B B B B B B B B B B B B B B B B B B B\\\",\\n  \\\"D: C C C C C C C C C C C C C C C C C C C C C C C C\\\",\\n  \\\"E: D D D D D D D D D D D D D D D D D D D D D D D D\\\",\\n  \\\"F: E E E E E E E E E E E E E E E E E E E E E E E E\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e84\u003c/p\u003e\\n\u003cp\u003e\\\"F\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"19\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"A: a a a a a a a a a a a a a a a a a a a a a a\\\",\\n  \\\"B: A A A A A A A A A A A A A A A A A A A A A A A A\\\",\\n  \\\"C: B B B B B B B B B B B B B B B B B B B B B B B B\\\",\\n  \\\"D: C C C C C C C C C C C C C C C C C C C C C C C C\\\",\\n  \\\"E: D D D D D D D D D D D D D D D D D D D D D\\\",\\n  \\\"F: E E E E E E E E E E E E E E E E E E E E E E E E\\\" }\u003c/p\u003e\\n\u003cp\u003e98\u003c/p\u003e\\n\u003cp\u003e99\u003c/p\u003e\\n\u003cp\u003e\\\"F\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"E\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"D\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\", \\\"a\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"20\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"A: a a a a a a a a a a a a a a a a a a a a a a\\\",\\n  \\\"B: A A A A A A A A A A A A A A A A A A A A A A A A\\\",\\n  \\\"C: B B B B B B B B B B B B B B B B B B B B B B B B\\\",\\n  \\\"D: C C C C C C C C C C C C C C C C C C C C C C C C\\\",\\n  \\\"E: D D D D D D D D D D D D D D D D D D D D D\\\",\\n  \\\"F: E E E E E E E E E E E E E E E E E E E E E E E E\\\" }\u003c/p\u003e\\n\u003cp\u003e53\u003c/p\u003e\\n\u003cp\u003e73\u003c/p\u003e\\n\u003cp\u003e\\\"F\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"ILLEGAL\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"21\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"A: B B\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e\\\"a\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"ILLEGAL\\\" }\u003c/p\u003e\"}}]}]]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

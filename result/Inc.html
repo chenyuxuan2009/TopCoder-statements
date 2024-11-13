@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->Inc<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div><p xmlns="http://topcoder.com">
+The game of Inc is played by 3 players on a rectangular board, made up of an MxN grid of squares.
+Each square is either empty or contains a digit between 1 and 3, inclusive.
+The players take turns making moves on the board, in order, starting with player 1.
+Play continues for a pre-determined number of moves, after which the players' scores are totaled.
+Each player receives one point for each square containing a digit equal to their player number.
+The player with the highest score wins.
+</p>
+
+<p xmlns="http://topcoder.com">
+A move consists of a player dividing the squares on the board into two non-empty groups, with a
+single straight horizontal or vertical line.
+The player then selects one of the two groups on either side of the line,
+and either adds 1 to or subtracts 1 from all the digits in that group.
+Whenever 1 is added to 3, the result is wrapped around to 1.
+Similarly, whenever 1 is subtracted from 1, the result is wrapped around to 3.
+</p>
+
+<p xmlns="http://topcoder.com">
+Each player makes his or her moves according to the following set of priorities.
+A higher-numbered priority is only used to select among multiple moves that satisfy all lower-numbered priorities.
+</p>
+
+<ol xmlns="http://topcoder.com">
+<li>Prefer moves that will result in you having more points than the other 2 players at the end of the game.</li>
+<li>Prefer moves that will result in neither of the other 2 players having more points than you at the end of the game.</li>
+<li>Prefer moves that will result in you having as many points as possible at the end of the game.</li>
+<li>Prefer dividing the board with a horizontal line over dividing the board with a vertical line.</li>
+<li>Prefer the group to the left or the top of the dividing line over the group to the right or the bottom.</li>
+<li>Prefer lines to the left or the top over lines to the right or the bottom.</li>
+</ol>
+
+<p xmlns="http://topcoder.com">
+Assume that all players play optimally, and that they all expect each other to play optimally as well.
+</p>
+
+<p xmlns="http://topcoder.com">
+The initial state of the board is given as a <type>String[]</type> <b>initial</b>.
+Each character in <b>initial</b> represents one square of the board.
+A '.' (period) represents an empty square, while a digit represents a digit in the corresponding square.
+Earlier elements in <b>initial</b> correspond to the top of the board and later elements correspond to the bottom,
+while earlier characters in each element of <b>initial</b> correspond to the left of the board and later characters correspond to the right.
+The number of turns in the game is given by an <type>int</type> <b>turns</b>.
+An <type>int</type> <b>inc</b> dictates if players add or subtract 1 to the digits they select on their turn.
+A value of -1 means that players must subtract 1 and a value of 1 means that players must add 1.
+</p>
+
+<p xmlns="http://topcoder.com">
+Return the final state of the board as a <type>String[]</type>, in the same format as the input.
+</p></div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>Inc</span></dd><dt>Method:</dt><dd><span>finalBoard</span></dd><dt>Parameters:</dt><dd><span>String[], int, int</span></dd><dt>Returns:</dt><dd><span>String[]</span></dd><dt>Method signature:</dt><dd><span>String[] finalBoard(String[] initialBoard, int inc, int turns)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Notes</h3><ul><li>turns will not necessarily be divisible by 3.</li></ul></div><div><h3>Constraints</h3><ul><li><span>initial will contain between 2 and 5 elements, inclusive.</span></li><li><span>Each element of initial will be between 2 and 5 characters long, inclusive.</span></li><li><span>Each element of initial will have the same length.</span></li><li><span>Each element of initial will be either a '.' (period), '1', '2', or '3'.</span></li><li><span>inc will be -1 or 1.</span></li><li><span>turns will be between 1 and 10, inclusive.</span></li></ul></div><div><h3>Examples</h3><ol><li><div><p>{ "333",
+  "3.3",
+  "333" }</p>
+<p>1</p>
+<p>1</p>
+<p>Returns: {"111", "1.1", "333" }</p>
+<p>Only player 1 makes a move, and there are 4 ways he can get 5 points.  Following the given priorities, he chooses to divide the board with a horizontal line one row above the bottom, and increment the 5 digits in the 6 squares above that line.</p></div></li><li><div><p>{ "....",
+  "3333",
+  "3333",
+  ".33." }</p>
+<p>-1</p>
+<p>3</p>
+<p>Returns: {"....", "2222", "2222", ".22." }</p>
+<p>Player 1 cannot score any points and selects only the top row, which contains no digits.  This leaves player 2 with the optimal move of selecting all rows but the top.  Player 3 cannot score any points either and selects the top row only, leaving player 2 with all 10 available points.</p></div></li><li><div><p>{ "111", "111" }</p>
+<p>1</p>
+<p>9</p>
+<p>Returns: {"313", "232" }</p>
+<p></p></div></li><li><div><p>{ "2222", "2222", "2222" }</p>
+<p>-1</p>
+<p>2</p>
+<p>Returns: {"3112", "3112", "3112" }</p>
+<p></p></div></li><li><div><p>{ "231.3",
+  "3.233",
+  "12.12",
+  "3.231",
+  "132.3" }</p>
+<p>1</p>
+<p>10</p>
+<p>Returns: {"123.1", "1.333", "12.31", "1.331", "132.2" }</p>
+<p></p></div></li><li><div><p>{ "11111",
+  "12221",
+  "12321",
+  "12221",
+  "11111" }</p>
+<p>-1</p>
+<p>10</p>
+<p>Returns: {"33331", "12222", "31211", "31111", "33331" }</p>
+<p></p></div></li><li><div><p>{ "11111",
+  "12221",
+  "12321",
+  "12221",
+  "11111" }</p>
+<p>1</p>
+<p>10</p>
+<p>Returns: {"22222", "31113", "12321", "31113", "11111" }</p>
+<p></p></div></li><li><div><p>{ "11111",
+  "12221",
+  "12321",
+  "12221",
+  "11111" }</p>
+<p>1</p>
+<p>9</p>
+<p>Returns: {"33212", "23211", "23311", "23211", "33212" }</p>
+<p></p></div></li><li><div><p>{ "12121",
+  "23232",
+  "31313",
+  "12121",
+  "32323" }</p>
+<p>1</p>
+<p>10</p>
+<p>Returns: {"11312", "33231", "11312", "22123", "31211" }</p>
+<p></p></div></li><li><div><p>{ "21111",
+  "12111",
+  "11211",
+  "11121",
+  "11112" }</p>
+<p>-1</p>
+<p>9</p>
+<p>Returns: {"13123", "12231", "11331", "22322", "22313" }</p>
+<p></p></div></li><li><div><p>{
+"123",
+"123"
+}</p>
+<p>1</p>
+<p>1</p>
+<p>Returns: {"131", "131" }</p>
+<p></p></div></li><li><div><p>{ "31122",
+  "31122" }</p>
+<p>1</p>
+<p>8</p>
+<p>Returns: {"11111", "33333" }</p>
+<p></p></div></li><li><div><p>{ "31122",
+  "31122" }</p>
+<p>1</p>
+<p>10</p>
+<p>Returns: {"31312", "12123" }</p>
+<p></p></div></li><li><div><p>{ "31122",
+  "31122" }</p>
+<p>-1</p>
+<p>7</p>
+<p>Returns: {"33333", "11111" }</p>
+<p></p></div></li><li><div><p>{ "12231", ".23.1", "..211", "...1.", "222.3" }</p>
+<p>-1</p>
+<p>9</p>
+<p>Returns: {"11131", ".23.2", "..222", "...3.", "211.3" }</p></div></li><li><div><p>{ ".1", ".2", "33" }</p>
+<p>1</p>
+<p>6</p>
+<p>Returns: {".3", ".3", "12" }</p></div></li><li><div><p>{ "212.2", ".33.1", "213..", "21.2." }</p>
+<p>1</p>
+<p>6</p>
+<p>Returns: {"131.1", ".22.3", "132..", "32.3." }</p></div></li><li><div><p>{ "2.222", "21212", ".3..3", "2.31.", "33..1" }</p>
+<p>1</p>
+<p>10</p>
+<p>Returns: {"1.133", "21231", ".2..1", "1.22.", "33..3" }</p></div></li><li><div><p>{ "2..", ".31" }</p>
+<p>-1</p>
+<p>7</p>
+<p>Returns: {"3..", ".12" }</p></div></li><li><div><p>{ "2...1", "31131", "..223", ".3123", "32.23" }</p>
+<p>-1</p>
+<p>10</p>
+<p>Returns: {"3...2", "23213", "..332", ".1121", "13.21" }</p></div></li><li><div><p>{ "..332", "11.1.", "32.33", "31.2.", "213.3" }</p>
+<p>-1</p>
+<p>9</p>
+<p>Returns: {"..221", "32.2.", "12.33", "22.3.", "313.3" }</p></div></li><li><div><p>{ "...", "331", "13.", "1..", "3.." }</p>
+<p>-1</p>
+<p>6</p>
+<p>Returns: {"...", "331", "32.", "2..", "1.." }</p></div></li><li><div><p>{ ".1211", "22.13", "233.." }</p>
+<p>-1</p>
+<p>10</p>
+<p>Returns: {".3133", "23.21", "211.." }</p></div></li><li><div><p>{ ".3323", "3.1..", "22.3." }</p>
+<p>1</p>
+<p>9</p>
+<p>Returns: {".1323", "3.3..", "22.2." }</p></div></li><li><div><p>{ "121", "1.1", ".11", "12.", "1.2" }</p>
+<p>-1</p>
+<p>6</p>
+<p>Returns: {"122", "3.1", ".23", "31.", "3.2" }</p></div></li><li><div><p>{ "3.222", "13..3", "33111", ".2333", ".2232" }</p>
+<p>1</p>
+<p>10</p>
+<p>Returns: {"2.111", "12..3", "21333", ".1333", ".3121" }</p></div></li><li><div><p>{ "1.22.", "31331", "2122.", ".213." }</p>
+<p>-1</p>
+<p>9</p>
+<p>Returns: {"2.31.", "23231", "3231.", ".322." }</p></div></li><li><div><p>{ "2.321", ".112.", "3.1.1", "31211", "1.113" }</p>
+<p>1</p>
+<p>2</p>
+<p>Returns: {"3.132", ".223.", "1.2.2", "12322", "2.221" }</p></div></li><li><div><p>{ "33332", ".3..1", ".12.3" }</p>
+<p>-1</p>
+<p>7</p>
+<p>Returns: {"33321", ".1..1", ".12.2" }</p></div></li><li><div><p>{ "12.", "312", "121", ".32" }</p>
+<p>1</p>
+<p>10</p>
+<p>Returns: {"31.", "122", "312", ".31" }</p></div></li><li><div><p>{ "212", "123", "331", ".2.", "332" }</p>
+<p>1</p>
+<p>3</p>
+<p>Returns: {"321", "232", "332", ".2.", "111" }</p></div></li><li><div><p>{ "1123", "3311", "1323", "1222", "2112" }</p>
+<p>-1</p>
+<p>9</p>
+<p>Returns: {"2232", "3312", "3213", "2331", "3221" }</p></div></li><li><div><p>{ "...33", "112.2", "12123", "22.3.", "13112" }</p>
+<p>-1</p>
+<p>9</p>
+<p>Returns: {"...22", "131.2", "11323", "13.2.", "23123" }</p></div></li><li><div><p>{ "1222", "1321", "2...", "121.", "2122" }</p>
+<p>1</p>
+<p>9</p>
+<p>Returns: {"2222", "1213", "3...", "113.", "2311" }</p></div></li><li><div><p>{ "33..2", "131.3", "33..2", "1112.", "3..23" }</p>
+<p>1</p>
+<p>10</p>
+<p>Returns: {"33..2", "212.1", "33..2", "1112.", "1..31" }</p></div></li><li><div><p>{ "1.231", "231.3", "1..33", "212.2", "2312." }</p>
+<p>1</p>
+<p>5</p>
+<p>Returns: {"2.223", "112.3", "1..11", "231.3", "2233." }</p></div></li><li><div><p>{ "....1", "1222.", "..112", ".1232" }</p>
+<p>1</p>
+<p>10</p>
+<p>Returns: {"....2", "3133.", "..331", ".1121" }</p></div></li><li><div><p>{ ".2112", "21.12", ".12.2" }</p>
+<p>-1</p>
+<p>10</p>
+<p>Returns: {".2131", "21.31", ".12.1" }</p></div></li><li><div><p>{ "32323", ".31.1", "23.12", "...33", "3.232" }</p>
+<p>-1</p>
+<p>3</p>
+<p>Returns: {"21231", ".23.2", "31.12", "...33", "2.113" }</p></div></li><li><div><p>{ "1223.", ".1..2", "1.1.2" }</p>
+<p>1</p>
+<p>9</p>
+<p>Returns: {"1111.", ".2..2", "3.2.2" }</p></div></li><li><div><p>{ "...2.", ".2.11", ".1.13", ".2213", "..311" }</p>
+<p>1</p>
+<p>10</p>
+<p>Returns: {"...2.", ".1.13", ".2.31", ".3131", "..313" }</p></div></li><li><div><p>{ ".3312", "1..22", "1321.", "13.32" }</p>
+<p>1</p>
+<p>7</p>
+<p>Returns: {".1121", "1..31", "2213.", "33.33" }</p></div></li><li><div><p>{ "2..32", "322.2", ".3...", "..1..", "...21" }</p>
+<p>1</p>
+<p>6</p>
+<p>Returns: {"1..32", "131.1", ".2...", "..2..", "...32" }</p></div></li><li><div><p>{ "31132", "33.31", "32322", "..22.", "223.1" }</p>
+<p>-1</p>
+<p>10</p>
+<p>Returns: {"31122", "33.21", "21231", "..13.", "112.3" }</p></div></li><li><div><p>{ "122", "3..", "113", "2.." }</p>
+<p>-1</p>
+<p>10</p>
+<p>Returns: {"111", "3..", "132", "2.." }</p></div></li><li><div><p>{ "33.", ".13", "..2", "1.." }</p>
+<p>1</p>
+<p>10</p>
+<p>Returns: {"33.", ".11", "..3", "1.." }</p></div></li><li><div><p>{ "22", "12", "21", ".3" }</p>
+<p>-1</p>
+<p>1</p>
+<p>Returns: {"11", "12", "21", ".3" }</p></div></li><li><div><p>{ "22", "13", "2.", "2.", "3." }</p>
+<p>-1</p>
+<p>10</p>
+<p>Returns: {"12", "11", "3.", "3.", "2." }</p></div></li><li><div><p>{ "3222", "..1.", ".32.", "..22" }</p>
+<p>1</p>
+<p>10</p>
+<p>Returns: {"2122", "..3.", ".33.", "..11" }</p></div></li><li><div><p>{ "312..", ".232.", "..2..", "3.332", "333.." }</p>
+<p>1</p>
+<p>10</p>
+<p>Returns: {"113..", ".132.", "..3..", "1.113", "323.." }</p></div></li><li><div><p>{ "22111", "223..", ".2211", "31...", "13323" }</p>
+<p>-1</p>
+<p>8</p>
+<p>Returns: {"33233", "112..", ".1111", "12...", "32223" }</p></div></li></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/7880/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"7880\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"7880\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"7880\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"7880\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"7880\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\nf:Tbce,"])</script><script>self.__next_f.push([1,"\u003cp xmlns=\"http://topcoder.com\"\u003e\nThe game of Inc is played by 3 players on a rectangular board, made up of an MxN grid of squares.\nEach square is either empty or contains a digit between 1 and 3, inclusive.\nThe players take turns making moves on the board, in order, starting with player 1.\nPlay continues for a pre-determined number of moves, after which the players' scores are totaled.\nEach player receives one point for each square containing a digit equal to their player number.\nThe player with the highest score wins.\n\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nA move consists of a player dividing the squares on the board into two non-empty groups, with a\nsingle straight horizontal or vertical line.\nThe player then selects one of the two groups on either side of the line,\nand either adds 1 to or subtracts 1 from all the digits in that group.\nWhenever 1 is added to 3, the result is wrapped around to 1.\nSimilarly, whenever 1 is subtracted from 1, the result is wrapped around to 3.\n\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nEach player makes his or her moves according to the following set of priorities.\nA higher-numbered priority is only used to select among multiple moves that satisfy all lower-numbered priorities.\n\u003c/p\u003e\n\n\u003col xmlns=\"http://topcoder.com\"\u003e\n\u003cli\u003ePrefer moves that will result in you having more points than the other 2 players at the end of the game.\u003c/li\u003e\n\u003cli\u003ePrefer moves that will result in neither of the other 2 players having more points than you at the end of the game.\u003c/li\u003e\n\u003cli\u003ePrefer moves that will result in you having as many points as possible at the end of the game.\u003c/li\u003e\n\u003cli\u003ePrefer dividing the board with a horizontal line over dividing the board with a vertical line.\u003c/li\u003e\n\u003cli\u003ePrefer the group to the left or the top of the dividing line over the group to the right or the bottom.\u003c/li\u003e\n\u003cli\u003ePrefer lines to the left or the top over lines to the right or the bottom.\u003c/li\u003e\n\u003c/ol\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nAssume that all players play optimally, and that they all expect each other to play optimally as well.\n\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nThe initial state of the board is given as a \u003ctype\u003eString[]\u003c/type\u003e \u003cb\u003einitial\u003c/b\u003e.\nEach character in \u003cb\u003einitial\u003c/b\u003e represents one square of the board.\nA '.' (period) represents an empty square, while a digit represents a digit in the corresponding square.\nEarlier elements in \u003cb\u003einitial\u003c/b\u003e correspond to the top of the board and later elements correspond to the bottom,\nwhile earlier characters in each element of \u003cb\u003einitial\u003c/b\u003e correspond to the left of the board and later characters correspond to the right.\nThe number of turns in the game is given by an \u003ctype\u003eint\u003c/type\u003e \u003cb\u003eturns\u003c/b\u003e.\nAn \u003ctype\u003eint\u003c/type\u003e \u003cb\u003einc\u003c/b\u003e dictates if players add or subtract 1 to the digits they select on their turn.\nA value of -1 means that players must subtract 1 and a value of 1 means that players must add 1.\n\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nReturn the final state of the board as a \u003ctype\u003eString[]\u003c/type\u003e, in the same format as the input.\n\u003c/p\u003e"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"Inc\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Inc\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"finalBoard\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String[], int, int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String[]\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String[] finalBoard(String[] initialBoard, int inc, int turns)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Notes\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":\"turns will not necessarily be divisible by 3.\"}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"initial will contain between 2 and 5 elements, inclusive.\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Each element of initial will be between 2 and 5 characters long, inclusive.\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Each element of initial will have the same length.\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Each element of initial will be either a '.' (period), '1', '2', or '3'.\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"inc will be -1 or 1.\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"turns will be between 1 and 10, inclusive.\"}}]}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"333\\\",\\n  \\\"3.3\\\",\\n  \\\"333\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"111\\\", \\\"1.1\\\", \\\"333\\\" }\u003c/p\u003e\\n\u003cp\u003eOnly player 1 makes a move, and there are 4 ways he can get 5 points.  Following the given priorities, he chooses to divide the board with a horizontal line one row above the bottom, and increment the 5 digits in the 6 squares above that line.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"....\\\",\\n  \\\"3333\\\",\\n  \\\"3333\\\",\\n  \\\".33.\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"....\\\", \\\"2222\\\", \\\"2222\\\", \\\".22.\\\" }\u003c/p\u003e\\n\u003cp\u003ePlayer 1 cannot score any points and selects only the top row, which contains no digits.  This leaves player 2 with the optimal move of selecting all rows but the top.  Player 3 cannot score any points either and selects the top row only, leaving player 2 with all 10 available points.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"111\\\", \\\"111\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"313\\\", \\\"232\\\" }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"2222\\\", \\\"2222\\\", \\\"2222\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"3112\\\", \\\"3112\\\", \\\"3112\\\" }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"231.3\\\",\\n  \\\"3.233\\\",\\n  \\\"12.12\\\",\\n  \\\"3.231\\\",\\n  \\\"132.3\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"123.1\\\", \\\"1.333\\\", \\\"12.31\\\", \\\"1.331\\\", \\\"132.2\\\" }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"11111\\\",\\n  \\\"12221\\\",\\n  \\\"12321\\\",\\n  \\\"12221\\\",\\n  \\\"11111\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"33331\\\", \\\"12222\\\", \\\"31211\\\", \\\"31111\\\", \\\"33331\\\" }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"11111\\\",\\n  \\\"12221\\\",\\n  \\\"12321\\\",\\n  \\\"12221\\\",\\n  \\\"11111\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"22222\\\", \\\"31113\\\", \\\"12321\\\", \\\"31113\\\", \\\"11111\\\" }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"11111\\\",\\n  \\\"12221\\\",\\n  \\\"12321\\\",\\n  \\\"12221\\\",\\n  \\\"11111\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"33212\\\", \\\"23211\\\", \\\"23311\\\", \\\"23211\\\", \\\"33212\\\" }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"8\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"12121\\\",\\n  \\\"23232\\\",\\n  \\\"31313\\\",\\n  \\\"12121\\\",\\n  \\\"32323\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"11312\\\", \\\"33231\\\", \\\"11312\\\", \\\"22123\\\", \\\"31211\\\" }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"9\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"21111\\\",\\n  \\\"12111\\\",\\n  \\\"11211\\\",\\n  \\\"11121\\\",\\n  \\\"11112\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"13123\\\", \\\"12231\\\", \\\"11331\\\", \\\"22322\\\", \\\"22313\\\" }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"10\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\n\\\"123\\\",\\n\\\"123\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"131\\\", \\\"131\\\" }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"11\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"31122\\\",\\n  \\\"31122\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"11111\\\", \\\"33333\\\" }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"12\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"31122\\\",\\n  \\\"31122\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"31312\\\", \\\"12123\\\" }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"13\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"31122\\\",\\n  \\\"31122\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"33333\\\", \\\"11111\\\" }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"14\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"12231\\\", \\\".23.1\\\", \\\"..211\\\", \\\"...1.\\\", \\\"222.3\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"11131\\\", \\\".23.2\\\", \\\"..222\\\", \\\"...3.\\\", \\\"211.3\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"15\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\".1\\\", \\\".2\\\", \\\"33\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\".3\\\", \\\".3\\\", \\\"12\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"16\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"212.2\\\", \\\".33.1\\\", \\\"213..\\\", \\\"21.2.\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"131.1\\\", \\\".22.3\\\", \\\"132..\\\", \\\"32.3.\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"17\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"2.222\\\", \\\"21212\\\", \\\".3..3\\\", \\\"2.31.\\\", \\\"33..1\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"1.133\\\", \\\"21231\\\", \\\".2..1\\\", \\\"1.22.\\\", \\\"33..3\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"18\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"2..\\\", \\\".31\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"3..\\\", \\\".12\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"19\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"2...1\\\", \\\"31131\\\", \\\"..223\\\", \\\".3123\\\", \\\"32.23\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"3...2\\\", \\\"23213\\\", \\\"..332\\\", \\\".1121\\\", \\\"13.21\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"20\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"..332\\\", \\\"11.1.\\\", \\\"32.33\\\", \\\"31.2.\\\", \\\"213.3\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"..221\\\", \\\"32.2.\\\", \\\"12.33\\\", \\\"22.3.\\\", \\\"313.3\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"21\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"...\\\", \\\"331\\\", \\\"13.\\\", \\\"1..\\\", \\\"3..\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"...\\\", \\\"331\\\", \\\"32.\\\", \\\"2..\\\", \\\"1..\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"22\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\".1211\\\", \\\"22.13\\\", \\\"233..\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\".3133\\\", \\\"23.21\\\", \\\"211..\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"23\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\".3323\\\", \\\"3.1..\\\", \\\"22.3.\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\".1323\\\", \\\"3.3..\\\", \\\"22.2.\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"24\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"121\\\", \\\"1.1\\\", \\\".11\\\", \\\"12.\\\", \\\"1.2\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"122\\\", \\\"3.1\\\", \\\".23\\\", \\\"31.\\\", \\\"3.2\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"25\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"3.222\\\", \\\"13..3\\\", \\\"33111\\\", \\\".2333\\\", \\\".2232\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2.111\\\", \\\"12..3\\\", \\\"21333\\\", \\\".1333\\\", \\\".3121\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"26\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"1.22.\\\", \\\"31331\\\", \\\"2122.\\\", \\\".213.\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2.31.\\\", \\\"23231\\\", \\\"3231.\\\", \\\".322.\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"27\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"2.321\\\", \\\".112.\\\", \\\"3.1.1\\\", \\\"31211\\\", \\\"1.113\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"3.132\\\", \\\".223.\\\", \\\"1.2.2\\\", \\\"12322\\\", \\\"2.221\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"28\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"33332\\\", \\\".3..1\\\", \\\".12.3\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"33321\\\", \\\".1..1\\\", \\\".12.2\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"29\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"12.\\\", \\\"312\\\", \\\"121\\\", \\\".32\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"31.\\\", \\\"122\\\", \\\"312\\\", \\\".31\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"30\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"212\\\", \\\"123\\\", \\\"331\\\", \\\".2.\\\", \\\"332\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"321\\\", \\\"232\\\", \\\"332\\\", \\\".2.\\\", \\\"111\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"31\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"1123\\\", \\\"3311\\\", \\\"1323\\\", \\\"1222\\\", \\\"2112\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2232\\\", \\\"3312\\\", \\\"3213\\\", \\\"2331\\\", \\\"3221\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"32\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"...33\\\", \\\"112.2\\\", \\\"12123\\\", \\\"22.3.\\\", \\\"13112\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"...22\\\", \\\"131.2\\\", \\\"11323\\\", \\\"13.2.\\\", \\\"23123\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"33\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"1222\\\", \\\"1321\\\", \\\"2...\\\", \\\"121.\\\", \\\"2122\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2222\\\", \\\"1213\\\", \\\"3...\\\", \\\"113.\\\", \\\"2311\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"34\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"33..2\\\", \\\"131.3\\\", \\\"33..2\\\", \\\"1112.\\\", \\\"3..23\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"33..2\\\", \\\"212.1\\\", \\\"33..2\\\", \\\"1112.\\\", \\\"1..31\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"35\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"1.231\\\", \\\"231.3\\\", \\\"1..33\\\", \\\"212.2\\\", \\\"2312.\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2.223\\\", \\\"112.3\\\", \\\"1..11\\\", \\\"231.3\\\", \\\"2233.\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"36\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"....1\\\", \\\"1222.\\\", \\\"..112\\\", \\\".1232\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"....2\\\", \\\"3133.\\\", \\\"..331\\\", \\\".1121\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"37\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\".2112\\\", \\\"21.12\\\", \\\".12.2\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\".2131\\\", \\\"21.31\\\", \\\".12.1\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"38\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"32323\\\", \\\".31.1\\\", \\\"23.12\\\", \\\"...33\\\", \\\"3.232\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"21231\\\", \\\".23.2\\\", \\\"31.12\\\", \\\"...33\\\", \\\"2.113\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"39\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"1223.\\\", \\\".1..2\\\", \\\"1.1.2\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"1111.\\\", \\\".2..2\\\", \\\"3.2.2\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"40\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"...2.\\\", \\\".2.11\\\", \\\".1.13\\\", \\\".2213\\\", \\\"..311\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"...2.\\\", \\\".1.13\\\", \\\".2.31\\\", \\\".3131\\\", \\\"..313\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"41\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\".3312\\\", \\\"1..22\\\", \\\"1321.\\\", \\\"13.32\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\".1121\\\", \\\"1..31\\\", \\\"2213.\\\", \\\"33.33\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"42\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"2..32\\\", \\\"322.2\\\", \\\".3...\\\", \\\"..1..\\\", \\\"...21\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"1..32\\\", \\\"131.1\\\", \\\".2...\\\", \\\"..2..\\\", \\\"...32\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"43\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"31132\\\", \\\"33.31\\\", \\\"32322\\\", \\\"..22.\\\", \\\"223.1\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"31122\\\", \\\"33.21\\\", \\\"21231\\\", \\\"..13.\\\", \\\"112.3\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"44\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"122\\\", \\\"3..\\\", \\\"113\\\", \\\"2..\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"111\\\", \\\"3..\\\", \\\"132\\\", \\\"2..\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"45\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"33.\\\", \\\".13\\\", \\\"..2\\\", \\\"1..\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"33.\\\", \\\".11\\\", \\\"..3\\\", \\\"1..\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"46\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"22\\\", \\\"12\\\", \\\"21\\\", \\\".3\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"11\\\", \\\"12\\\", \\\"21\\\", \\\".3\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"47\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"22\\\", \\\"13\\\", \\\"2.\\\", \\\"2.\\\", \\\"3.\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"12\\\", \\\"11\\\", \\\"3.\\\", \\\"3.\\\", \\\"2.\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"48\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"3222\\\", \\\"..1.\\\", \\\".32.\\\", \\\"..22\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2122\\\", \\\"..3.\\\", \\\".33.\\\", \\\"..11\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"49\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"312..\\\", \\\".232.\\\", \\\"..2..\\\", \\\"3.332\\\", \\\"333..\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"113..\\\", \\\".132.\\\", \\\"..3..\\\", \\\"1.113\\\", \\\"323..\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"50\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"22111\\\", \\\"223..\\\", \\\".2211\\\", \\\"31...\\\", \\\"13323\\\" }\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"33233\\\", \\\"112..\\\", \\\".1111\\\", \\\"12...\\\", \\\"32223\\\" }\u003c/p\u003e\"}}]}]]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

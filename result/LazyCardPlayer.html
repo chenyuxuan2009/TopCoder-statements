@@ -1,0 +1,541 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->LazyCardPlayer<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div><p xmlns="http://topcoder.com">A deck of cards contains 52 cards, representing all combinations of
+13 different ranks (in descending order: Ace, King, Queen, Jack, Ten,
+9, 8, 7, 6, 5, 4, 3, 2) and 4 different suits (clubs, diamonds,
+hearts, spades). One of the four suits is chosen as the <b>trump</b>
+suit.</p>
+
+<p xmlns="http://topcoder.com">Four players are playing a card game. We will be analyzing a single
+trick. In one trick, every player gets to play one card from his hand.
+The first player may play any card he wishes. The other
+players must play by the following rules:</p>
+
+<ol xmlns="http://topcoder.com">
+  <li>If a player has a card of the same suit as the first player's
+  card, he must play it.<br/>If the trick hasn't been broken (see
+  rule 2) and he has a card of higher rank than the highest played
+  so far (considering only cards of the required suit), then he must play such a card (he may play any card of higher rank than the highest so far).
+  <br/>If the trick has been broken or he doesn't have a card strong enough, he may play any card of the required suit.</li>
+  <li>If a player doesn't have a card of the required suit, then
+  he must play a card of the trump suit if he has one. When the
+  first trump card in a trick is played, the trick
+  is <i>broken</i>.<br/>If the trick was already broken, then the player
+  has to play a trump of higher rank if he has one.</li>
+  <li>Otherwise (the player has no cards the same suit as the first
+  card played, and has no trumps), he may play any card.</li>
+</ol>
+
+<p xmlns="http://topcoder.com">One of the players is too lazy to think so he wants help in
+determining which cards he may play.</p>
+
+<p xmlns="http://topcoder.com">You will be given a String <b>trump</b> and two <type>String[]</type>s, <b>cardsPlayed</b>
+and <b>hand</b>. <b>trump</b> represents the chosen trump suit and will be 
+"clubs", "diamonds", "hearts" or "spades" (quotes for clarity). 
+<b>cardsPlayed</b> contains the cards played so far
+in the trick, in the order in which they were played. <b>hand</b> contains
+the cards the lazy player has in his hand.</p>
+
+<p xmlns="http://topcoder.com">Each card in the input will be represented as a string of 2
+characters, the rank (one of the characters 'A', 'K', 'Q', 'J', 'T',
+'9', '8', '7', '6', '5', '4', '3', '2') followed by the suit ('C', 'D', 'H' or
+'S').</p>
+
+<p xmlns="http://topcoder.com">Return a <type>String[]</type> containing all cards the lazy player
+may play. The cards should be in the same relative order as
+in <b>hand</b>.</p>
+</div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>LazyCardPlayer</span></dd><dt>Method:</dt><dd><span>whichCards</span></dd><dt>Parameters:</dt><dd><span>String, String[], String[]</span></dd><dt>Returns:</dt><dd><span>String[]</span></dd><dt>Method signature:</dt><dd><span>String[] whichCards(String trump, String[] cardsPlayed, String[] hand)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul><li><span>trump will be "clubs", "diamonds", "hearts" or "spades".</span></li><li><span>cardsPlayed will contain between 0 and 3 elements, inclusive.</span></li><li><span>hand will contain between 1 and 13 elements, inclusive.</span></li><li><span>Each element of cardsPlayed and hand will represent a single card, formatted as described in the problem statement.</span></li><li><span>No two cards in all of cardsPlayed and hand will be the same.</span></li></ul></div><div><h3>Examples</h3><ol><li><div><p>"clubs"</p>
+<p>{ }</p>
+<p>{ "TH", "9C", "8D", "2S", "4D" }</p>
+<p>Returns: {"TH", "9C", "8D", "2S", "4D" }</p>
+<p>No cards have been played so far, which means the lazy player is the first to play. The first player may play any card.
+</p></div></li><li><div><p>"clubs"</p>
+<p>{ "8S" }</p>
+<p>{ "4H", "5S", "7S" }</p>
+<p>Returns: {"5S", "7S" }</p>
+<p>The first player opened spades. The lazy player doesn't have a card stronger than the 8, so he may play either of his cards.
+</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "4H", "9H" }</p>
+<p>{ "AH", "5H" }</p>
+<p>Returns: {"AH" }</p>
+<p></p></div></li><li><div><p>"hearts"</p>
+<p>{ "6S", "9S", "9C" }</p>
+<p>{ "TC", "AH", "5H" }</p>
+<p>Returns: {"AH", "5H" }</p>
+<p>With no spades, the player has to break the trick using one of his cards in the trump suit (hearts).
+</p></div></li><li><div><p>"hearts"</p>
+<p>{ "6S", "9S", "KH" }</p>
+<p>{ "TC", "AH", "5H" }</p>
+<p>Returns: {"AH" }</p>
+<p>This time the trick has already been broken by the third player, so the lazy player must play his ace to beat the king.
+</p></div></li><li><div><p>"hearts"</p>
+<p>{ "6S", "9S", "KH" }</p>
+<p>{ "JS", "4S", "3S", "2H" }</p>
+<p>Returns: {"JS", "4S", "3S" }</p>
+<p>The player must play spades, but doesn't need to throw the strongest card because the trick has been broken.
+</p></div></li><li><div><p>"clubs"</p>
+<p>{ "9C" }</p>
+<p>{ "KD", "AD", "JC", "QD", "5S", "3C" }</p>
+<p>Returns: {"JC" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "2S" }</p>
+<p>{ "QC" }</p>
+<p>Returns: {"QC" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "5S", "KD", "2S" }</p>
+<p>{ "JD", "JC", "9H", "8S", "4C", "AD", "6S", "QC", "2D", "9D", "KH", "5H" }</p>
+<p>Returns: {"8S", "6S" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "3C" }</p>
+<p>{ "JD", "KS", "8D", "5C", "6S", "3D", "6H", "3H", "7H", "QS" }</p>
+<p>Returns: {"5C" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "AH" }</p>
+<p>{ "7D", "JH", "AS", "TS" }</p>
+<p>Returns: {"JH" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "8D", "5C", "KH" }</p>
+<p>{ "9D", "5D" }</p>
+<p>Returns: {"9D" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "TC", "6C", "8D" }</p>
+<p>{ "5H", "4D", "JC", "5C", "8H", "7S" }</p>
+<p>Returns: {"JC" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "QD" }</p>
+<p>{ "JD", "KC", "4D" }</p>
+<p>Returns: {"JD", "4D" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "9D" }</p>
+<p>{ "8C", "KC" }</p>
+<p>Returns: {"8C", "KC" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "9D", "QC", "JC" }</p>
+<p>{ "AH", "7C", "JD", "7S", "6H", "AC", "2C", "4S" }</p>
+<p>Returns: {"JD" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "JS", "9H", "6D" }</p>
+<p>{ "9S", "JC", "JH", "6H", "AS", "6C" }</p>
+<p>Returns: {"AS" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "TD" }</p>
+<p>{ "9S", "3H", "QD", "6C" }</p>
+<p>Returns: {"QD" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "8H", "AC" }</p>
+<p>{ "7H", "KD", "9S", "9D", "QH", "3S", "KS", "6S" }</p>
+<p>Returns: {"QH" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "2H", "2D", "7S" }</p>
+<p>{ "7D", "8C", "9S", "JH", "3D", "5H" }</p>
+<p>Returns: {"JH", "5H" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "6H" }</p>
+<p>{ "TS", "4S", "AD", "QH", "2S", "8C", "JH", "6D", "2H", "3C" }</p>
+<p>Returns: {"QH", "JH" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "JD", "3S" }</p>
+<p>{ "9D", "6H", "4D" }</p>
+<p>Returns: {"9D", "4D" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "6S" }</p>
+<p>{ "KD", "3H", "8C" }</p>
+<p>Returns: {"KD" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "JS", "2H" }</p>
+<p>{ "KC", "AS", "2C", "6D", "5C", "5H", "KS", "QD", "TS", "KD", "2S", "6H" }</p>
+<p>Returns: {"AS", "KS", "TS", "2S" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "KH", "6C", "6D" }</p>
+<p>{ "TH", "9D", "6S", "QC", "3C", "4S", "7D", "AC", "5C", "QD", "6H" }</p>
+<p>Returns: {"TH", "6H" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "6D", "9D", "8C" }</p>
+<p>{ "TH", "4S", "2H", "6C", "2D", "7C", "4D", "KC", "3C", "AS", "JH", "TC", "2C" }</p>
+<p>Returns: {"2D", "4D" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "7S", "AH", "KD" }</p>
+<p>{ "KC", "8D", "3S", "AS", "8C", "6S", "5H", "9C", "4D", "4S", "TH", "JS", "5S" }</p>
+<p>Returns: {"3S", "AS", "6S", "4S", "JS", "5S" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "KS" }</p>
+<p>{ "8C", "7S", "JS", "9D", "8H", "9C", "QC" }</p>
+<p>Returns: {"7S", "JS" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "AD" }</p>
+<p>{ "3C", "QS", "3S", "TD", "TH", "8H", "9C", "TC", "2C", "4D", "8D", "4H" }</p>
+<p>Returns: {"TD", "4D", "8D" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "9H", "KH" }</p>
+<p>{ "5S", "4C" }</p>
+<p>Returns: {"4C" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "AD", "4C", "QC" }</p>
+<p>{ "AH", "7H", "KD", "JC", "9S", "JH", "5C", "9C" }</p>
+<p>Returns: {"KD" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "KS", "4H", "4C" }</p>
+<p>{ "3H" }</p>
+<p>Returns: {"3H" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "3S", "5D" }</p>
+<p>{ "TC", "QH", "7C", "TH", "3H", "6S", "8C", "AD", "2H", "4S", "7H" }</p>
+<p>Returns: {"6S", "4S" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "JD", "4D" }</p>
+<p>{ "6S", "QH", "3S", "3C", "JS", "9S", "KH", "6D", "JC", "4H" }</p>
+<p>Returns: {"6D" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "5S", "AS", "3D" }</p>
+<p>{ "JC", "AH", "JS", "JD", "9S", "KS", "2H", "9C", "6S", "7D" }</p>
+<p>Returns: {"JS", "9S", "KS", "6S" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "QC" }</p>
+<p>{ "2H", "7H", "AH", "2D", "9C" }</p>
+<p>Returns: {"9C" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "TC" }</p>
+<p>{ "7S", "KD", "8S", "2S", "JH", "6H" }</p>
+<p>Returns: {"JH", "6H" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "4S", "TC" }</p>
+<p>{ "KD", "QD", "TH", "6C", "3C", "6H", "AC", "6D", "2C", "QH" }</p>
+<p>Returns: {"KD", "QD", "6D" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "4C", "6D", "3D" }</p>
+<p>{ "5S", "7S" }</p>
+<p>Returns: {"5S", "7S" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "JS" }</p>
+<p>{ "8S", "AD", "8H", "QH", "7H" }</p>
+<p>Returns: {"8S" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "AH", "QD" }</p>
+<p>{ "AS" }</p>
+<p>Returns: {"AS" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "2H", "7H" }</p>
+<p>{ "3S", "9C", "7S", "3H", "7C", "5D", "4C" }</p>
+<p>Returns: {"3H" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "3H" }</p>
+<p>{ "6H", "KC", "JC" }</p>
+<p>Returns: {"6H" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "9H" }</p>
+<p>{ "2H", "8H", "6C", "5S", "7H" }</p>
+<p>Returns: {"2H", "8H", "7H" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "7S", "JH", "KS" }</p>
+<p>{ "6S", "5D" }</p>
+<p>Returns: {"6S" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "7D", "2S" }</p>
+<p>{ "QS", "8D", "KS", "QD", "KH", "5S" }</p>
+<p>Returns: {"8D", "QD" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "JS", "KH", "2H" }</p>
+<p>{ "JD", "7S", "KC", "JH", "3D" }</p>
+<p>Returns: {"7S" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "8D", "8C" }</p>
+<p>{ "3S", "9D", "4H", "4D", "7C" }</p>
+<p>Returns: {"9D" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "6H", "5H" }</p>
+<p>{ "AH", "7H", "3S", "TD", "4H", "4C" }</p>
+<p>Returns: {"AH", "7H" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "4S", "5H", "JH" }</p>
+<p>{ "KD", "5S", "TH", "7H", "2C" }</p>
+<p>Returns: {"5S" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "4D", "KC" }</p>
+<p>{ "KS", "QH", "6C", "5D", "7S", "QC", "6S", "8S", "6D" }</p>
+<p>Returns: {"5D", "6D" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "QC", "JC", "8C" }</p>
+<p>{ "KH", "4C", "JH", "5S", "7D", "2C", "AH", "KC", "8H", "QH", "7S", "TH" }</p>
+<p>Returns: {"KC" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "JD", "6C" }</p>
+<p>{ "AD", "3C" }</p>
+<p>Returns: {"AD" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "7S", "TH", "AD" }</p>
+<p>{ "3D", "KC", "AC", "6S", "8H", "9C", "2C", "6D" }</p>
+<p>Returns: {"6S" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "7D", "5D", "8S" }</p>
+<p>{ "AH", "9H" }</p>
+<p>Returns: {"AH", "9H" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "JC", "7D" }</p>
+<p>{ "9S", "JS", "AC", "QD", "2H", "KC", "2C", "2D", "9D", "8S", "TS" }</p>
+<p>Returns: {"AC", "KC" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "7H" }</p>
+<p>{ "3H", "8S", "JS", "AH", "4C", "2C", "AC" }</p>
+<p>Returns: {"AH" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "6D", "TH" }</p>
+<p>{ "3D", "2S", "TC", "QS", "AC", "8H", "7C", "TS" }</p>
+<p>Returns: {"3D" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "2C", "3S", "9D" }</p>
+<p>{ "4S", "AD", "5S", "6D", "4D", "2S", "AS", "8S", "TC" }</p>
+<p>Returns: {"TC" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "AC", "4D" }</p>
+<p>{ "5H", "KC", "7S", "5S", "8D", "5C", "6S" }</p>
+<p>Returns: {"KC", "5C" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "2C" }</p>
+<p>{ "KH", "8H", "JD", "6C", "TH", "7C", "3C", "2D", "6H" }</p>
+<p>Returns: {"6C", "7C", "3C" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "4S", "8S", "7H" }</p>
+<p>{ "AD", "AH", "KS", "5D", "3C", "6C", "9C" }</p>
+<p>Returns: {"KS" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "QS" }</p>
+<p>{ "7S", "KH", "JC", "9C", "JD", "TD", "3C", "7C", "AD", "7H", "3H", "9D" }</p>
+<p>Returns: {"7S" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "2D", "JS" }</p>
+<p>{ "JC", "6C", "TH", "KD" }</p>
+<p>Returns: {"KD" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "2H", "JS", "TC" }</p>
+<p>{ "6H", "4S", "5H", "JC" }</p>
+<p>Returns: {"6H", "5H" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "2D" }</p>
+<p>{ "9S", "4C", "JH", "JC", "4D", "TH", "8C", "AH", "7C", "JS", "7H" }</p>
+<p>Returns: {"4D" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "2D", "6S", "JD" }</p>
+<p>{ "8D", "KC", "KH", "5C", "5S", "6C", "6D", "7S", "8S" }</p>
+<p>Returns: {"8D", "6D" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "7D", "9D" }</p>
+<p>{ "3S", "7C", "4S", "QC", "5S", "QD", "AS", "4C", "9H", "8D", "QH" }</p>
+<p>Returns: {"QD" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "2C", "TS" }</p>
+<p>{ "2D", "JH", "AD" }</p>
+<p>Returns: {"2D", "JH", "AD" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "4D", "5D", "TC" }</p>
+<p>{ "AH", "7H", "4H", "6H", "6D", "TS", "6C", "KD", "2H", "KH", "JC", "KC", "JS" }</p>
+<p>Returns: {"6D", "KD" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "3H", "6C" }</p>
+<p>{ "KD", "8S", "9D", "9C", "AH", "4C", "9H", "JH", "4H", "JS" }</p>
+<p>Returns: {"AH", "9H", "JH", "4H" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "4C" }</p>
+<p>{ "QD", "TC", "7D", "3S", "5D", "6S", "8C", "3C", "2D", "8S" }</p>
+<p>Returns: {"TC", "8C" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "7S", "KC", "3C" }</p>
+<p>{ "9C", "3D", "8C", "9H", "5D", "KS" }</p>
+<p>Returns: {"KS" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "JD", "5S", "JH" }</p>
+<p>{ "4D", "KS", "KD", "8H", "6D", "8D", "4C", "3C" }</p>
+<p>Returns: {"KD" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "7S", "5H", "TH" }</p>
+<p>{ "3H", "9H", "2D" }</p>
+<p>Returns: {"2D" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "3H" }</p>
+<p>{ "TC", "8D", "AC", "7D", "3C", "9S", "TD", "6H" }</p>
+<p>Returns: {"6H" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "4S", "9S" }</p>
+<p>{ "JC", "8H", "4H", "5S", "3H", "QH", "3S", "6H", "6D", "2H", "KS", "KD", "5D" }</p>
+<p>Returns: {"KS" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "5C" }</p>
+<p>{ "TC", "8S", "6D", "2D", "QH" }</p>
+<p>Returns: {"TC" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "9H", "QC", "9D" }</p>
+<p>{ "7C" }</p>
+<p>Returns: {"7C" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "3H" }</p>
+<p>{ "2H", "KC", "8C", "JC", "AC" }</p>
+<p>Returns: {"2H" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "7S", "5S" }</p>
+<p>{ "7D", "2C", "6C", "6H", "8S", "JD", "3C", "2S" }</p>
+<p>Returns: {"8S" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "2D", "6S", "2C" }</p>
+<p>{ "6H", "JS", "KC", "4C", "KS", "3D" }</p>
+<p>Returns: {"3D" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "8D", "QD", "JD" }</p>
+<p>{ "AD" }</p>
+<p>Returns: {"AD" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "6D" }</p>
+<p>{ "AD", "KH", "5S", "9S", "5D", "4S", "JC", "QS", "9D", "QD" }</p>
+<p>Returns: {"AD", "9D", "QD" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "AC", "2H" }</p>
+<p>{ "TD", "AD", "7S", "AS", "KC", "6D", "7D", "5D", "9H", "8S" }</p>
+<p>Returns: {"KC" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "KS", "5D", "2D" }</p>
+<p>{ "AC", "8H", "TH", "9H", "2H", "4S" }</p>
+<p>Returns: {"4S" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "8S", "4S", "KD" }</p>
+<p>{ "AD", "6S", "9S", "TS" }</p>
+<p>Returns: {"9S", "TS" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "KS", "9S", "QH" }</p>
+<p>{ "QD", "5C", "QS", "7H", "8H", "TH" }</p>
+<p>Returns: {"QS" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "9S", "KD", "2H" }</p>
+<p>{ "7C", "6D", "6S", "7S", "JS", "8C", "4D", "8S", "4H", "4C" }</p>
+<p>Returns: {"JS" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "QH", "5H", "JD" }</p>
+<p>{ "4H", "QS", "9S", "KD", "4D", "6H", "AS", "2S", "TC", "QC", "8H", "6S", "AC" }</p>
+<p>Returns: {"4H", "6H", "8H" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "9S", "QC", "TD" }</p>
+<p>{ "2D", "KD", "9C", "8H", "3H", "7D", "JD" }</p>
+<p>Returns: {"8H", "3H" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "QS", "8D" }</p>
+<p>{ "2S" }</p>
+<p>Returns: {"2S" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "8D", "QS" }</p>
+<p>{ "TS", "4C", "JD", "KD", "5S" }</p>
+<p>Returns: {"JD", "KD" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "2H" }</p>
+<p>{ "TC", "5H", "3H", "3S", "QS", "JC", "JS", "QC", "4H", "6S", "8C" }</p>
+<p>Returns: {"5H", "3H", "4H" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "9D", "3C", "JC" }</p>
+<p>{ "JD", "8S", "6C" }</p>
+<p>Returns: {"JD" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "7H", "TH" }</p>
+<p>{ "6S" }</p>
+<p>Returns: {"6S" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "7H" }</p>
+<p>{ "4H", "5D", "8S", "5H", "2C", "5C", "KS", "8D", "AC", "3H", "QC" }</p>
+<p>Returns: {"4H", "5H", "3H" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "2D" }</p>
+<p>{ "4D", "6H", "AS", "TD", "8H", "2H" }</p>
+<p>Returns: {"4D", "TD" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "JC", "2S", "QC" }</p>
+<p>{ "4S", "QH", "4H", "AS" }</p>
+<p>Returns: {"4S", "QH", "4H", "AS" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "KC", "TS", "AD" }</p>
+<p>{ "JS", "JD", "3S", "TH" }</p>
+<p>Returns: {"JD" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "2C", "KD", "JD" }</p>
+<p>{ "9C", "7H", "4S", "KS", "JH", "3S", "9S", "KC", "3C", "7S", "4C", "TD" }</p>
+<p>Returns: {"9C", "KC", "3C", "4C" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "JD", "3D" }</p>
+<p>{ "5D", "AH", "QD" }</p>
+<p>Returns: {"QD" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "TD", "JS" }</p>
+<p>{ "2H", "8C", "TS", "9D", "5C", "7C", "JD", "4H", "2D", "9S" }</p>
+<p>Returns: {"JD" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "AS" }</p>
+<p>{ "7D", "4S", "JC", "3D", "QD", "6C", "3H", "KH", "6D" }</p>
+<p>Returns: {"4S" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "7S", "JH" }</p>
+<p>{ "AD" }</p>
+<p>Returns: {"AD" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "7D", "3D" }</p>
+<p>{ "AH", "9C" }</p>
+<p>Returns: {"AH", "9C" }</p></div></li><li><div><p>"spades"</p>
+<p>{ }</p>
+<p>{ "2H", "AD", "QS", "TS", "8C", "2C", "6H", "AH" }</p>
+<p>Returns: {"2H", "AD", "QS", "TS", "8C", "2C", "6H", "AH" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ }</p>
+<p>{ "QD", "2H", "5S", "7D", "8S", "AH", "2S", "JS" }</p>
+<p>Returns: {"QD", "2H", "5S", "7D", "8S", "AH", "2S", "JS" }</p></div></li><li><div><p>"spades"</p>
+<p>{ }</p>
+<p>{ "7C", "4C", "3S", "7H", "AH", "6D", "5C", "2D", "4D" }</p>
+<p>Returns: {"7C", "4C", "3S", "7H", "AH", "6D", "5C", "2D", "4D" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "5H", "4H" }</p>
+<p>{ "3C", "KS", "6S", "9C", "TS" }</p>
+<p>Returns: {"3C", "KS", "6S", "9C", "TS" }</p>
+<p></p></div></li><li><div><p>"diamonds"</p>
+<p>{ "5H", "3D" }</p>
+<p>{ "3C", "KS", "6S", "9C", "TS" }</p>
+<p>Returns: {"3C", "KS", "6S", "9C", "TS" }</p>
+<p></p></div></li><li><div><p>"clubs"</p>
+<p>{ "7S", "7C" }</p>
+<p>{ "JH", "2D", "5S", "4H", "JC", "5D" }</p>
+<p>Returns: {"5S" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "KS", "3C", "9H" }</p>
+<p>{ "JC", "8D", "QC", "TS", "8H", "KC", "JD", "6H", "KD", "5D" }</p>
+<p>Returns: {"TS" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "4S", "8S", "AS" }</p>
+<p>{ "JD", "6D", "8H", "2S", "KS", "5S" }</p>
+<p>Returns: {"2S", "KS", "5S" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "QD", "7S", "4C" }</p>
+<p>{ "3C", "QC", "8S", "6S", "3H", "6D", "TS", "2S", "TC", "3S", "3D" }</p>
+<p>Returns: {"6D", "3D" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "7H", "4H", "7D" }</p>
+<p>{ "JC", "7S", "9D", "2D", "6D", "KH", "5C", "AC", "9S", "4C" }</p>
+<p>Returns: {"KH" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "KS", "6H" }</p>
+<p>{ "KD", "7H", "JC", "QD", "7C", "KH", "5S", "QS", "9C", "8S", "5C", "JS", "3C" }</p>
+<p>Returns: {"5S", "QS", "8S", "JS" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "7S", "QC" }</p>
+<p>{ "QD", "6C", "7D", "3S", "9D", "TC", "4D", "6H", "TS", "5S", "AS", "2H" }</p>
+<p>Returns: {"3S", "TS", "5S", "AS" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "3S", "6S" }</p>
+<p>{ "TS", "6D", "7C", "7S", "JH", "QD" }</p>
+<p>Returns: {"TS", "7S" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "TH", "2C" }</p>
+<p>{ "2H", "8C", "JH", "TD", "KH", "7C" }</p>
+<p>Returns: {"2H", "JH", "KH" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "4D", "6H", "JS" }</p>
+<p>{ "2H", "AC", "9C", "4H", "KC", "AS", "6C", "5C", "4C", "7S" }</p>
+<p>Returns: {"AS" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "5S", "2H", "QH" }</p>
+<p>{ "7C", "KH", "5C", "6S", "AD", "9C", "4D", "8S", "9H" }</p>
+<p>Returns: {"6S", "8S" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "2C", "9H", "AH" }</p>
+<p>{ "AD", "2H", "9D", "8S", "KC", "7D", "6S", "AS", "3S" }</p>
+<p>Returns: {"KC" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "KH", "6H", "2S" }</p>
+<p>{ "7D", "JS", "TH", "AH", "5D", "6C", "QS", "4D", "7C", "2H", "JD", "2D", "QH" }</p>
+<p>Returns: {"AH" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "AD", "7D" }</p>
+<p>{ "2H", "QH", "QS", "9C", "AH", "TC", "5C", "4C", "8H", "7S" }</p>
+<p>Returns: {"2H", "QH", "QS", "9C", "AH", "TC", "5C", "4C", "8H", "7S" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "5S", "9D", "TH" }</p>
+<p>{ "2C", "KS", "AS", "7S", "4S", "4D", "4H", "9C", "9S", "5H" }</p>
+<p>Returns: {"KS", "AS", "7S", "4S", "9S" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "AH", "7C" }</p>
+<p>{ "JD", "3H", "KC", "4D", "TH", "JS", "TS", "QD", "TD", "3D", "2H", "AS" }</p>
+<p>Returns: {"3H", "TH", "2H" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "6H", "KS" }</p>
+<p>{ "4H", "6S", "2S", "4S", "8H", "2H", "QD", "TC", "3C", "AS", "QS" }</p>
+<p>Returns: {"4H", "8H", "2H" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "JC", "9D" }</p>
+<p>{ "KH", "2C", "7D", "8C", "JH", "5C", "8S", "2S", "2H", "4C", "9S", "7C", "2D" }</p>
+<p>Returns: {"2C", "8C", "5C", "4C", "7C" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "KH", "QC", "AD" }</p>
+<p>{ "2C", "7H", "9H", "5H", "AH", "4H", "8H", "4S", "AC", "7C", "3C" }</p>
+<p>Returns: {"7H", "9H", "5H", "AH", "4H", "8H" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "2C", "5S", "3H" }</p>
+<p>{ "AD", "AC", "6C", "KD", "QS", "4S", "4H" }</p>
+<p>Returns: {"AC", "6C" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{ "2C", "8D" }</p>
+<p>{ "6D", "5S", "6C", "7D", "AS", "7C", "3D", "3C", "7H", "3H" }</p>
+<p>Returns: {"6C", "7C", "3C" }</p></div></li><li><div><p>"spades"</p>
+<p>{ "5D", "8S" }</p>
+<p>{ "9H", "AH", "3C", "4H", "8C", "2C", "KC" }</p>
+<p>Returns: {"9H", "AH", "3C", "4H", "8C", "2C", "KC" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "JC", "5C" }</p>
+<p>{ "9C", "KD", "2C", "6D", "3D", "2S", "4D", "KH", "8H", "3C", "2D", "6H" }</p>
+<p>Returns: {"9C", "2C", "3C" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "3C", "8C", "5H" }</p>
+<p>{ "JD", "7D", "KD", "KC", "QS", "5S" }</p>
+<p>Returns: {"KC" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "JS", "AH", "4C" }</p>
+<p>{ "KD", "9C", "3S", "3C", "2H", "4H", "2D", "6D" }</p>
+<p>Returns: {"3S" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "9D", "TH", "AS" }</p>
+<p>{ "KC", "2H", "QC", "2D", "4H", "QD", "3H", "6D", "9H", "JH", "3S", "6S" }</p>
+<p>Returns: {"2D", "QD", "6D" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "2S", "QH", "4C" }</p>
+<p>{ "TH", "QC", "TS", "7S", "9C", "KD" }</p>
+<p>Returns: {"TS", "7S" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "9C", "3C", "KC" }</p>
+<p>{ "8H", "4C", "TD", "6S", "QH", "AC", "2S", "TH", "JS", "QD" }</p>
+<p>Returns: {"AC" }</p></div></li><li><div><p>"hearts"</p>
+<p>{ "2S", "9D", "9H" }</p>
+<p>{ "AC", "7H", "JH", "TD", "8S", "JD", "4D", "5S", "6D" }</p>
+<p>Returns: {"8S", "5S" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ "AD", "AH", "TC" }</p>
+<p>{ "2C", "9H", "7C", "QH", "2H", "4H", "6H", "QC", "KH", "JC" }</p>
+<p>Returns: {"QC", "JC" }</p></div></li><li><div><p>"hearts"</p>
+<p>{"TS" }</p>
+<p>{"3S", "KS", "AS" }</p>
+<p>Returns: {"KS", "AS" }</p></div></li><li><div><p>"clubs"</p>
+<p>{"9D", "3C" }</p>
+<p>{"2C", "2H" }</p>
+<p>Returns: {"2C" }</p></div></li><li><div><p>"hearts"</p>
+<p>{"6S" }</p>
+<p>{"3S", "5S", "2H" }</p>
+<p>Returns: {"3S", "5S" }</p></div></li><li><div><p>"clubs"</p>
+<p>{"2D", "7C", "TD" }</p>
+<p>{"3C", "4C", "5C", "6C", "7H", "8C", "9C", "JC", "QC", "KC", "AC", "2H", "TS" }</p>
+<p>Returns: {"8C", "9C", "JC", "QC", "KC", "AC" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{"QD" }</p>
+<p>{"JD", "KC", "4D" }</p>
+<p>Returns: {"JD", "4D" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{"5H", "QD" }</p>
+<p>{"JD", "4D", "8S" }</p>
+<p>Returns: {"JD", "4D" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{"5D", "QD" }</p>
+<p>{"JD", "AD", "4D" }</p>
+<p>Returns: {"AD" }</p></div></li><li><div><p>"spades"</p>
+<p>{"QD", "AS" }</p>
+<p>{"KC", "KS", "TS" }</p>
+<p>Returns: {"KS", "TS" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ }</p>
+<p>{"TH", "9C", "8D", "2S", "4D" }</p>
+<p>Returns: {"TH", "9C", "8D", "2S", "4D" }</p></div></li><li><div><p>"clubs"</p>
+<p>{"6H", "9D" }</p>
+<p>{"8H", "TH" }</p>
+<p>Returns: {"8H", "TH" }</p></div></li><li><div><p>"hearts"</p>
+<p>{"TS" }</p>
+<p>{"3S", "KS", "AS" }</p>
+<p>Returns: {"KS", "AS" }</p></div></li><li><div><p>"clubs"</p>
+<p>{"9D", "3C" }</p>
+<p>{"2C", "2H" }</p>
+<p>Returns: {"2C" }</p></div></li><li><div><p>"hearts"</p>
+<p>{"6S" }</p>
+<p>{"3S", "5S", "2H" }</p>
+<p>Returns: {"3S", "5S" }</p></div></li><li><div><p>"clubs"</p>
+<p>{"2D", "7C", "TD" }</p>
+<p>{"3C", "4C", "5C", "6C", "7H", "8C", "9C", "JC", "QC", "KC", "AC", "2H", "TS" }</p>
+<p>Returns: {"8C", "9C", "JC", "QC", "KC", "AC" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{"QD" }</p>
+<p>{"JD", "KC", "4D" }</p>
+<p>Returns: {"JD", "4D" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{"5H", "QD" }</p>
+<p>{"JD", "4D", "8S" }</p>
+<p>Returns: {"JD", "4D" }</p></div></li><li><div><p>"diamonds"</p>
+<p>{"5D", "QD" }</p>
+<p>{"JD", "AD", "4D" }</p>
+<p>Returns: {"AD" }</p></div></li><li><div><p>"spades"</p>
+<p>{"QD", "AS" }</p>
+<p>{"KC", "KS", "TS" }</p>
+<p>Returns: {"KS", "TS" }</p></div></li><li><div><p>"clubs"</p>
+<p>{ }</p>
+<p>{"TH", "9C", "8D", "2S", "4D" }</p>
+<p>Returns: {"TH", "9C", "8D", "2S", "4D" }</p></div></li><li><div><p>"clubs"</p>
+<p>{"6H", "9D" }</p>
+<p>{"8H", "TH" }</p>
+<p>Returns: {"8H", "TH" }</p></div></li></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/7596/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"7596\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"7596\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"7596\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"7596\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"7596\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\nf:T9ed,"])</script><script>self.__next_f.push([1,"\u003cp xmlns=\"http://topcoder.com\"\u003eA deck of cards contains 52 cards, representing all combinations of\n13 different ranks (in descending order: Ace, King, Queen, Jack, Ten,\n9, 8, 7, 6, 5, 4, 3, 2) and 4 different suits (clubs, diamonds,\nhearts, spades). One of the four suits is chosen as the \u003cb\u003etrump\u003c/b\u003e\nsuit.\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003eFour players are playing a card game. We will be analyzing a single\ntrick. In one trick, every player gets to play one card from his hand.\nThe first player may play any card he wishes. The other\nplayers must play by the following rules:\u003c/p\u003e\n\n\u003col xmlns=\"http://topcoder.com\"\u003e\n  \u003cli\u003eIf a player has a card of the same suit as the first player's\n  card, he must play it.\u003cbr/\u003eIf the trick hasn't been broken (see\n  rule 2) and he has a card of higher rank than the highest played\n  so far (considering only cards of the required suit), then he must play such a card (he may play any card of higher rank than the highest so far).\n  \u003cbr/\u003eIf the trick has been broken or he doesn't have a card strong enough, he may play any card of the required suit.\u003c/li\u003e\n  \u003cli\u003eIf a player doesn't have a card of the required suit, then\n  he must play a card of the trump suit if he has one. When the\n  first trump card in a trick is played, the trick\n  is \u003ci\u003ebroken\u003c/i\u003e.\u003cbr/\u003eIf the trick was already broken, then the player\n  has to play a trump of higher rank if he has one.\u003c/li\u003e\n  \u003cli\u003eOtherwise (the player has no cards the same suit as the first\n  card played, and has no trumps), he may play any card.\u003c/li\u003e\n\u003c/ol\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003eOne of the players is too lazy to think so he wants help in\ndetermining which cards he may play.\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003eYou will be given a String \u003cb\u003etrump\u003c/b\u003e and two \u003ctype\u003eString[]\u003c/type\u003es, \u003cb\u003ecardsPlayed\u003c/b\u003e\nand \u003cb\u003ehand\u003c/b\u003e. \u003cb\u003etrump\u003c/b\u003e represents the chosen trump suit and will be \n\"clubs\", \"diamonds\", \"hearts\" or \"spades\" (quotes for clarity). \n\u003cb\u003ecardsPlayed\u003c/b\u003e contains the cards played so far\nin the trick, in the order in which they were played. \u003cb\u003ehand\u003c/b\u003e contains\nthe cards the lazy player has in his hand.\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003eEach card in the input will be represented as a string of 2\ncharacters, the rank (one of the characters 'A', 'K', 'Q', 'J', 'T',\n'9', '8', '7', '6', '5', '4', '3', '2') followed by the suit ('C', 'D', 'H' or\n'S').\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003eReturn a \u003ctype\u003eString[]\u003c/type\u003e containing all cards the lazy player\nmay play. The cards should be in the same relative order as\nin \u003cb\u003ehand\u003c/b\u003e.\u003c/p\u003e\n"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"LazyCardPlayer\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"LazyCardPlayer\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"whichCards\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String, String[], String[]\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String[]\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String[] whichCards(String trump, String[] cardsPlayed, String[] hand)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"trump will be \\\"clubs\\\", \\\"diamonds\\\", \\\"hearts\\\" or \\\"spades\\\".\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"cardsPlayed will contain between 0 and 3 elements, inclusive.\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"hand will contain between 1 and 13 elements, inclusive.\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Each element of cardsPlayed and hand will represent a single card, formatted as described in the problem statement.\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"No two cards in all of cardsPlayed and hand will be the same.\"}}]}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ }\u003c/p\u003e\\n\u003cp\u003e{ \\\"TH\\\", \\\"9C\\\", \\\"8D\\\", \\\"2S\\\", \\\"4D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"TH\\\", \\\"9C\\\", \\\"8D\\\", \\\"2S\\\", \\\"4D\\\" }\u003c/p\u003e\\n\u003cp\u003eNo cards have been played so far, which means the lazy player is the first to play. The first player may play any card.\\n\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"8S\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"4H\\\", \\\"5S\\\", \\\"7S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"5S\\\", \\\"7S\\\" }\u003c/p\u003e\\n\u003cp\u003eThe first player opened spades. The lazy player doesn't have a card stronger than the 8, so he may play either of his cards.\\n\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"4H\\\", \\\"9H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"AH\\\", \\\"5H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AH\\\" }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"6S\\\", \\\"9S\\\", \\\"9C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"TC\\\", \\\"AH\\\", \\\"5H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AH\\\", \\\"5H\\\" }\u003c/p\u003e\\n\u003cp\u003eWith no spades, the player has to break the trick using one of his cards in the trump suit (hearts).\\n\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"6S\\\", \\\"9S\\\", \\\"KH\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"TC\\\", \\\"AH\\\", \\\"5H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AH\\\" }\u003c/p\u003e\\n\u003cp\u003eThis time the trick has already been broken by the third player, so the lazy player must play his ace to beat the king.\\n\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"6S\\\", \\\"9S\\\", \\\"KH\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"JS\\\", \\\"4S\\\", \\\"3S\\\", \\\"2H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"JS\\\", \\\"4S\\\", \\\"3S\\\" }\u003c/p\u003e\\n\u003cp\u003eThe player must play spades, but doesn't need to throw the strongest card because the trick has been broken.\\n\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"9C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"KD\\\", \\\"AD\\\", \\\"JC\\\", \\\"QD\\\", \\\"5S\\\", \\\"3C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"JC\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2S\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"QC\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"QC\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"8\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"5S\\\", \\\"KD\\\", \\\"2S\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"JD\\\", \\\"JC\\\", \\\"9H\\\", \\\"8S\\\", \\\"4C\\\", \\\"AD\\\", \\\"6S\\\", \\\"QC\\\", \\\"2D\\\", \\\"9D\\\", \\\"KH\\\", \\\"5H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"8S\\\", \\\"6S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"9\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"3C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"JD\\\", \\\"KS\\\", \\\"8D\\\", \\\"5C\\\", \\\"6S\\\", \\\"3D\\\", \\\"6H\\\", \\\"3H\\\", \\\"7H\\\", \\\"QS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"5C\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"10\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"AH\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"7D\\\", \\\"JH\\\", \\\"AS\\\", \\\"TS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"JH\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"11\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"8D\\\", \\\"5C\\\", \\\"KH\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"9D\\\", \\\"5D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"9D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"12\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"TC\\\", \\\"6C\\\", \\\"8D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"5H\\\", \\\"4D\\\", \\\"JC\\\", \\\"5C\\\", \\\"8H\\\", \\\"7S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"JC\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"13\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"QD\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"JD\\\", \\\"KC\\\", \\\"4D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"JD\\\", \\\"4D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"14\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"9D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"8C\\\", \\\"KC\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"8C\\\", \\\"KC\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"15\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"9D\\\", \\\"QC\\\", \\\"JC\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"AH\\\", \\\"7C\\\", \\\"JD\\\", \\\"7S\\\", \\\"6H\\\", \\\"AC\\\", \\\"2C\\\", \\\"4S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"JD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"16\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"JS\\\", \\\"9H\\\", \\\"6D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"9S\\\", \\\"JC\\\", \\\"JH\\\", \\\"6H\\\", \\\"AS\\\", \\\"6C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"17\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"TD\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"9S\\\", \\\"3H\\\", \\\"QD\\\", \\\"6C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"QD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"18\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"8H\\\", \\\"AC\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"7H\\\", \\\"KD\\\", \\\"9S\\\", \\\"9D\\\", \\\"QH\\\", \\\"3S\\\", \\\"KS\\\", \\\"6S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"QH\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"19\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2H\\\", \\\"2D\\\", \\\"7S\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"7D\\\", \\\"8C\\\", \\\"9S\\\", \\\"JH\\\", \\\"3D\\\", \\\"5H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"JH\\\", \\\"5H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"20\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"6H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"TS\\\", \\\"4S\\\", \\\"AD\\\", \\\"QH\\\", \\\"2S\\\", \\\"8C\\\", \\\"JH\\\", \\\"6D\\\", \\\"2H\\\", \\\"3C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"QH\\\", \\\"JH\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"21\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"JD\\\", \\\"3S\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"9D\\\", \\\"6H\\\", \\\"4D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"9D\\\", \\\"4D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"22\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"6S\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"KD\\\", \\\"3H\\\", \\\"8C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"23\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"JS\\\", \\\"2H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"KC\\\", \\\"AS\\\", \\\"2C\\\", \\\"6D\\\", \\\"5C\\\", \\\"5H\\\", \\\"KS\\\", \\\"QD\\\", \\\"TS\\\", \\\"KD\\\", \\\"2S\\\", \\\"6H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AS\\\", \\\"KS\\\", \\\"TS\\\", \\\"2S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"24\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"KH\\\", \\\"6C\\\", \\\"6D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"TH\\\", \\\"9D\\\", \\\"6S\\\", \\\"QC\\\", \\\"3C\\\", \\\"4S\\\", \\\"7D\\\", \\\"AC\\\", \\\"5C\\\", \\\"QD\\\", \\\"6H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"TH\\\", \\\"6H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"25\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"6D\\\", \\\"9D\\\", \\\"8C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"TH\\\", \\\"4S\\\", \\\"2H\\\", \\\"6C\\\", \\\"2D\\\", \\\"7C\\\", \\\"4D\\\", \\\"KC\\\", \\\"3C\\\", \\\"AS\\\", \\\"JH\\\", \\\"TC\\\", \\\"2C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2D\\\", \\\"4D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"26\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"7S\\\", \\\"AH\\\", \\\"KD\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"KC\\\", \\\"8D\\\", \\\"3S\\\", \\\"AS\\\", \\\"8C\\\", \\\"6S\\\", \\\"5H\\\", \\\"9C\\\", \\\"4D\\\", \\\"4S\\\", \\\"TH\\\", \\\"JS\\\", \\\"5S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"3S\\\", \\\"AS\\\", \\\"6S\\\", \\\"4S\\\", \\\"JS\\\", \\\"5S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"27\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"KS\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"8C\\\", \\\"7S\\\", \\\"JS\\\", \\\"9D\\\", \\\"8H\\\", \\\"9C\\\", \\\"QC\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"7S\\\", \\\"JS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"28\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"AD\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"3C\\\", \\\"QS\\\", \\\"3S\\\", \\\"TD\\\", \\\"TH\\\", \\\"8H\\\", \\\"9C\\\", \\\"TC\\\", \\\"2C\\\", \\\"4D\\\", \\\"8D\\\", \\\"4H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"TD\\\", \\\"4D\\\", \\\"8D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"29\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"9H\\\", \\\"KH\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"5S\\\", \\\"4C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"4C\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"30\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"AD\\\", \\\"4C\\\", \\\"QC\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"AH\\\", \\\"7H\\\", \\\"KD\\\", \\\"JC\\\", \\\"9S\\\", \\\"JH\\\", \\\"5C\\\", \\\"9C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"31\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"KS\\\", \\\"4H\\\", \\\"4C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"3H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"3H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"32\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"3S\\\", \\\"5D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"TC\\\", \\\"QH\\\", \\\"7C\\\", \\\"TH\\\", \\\"3H\\\", \\\"6S\\\", \\\"8C\\\", \\\"AD\\\", \\\"2H\\\", \\\"4S\\\", \\\"7H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"6S\\\", \\\"4S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"33\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"JD\\\", \\\"4D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"6S\\\", \\\"QH\\\", \\\"3S\\\", \\\"3C\\\", \\\"JS\\\", \\\"9S\\\", \\\"KH\\\", \\\"6D\\\", \\\"JC\\\", \\\"4H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"6D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"34\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"5S\\\", \\\"AS\\\", \\\"3D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"JC\\\", \\\"AH\\\", \\\"JS\\\", \\\"JD\\\", \\\"9S\\\", \\\"KS\\\", \\\"2H\\\", \\\"9C\\\", \\\"6S\\\", \\\"7D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"JS\\\", \\\"9S\\\", \\\"KS\\\", \\\"6S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"35\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"QC\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"2H\\\", \\\"7H\\\", \\\"AH\\\", \\\"2D\\\", \\\"9C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"9C\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"36\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"TC\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"7S\\\", \\\"KD\\\", \\\"8S\\\", \\\"2S\\\", \\\"JH\\\", \\\"6H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"JH\\\", \\\"6H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"37\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"4S\\\", \\\"TC\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"KD\\\", \\\"QD\\\", \\\"TH\\\", \\\"6C\\\", \\\"3C\\\", \\\"6H\\\", \\\"AC\\\", \\\"6D\\\", \\\"2C\\\", \\\"QH\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KD\\\", \\\"QD\\\", \\\"6D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"38\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"4C\\\", \\\"6D\\\", \\\"3D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"5S\\\", \\\"7S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"5S\\\", \\\"7S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"39\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"JS\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"8S\\\", \\\"AD\\\", \\\"8H\\\", \\\"QH\\\", \\\"7H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"8S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"40\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"AH\\\", \\\"QD\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"AS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"41\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2H\\\", \\\"7H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"3S\\\", \\\"9C\\\", \\\"7S\\\", \\\"3H\\\", \\\"7C\\\", \\\"5D\\\", \\\"4C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"3H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"42\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"3H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"6H\\\", \\\"KC\\\", \\\"JC\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"6H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"43\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"9H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"2H\\\", \\\"8H\\\", \\\"6C\\\", \\\"5S\\\", \\\"7H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2H\\\", \\\"8H\\\", \\\"7H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"44\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"7S\\\", \\\"JH\\\", \\\"KS\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"6S\\\", \\\"5D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"6S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"45\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"7D\\\", \\\"2S\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"QS\\\", \\\"8D\\\", \\\"KS\\\", \\\"QD\\\", \\\"KH\\\", \\\"5S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"8D\\\", \\\"QD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"46\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"JS\\\", \\\"KH\\\", \\\"2H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"JD\\\", \\\"7S\\\", \\\"KC\\\", \\\"JH\\\", \\\"3D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"7S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"47\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"8D\\\", \\\"8C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"3S\\\", \\\"9D\\\", \\\"4H\\\", \\\"4D\\\", \\\"7C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"9D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"48\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"6H\\\", \\\"5H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"AH\\\", \\\"7H\\\", \\\"3S\\\", \\\"TD\\\", \\\"4H\\\", \\\"4C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AH\\\", \\\"7H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"49\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"4S\\\", \\\"5H\\\", \\\"JH\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"KD\\\", \\\"5S\\\", \\\"TH\\\", \\\"7H\\\", \\\"2C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"5S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"50\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"4D\\\", \\\"KC\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"KS\\\", \\\"QH\\\", \\\"6C\\\", \\\"5D\\\", \\\"7S\\\", \\\"QC\\\", \\\"6S\\\", \\\"8S\\\", \\\"6D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"5D\\\", \\\"6D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"51\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"QC\\\", \\\"JC\\\", \\\"8C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"KH\\\", \\\"4C\\\", \\\"JH\\\", \\\"5S\\\", \\\"7D\\\", \\\"2C\\\", \\\"AH\\\", \\\"KC\\\", \\\"8H\\\", \\\"QH\\\", \\\"7S\\\", \\\"TH\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KC\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"52\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"JD\\\", \\\"6C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"AD\\\", \\\"3C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"53\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"7S\\\", \\\"TH\\\", \\\"AD\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"3D\\\", \\\"KC\\\", \\\"AC\\\", \\\"6S\\\", \\\"8H\\\", \\\"9C\\\", \\\"2C\\\", \\\"6D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"6S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"54\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"7D\\\", \\\"5D\\\", \\\"8S\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"AH\\\", \\\"9H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AH\\\", \\\"9H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"55\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"JC\\\", \\\"7D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"9S\\\", \\\"JS\\\", \\\"AC\\\", \\\"QD\\\", \\\"2H\\\", \\\"KC\\\", \\\"2C\\\", \\\"2D\\\", \\\"9D\\\", \\\"8S\\\", \\\"TS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AC\\\", \\\"KC\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"56\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"7H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"3H\\\", \\\"8S\\\", \\\"JS\\\", \\\"AH\\\", \\\"4C\\\", \\\"2C\\\", \\\"AC\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AH\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"57\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"6D\\\", \\\"TH\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"3D\\\", \\\"2S\\\", \\\"TC\\\", \\\"QS\\\", \\\"AC\\\", \\\"8H\\\", \\\"7C\\\", \\\"TS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"3D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"58\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2C\\\", \\\"3S\\\", \\\"9D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"4S\\\", \\\"AD\\\", \\\"5S\\\", \\\"6D\\\", \\\"4D\\\", \\\"2S\\\", \\\"AS\\\", \\\"8S\\\", \\\"TC\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"TC\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"59\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"AC\\\", \\\"4D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"5H\\\", \\\"KC\\\", \\\"7S\\\", \\\"5S\\\", \\\"8D\\\", \\\"5C\\\", \\\"6S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KC\\\", \\\"5C\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"60\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"KH\\\", \\\"8H\\\", \\\"JD\\\", \\\"6C\\\", \\\"TH\\\", \\\"7C\\\", \\\"3C\\\", \\\"2D\\\", \\\"6H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"6C\\\", \\\"7C\\\", \\\"3C\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"61\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"4S\\\", \\\"8S\\\", \\\"7H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"AD\\\", \\\"AH\\\", \\\"KS\\\", \\\"5D\\\", \\\"3C\\\", \\\"6C\\\", \\\"9C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"62\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"QS\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"7S\\\", \\\"KH\\\", \\\"JC\\\", \\\"9C\\\", \\\"JD\\\", \\\"TD\\\", \\\"3C\\\", \\\"7C\\\", \\\"AD\\\", \\\"7H\\\", \\\"3H\\\", \\\"9D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"7S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"63\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2D\\\", \\\"JS\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"JC\\\", \\\"6C\\\", \\\"TH\\\", \\\"KD\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"64\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2H\\\", \\\"JS\\\", \\\"TC\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"6H\\\", \\\"4S\\\", \\\"5H\\\", \\\"JC\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"6H\\\", \\\"5H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"65\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"9S\\\", \\\"4C\\\", \\\"JH\\\", \\\"JC\\\", \\\"4D\\\", \\\"TH\\\", \\\"8C\\\", \\\"AH\\\", \\\"7C\\\", \\\"JS\\\", \\\"7H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"4D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"66\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2D\\\", \\\"6S\\\", \\\"JD\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"8D\\\", \\\"KC\\\", \\\"KH\\\", \\\"5C\\\", \\\"5S\\\", \\\"6C\\\", \\\"6D\\\", \\\"7S\\\", \\\"8S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"8D\\\", \\\"6D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"67\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"7D\\\", \\\"9D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"3S\\\", \\\"7C\\\", \\\"4S\\\", \\\"QC\\\", \\\"5S\\\", \\\"QD\\\", \\\"AS\\\", \\\"4C\\\", \\\"9H\\\", \\\"8D\\\", \\\"QH\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"QD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"68\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2C\\\", \\\"TS\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"2D\\\", \\\"JH\\\", \\\"AD\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2D\\\", \\\"JH\\\", \\\"AD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"69\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"4D\\\", \\\"5D\\\", \\\"TC\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"AH\\\", \\\"7H\\\", \\\"4H\\\", \\\"6H\\\", \\\"6D\\\", \\\"TS\\\", \\\"6C\\\", \\\"KD\\\", \\\"2H\\\", \\\"KH\\\", \\\"JC\\\", \\\"KC\\\", \\\"JS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"6D\\\", \\\"KD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"70\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"3H\\\", \\\"6C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"KD\\\", \\\"8S\\\", \\\"9D\\\", \\\"9C\\\", \\\"AH\\\", \\\"4C\\\", \\\"9H\\\", \\\"JH\\\", \\\"4H\\\", \\\"JS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AH\\\", \\\"9H\\\", \\\"JH\\\", \\\"4H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"71\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"4C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"QD\\\", \\\"TC\\\", \\\"7D\\\", \\\"3S\\\", \\\"5D\\\", \\\"6S\\\", \\\"8C\\\", \\\"3C\\\", \\\"2D\\\", \\\"8S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"TC\\\", \\\"8C\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"72\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"7S\\\", \\\"KC\\\", \\\"3C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"9C\\\", \\\"3D\\\", \\\"8C\\\", \\\"9H\\\", \\\"5D\\\", \\\"KS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"73\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"JD\\\", \\\"5S\\\", \\\"JH\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"4D\\\", \\\"KS\\\", \\\"KD\\\", \\\"8H\\\", \\\"6D\\\", \\\"8D\\\", \\\"4C\\\", \\\"3C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"74\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"7S\\\", \\\"5H\\\", \\\"TH\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"3H\\\", \\\"9H\\\", \\\"2D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"75\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"3H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"TC\\\", \\\"8D\\\", \\\"AC\\\", \\\"7D\\\", \\\"3C\\\", \\\"9S\\\", \\\"TD\\\", \\\"6H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"6H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"76\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"4S\\\", \\\"9S\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"JC\\\", \\\"8H\\\", \\\"4H\\\", \\\"5S\\\", \\\"3H\\\", \\\"QH\\\", \\\"3S\\\", \\\"6H\\\", \\\"6D\\\", \\\"2H\\\", \\\"KS\\\", \\\"KD\\\", \\\"5D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"77\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"5C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"TC\\\", \\\"8S\\\", \\\"6D\\\", \\\"2D\\\", \\\"QH\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"TC\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"78\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"9H\\\", \\\"QC\\\", \\\"9D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"7C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"7C\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"79\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"3H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"2H\\\", \\\"KC\\\", \\\"8C\\\", \\\"JC\\\", \\\"AC\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"80\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"7S\\\", \\\"5S\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"7D\\\", \\\"2C\\\", \\\"6C\\\", \\\"6H\\\", \\\"8S\\\", \\\"JD\\\", \\\"3C\\\", \\\"2S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"8S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"81\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2D\\\", \\\"6S\\\", \\\"2C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"6H\\\", \\\"JS\\\", \\\"KC\\\", \\\"4C\\\", \\\"KS\\\", \\\"3D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"3D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"82\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"8D\\\", \\\"QD\\\", \\\"JD\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"AD\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"83\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"6D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"AD\\\", \\\"KH\\\", \\\"5S\\\", \\\"9S\\\", \\\"5D\\\", \\\"4S\\\", \\\"JC\\\", \\\"QS\\\", \\\"9D\\\", \\\"QD\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AD\\\", \\\"9D\\\", \\\"QD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"84\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"AC\\\", \\\"2H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"TD\\\", \\\"AD\\\", \\\"7S\\\", \\\"AS\\\", \\\"KC\\\", \\\"6D\\\", \\\"7D\\\", \\\"5D\\\", \\\"9H\\\", \\\"8S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KC\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"85\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"KS\\\", \\\"5D\\\", \\\"2D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"AC\\\", \\\"8H\\\", \\\"TH\\\", \\\"9H\\\", \\\"2H\\\", \\\"4S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"4S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"86\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"8S\\\", \\\"4S\\\", \\\"KD\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"AD\\\", \\\"6S\\\", \\\"9S\\\", \\\"TS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"9S\\\", \\\"TS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"87\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"KS\\\", \\\"9S\\\", \\\"QH\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"QD\\\", \\\"5C\\\", \\\"QS\\\", \\\"7H\\\", \\\"8H\\\", \\\"TH\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"QS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"88\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"9S\\\", \\\"KD\\\", \\\"2H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"7C\\\", \\\"6D\\\", \\\"6S\\\", \\\"7S\\\", \\\"JS\\\", \\\"8C\\\", \\\"4D\\\", \\\"8S\\\", \\\"4H\\\", \\\"4C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"JS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"89\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"QH\\\", \\\"5H\\\", \\\"JD\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"4H\\\", \\\"QS\\\", \\\"9S\\\", \\\"KD\\\", \\\"4D\\\", \\\"6H\\\", \\\"AS\\\", \\\"2S\\\", \\\"TC\\\", \\\"QC\\\", \\\"8H\\\", \\\"6S\\\", \\\"AC\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"4H\\\", \\\"6H\\\", \\\"8H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"90\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"9S\\\", \\\"QC\\\", \\\"TD\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"2D\\\", \\\"KD\\\", \\\"9C\\\", \\\"8H\\\", \\\"3H\\\", \\\"7D\\\", \\\"JD\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"8H\\\", \\\"3H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"91\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"QS\\\", \\\"8D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"2S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"92\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"8D\\\", \\\"QS\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"TS\\\", \\\"4C\\\", \\\"JD\\\", \\\"KD\\\", \\\"5S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"JD\\\", \\\"KD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"93\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"TC\\\", \\\"5H\\\", \\\"3H\\\", \\\"3S\\\", \\\"QS\\\", \\\"JC\\\", \\\"JS\\\", \\\"QC\\\", \\\"4H\\\", \\\"6S\\\", \\\"8C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"5H\\\", \\\"3H\\\", \\\"4H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"94\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"9D\\\", \\\"3C\\\", \\\"JC\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"JD\\\", \\\"8S\\\", \\\"6C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"JD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"95\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"7H\\\", \\\"TH\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"6S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"6S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"96\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"7H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"4H\\\", \\\"5D\\\", \\\"8S\\\", \\\"5H\\\", \\\"2C\\\", \\\"5C\\\", \\\"KS\\\", \\\"8D\\\", \\\"AC\\\", \\\"3H\\\", \\\"QC\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"4H\\\", \\\"5H\\\", \\\"3H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"97\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"4D\\\", \\\"6H\\\", \\\"AS\\\", \\\"TD\\\", \\\"8H\\\", \\\"2H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"4D\\\", \\\"TD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"98\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"JC\\\", \\\"2S\\\", \\\"QC\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"4S\\\", \\\"QH\\\", \\\"4H\\\", \\\"AS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"4S\\\", \\\"QH\\\", \\\"4H\\\", \\\"AS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"99\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"KC\\\", \\\"TS\\\", \\\"AD\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"JS\\\", \\\"JD\\\", \\\"3S\\\", \\\"TH\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"JD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"100\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2C\\\", \\\"KD\\\", \\\"JD\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"9C\\\", \\\"7H\\\", \\\"4S\\\", \\\"KS\\\", \\\"JH\\\", \\\"3S\\\", \\\"9S\\\", \\\"KC\\\", \\\"3C\\\", \\\"7S\\\", \\\"4C\\\", \\\"TD\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"9C\\\", \\\"KC\\\", \\\"3C\\\", \\\"4C\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"101\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"JD\\\", \\\"3D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"5D\\\", \\\"AH\\\", \\\"QD\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"QD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"102\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"TD\\\", \\\"JS\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"2H\\\", \\\"8C\\\", \\\"TS\\\", \\\"9D\\\", \\\"5C\\\", \\\"7C\\\", \\\"JD\\\", \\\"4H\\\", \\\"2D\\\", \\\"9S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"JD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"103\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"AS\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"7D\\\", \\\"4S\\\", \\\"JC\\\", \\\"3D\\\", \\\"QD\\\", \\\"6C\\\", \\\"3H\\\", \\\"KH\\\", \\\"6D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"4S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"104\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"7S\\\", \\\"JH\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"AD\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"105\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"7D\\\", \\\"3D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"AH\\\", \\\"9C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AH\\\", \\\"9C\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"106\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ }\u003c/p\u003e\\n\u003cp\u003e{ \\\"2H\\\", \\\"AD\\\", \\\"QS\\\", \\\"TS\\\", \\\"8C\\\", \\\"2C\\\", \\\"6H\\\", \\\"AH\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2H\\\", \\\"AD\\\", \\\"QS\\\", \\\"TS\\\", \\\"8C\\\", \\\"2C\\\", \\\"6H\\\", \\\"AH\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"107\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ }\u003c/p\u003e\\n\u003cp\u003e{ \\\"QD\\\", \\\"2H\\\", \\\"5S\\\", \\\"7D\\\", \\\"8S\\\", \\\"AH\\\", \\\"2S\\\", \\\"JS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"QD\\\", \\\"2H\\\", \\\"5S\\\", \\\"7D\\\", \\\"8S\\\", \\\"AH\\\", \\\"2S\\\", \\\"JS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"108\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ }\u003c/p\u003e\\n\u003cp\u003e{ \\\"7C\\\", \\\"4C\\\", \\\"3S\\\", \\\"7H\\\", \\\"AH\\\", \\\"6D\\\", \\\"5C\\\", \\\"2D\\\", \\\"4D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"7C\\\", \\\"4C\\\", \\\"3S\\\", \\\"7H\\\", \\\"AH\\\", \\\"6D\\\", \\\"5C\\\", \\\"2D\\\", \\\"4D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"109\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"5H\\\", \\\"4H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"3C\\\", \\\"KS\\\", \\\"6S\\\", \\\"9C\\\", \\\"TS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"3C\\\", \\\"KS\\\", \\\"6S\\\", \\\"9C\\\", \\\"TS\\\" }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"110\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"5H\\\", \\\"3D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"3C\\\", \\\"KS\\\", \\\"6S\\\", \\\"9C\\\", \\\"TS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"3C\\\", \\\"KS\\\", \\\"6S\\\", \\\"9C\\\", \\\"TS\\\" }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"111\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"7S\\\", \\\"7C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"JH\\\", \\\"2D\\\", \\\"5S\\\", \\\"4H\\\", \\\"JC\\\", \\\"5D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"5S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"112\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"KS\\\", \\\"3C\\\", \\\"9H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"JC\\\", \\\"8D\\\", \\\"QC\\\", \\\"TS\\\", \\\"8H\\\", \\\"KC\\\", \\\"JD\\\", \\\"6H\\\", \\\"KD\\\", \\\"5D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"TS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"113\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"4S\\\", \\\"8S\\\", \\\"AS\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"JD\\\", \\\"6D\\\", \\\"8H\\\", \\\"2S\\\", \\\"KS\\\", \\\"5S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2S\\\", \\\"KS\\\", \\\"5S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"114\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"QD\\\", \\\"7S\\\", \\\"4C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"3C\\\", \\\"QC\\\", \\\"8S\\\", \\\"6S\\\", \\\"3H\\\", \\\"6D\\\", \\\"TS\\\", \\\"2S\\\", \\\"TC\\\", \\\"3S\\\", \\\"3D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"6D\\\", \\\"3D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"115\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"7H\\\", \\\"4H\\\", \\\"7D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"JC\\\", \\\"7S\\\", \\\"9D\\\", \\\"2D\\\", \\\"6D\\\", \\\"KH\\\", \\\"5C\\\", \\\"AC\\\", \\\"9S\\\", \\\"4C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KH\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"116\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"KS\\\", \\\"6H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"KD\\\", \\\"7H\\\", \\\"JC\\\", \\\"QD\\\", \\\"7C\\\", \\\"KH\\\", \\\"5S\\\", \\\"QS\\\", \\\"9C\\\", \\\"8S\\\", \\\"5C\\\", \\\"JS\\\", \\\"3C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"5S\\\", \\\"QS\\\", \\\"8S\\\", \\\"JS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"117\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"7S\\\", \\\"QC\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"QD\\\", \\\"6C\\\", \\\"7D\\\", \\\"3S\\\", \\\"9D\\\", \\\"TC\\\", \\\"4D\\\", \\\"6H\\\", \\\"TS\\\", \\\"5S\\\", \\\"AS\\\", \\\"2H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"3S\\\", \\\"TS\\\", \\\"5S\\\", \\\"AS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"118\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"3S\\\", \\\"6S\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"TS\\\", \\\"6D\\\", \\\"7C\\\", \\\"7S\\\", \\\"JH\\\", \\\"QD\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"TS\\\", \\\"7S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"119\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"TH\\\", \\\"2C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"2H\\\", \\\"8C\\\", \\\"JH\\\", \\\"TD\\\", \\\"KH\\\", \\\"7C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2H\\\", \\\"JH\\\", \\\"KH\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"120\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"4D\\\", \\\"6H\\\", \\\"JS\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"2H\\\", \\\"AC\\\", \\\"9C\\\", \\\"4H\\\", \\\"KC\\\", \\\"AS\\\", \\\"6C\\\", \\\"5C\\\", \\\"4C\\\", \\\"7S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"121\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"5S\\\", \\\"2H\\\", \\\"QH\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"7C\\\", \\\"KH\\\", \\\"5C\\\", \\\"6S\\\", \\\"AD\\\", \\\"9C\\\", \\\"4D\\\", \\\"8S\\\", \\\"9H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"6S\\\", \\\"8S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"122\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2C\\\", \\\"9H\\\", \\\"AH\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"AD\\\", \\\"2H\\\", \\\"9D\\\", \\\"8S\\\", \\\"KC\\\", \\\"7D\\\", \\\"6S\\\", \\\"AS\\\", \\\"3S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KC\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"123\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"KH\\\", \\\"6H\\\", \\\"2S\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"7D\\\", \\\"JS\\\", \\\"TH\\\", \\\"AH\\\", \\\"5D\\\", \\\"6C\\\", \\\"QS\\\", \\\"4D\\\", \\\"7C\\\", \\\"2H\\\", \\\"JD\\\", \\\"2D\\\", \\\"QH\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AH\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"124\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"AD\\\", \\\"7D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"2H\\\", \\\"QH\\\", \\\"QS\\\", \\\"9C\\\", \\\"AH\\\", \\\"TC\\\", \\\"5C\\\", \\\"4C\\\", \\\"8H\\\", \\\"7S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2H\\\", \\\"QH\\\", \\\"QS\\\", \\\"9C\\\", \\\"AH\\\", \\\"TC\\\", \\\"5C\\\", \\\"4C\\\", \\\"8H\\\", \\\"7S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"125\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"5S\\\", \\\"9D\\\", \\\"TH\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"2C\\\", \\\"KS\\\", \\\"AS\\\", \\\"7S\\\", \\\"4S\\\", \\\"4D\\\", \\\"4H\\\", \\\"9C\\\", \\\"9S\\\", \\\"5H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KS\\\", \\\"AS\\\", \\\"7S\\\", \\\"4S\\\", \\\"9S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"126\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"AH\\\", \\\"7C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"JD\\\", \\\"3H\\\", \\\"KC\\\", \\\"4D\\\", \\\"TH\\\", \\\"JS\\\", \\\"TS\\\", \\\"QD\\\", \\\"TD\\\", \\\"3D\\\", \\\"2H\\\", \\\"AS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"3H\\\", \\\"TH\\\", \\\"2H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"127\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"6H\\\", \\\"KS\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"4H\\\", \\\"6S\\\", \\\"2S\\\", \\\"4S\\\", \\\"8H\\\", \\\"2H\\\", \\\"QD\\\", \\\"TC\\\", \\\"3C\\\", \\\"AS\\\", \\\"QS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"4H\\\", \\\"8H\\\", \\\"2H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"128\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"JC\\\", \\\"9D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"KH\\\", \\\"2C\\\", \\\"7D\\\", \\\"8C\\\", \\\"JH\\\", \\\"5C\\\", \\\"8S\\\", \\\"2S\\\", \\\"2H\\\", \\\"4C\\\", \\\"9S\\\", \\\"7C\\\", \\\"2D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2C\\\", \\\"8C\\\", \\\"5C\\\", \\\"4C\\\", \\\"7C\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"129\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"KH\\\", \\\"QC\\\", \\\"AD\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"2C\\\", \\\"7H\\\", \\\"9H\\\", \\\"5H\\\", \\\"AH\\\", \\\"4H\\\", \\\"8H\\\", \\\"4S\\\", \\\"AC\\\", \\\"7C\\\", \\\"3C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"7H\\\", \\\"9H\\\", \\\"5H\\\", \\\"AH\\\", \\\"4H\\\", \\\"8H\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"130\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2C\\\", \\\"5S\\\", \\\"3H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"AD\\\", \\\"AC\\\", \\\"6C\\\", \\\"KD\\\", \\\"QS\\\", \\\"4S\\\", \\\"4H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AC\\\", \\\"6C\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"131\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2C\\\", \\\"8D\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"6D\\\", \\\"5S\\\", \\\"6C\\\", \\\"7D\\\", \\\"AS\\\", \\\"7C\\\", \\\"3D\\\", \\\"3C\\\", \\\"7H\\\", \\\"3H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"6C\\\", \\\"7C\\\", \\\"3C\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"132\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"5D\\\", \\\"8S\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"9H\\\", \\\"AH\\\", \\\"3C\\\", \\\"4H\\\", \\\"8C\\\", \\\"2C\\\", \\\"KC\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"9H\\\", \\\"AH\\\", \\\"3C\\\", \\\"4H\\\", \\\"8C\\\", \\\"2C\\\", \\\"KC\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"133\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"JC\\\", \\\"5C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"9C\\\", \\\"KD\\\", \\\"2C\\\", \\\"6D\\\", \\\"3D\\\", \\\"2S\\\", \\\"4D\\\", \\\"KH\\\", \\\"8H\\\", \\\"3C\\\", \\\"2D\\\", \\\"6H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"9C\\\", \\\"2C\\\", \\\"3C\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"134\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"3C\\\", \\\"8C\\\", \\\"5H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"JD\\\", \\\"7D\\\", \\\"KD\\\", \\\"KC\\\", \\\"QS\\\", \\\"5S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KC\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"135\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"JS\\\", \\\"AH\\\", \\\"4C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"KD\\\", \\\"9C\\\", \\\"3S\\\", \\\"3C\\\", \\\"2H\\\", \\\"4H\\\", \\\"2D\\\", \\\"6D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"3S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"136\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"9D\\\", \\\"TH\\\", \\\"AS\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"KC\\\", \\\"2H\\\", \\\"QC\\\", \\\"2D\\\", \\\"4H\\\", \\\"QD\\\", \\\"3H\\\", \\\"6D\\\", \\\"9H\\\", \\\"JH\\\", \\\"3S\\\", \\\"6S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2D\\\", \\\"QD\\\", \\\"6D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"137\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2S\\\", \\\"QH\\\", \\\"4C\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"TH\\\", \\\"QC\\\", \\\"TS\\\", \\\"7S\\\", \\\"9C\\\", \\\"KD\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"TS\\\", \\\"7S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"138\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"9C\\\", \\\"3C\\\", \\\"KC\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"8H\\\", \\\"4C\\\", \\\"TD\\\", \\\"6S\\\", \\\"QH\\\", \\\"AC\\\", \\\"2S\\\", \\\"TH\\\", \\\"JS\\\", \\\"QD\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AC\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"139\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"2S\\\", \\\"9D\\\", \\\"9H\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"AC\\\", \\\"7H\\\", \\\"JH\\\", \\\"TD\\\", \\\"8S\\\", \\\"JD\\\", \\\"4D\\\", \\\"5S\\\", \\\"6D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"8S\\\", \\\"5S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"140\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"AD\\\", \\\"AH\\\", \\\"TC\\\" }\u003c/p\u003e\\n\u003cp\u003e{ \\\"2C\\\", \\\"9H\\\", \\\"7C\\\", \\\"QH\\\", \\\"2H\\\", \\\"4H\\\", \\\"6H\\\", \\\"QC\\\", \\\"KH\\\", \\\"JC\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"QC\\\", \\\"JC\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"141\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"TS\\\" }\u003c/p\u003e\\n\u003cp\u003e{\\\"3S\\\", \\\"KS\\\", \\\"AS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KS\\\", \\\"AS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"142\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"9D\\\", \\\"3C\\\" }\u003c/p\u003e\\n\u003cp\u003e{\\\"2C\\\", \\\"2H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2C\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"143\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"6S\\\" }\u003c/p\u003e\\n\u003cp\u003e{\\\"3S\\\", \\\"5S\\\", \\\"2H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"3S\\\", \\\"5S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"144\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"2D\\\", \\\"7C\\\", \\\"TD\\\" }\u003c/p\u003e\\n\u003cp\u003e{\\\"3C\\\", \\\"4C\\\", \\\"5C\\\", \\\"6C\\\", \\\"7H\\\", \\\"8C\\\", \\\"9C\\\", \\\"JC\\\", \\\"QC\\\", \\\"KC\\\", \\\"AC\\\", \\\"2H\\\", \\\"TS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"8C\\\", \\\"9C\\\", \\\"JC\\\", \\\"QC\\\", \\\"KC\\\", \\\"AC\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"145\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"QD\\\" }\u003c/p\u003e\\n\u003cp\u003e{\\\"JD\\\", \\\"KC\\\", \\\"4D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"JD\\\", \\\"4D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"146\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"5H\\\", \\\"QD\\\" }\u003c/p\u003e\\n\u003cp\u003e{\\\"JD\\\", \\\"4D\\\", \\\"8S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"JD\\\", \\\"4D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"147\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"5D\\\", \\\"QD\\\" }\u003c/p\u003e\\n\u003cp\u003e{\\\"JD\\\", \\\"AD\\\", \\\"4D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"148\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"QD\\\", \\\"AS\\\" }\u003c/p\u003e\\n\u003cp\u003e{\\\"KC\\\", \\\"KS\\\", \\\"TS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KS\\\", \\\"TS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"149\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ }\u003c/p\u003e\\n\u003cp\u003e{\\\"TH\\\", \\\"9C\\\", \\\"8D\\\", \\\"2S\\\", \\\"4D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"TH\\\", \\\"9C\\\", \\\"8D\\\", \\\"2S\\\", \\\"4D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"150\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"6H\\\", \\\"9D\\\" }\u003c/p\u003e\\n\u003cp\u003e{\\\"8H\\\", \\\"TH\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"8H\\\", \\\"TH\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"151\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"TS\\\" }\u003c/p\u003e\\n\u003cp\u003e{\\\"3S\\\", \\\"KS\\\", \\\"AS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KS\\\", \\\"AS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"152\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"9D\\\", \\\"3C\\\" }\u003c/p\u003e\\n\u003cp\u003e{\\\"2C\\\", \\\"2H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"2C\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"153\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hearts\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"6S\\\" }\u003c/p\u003e\\n\u003cp\u003e{\\\"3S\\\", \\\"5S\\\", \\\"2H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"3S\\\", \\\"5S\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"154\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"2D\\\", \\\"7C\\\", \\\"TD\\\" }\u003c/p\u003e\\n\u003cp\u003e{\\\"3C\\\", \\\"4C\\\", \\\"5C\\\", \\\"6C\\\", \\\"7H\\\", \\\"8C\\\", \\\"9C\\\", \\\"JC\\\", \\\"QC\\\", \\\"KC\\\", \\\"AC\\\", \\\"2H\\\", \\\"TS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"8C\\\", \\\"9C\\\", \\\"JC\\\", \\\"QC\\\", \\\"KC\\\", \\\"AC\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"155\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"QD\\\" }\u003c/p\u003e\\n\u003cp\u003e{\\\"JD\\\", \\\"KC\\\", \\\"4D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"JD\\\", \\\"4D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"156\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"5H\\\", \\\"QD\\\" }\u003c/p\u003e\\n\u003cp\u003e{\\\"JD\\\", \\\"4D\\\", \\\"8S\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"JD\\\", \\\"4D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"157\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"diamonds\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"5D\\\", \\\"QD\\\" }\u003c/p\u003e\\n\u003cp\u003e{\\\"JD\\\", \\\"AD\\\", \\\"4D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"AD\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"158\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"spades\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"QD\\\", \\\"AS\\\" }\u003c/p\u003e\\n\u003cp\u003e{\\\"KC\\\", \\\"KS\\\", \\\"TS\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"KS\\\", \\\"TS\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"159\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{ }\u003c/p\u003e\\n\u003cp\u003e{\\\"TH\\\", \\\"9C\\\", \\\"8D\\\", \\\"2S\\\", \\\"4D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"TH\\\", \\\"9C\\\", \\\"8D\\\", \\\"2S\\\", \\\"4D\\\" }\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"160\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"clubs\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"6H\\\", \\\"9D\\\" }\u003c/p\u003e\\n\u003cp\u003e{\\\"8H\\\", \\\"TH\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {\\\"8H\\\", \\\"TH\\\" }\u003c/p\u003e\"}}]}]]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

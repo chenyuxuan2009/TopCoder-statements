@@ -1,0 +1,315 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->KingsTour<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div>Chess is a game played on a board of eight rows and eight columns of squares. Columns are marked 'a' to 'h' from left to right, and rows are numbered '1' to '8' from bottom to top. To play chess, you have to understand the paths by which pieces can attack. One of the pieces is a pawn. A pawn attacks diagonally, one square upward and to the left or right. For example, if a pawn is on c3, it threatens d4 and b4. Another piece is the king.  A king can move or attack one square in any direction vertically, horizontally or diagonally.  When a pawn or king attacks a square, it moves to that square and captures the piece occupying that square.<br xmlns="http://topcoder.com"/><br xmlns="http://topcoder.com"/>
+
+You are given <type xmlns="http://topcoder.com">String</type>s <b xmlns="http://topcoder.com">king</b>, <b xmlns="http://topcoder.com">pawnA</b> and <b xmlns="http://topcoder.com">pawnB</b>.  <b xmlns="http://topcoder.com">king</b> is the starting position of a king, <b xmlns="http://topcoder.com">pawnA</b> is the starting position of a pawn A, and <b xmlns="http://topcoder.com">pawnB</b> is the starting position of another pawn B.  Each <type xmlns="http://topcoder.com">String</type> contains exactly two characters.  The first character is the column ('a'-'h') and the second character is the row ('1'-'8').  All three positions will be distinct.  The king's starting position will not be threatened by a pawn.  Return the minimum number of moves necessary for the king to capture pawn A.  The king is not allowed to move to squares threatened by either of the pawns, and it is not allowed to move outside of the board.  The king can capture pawn B but does not have to.  Neither of the pawns will move.</div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>KingsTour</span></dd><dt>Method:</dt><dd><span>attackPawns</span></dd><dt>Parameters:</dt><dd><span>String, String, String</span></dd><dt>Returns:</dt><dd><span>int</span></dd><dt>Method signature:</dt><dd><span>int attackPawns(String king, String pawnA, String pawnB)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul><li><span>king, pawnA and pawnB  will each contain exactly 2 characters.</span></li><li><span>The first character in king, pawnA and pawnB will each be a lowercase letter between 'a' and 'h', inclusive.</span></li><li><span>The second character in king, pawnA and pawnB will each be a digit between '1' and '8', inclusive.</span></li><li><span>king, pawnA and pawnB will be distinct.</span></li><li><span>The king's starting position will not be threatened by a pawn.</span></li></ul></div><div><h3>Examples</h3><ol><li><div><p>"c4"</p>
+<p>"e6"</p>
+<p>"d5"</p>
+<p>Returns: 2</p>
+<p>The king has to capture B before A.</p></div></li><li><div><p>"c4"</p>
+<p>"d5"</p>
+<p>"e6"</p>
+<p>Returns: 1</p>
+<p></p></div></li><li><div><p>"g2"</p>
+<p>"a8"</p>
+<p>"a2"</p>
+<p>Returns: 6</p>
+<p></p></div></li><li><div><p>"g2"</p>
+<p>"a7"</p>
+<p>"e4"</p>
+<p>Returns: 6</p>
+<p></p></div></li><li><div><p>"a4"</p>
+<p>"h4"</p>
+<p>"c3"</p>
+<p>Returns: 7</p>
+<p></p></div></li><li><div><p>"a4"</p>
+<p>"h4"</p>
+<p>"b4"</p>
+<p>Returns: 7</p>
+<p></p></div></li><li><div><p>"b5"</p>
+<p>"d3"</p>
+<p>"e2"</p>
+<p>Returns: 5</p>
+<p></p></div></li><li><div><p>"a8"</p>
+<p>"h1"</p>
+<p>"g2"</p>
+<p>Returns: 8</p>
+<p></p></div></li><li><div><p>"h8"</p>
+<p>"h7"</p>
+<p>"g6"</p>
+<p>Returns: 3</p>
+<p></p></div></li><li><div><p>"a1"</p>
+<p>"a2"</p>
+<p>"b1"</p>
+<p>Returns: 2</p>
+<p></p></div></li><li><div><p>"a1"</p>
+<p>"b1"</p>
+<p>"a2"</p>
+<p>Returns: 1</p>
+<p></p></div></li><li><div><p>"f7"</p>
+<p>"d5"</p>
+<p>"c4"</p>
+<p>Returns: 5</p>
+<p></p></div></li><li><div><p>"a8"</p>
+<p>"g2"</p>
+<p>"b5"</p>
+<p>Returns: 7</p>
+<p></p></div></li><li><div><p>"a8"</p>
+<p>"f2"</p>
+<p>"b5"</p>
+<p>Returns: 7</p>
+<p></p></div></li><li><div><p>"a8"</p>
+<p>"e2"</p>
+<p>"b5"</p>
+<p>Returns: 6</p>
+<p></p></div></li><li><div><p>"a8"</p>
+<p>"a1"</p>
+<p>"b5"</p>
+<p>Returns: 7</p>
+<p></p></div></li><li><div><p>"a8"</p>
+<p>"a1"</p>
+<p>"a2"</p>
+<p>Returns: 7</p>
+<p></p></div></li><li><div><p>"b8"</p>
+<p>"a1"</p>
+<p>"b1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"b8"</p>
+<p>"b1"</p>
+<p>"c1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"b8"</p>
+<p>"g1"</p>
+<p>"f1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"b8"</p>
+<p>"h1"</p>
+<p>"g1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"c8"</p>
+<p>"a1"</p>
+<p>"b1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"c8"</p>
+<p>"b1"</p>
+<p>"c1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"c8"</p>
+<p>"g1"</p>
+<p>"f1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"c8"</p>
+<p>"h1"</p>
+<p>"g1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"d8"</p>
+<p>"a1"</p>
+<p>"b1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"d8"</p>
+<p>"b1"</p>
+<p>"c1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"d8"</p>
+<p>"g1"</p>
+<p>"f1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"d8"</p>
+<p>"h1"</p>
+<p>"g1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"e8"</p>
+<p>"a1"</p>
+<p>"b1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"e8"</p>
+<p>"b1"</p>
+<p>"c1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"e8"</p>
+<p>"g1"</p>
+<p>"f1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"e8"</p>
+<p>"h1"</p>
+<p>"g1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"f8"</p>
+<p>"a1"</p>
+<p>"b1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"f8"</p>
+<p>"b1"</p>
+<p>"c1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"f8"</p>
+<p>"g1"</p>
+<p>"f1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"f8"</p>
+<p>"h1"</p>
+<p>"g1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"g8"</p>
+<p>"a1"</p>
+<p>"b1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"g8"</p>
+<p>"b1"</p>
+<p>"c1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"g8"</p>
+<p>"g1"</p>
+<p>"f1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"g8"</p>
+<p>"h1"</p>
+<p>"g1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"h8"</p>
+<p>"a1"</p>
+<p>"b1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"h8"</p>
+<p>"b1"</p>
+<p>"c1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"h8"</p>
+<p>"b2"</p>
+<p>"a1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"h8"</p>
+<p>"c1"</p>
+<p>"d1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"h8"</p>
+<p>"g1"</p>
+<p>"f1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"h8"</p>
+<p>"h1"</p>
+<p>"g1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"a8"</p>
+<p>"a1"</p>
+<p>"b1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"a8"</p>
+<p>"b1"</p>
+<p>"c1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"a8"</p>
+<p>"f1"</p>
+<p>"e1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"a8"</p>
+<p>"g1"</p>
+<p>"f1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"a8"</p>
+<p>"g2"</p>
+<p>"h1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"a8"</p>
+<p>"h1"</p>
+<p>"g1"</p>
+<p>Returns: 9</p></div></li><li><div><p>"c2"</p>
+<p>"h7"</p>
+<p>"d3"</p>
+<p>Returns: 5</p></div></li><li><div><p>"c4"</p>
+<p>"f7"</p>
+<p>"d5"</p>
+<p>Returns: 3</p></div></li><li><div><p>"d2"</p>
+<p>"h6"</p>
+<p>"e3"</p>
+<p>Returns: 4</p></div></li><li><div><p>"d4"</p>
+<p>"h8"</p>
+<p>"f6"</p>
+<p>Returns: 4</p></div></li><li><div><p>"e3"</p>
+<p>"a7"</p>
+<p>"d4"</p>
+<p>Returns: 4</p></div></li><li><div><p>"f1"</p>
+<p>"a6"</p>
+<p>"d3"</p>
+<p>Returns: 5</p></div></li><li><div><p>"f2"</p>
+<p>"c5"</p>
+<p>"e3"</p>
+<p>Returns: 3</p></div></li><li><div><p>"f5"</p>
+<p>"c8"</p>
+<p>"e6"</p>
+<p>Returns: 3</p></div></li><li><div><p>"g1"</p>
+<p>"d4"</p>
+<p>"f2"</p>
+<p>Returns: 3</p></div></li><li><div><p>"g2"</p>
+<p>"d5"</p>
+<p>"f3"</p>
+<p>Returns: 3</p></div></li><li><div><p>"h1"</p>
+<p>"a8"</p>
+<p>"e4"</p>
+<p>Returns: 7</p></div></li><li><div><p>"h2"</p>
+<p>"b8"</p>
+<p>"f4"</p>
+<p>Returns: 6</p></div></li><li><div><p>"h5"</p>
+<p>"e8"</p>
+<p>"g6"</p>
+<p>Returns: 3</p></div></li><li><div><p>"b4"</p>
+<p>"g8"</p>
+<p>"d6"</p>
+<p>Returns: 5</p></div></li><li><div><p>"c7"</p>
+<p>"f7"</p>
+<p>"d8"</p>
+<p>Returns: 3</p></div></li><li><div><p>"d4"</p>
+<p>"b2"</p>
+<p>"d3"</p>
+<p>Returns: 3</p></div></li><li><div><p>"e2"</p>
+<p>"a1"</p>
+<p>"d3"</p>
+<p>Returns: 4</p></div></li><li><div><p>"f1"</p>
+<p>"c6"</p>
+<p>"c5"</p>
+<p>Returns: 5</p></div></li><li><div><p>"f8"</p>
+<p>"h2"</p>
+<p>"g6"</p>
+<p>Returns: 6</p></div></li><li><div><p>"g7"</p>
+<p>"a1"</p>
+<p>"e6"</p>
+<p>Returns: 7</p></div></li><li><div><p>"h3"</p>
+<p>"a7"</p>
+<p>"g3"</p>
+<p>Returns: 7</p></div></li><li><div><p>"h6"</p>
+<p>"g1"</p>
+<p>"f1"</p>
+<p>Returns: 7</p></div></li><li><div><p>"c1"</p>
+<p>"b1"</p>
+<p>"b2"</p>
+<p>Returns: 1</p></div></li><li><div><p>"d2"</p>
+<p>"c3"</p>
+<p>"c2"</p>
+<p>Returns: 1</p></div></li><li><div><p>"d3"</p>
+<p>"e4"</p>
+<p>"d4"</p>
+<p>Returns: 1</p></div></li><li><div><p>"e2"</p>
+<p>"f3"</p>
+<p>"e3"</p>
+<p>Returns: 1</p></div></li><li><div><p>"f1"</p>
+<p>"g2"</p>
+<p>"f2"</p>
+<p>Returns: 1</p></div></li><li><div><p>"g2"</p>
+<p>"g3"</p>
+<p>"h3"</p>
+<p>Returns: 1</p></div></li><li><div><p>"g6"</p>
+<p>"f7"</p>
+<p>"f6"</p>
+<p>Returns: 1</p></div></li><li><div><p>"h5"</p>
+<p>"g6"</p>
+<p>"h6"</p>
+<p>Returns: 1</p></div></li><li><div><p>"h5"</p>
+<p>"h6"</p>
+<p>"g6"</p>
+<p>Returns: 1</p></div></li><li><div><p>"h6"</p>
+<p>"g6"</p>
+<p>"g7"</p>
+<p>Returns: 1</p></div></li><li><div><p>"h6"</p>
+<p>"g7"</p>
+<p>"g6"</p>
+<p>Returns: 1</p></div></li><li><div><p>"h6"</p>
+<p>"g7"</p>
+<p>"h7"</p>
+<p>Returns: 1</p></div></li><li><div><p>"h6"</p>
+<p>"h7"</p>
+<p>"g7"</p>
+<p>Returns: 1</p></div></li><li><div><p>"h7"</p>
+<p>"g7"</p>
+<p>"g8"</p>
+<p>Returns: 1</p></div></li><li><div><p>"h7"</p>
+<p>"g8"</p>
+<p>"g7"</p>
+<p>Returns: 1</p></div></li><li><div><p>"h7"</p>
+<p>"g8"</p>
+<p>"h8"</p>
+<p>Returns: 1</p></div></li><li><div><p>"h7"</p>
+<p>"h8"</p>
+<p>"g8"</p>
+<p>Returns: 1</p></div></li><li><div><p>"a3"</p>
+<p>"b1"</p>
+<p>"c1"</p>
+<p>Returns: 7</p>
+<p></p></div></li><li><div><p>"a1"</p>
+<p>"b1"</p>
+<p>"c1"</p>
+<p>Returns: 1</p></div></li><li><div><p>"e7"</p>
+<p>"e6"</p>
+<p>"d5"</p>
+<p>Returns: 3</p></div></li><li><div><p>"c4"</p>
+<p>"g8"</p>
+<p>"d5"</p>
+<p>Returns: 4</p></div></li><li><div><p>"f4"</p>
+<p>"c7"</p>
+<p>"e5"</p>
+<p>Returns: 3</p></div></li><li><div><p>"h8"</p>
+<p>"d6"</p>
+<p>"c5"</p>
+<p>Returns: 6</p></div></li></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/8109/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"8109\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"8109\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"8109\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"8109\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"8109\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\n"])</script><script>self.__next_f.push([1,"f:T6ba,"])</script><script>self.__next_f.push([1,"Chess is a game played on a board of eight rows and eight columns of squares. Columns are marked 'a' to 'h' from left to right, and rows are numbered '1' to '8' from bottom to top. To play chess, you have to understand the paths by which pieces can attack. One of the pieces is a pawn. A pawn attacks diagonally, one square upward and to the left or right. For example, if a pawn is on c3, it threatens d4 and b4. Another piece is the king.  A king can move or attack one square in any direction vertically, horizontally or diagonally.  When a pawn or king attacks a square, it moves to that square and captures the piece occupying that square.\u003cbr xmlns=\"http://topcoder.com\"/\u003e\u003cbr xmlns=\"http://topcoder.com\"/\u003e\n\nYou are given \u003ctype xmlns=\"http://topcoder.com\"\u003eString\u003c/type\u003es \u003cb xmlns=\"http://topcoder.com\"\u003eking\u003c/b\u003e, \u003cb xmlns=\"http://topcoder.com\"\u003epawnA\u003c/b\u003e and \u003cb xmlns=\"http://topcoder.com\"\u003epawnB\u003c/b\u003e.  \u003cb xmlns=\"http://topcoder.com\"\u003eking\u003c/b\u003e is the starting position of a king, \u003cb xmlns=\"http://topcoder.com\"\u003epawnA\u003c/b\u003e is the starting position of a pawn A, and \u003cb xmlns=\"http://topcoder.com\"\u003epawnB\u003c/b\u003e is the starting position of another pawn B.  Each \u003ctype xmlns=\"http://topcoder.com\"\u003eString\u003c/type\u003e contains exactly two characters.  The first character is the column ('a'-'h') and the second character is the row ('1'-'8').  All three positions will be distinct.  The king's starting position will not be threatened by a pawn.  Return the minimum number of moves necessary for the king to capture pawn A.  The king is not allowed to move to squares threatened by either of the pawns, and it is not allowed to move outside of the board.  The king can capture pawn B but does not have to.  Neither of the pawns will move."])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"KingsTour\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"KingsTour\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"attackPawns\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String, String, String\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int attackPawns(String king, String pawnA, String pawnB)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"king, pawnA and pawnB  will each contain exactly 2 characters.\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"The first character in king, pawnA and pawnB will each be a lowercase letter between 'a' and 'h', inclusive.\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"The second character in king, pawnA and pawnB will each be a digit between '1' and '8', inclusive.\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"king, pawnA and pawnB will be distinct.\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"The king's starting position will not be threatened by a pawn.\"}}]}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"c4\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"e6\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d5\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\\n\u003cp\u003eThe king has to capture B before A.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"c4\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d5\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"e6\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"g2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a2\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"g2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"e4\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a4\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h4\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c3\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 7\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a4\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h4\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b4\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 7\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"b5\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d3\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"e2\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 5\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g2\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 8\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"8\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g6\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"9\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"10\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a2\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"11\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"f7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d5\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c4\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 5\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"12\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b5\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 7\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"13\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b5\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 7\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"14\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"e2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b5\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"15\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b5\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 7\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"16\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a2\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 7\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"17\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"b8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"18\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"b8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"19\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"b8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"20\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"b8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"21\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"c8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"22\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"c8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"23\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"c8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"24\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"c8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"25\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"d8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"26\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"d8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"27\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"d8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"28\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"d8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"29\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"e8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"30\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"e8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"31\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"e8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"32\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"e8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"33\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"f8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"34\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"f8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"35\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"f8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"36\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"f8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"37\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"g8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"38\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"g8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"39\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"g8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"40\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"g8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"41\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"42\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"43\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"44\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"45\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"46\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"47\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"48\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"49\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"e1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"50\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"51\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"52\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"53\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"c2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d3\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 5\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"54\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"c4\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d5\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"55\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"d2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h6\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"e3\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"56\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"d4\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f6\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"57\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"e3\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d4\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"58\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"f1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a6\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d3\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 5\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"59\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"f2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c5\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"e3\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"60\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"f5\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"e6\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"61\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"g1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d4\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f2\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"62\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"g2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d5\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f3\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"63\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"e4\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"64\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f4\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"65\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h5\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"e8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g6\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"66\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"b4\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d6\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 5\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"67\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"c7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d8\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"68\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"d4\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d3\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"69\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"e2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d3\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"70\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"f1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c6\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c5\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 5\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"71\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"f8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g6\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"72\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"g7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"e6\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"73\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h3\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"a7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g3\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"74\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h6\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"75\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"c1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b2\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"76\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"d2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c3\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c2\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"77\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"d3\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"e4\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d4\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"78\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"e2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f3\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"e3\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"79\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"f1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f2\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"80\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"g2\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g3\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h3\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"81\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"g6\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"f6\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"82\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h5\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g6\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h6\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"83\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h5\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h6\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g6\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"84\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h6\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g6\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g7\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"85\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h6\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g6\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"86\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h6\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h7\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"87\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h6\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g7\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"88\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g8\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"89\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g7\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"90\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h8\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"91\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"h8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g8\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"92\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a3\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 7\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"93\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"b1\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c1\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"94\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"e7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"e6\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d5\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"95\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"c4\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"g8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d5\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"96\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"f4\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c7\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"e5\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"97\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"h8\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"d6\\\"\u003c/p\u003e\\n\u003cp\u003e\\\"c5\\\"\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\"}}]}]]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

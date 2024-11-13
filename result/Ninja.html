@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->Ninja<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div><pre xmlns="http://topcoder.com">PROBLEM STATEMENT
+
+Hollywood portrays an interesting version of reality.  For example, all phone
+numbers start with the local code 555, and if you jump in the air next to an
+explosion, you will be fine.
+
+You are proposing a theory to the Academy of Hollywood Physics.  You have
+noticed in all the movies you have watched that when Hollywood "Ninjas" go to
+battle in large groups, they invariably just get thrown around and beaten by
+the hero.  However, a single "Ninja" can destroy armies of entire countries.
+You believe from the empirical evidence that the power of Hollywood "Ninjas"
+actually varies inversely with the number of Ninjas in the group.  You propose
+the Inverse Ninja Rule: an equation exists such that some integer constant c
+(between 1 and 1,000,000,000, inclusive), divided by the number of Ninjas
+raised to the power of some other integer constant p (between 1 and 4,
+inclusive) will (after rounding the result down to the nearest integer) predict
+the number of enemies the "Ninjas" will kill in all movies from the same
+director:
+
+	(c / ((ninjas)^p)) = kills
+
+Create a class Ninja containing a method inverse that takes a list of strings
+containing statistics from previous movies from the same director and an
+integer telling you how many "Ninjas" will be in the group in the director's
+next movie.  These statistics will be strings in the form of "&lt;N&gt; &lt;K&gt;" (quotes
+and angle braces are included for clarity only), where N is the number of
+Ninjas in that group (between 1 and 100, inclusive), and K is the number of
+people they killed (between 0 and 10,000, inclusive).  Use your Inverse Ninja
+equation to predict how many people will be killed by the group of "Ninjas"
+this time, or return -1 if this can not be determined by the Inverse Ninja Rule.
+
+
+DEFINITION
+Class: Ninja
+Method: inverse
+Parameters: String[], int
+Returns: int
+Method signature (be sure your method is public):  int inverse(String[]
+statistics, int ninjas);
+
+
+HELPFUL MATH HINT
+Keep in mind that integer division is not one-to-one.  That is, many different
+numbers divided by a single number may result in the same result.  For example,
+both 4/3 and 5/3 result in 1 with integer division.  For a given denominator D
+(the number you are dividing by), you can compute the range of possible
+numerators N (the number you are dividing into) that will net a result of R as
+being from (and including) N=R*D to (and NOT including) N=(R+1)*D.  For example
+with a denominator of 4 (D=4), and a target result of 3 (R=3), the range of
+possible numerators is from (and including) 12 (R*D = 3*4) to (and NOT
+including) 16 ((R+1)*D) = (3+1)*4 = 4*4).  In other words, 12, 13, 14 or 15
+would all net 3 if integer divided by 4.
+
+NOTES
+- Due to rounding, if some statistics have different numbers of "Ninjas"
+killing the same number of people, the Inverse Ninja Rule may still apply.
+However, if some statistics have different groups of the same number of
+"Ninjas" killing different numbers of people, it must not apply - and your
+method should return -1.
+- Values for constants c and p that are out of the above-given bounds are not
+valid solutions - even if they do work numerically.
+- Note that it is possible for the return value to be larger than 10,000, but
+it can not be larger than 1,000,000,000.  You do not need to check for this
+specifically, the numbers will just work out this way.
+- If there is not enough information given in statistics to accurately
+calculate this value, you should return the special value -1 (See Example #2
+and Example #3).
+- If the statistics alone prove that the Inverse Ninja Rule does not apply,
+return the special value -1 (See Example #4).
+
+TopCoder will ensure the validity of the inputs.  Inputs are valid if all of
+the following criteria are met:
+- There will be between 1 and 50 entries in statistics - though they are in no
+particular order and values may be repeated.
+- Each string in statistics will be in the form of "&lt;N&gt; &lt;K&gt;" (quotes and angle
+braces are included for clarity only), where N is the number of Ninjas in that
+group (between 1 and 100, inclusive), and K is the number of people they killed
+(between 0 and 10,000, inclusive).  Each number may have leading zeros.
+- ninjas will simply be an integer from 1 to 100 (inclusive) containing the
+number of "Ninjas" that will be in the next group.
+
+
+EXAMPLES
+
+In each of these examples, quotes ('"') and parenthesis ('(' and ')') are
+included for clarity only.  They are never part of the input or output.
+
+Example #1)
+statistics = {"100 1", "10 10", "1 100"}
+ninjas = 3
+return 33
+You can determine that c is 100 (since, by the last statistic, one Ninja kills
+100, no matter what p is c must be 100) and p is 1 (since, with c=100, no other
+value for p will work with the first or second statistic).  Since 100/3^1 =
+33.3333, you know the answer is 33.
+
+Example #2)
+statistics = {"1 1000"}
+ninjas = 3
+return -1
+You can determine that c is 1000, but p can be 1, 2, 3 or 4.  Since 1000/3^1 =
+333.3333 and 1000/3^4 = 12.3456, (i.e.: 333, and 12), you can see that you can
+not determine the correct result.
+
+Example #3)
+statistics = {"8 100", "16 50"}
+ninjas = 4
+return -1
+You can determine that p is 1 and c is between 800 and 807 (inclusive).  Since,
+for 4 Ninjas, some of these values will result in an answer of 200, and others
+in 201, you can't predict the outcome exactly.
+
+Example #4)
+statistics = {"10 20", "10 30"}
+ninjas = 20
+return -1
+The first statistic contradicts the second.  Apparently this director does not
+live by the Inverse Ninja Rule.
+
+Example #5)
+statistics = {"1 0"}
+ninjas = 1
+return -1
+This would work (and return 0) if c is 0 and p is anything, but according to
+the Inverse Ninja Rule, c must be at least 1, so it does not apply.
+
+Example #6)
+statistics = {"4 200", "8 100"}
+ninjas = 16
+return 50
+
+Example #7)
+statistics = {"10 100", "100 1"}
+ninjas = 15
+return 44</pre></div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>Ninja</span></dd><dt>Method:</dt><dd><span>inverse</span></dd><dt>Parameters:</dt><dd><span>String[], int</span></dd><dt>Returns:</dt><dd><span>int</span></dd><dt>Method signature:</dt><dd><span>int inverse(String[] param0, int param1)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul></ul></div><div><h3>Examples</h3><ol></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/588/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"588\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"588\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"588\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"588\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"588\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\nf:T1729,"])</script><script>self.__next_f.push([1,"\u003cpre xmlns=\"http://topcoder.com\"\u003ePROBLEM STATEMENT\n\nHollywood portrays an interesting version of reality.  For example, all phone\nnumbers start with the local code 555, and if you jump in the air next to an\nexplosion, you will be fine.\n\nYou are proposing a theory to the Academy of Hollywood Physics.  You have\nnoticed in all the movies you have watched that when Hollywood \"Ninjas\" go to\nbattle in large groups, they invariably just get thrown around and beaten by\nthe hero.  However, a single \"Ninja\" can destroy armies of entire countries.\nYou believe from the empirical evidence that the power of Hollywood \"Ninjas\"\nactually varies inversely with the number of Ninjas in the group.  You propose\nthe Inverse Ninja Rule: an equation exists such that some integer constant c\n(between 1 and 1,000,000,000, inclusive), divided by the number of Ninjas\nraised to the power of some other integer constant p (between 1 and 4,\ninclusive) will (after rounding the result down to the nearest integer) predict\nthe number of enemies the \"Ninjas\" will kill in all movies from the same\ndirector:\n\n\t(c / ((ninjas)^p)) = kills\n\nCreate a class Ninja containing a method inverse that takes a list of strings\ncontaining statistics from previous movies from the same director and an\ninteger telling you how many \"Ninjas\" will be in the group in the director's\nnext movie.  These statistics will be strings in the form of \"\u0026lt;N\u0026gt; \u0026lt;K\u0026gt;\" (quotes\nand angle braces are included for clarity only), where N is the number of\nNinjas in that group (between 1 and 100, inclusive), and K is the number of\npeople they killed (between 0 and 10,000, inclusive).  Use your Inverse Ninja\nequation to predict how many people will be killed by the group of \"Ninjas\"\nthis time, or return -1 if this can not be determined by the Inverse Ninja Rule.\n\n\nDEFINITION\nClass: Ninja\nMethod: inverse\nParameters: String[], int\nReturns: int\nMethod signature (be sure your method is public):  int inverse(String[]\nstatistics, int ninjas);\n\n\nHELPFUL MATH HINT\nKeep in mind that integer division is not one-to-one.  That is, many different\nnumbers divided by a single number may result in the same result.  For example,\nboth 4/3 and 5/3 result in 1 with integer division.  For a given denominator D\n(the number you are dividing by), you can compute the range of possible\nnumerators N (the number you are dividing into) that will net a result of R as\nbeing from (and including) N=R*D to (and NOT including) N=(R+1)*D.  For example\nwith a denominator of 4 (D=4), and a target result of 3 (R=3), the range of\npossible numerators is from (and including) 12 (R*D = 3*4) to (and NOT\nincluding) 16 ((R+1)*D) = (3+1)*4 = 4*4).  In other words, 12, 13, 14 or 15\nwould all net 3 if integer divided by 4.\n\nNOTES\n- Due to rounding, if some statistics have different numbers of \"Ninjas\"\nkilling the same number of people, the Inverse Ninja Rule may still apply.\nHowever, if some statistics have different groups of the same number of\n\"Ninjas\" killing different numbers of people, it must not apply - and your\nmethod should return -1.\n- Values for constants c and p that are out of the above-given bounds are not\nvalid solutions - even if they do work numerically.\n- Note that it is possible for the return value to be larger than 10,000, but\nit can not be larger than 1,000,000,000.  You do not need to check for this\nspecifically, the numbers will just work out this way.\n- If there is not enough information given in statistics to accurately\ncalculate this value, you should return the special value -1 (See Example #2\nand Example #3).\n- If the statistics alone prove that the Inverse Ninja Rule does not apply,\nreturn the special value -1 (See Example #4).\n\nTopCoder will ensure the validity of the inputs.  Inputs are valid if all of\nthe following criteria are met:\n- There will be between 1 and 50 entries in statistics - though they are in no\nparticular order and values may be repeated.\n- Each string in statistics will be in the form of \"\u0026lt;N\u0026gt; \u0026lt;K\u0026gt;\" (quotes and angle\nbraces are included for clarity only), where N is the number of Ninjas in that\ngroup (between 1 and 100, inclusive), and K is the number of people they killed\n(between 0 and 10,000, inclusive).  Each number may have leading zeros.\n- ninjas will simply be an integer from 1 to 100 (inclusive) containing the\nnumber of \"Ninjas\" that will be in the next group.\n\n\nEXAMPLES\n\nIn each of these examples, quotes ('\"') and parenthesis ('(' and ')') are\nincluded for clarity only.  They are never part of the input or output.\n\nExample #1)\nstatistics = {\"100 1\", \"10 10\", \"1 100\"}\nninjas = 3\nreturn 33\nYou can determine that c is 100 (since, by the last statistic, one Ninja kills\n100, no matter what p is c must be 100) and p is 1 (since, with c=100, no other\nvalue for p will work with the first or second statistic).  Since 100/3^1 =\n33.3333, you know the answer is 33.\n\nExample #2)\nstatistics = {\"1 1000\"}\nninjas = 3\nreturn -1\nYou can determine that c is 1000, but p can be 1, 2, 3 or 4.  Since 1000/3^1 =\n333.3333 and 1000/3^4 = 12.3456, (i.e.: 333, and 12), you can see that you can\nnot determine the correct result.\n\nExample #3)\nstatistics = {\"8 100\", \"16 50\"}\nninjas = 4\nreturn -1\nYou can determine that p is 1 and c is between 800 and 807 (inclusive).  Since,\nfor 4 Ninjas, some of these values will result in an answer of 200, and others\nin 201, you can't predict the outcome exactly.\n\nExample #4)\nstatistics = {\"10 20\", \"10 30\"}\nninjas = 20\nreturn -1\nThe first statistic contradicts the second.  Apparently this director does not\nlive by the Inverse Ninja Rule.\n\nExample #5)\nstatistics = {\"1 0\"}\nninjas = 1\nreturn -1\nThis would work (and return 0) if c is 0 and p is anything, but according to\nthe Inverse Ninja Rule, c must be at least 1, so it does not apply.\n\nExample #6)\nstatistics = {\"4 200\", \"8 100\"}\nninjas = 16\nreturn 50\n\nExample #7)\nstatistics = {\"10 100\", \"100 1\"}\nninjas = 15\nreturn 44\u003c/pre\u003e"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"Ninja\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Ninja\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"inverse\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String[], int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int inverse(String[] param0, int param1)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->SentryBots<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div>You have studied the castle's defenses. The castle is laid out as a square
+grid with <b xmlns="http://topcoder.com">n</b> corridors going north-south and <b xmlns="http://topcoder.com">n</b> going east-west. You are located at one 
+corner of the grid,
+and can move along the corridors.
+You must reach the diagonally opposite corner of the castle as quickly as
+possible. The only problem is the sentry robots.
+<p xmlns="http://topcoder.com">
+But you have studied. You know where each bot is currently located and how it will
+move. Your starting point is x=1, y=1, the southwest corner of the castle. You must reach
+the point x=<b>n</b>, y=<b>n</b>.
+You can move at any speed less than or
+equal to 1 intersection per minute. You can stay stationary at an intersection or 
+in a corridor. You can
+do a U turn in a corridor. But you cannot pass a robot in a corridor or be at an intersection
+at the same time that a robot is there.
+</p><p xmlns="http://topcoder.com">
+Each bot travels at a constant speed of 1 (intersection per minute) along a
+path described by a 4 character string. The first 2 characters are digits giving the initial
+position x1,y1. The last 2 characters give a position x2,y2, distinct from x1,y1. If the
+2 points are on the same corridor, the bot moves back and forth between the 2 points. Otherwise,
+the bot travels the rectangular path x1,y1 ..  x2,y1 ... x2,y2 ... x1,y2 ...x1,y1 ... etc.
+
+Bots never interfere with each other -- they can pass each other freely.
+</p><p xmlns="http://topcoder.com">
+The <type>String</type> <b>bots</b> will contain descriptions for each of the bots, separated by a space.
+Given <b>bots</b> and <b>n</b>, return the minimum time it will take to get to your destination, rounded
+to the nearest integer.  Return
+-1 if you cannot reach it in less than 1000.5 minutes. 
+</p>
+</div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>SentryBots</span></dd><dt>Method:</dt><dd><span>minTime</span></dd><dt>Parameters:</dt><dd><span>String, int</span></dd><dt>Returns:</dt><dd><span>int</span></dd><dt>Method signature:</dt><dd><span>int minTime(String bots, int n)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul><li><span>n will be between 2 and 9, inclusive.</span></li><li><span>bots will contain between 0 and 49 characters, inclusive.</span></li><li><span>bots will contain 0 or more bot descriptions, separated by a single space.</span></li><li><span>Each bot description will consist of exactly 4 digits, each between 1 and n, inclusive.</span></li><li><span>In each bot description, the points (x1,y1) and (x2,y2) will be distinct.</span></li></ul></div><div><h3>Examples</h3><ol><li><div><p>"1122"</p>
+<p>9</p>
+<p>Returns: -1</p>
+<p>
+
+There is only one bot but it is at the starting intersection.
+
+</p></div></li><li><div><p>"2211 3122"</p>
+<p>3</p>
+<p>Returns: 4</p>
+<p>
+
+    +-----+-----+
+    |     |     |
+    +-----+-----+
+    |  A  |  B  |
+    +-----+-----+
+
+    There are 2 bots. The first bot is going counterclockwise around the square 
+A, starting at the center of the grid. The other bot is going clockwise around
+the square B, starting at the lower right corner of the grid. You can't immediately
+go to either of the intersections adjacent to you since you would run into a bot.
+An optimal plan is to move almost to the point 2,1, wait for the bot moving around
+B to pass you and then follow right behind it. When you reach 2,2 you can then
+continue up to 2,3 and then to 3,3. This will take 4 time units plus an arbitrarily
+small waiting period.
+</p></div></li><li><div><p>"1122 2112 1221 2211"</p>
+<p>3</p>
+<p>Returns: -1</p>
+<p></p></div></li><li><div><p>"2211 1332 3221 3223"</p>
+<p>3</p>
+<p>Returns: 5</p>
+<p></p></div></li><li><div><p>"8899 9889 8998 9988 8899 9889 8998 9988 9988 8899"</p>
+<p>9</p>
+<p>Returns: -1</p>
+<p></p></div></li><li><div><p>"1311 2122 2131 2232 2223"</p>
+<p>3</p>
+<p>Returns: 8</p>
+<p></p></div></li><li><div><p>"6623 6366 2455 6643 5133"</p>
+<p>6</p>
+<p>Returns: 11</p>
+<p></p></div></li><li><div><p>"3332 1233"</p>
+<p>3</p>
+<p>Returns: 5</p>
+<p></p></div></li><li><div><p>"1323 2212 2113"</p>
+<p>3</p>
+<p>Returns: 7</p>
+<p></p></div></li><li><div><p>"2223 3233 1233 3311 3311 2122 3321 2112 3332 2321"</p>
+<p>3</p>
+<p>Returns: 47</p>
+<p>longest n=3 solution i've found, answer=47</p></div></li><li><div><p>"2312 2211 4431 4124 4334 3442 1314 2244 3213 3444"</p>
+<p>4</p>
+<p>Returns: 41</p>
+<p>longest n=4 solution i've found, answer=41</p></div></li><li><div><p>"4455 4135 5534 3243 5455 1325 1315 3255 2434 2455"</p>
+<p>5</p>
+<p>Returns: 40</p>
+<p>longest n=5 solution i've found, answer=40</p></div></li><li><div><p>"3425 6152 6116 1424 6255 6153 6656 6556 5664 2615"</p>
+<p>6</p>
+<p>Returns: 29</p>
+<p>longest n=6 solution i've found, answer=29</p></div></li><li><div><p>"1354 4246 7725 6242 2512 6677 2435 7756 7147 7776"</p>
+<p>7</p>
+<p>Returns: 40</p>
+<p>longest n=7 solution i've found, answer=40</p></div></li><li><div><p>"5552 9989 5371 9248 3637 9889 4267 3239 7286 1632"</p>
+<p>9</p>
+<p>Returns: 21</p>
+<p>longest n=9 solution i've found, answer=21</p></div></li><li><div><p>"1222"</p>
+<p>2</p>
+<p>Returns: 2</p>
+<p></p></div></li><li><div><p>"8999 9899"</p>
+<p>9</p>
+<p>Returns: -1</p>
+<p></p></div></li><li><div><p>"8899 9889 8998 9988"</p>
+<p>9</p>
+<p>Returns: -1</p>
+<p></p></div></li><li><div><p>"8899 9889"</p>
+<p>9</p>
+<p>Returns: 16</p>
+<p></p></div></li><li><div><p>"8899 9889 8998 9988 7788 8778 7887 8877 6677 7667"</p>
+<p>9</p>
+<p>Returns: -1</p>
+<p></p></div></li><li><div><p>"2223 3233 1233 3311 3311 2122 3321 2112 3332 2321"</p>
+<p>9</p>
+<p>Returns: 16</p>
+<p></p></div></li><li><div><p>"1211 1211 3111"</p>
+<p>4</p>
+<p>Returns: 8</p>
+<p></p></div></li><li><div><p>"4433 4334 4243 2434"</p>
+<p>4</p>
+<p>Returns: 9</p>
+<p></p></div></li><li><div><p>"4433 4334 4342 3424"</p>
+<p>4</p>
+<p>Returns: 10</p>
+<p></p></div></li><li><div><p>"4433 4334 4342 3424 4243 2434"</p>
+<p>4</p>
+<p>Returns: -1</p>
+<p></p></div></li><li><div><p>"3332 1322 1233 3321 3311"</p>
+<p>3</p>
+<p>Returns: 29</p>
+<p></p></div></li><li><div><p>"2333 2112 2212 2332 3123 1322 3331 1321 2112 3321"</p>
+<p>3</p>
+<p>Returns: 31</p>
+<p></p></div></li><li><div><p>"4333 3342 3344 3143 4223 3442 2444 3111 4224 3242"</p>
+<p>4</p>
+<p>Returns: 29</p>
+<p></p></div></li><li><div><p>"2333 3223 3221 2113 1231 1223 3221 2112 3113 3321"</p>
+<p>3</p>
+<p>Returns: 37</p>
+<p></p></div></li><li><div><p>"4455 1214 3532 4131 1333 2315 4553 3555 5445 4552"</p>
+<p>5</p>
+<p>Returns: 29</p>
+<p></p></div></li><li><div><p>"5445 5545 5255 1235 3212 2441 5245 5553 3521 5145"</p>
+<p>5</p>
+<p>Returns: 50</p>
+<p></p></div></li><li><div><p>"5553 4555 4254 5335 2114 3153 1552 2254 3552 4554"</p>
+<p>5</p>
+<p>Returns: 51</p>
+<p></p></div></li><li><div><p>"2554 4554 2521 3525 5545 3554 4553 3451 5144 2551"</p>
+<p>5</p>
+<p>Returns: 72</p>
+<p></p></div></li><li><div><p>"5531 3554 5445 5542 1551 5314 5545 5355 5441 4114"</p>
+<p>5</p>
+<p>Returns: 109</p>
+<p></p></div></li><li><div><p>"5554 1255 4544 4534 4511 4515 3255 3345 5514 4514"</p>
+<p>5</p>
+<p>Returns: 842</p>
+<p></p></div></li><li><div><p>"2333 3331 3113 3222 2133 1321 1232 3211 2213 2113"</p>
+<p>3</p>
+<p>Returns: 50</p>
+<p></p></div></li><li><div><p>"2111 2312 1222 1224 1234 1244 1323 4434 3442 3441"</p>
+<p>4</p>
+<p>Returns: 131</p>
+<p></p></div></li><li><div><p>"4311 6436 6336 5666 3665 5665 2564 5662 6255 3662"</p>
+<p>6</p>
+<p>Returns: 320</p>
+<p></p></div></li><li><div><p>"7767 7667 6775 7672 5714 1445 7624 7457 7257 4576"</p>
+<p>7</p>
+<p>Returns: 173</p>
+<p></p></div></li><li><div><p>"8872 8887 2484 8481 8826 7128 8877 8842 3485 8846"</p>
+<p>8</p>
+<p>Returns: 30</p>
+<p></p></div></li><li><div><p>"5554 1255 4544 4534 4511 4515 3255 3345 5514"</p>
+<p>5</p>
+<p>Returns: 422</p>
+<p></p></div></li><li><div><p>"9799 6898 7699 9989 6994 9857 6997 9289 8997 6998"</p>
+<p>9</p>
+<p>Returns: 48</p>
+<p></p></div></li></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/8274/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"8274\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"8274\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"8274\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"8274\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"8274\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\n"])</script><script>self.__next_f.push([1,"f:T71f,"])</script><script>self.__next_f.push([1,"You have studied the castle's defenses. The castle is laid out as a square\ngrid with \u003cb xmlns=\"http://topcoder.com\"\u003en\u003c/b\u003e corridors going north-south and \u003cb xmlns=\"http://topcoder.com\"\u003en\u003c/b\u003e going east-west. You are located at one \ncorner of the grid,\nand can move along the corridors.\nYou must reach the diagonally opposite corner of the castle as quickly as\npossible. The only problem is the sentry robots.\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nBut you have studied. You know where each bot is currently located and how it will\nmove. Your starting point is x=1, y=1, the southwest corner of the castle. You must reach\nthe point x=\u003cb\u003en\u003c/b\u003e, y=\u003cb\u003en\u003c/b\u003e.\nYou can move at any speed less than or\nequal to 1 intersection per minute. You can stay stationary at an intersection or \nin a corridor. You can\ndo a U turn in a corridor. But you cannot pass a robot in a corridor or be at an intersection\nat the same time that a robot is there.\n\u003c/p\u003e\u003cp xmlns=\"http://topcoder.com\"\u003e\nEach bot travels at a constant speed of 1 (intersection per minute) along a\npath described by a 4 character string. The first 2 characters are digits giving the initial\nposition x1,y1. The last 2 characters give a position x2,y2, distinct from x1,y1. If the\n2 points are on the same corridor, the bot moves back and forth between the 2 points. Otherwise,\nthe bot travels the rectangular path x1,y1 ..  x2,y1 ... x2,y2 ... x1,y2 ...x1,y1 ... etc.\n\nBots never interfere with each other -- they can pass each other freely.\n\u003c/p\u003e\u003cp xmlns=\"http://topcoder.com\"\u003e\nThe \u003ctype\u003eString\u003c/type\u003e \u003cb\u003ebots\u003c/b\u003e will contain descriptions for each of the bots, separated by a space.\nGiven \u003cb\u003ebots\u003c/b\u003e and \u003cb\u003en\u003c/b\u003e, return the minimum time it will take to get to your destination, rounded\nto the nearest integer.  Return\n-1 if you cannot reach it in less than 1000.5 minutes. \n\u003c/p\u003e\n"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"SentryBots\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"SentryBots\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"minTime\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String, int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int minTime(String bots, int n)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"n will be between 2 and 9, inclusive.\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"bots will contain between 0 and 49 characters, inclusive.\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"bots will contain 0 or more bot descriptions, separated by a single space.\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Each bot description will consist of exactly 4 digits, each between 1 and n, inclusive.\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"In each bot description, the points (x1,y1) and (x2,y2) will be distinct.\"}}]}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1122\\\"\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: -1\u003c/p\u003e\\n\u003cp\u003e\\n\\nThere is only one bot but it is at the starting intersection.\\n\\n\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2211 3122\\\"\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\\n\u003cp\u003e\\n\\n    +-----+-----+\\n    |     |     |\\n    +-----+-----+\\n    |  A  |  B  |\\n    +-----+-----+\\n\\n    There are 2 bots. The first bot is going counterclockwise around the square \\nA, starting at the center of the grid. The other bot is going clockwise around\\nthe square B, starting at the lower right corner of the grid. You can't immediately\\ngo to either of the intersections adjacent to you since you would run into a bot.\\nAn optimal plan is to move almost to the point 2,1, wait for the bot moving around\\nB to pass you and then follow right behind it. When you reach 2,2 you can then\\ncontinue up to 2,3 and then to 3,3. This will take 4 time units plus an arbitrarily\\nsmall waiting period.\\n\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1122 2112 1221 2211\\\"\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: -1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2211 1332 3221 3223\\\"\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 5\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"8899 9889 8998 9988 8899 9889 8998 9988 9988 8899\\\"\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: -1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1311 2122 2131 2232 2223\\\"\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 8\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"6623 6366 2455 6643 5133\\\"\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003eReturns: 11\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"3332 1233\\\"\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 5\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"8\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1323 2212 2113\\\"\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 7\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"9\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2223 3233 1233 3311 3311 2122 3321 2112 3332 2321\\\"\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 47\u003c/p\u003e\\n\u003cp\u003elongest n=3 solution i've found, answer=47\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"10\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2312 2211 4431 4124 4334 3442 1314 2244 3213 3444\\\"\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003eReturns: 41\u003c/p\u003e\\n\u003cp\u003elongest n=4 solution i've found, answer=41\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"11\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"4455 4135 5534 3243 5455 1325 1315 3255 2434 2455\\\"\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: 40\u003c/p\u003e\\n\u003cp\u003elongest n=5 solution i've found, answer=40\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"12\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"3425 6152 6116 1424 6255 6153 6656 6556 5664 2615\\\"\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003eReturns: 29\u003c/p\u003e\\n\u003cp\u003elongest n=6 solution i've found, answer=29\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"13\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1354 4246 7725 6242 2512 6677 2435 7756 7147 7776\\\"\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003eReturns: 40\u003c/p\u003e\\n\u003cp\u003elongest n=7 solution i've found, answer=40\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"14\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"5552 9989 5371 9248 3637 9889 4267 3239 7286 1632\\\"\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: 21\u003c/p\u003e\\n\u003cp\u003elongest n=9 solution i've found, answer=21\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"15\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1222\\\"\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"16\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"8999 9899\\\"\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: -1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"17\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"8899 9889 8998 9988\\\"\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: -1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"18\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"8899 9889\\\"\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: 16\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"19\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"8899 9889 8998 9988 7788 8778 7887 8877 6677 7667\\\"\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: -1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"20\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2223 3233 1233 3311 3311 2122 3321 2112 3332 2321\\\"\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: 16\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"21\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1211 1211 3111\\\"\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003eReturns: 8\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"22\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"4433 4334 4243 2434\\\"\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"23\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"4433 4334 4342 3424\\\"\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003eReturns: 10\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"24\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"4433 4334 4342 3424 4243 2434\\\"\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003eReturns: -1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"25\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"3332 1322 1233 3321 3311\\\"\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 29\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"26\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2333 2112 2212 2332 3123 1322 3331 1321 2112 3321\\\"\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 31\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"27\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"4333 3342 3344 3143 4223 3442 2444 3111 4224 3242\\\"\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003eReturns: 29\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"28\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2333 3223 3221 2113 1231 1223 3221 2112 3113 3321\\\"\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 37\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"29\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"4455 1214 3532 4131 1333 2315 4553 3555 5445 4552\\\"\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: 29\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"30\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"5445 5545 5255 1235 3212 2441 5245 5553 3521 5145\\\"\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: 50\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"31\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"5553 4555 4254 5335 2114 3153 1552 2254 3552 4554\\\"\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: 51\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"32\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2554 4554 2521 3525 5545 3554 4553 3451 5144 2551\\\"\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: 72\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"33\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"5531 3554 5445 5542 1551 5314 5545 5355 5441 4114\\\"\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: 109\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"34\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"5554 1255 4544 4534 4511 4515 3255 3345 5514 4514\\\"\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: 842\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"35\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2333 3331 3113 3222 2133 1321 1232 3211 2213 2113\\\"\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 50\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"36\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2111 2312 1222 1224 1234 1244 1323 4434 3442 3441\\\"\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003eReturns: 131\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"37\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"4311 6436 6336 5666 3665 5665 2564 5662 6255 3662\\\"\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003eReturns: 320\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"38\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"7767 7667 6775 7672 5714 1445 7624 7457 7257 4576\\\"\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003eReturns: 173\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"39\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"8872 8887 2484 8481 8826 7128 8877 8842 3485 8846\\\"\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003eReturns: 30\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"40\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"5554 1255 4544 4534 4511 4515 3255 3345 5514\\\"\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: 422\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"41\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"9799 6898 7699 9989 6994 9857 6997 9289 8997 6998\\\"\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: 48\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}]]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

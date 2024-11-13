@@ -1,0 +1,345 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->OkonomiyakiParty<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div>Wolf Sothe is planning a party for his <b xmlns="http://topcoder.com">M</b> friends.
+He wants to give them some okonomiyaki at the party.
+(Okonomiyaki is a Japanese pancake.)<br xmlns="http://topcoder.com"/><br xmlns="http://topcoder.com"/>
+
+Sothe just came to an okonomiyaki restaurant.
+The restaurant makes several types of okonomiyaki.
+Each type of okonomiyaki has its specific size.
+You are given the sizes of all okonomiyaki types as a <type xmlns="http://topcoder.com">int[]</type> <b xmlns="http://topcoder.com">osize</b>.<br xmlns="http://topcoder.com"/><br xmlns="http://topcoder.com"/>
+
+Sothe would like to buy exactly <b xmlns="http://topcoder.com">M</b> okonomiyaki.
+They must all have different types, so that the people at the party have the most options to choose from.
+Additionally, they must all have roughly the same sizes, so that nobody feels disappointed.
+More precisely, the difference between the size of the largest and smallest okonomiyaki ordered by Sothe must be <b xmlns="http://topcoder.com">K</b> or less.<br xmlns="http://topcoder.com"/><br xmlns="http://topcoder.com"/>
+
+You are given the <type xmlns="http://topcoder.com">int[]</type> <b xmlns="http://topcoder.com">osize</b> and the <type xmlns="http://topcoder.com">int</type>s <b xmlns="http://topcoder.com">M</b> and <b xmlns="http://topcoder.com">K</b>.
+Compute and return the number of different orders Sothe could place at the restaurant, modulo 1,000,000,007.</div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>OkonomiyakiParty</span></dd><dt>Method:</dt><dd><span>count</span></dd><dt>Parameters:</dt><dd><span>int[], int, int</span></dd><dt>Returns:</dt><dd><span>int</span></dd><dt>Method signature:</dt><dd><span>int count(int[] osize, int M, int K)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul><li><span>osize will contain between 2 and 50 elements, inclusive.</span></li><li><span>Each element in osize will be between 1 and 10,000, inclusive.</span></li><li><span>M will be between 2 and the number of elements in osize, inclusive.</span></li><li><span>K will be between 1 and 10,000, inclusive.</span></li></ul></div><div><h3>Examples</h3><ol><li><div><p>{1,4,6,7,9}</p>
+<p>2</p>
+<p>3</p>
+<p>Returns: 6</p>
+<p>There are five types of okonomiyaki.
+Let's call them types A, B, C, D, and E.
+(Type A has size 1, type B has size 4, and so on.)
+Sothe wants to buy M=2 different okonomiyaki and their sizes must differ by K=3 or less.
+There are 6 valid orders: A+B, B+C, B+D, C+D, C+E, and D+E.
+
+Note that B+A is the same order as A+B: you get one pancake of type A and one pancake of type B.</p></div></li><li><div><p>{1,6,2,7,4,2,6,1,5,2,4}</p>
+<p>4</p>
+<p>3</p>
+<p>Returns: 60</p>
+<p>Different types of okonomiyaki may have equal sizes.
+An order may contain multiple okonomiyaki of the same size, they are only required to have different types.</p></div></li><li><div><p>{1,4,5,7,10,11,13,16,18}</p>
+<p>4</p>
+<p>5</p>
+<p>Returns: 0</p>
+<p>In this test case there is no valid order: regardless of which 4 pancakes Sothe wants, the difference between their sizes will be too large.</p></div></li><li><div><p>{55,2,7,232,52,5,5332,623,52,6,532,5147}</p>
+<p>6</p>
+<p>10000</p>
+<p>Returns: 924</p>
+<p></p></div></li><li><div><p>{5781,8708,1754,4750,9888,3675,4810,1020,922,9834,5695,1101,1236,2496,8431,6727,
+1376,3373,4423,1839,7438,9407,1851,6966,8715,2905,542,535,8980,2602,2603,3117,3452,
+5682,7775,4356,5140,8923,9801,3729}</p>
+<p>15</p>
+<p>4003</p>
+<p>Returns: 114514</p>
+<p></p></div></li><li><div><p>{1,1}</p>
+<p>2</p>
+<p>1</p>
+<p>Returns: 1</p>
+<p></p></div></li><li><div><p>{1,10000}</p>
+<p>2</p>
+<p>9998</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{3,3,3}</p>
+<p>3</p>
+<p>10000</p>
+<p>Returns: 1</p>
+<p></p></div></li><li><div><p>{10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000}</p>
+<p>25</p>
+<p>1</p>
+<p>Returns: 605552882</p>
+<p></p></div></li><li><div><p>{10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000}</p>
+<p>50</p>
+<p>10000</p>
+<p>Returns: 1</p>
+<p></p></div></li><li><div><p>{7744,6263,1530,9701,5509,9753}</p>
+<p>3</p>
+<p>7257</p>
+<p>Returns: 13</p>
+<p></p></div></li><li><div><p>{9712,8352,2844,8706,4109,6394,8331,7367,2170,7933,6918,9848,7973,2869,6981,6224,8550,7593,8165,6170,6552,428,6191,2625,636,4921,7945,9311,9863,8485,7364,3302,4711,7237,1877,432,9930,398,676}</p>
+<p>2</p>
+<p>492</p>
+<p>Returns: 79</p>
+<p></p></div></li><li><div><p>{8135,8426,1630,4031,2728,9127,1744,7335,4105,4761,9750,5621,257,933,5573,1614,2491,4510,7120,7406,5696,4050,328,6720,3498,6825,2597,8650,7357,4185,3094}</p>
+<p>9</p>
+<p>2246</p>
+<p>Returns: 31</p>
+<p></p></div></li><li><div><p>{6510,2755,353,5666,6784,8739,802,9691,1331,7338,8196,6657,5964,2012,9428,43,7107,969,6213,9002}</p>
+<p>3</p>
+<p>4511</p>
+<p>Returns: 354</p>
+<p></p></div></li><li><div><p>{6572,3332,815,4848,565,3198,3626,8439,932,8019,8488,152,9188,9914,4180}</p>
+<p>2</p>
+<p>6996</p>
+<p>Returns: 85</p>
+<p></p></div></li><li><div><p>{4914,5563,1135,2274,3548,8522,4831,9141,5558,7679,4727,8504,598,409,4894,3989,9239,7086,94,7189,2721,3212,8747,2388,5711,9210,5888,8669,3104,3474,1901,7675}</p>
+<p>32</p>
+<p>5106</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{4371,1788,9303,7411,1906,2111,5401,7997,143,8586,1861,7048,3925,5732,1159,5387,5220,6401,3416,4056,1683,9875,3062,5007,3603,9269,9366,471,6519,6724,6090,9107,4320,3131,7656,8733,3994,9975,7596,8811,3674,5056,8731}</p>
+<p>29</p>
+<p>6096</p>
+<p>Returns: 526</p>
+<p></p></div></li><li><div><p>{7695,2949,9874,8354,4475,761,742,6757,5645,3144,1641,3738,4680,6136,1150,1530,7211,6608,4418,5256,3788,9374,7627,7446,4113,9173,3596,7154,5054,5184,1718}</p>
+<p>9</p>
+<p>4656</p>
+<p>Returns: 335127</p>
+<p></p></div></li><li><div><p>{3078,8777,5400,655,2729,3003,2162,5456,8871,8317,5695,9382,7931,7481,6605,3387,1360,6208,1955,6080,3703,1366,4454,3733,9837,8433,4564,3018,5108,3584,4911,8468,8117,1547,1720,5529,8072,108,8257,8521,2354,6529,8155,6431,3478,5049}</p>
+<p>21</p>
+<p>6521</p>
+<p>Returns: 219086920</p>
+<p></p></div></li><li><div><p>{811,5720,7926,8299,2132,1702}</p>
+<p>3</p>
+<p>6710</p>
+<p>Returns: 13</p>
+<p></p></div></li><li><div><p>{2818,8653,3925,4696,472,1154,4626,979,5617,1143,6598,7089,1733,1918,4405,2744,396,2750,4408,5937,4303,3768,6046,1564,341,3399,4897,3052,7808,1768,4998,8979,651,7810,2331,2361,717,5162}</p>
+<p>20</p>
+<p>2294</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{6099,5131,9635,4544,1890,4089,9032,693,402,8675,2295,5694,1166,1950,8766,7738,2459,842,7049,5944,6230,216,7390,7210,389,9755,244,3502,2272,6517,7565,278,6913}</p>
+<p>5</p>
+<p>6</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{2783,3093,3124,9202,8325,4005,1438,2603,8805,3364,1392,4274,6576,9907,1760,6627,1897,8860,7764,6359,3578,485,7748,7157,5949,3606,5455,6195,3360,3431,4324,5884,1025,1448,203,848,8877,6050,1793,9589,9305,9134}</p>
+<p>22</p>
+<p>1559</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{4568,1729}</p>
+<p>2</p>
+<p>8507</p>
+<p>Returns: 1</p>
+<p></p></div></li><li><div><p>{8993,1119,3399,1719,9869,1976,580,2120,1364,4597,5380,7917,1467}</p>
+<p>6</p>
+<p>3841</p>
+<p>Returns: 50</p>
+<p></p></div></li><li><div><p>{7415,3156,4572,312,6180,797,5301,4217}</p>
+<p>3</p>
+<p>904</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{3729,2482,5906,6030,1038,9898,1287,8658,1378,683,9555,6507,758,6530,9581,4642,3867,4853,1934,661,8491,2617,4733,1607,8115,1186,6648,1228,9436,59,9184,1111,1743,9375,605,4672,8873,4606,481,2672,6980}</p>
+<p>3</p>
+<p>8718</p>
+<p>Returns: 9617</p>
+<p></p></div></li><li><div><p>{3792,1776,3001,5047,1833,8469,4859,227,8179,8667,9469,6255,3704,3464}</p>
+<p>10</p>
+<p>923</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{3649,5958,8832,2920,1513,7093,6233,2221,224,8039,8610,7453,8523,1729,1977,5153,1518,1424,1403,8705,1937,9351,1036,7826,1129,3965,3427,4166,4776,3405,4165,6874,7259,3625,5822,8830,3778,2225,227,7605,8452,5038,4839}</p>
+<p>33</p>
+<p>6626</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{8576,8689,9898,6821,7079,7967,8798,7056,6675,8229,403,2677,4280,383,4977,1262,6328,1492,3283,75,6762}</p>
+<p>19</p>
+<p>7343</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{9806,2319,1876,8939,2321,758}</p>
+<p>5</p>
+<p>3440</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{4528,857,9869,8065,2571,4480,6268,4339,1412,3207,3747,3279,2971,7811}</p>
+<p>14</p>
+<p>5885</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{7209,7072,7169,9377,5008,3313,8949,6718,8358,6219,9855,991,9854,5240}</p>
+<p>14</p>
+<p>8450</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{3975,8822,4637,6329,5786,6494,2268,4244,7532,6955,9140,8984,4284,1685,9016,6597,6089,5535,1652}</p>
+<p>9</p>
+<p>7423</p>
+<p>Returns: 61490</p>
+<p></p></div></li><li><div><p>{2626,3886,1398,2577,716,9850,9841,514,8889,6423,7280,5583,1941,867,5547,7801,7164,1923,6279,3046,7237,8758,7900,5186,7272,6818,7993,433,9099,3132,9246,6185,6187,2636,3803,9705,1851,1578,1188,2096,293,6779,7338,3288,4620}</p>
+<p>21</p>
+<p>4516</p>
+<p>Returns: 256</p>
+<p></p></div></li><li><div><p>{4454,554}</p>
+<p>2</p>
+<p>9889</p>
+<p>Returns: 1</p>
+<p></p></div></li><li><div><p>{7176,2090}</p>
+<p>2</p>
+<p>2810</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{9098,7570,271,5169,7239,6199,2484,7145,8592,7101,4943,7354,9586,3903,4190,9146,7520,1091,2545,9670,6343,761,2698,1701,978,2126,4084,9779,4351,1704,2795}</p>
+<p>11</p>
+<p>5681</p>
+<p>Returns: 236171</p>
+<p></p></div></li><li><div><p>{9527,7521,976,5297,8149,8918,5609,9327,3846,283,6935,6467,1037,4646,8305,2644,26,5256}</p>
+<p>10</p>
+<p>8370</p>
+<p>Returns: 6435</p>
+<p></p></div></li><li><div><p>{7880,4183,7708,740,9357,6124,7919,9336,1098,754,4809,6270,2335,9486,9121,907,2215,1681,9071,9280,5763,7376,6272,5615,7745,8064,3327,2044,4876,1724,9058,6912,9419,4962,8473,8812,4767,4824,4840,5075,2511}</p>
+<p>4</p>
+<p>9803</p>
+<p>Returns: 101270</p>
+<p></p></div></li><li><div><p>{9923,1237,834,4348,5735,7279,312,7010,4614,9438,9818,214,8151,6604,6070,8288,5492,6550,56,2206,2630,5669,7630,5253,9812,5251,7971,3646,3392,3091,5775,3565,2018,5959,354,2817,8175,9784,4717,3408}</p>
+<p>26</p>
+<p>8009</p>
+<p>Returns: 26526735</p>
+<p></p></div></li><li><div><p>{4264,7291,6250,9896,5883,1907,9050,7024,3450,2854,2565,4740,8065,8803,4074,4644,1712,3060,6548,8170,977}</p>
+<p>15</p>
+<p>1153</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{9349,6090,6266,3511,8303,1998,467,7823,8884}</p>
+<p>6</p>
+<p>7129</p>
+<p>Returns: 13</p>
+<p></p></div></li><li><div><p>{2096,5718,5050,6420,8127,5730,579,9537,9184,8575,8049,5039,3907,6314,8293,1892,6220,7791,8017,7549,7764,1518,8018,5942,4449,2099,8387,1223,1808,6226,695,2425,3548,484,2619,48,3891,5439,3565,3896,9542,1078,918,8233}</p>
+<p>42</p>
+<p>5616</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{9386,6915,9172,6307,5654,3641,8399,7245,9210,3906,6124,6578,7281,6581,1369,2159,2671,7397,352,1944,3267,4839,4174,6732,853,8035,1982,7863,7299,3202,3940,5999,2312,8885,1874,259,3317,5144,3479,4675,438,3030,9416,2572,5468}</p>
+<p>9</p>
+<p>8558</p>
+<p>Returns: 599199238</p>
+<p></p></div></li><li><div><p>{7293,8549,8705,7292,6365,5679,4709,1856,1068,6274,4226,7402,427}</p>
+<p>5</p>
+<p>3566</p>
+<p>Returns: 106</p>
+<p></p></div></li><li><div><p>{725,3917,3950,9211,1454,5524,4859,8554,9003,156,1960,9107,1288,4358,9004,9883,7985,1488,7811,5443,3771,9962}</p>
+<p>20</p>
+<p>6787</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{7098,5876,242,8919,8981,5177,6016,5634,3355,8195,3356,8171,3893,8323,8654,2502,3524,5379,91,6021,7043,268,153,8391,2183,5476,5060,6693,3573,1643,2212,3263,7995,4117,8276,5925,2385,107,780,8374,4008,667,4067}</p>
+<p>3</p>
+<p>5143</p>
+<p>Returns: 6747</p>
+<p></p></div></li><li><div><p>{4775,3935,6787,9518,1293,899,8349}</p>
+<p>5</p>
+<p>858</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{6015,2821,5412,606,7731,5890,6779,8504,7718,4216,256,9961,5506,7454,1555,7612,9340,6370,8032,7905,9735,9087,9036,7017,4446,5166,3328,6877,9135,8601,2580,4603,1560,3652,9871,1746,5154,1948}</p>
+<p>25</p>
+<p>3252</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{5484,6962,1131,2221,2866,1780,6342,1876,5568,5244,3748,6258,2621,7197}</p>
+<p>13</p>
+<p>9017</p>
+<p>Returns: 14</p>
+<p></p></div></li><li><div><p>{3448,6202,5570,9444,2633,979,2548,6347,6636,7265,9248,9453,9110,896,8228,5103,9422,114,4891,8218,3837,5124,6587,4618,2252,841,9728,8032,887,7118,9226,9448,3719,839,9630,2426,1000,5072,2090,4655,8081,4752,8933,9174,8140,5220,7211,7591,5343}</p>
+<p>37</p>
+<p>8263</p>
+<p>Returns: 850746</p>
+<p></p></div></li><li><div><p>{8185,9718,7098,7918,267,7237,4216,6348,3609,6918,2266,662,2441,7371,5701,3901,9135,3236,9086,4478,6431,6982,4180,3824}</p>
+<p>14</p>
+<p>5093</p>
+<p>Returns: 905</p>
+<p></p></div></li><li><div><p>{8339,8789,3119,5376,2957,1967,6329,2805,6832,1136,8388,6359,3695,7964,2593,1310,7551,9663,4750,9974,7408,7509,7668,7479,1790,4195,9947,9492,7887,3581,9729,2835,3671,5461,7036,3186,5070}</p>
+<p>5</p>
+<p>896</p>
+<p>Returns: 143</p>
+<p></p></div></li><li><div><p>{6956,432,7067,1611,6961,7032,1199,2294,9080,5491,8493,1782,9700,9328,9240,7043,1782,5693,6098,3878,6059,4242,6772,8311,4493,641,9368}</p>
+<p>20</p>
+<p>300</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{7411,1569,5457,4759,7188,934,6269,5738,2233,7457,3813,7729,7524,9535}</p>
+<p>3</p>
+<p>3479</p>
+<p>Returns: 118</p>
+<p></p></div></li><li><div><p>{256,4403,8694,9309,2666,8802,5002,4967,7,3359,5853,9381,6914,4564,8537,3635,3043,4479,5261,2521,7491,2977,5227,6104,822,5470,7370,1215,5200,5204,495,6839,9761,6001,552,3190,612,8644,5864,1008,9358,7706}</p>
+<p>10</p>
+<p>8041</p>
+<p>Returns: 320740290</p>
+<p></p></div></li><li><div><p>{7773,6145,7576,8542,8117,9311,1432,4750,5902,8101,4361,1562,8202,9161,3348,7002,6812,2412,443,9553,7643,6417,4321,7765,4912,7782,306,1295,2245,1552,5188,7612,4792,7695,5715,7620,178,2976,9678,1001,3187,2215,5282,3523,4973,6270,998}</p>
+<p>40</p>
+<p>5051</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{9423,9295,9464,8332,551,1135,2005,7079,9968,5003,4231,7524,477,1817,4226,4951,838,2787,6798,9744,9555,9795,9550,6449,2526,721,3445,4111,3807,533,312,9048,2344,1710,2683,6883}</p>
+<p>2</p>
+<p>9347</p>
+<p>Returns: 624</p>
+<p></p></div></li><li><div><p>{3259,7529,1959,5871,1299,5362,7443,8155,7113,5252,6698,4956,1176,4299,8524,7317,5395,9162,868,4057,7584,4801,3885,5914,3541}</p>
+<p>7</p>
+<p>658</p>
+<p>Returns: 0</p>
+<p></p></div></li><li><div><p>{4748,1624,9554,899,7440,8849,9843,9643,5209,3344,7743,5464,3541,4188,2519,3109,6045,1016,9536,4086,4570,4570,9534,5964,7313,7929,143,8284,626,894,1549,644,6353,8884,2066,2182,9709,2558,4469,1221,7568,7444,8123,727}</p>
+<p>22</p>
+<p>8122</p>
+<p>Returns: 366091927</p>
+<p></p></div></li><li><div><p>{6309,6316,1876,2657,9955,9920,407,3174,9361,7720,1209,6240,4330,1929,5077}</p>
+<p>7</p>
+<p>5204</p>
+<p>Returns: 143</p>
+<p></p></div></li><li><div><p>{5660,9059,2398}</p>
+<p>2</p>
+<p>5541</p>
+<p>Returns: 2</p>
+<p></p></div></li><li><div><p>{1129,4110,677,2111}</p>
+<p>2</p>
+<p>8631</p>
+<p>Returns: 6</p>
+<p></p></div></li><li><div><p>{9317,7286,1895,4638,9551,6593,5021,6143,4320,8767,3818,3332,9795,3792,2231,3932,2987,3347,5329,9184,256,2851,407,3791,1232,950,2249,7954,4352}</p>
+<p>14</p>
+<p>6869</p>
+<p>Returns: 692682</p>
+<p></p></div></li><li><div><p>{8580,8807,5110,6097,6947,4576,9257,3216,689,8192,5813,3674,8890,4782,2609,2948,1110,7762,7930,4128,9404,1941,7318,525,8288,4881,8508,596,6486,2182,3542,4010,2064,5788,6198,7510}</p>
+<p>18</p>
+<p>6926</p>
+<p>Returns: 87121194</p>
+<p></p></div></li><li><div><p>{9876,4409,1559,4873,3023,95}</p>
+<p>3</p>
+<p>7837</p>
+<p>Returns: 13</p>
+<p></p></div></li><li><div><p>{324,4124,1663,327,96,9280,6439,3964,1087,2758,9649,694,9012,6765,5094,5229,9230,5511,6002,2456,5283,3169,5911,9013,915,6948,9540,5395}</p>
+<p>14</p>
+<p>5905</p>
+<p>Returns: 10194</p>
+<p></p></div></li><li><div><p>{1596,9342,489,7575,1206,9453,8428,4043,2613,5692,2626,3627,4418,8419,7437,1686,535,6375,6187,6876,5142,4145,5775,1590,8554,6450,2841,1260,2876,3071,8758,5388}</p>
+<p>16</p>
+<p>8180</p>
+<p>Returns: 140073795</p>
+<p></p></div></li><li><div><p>{1556,9850,6637,8300,5141}</p>
+<p>2</p>
+<p>5641</p>
+<p>Returns: 8</p>
+<p></p></div></li><li><div><p>{2494,3868,6849,8592,7608,9167,8230,4345,8537,2661,1874,3801,2320,8906,5267,4102,1731,1848,6181,7184,7886,8010,5058,1557,2296,8365,5329,4560,5409,4546,1482,298,3459,3169,7408,7880,4519,6686,3505,7919,9409,942,430,5986,1386,6789,5541,7131,316,4065}</p>
+<p>25</p>
+<p>7666</p>
+<p>Returns: 874176219</p>
+<p></p></div></li><li><div><p>{1603,9068,9569,3432,4104,3662}</p>
+<p>3</p>
+<p>9595</p>
+<p>Returns: 20</p>
+<p></p></div></li><li><div><p>{683,3718,298,2422,775,1083,9929,4113,7241,8584,5804,7813,5323,4899,1726,8915,8358,2295,1923,6857,8284,2225,4328,3790,3120,6698,5941,1385,8507,3087,3655,4602,314,7007,4999,1610,5610,9075,2205,3947,5686,5312,8724,2359}</p>
+<p>22</p>
+<p>5624</p>
+<p>Returns: 9280866</p>
+<p></p></div></li><li><div><p>{3402,1992,4403,3355,1361,6121,3374,5181,7991,4032,8036,369,7195,1221,5332,5957,5487,6896,2875,8980,7031,4429,7574}</p>
+<p>11</p>
+<p>6719</p>
+<p>Returns: 274924</p>
+<p></p></div></li><li><div><p>{461,9450,6653,2772,6067,7348,4709,4912,7522,5866,7721,8486,6094,2213,3027,6768,8314,2953,535,168,7338,9169,801,5257,7865,8058,1444,1775,2188,917,9970,503,5347,2314,4970,8795}</p>
+<p>18</p>
+<p>5086</p>
+<p>Returns: 2471</p>
+<p></p></div></li><li><div><p>{6512,6036,8007}</p>
+<p>2</p>
+<p>9572</p>
+<p>Returns: 3</p>
+<p></p></div></li><li><div><p>{4993,2639,8184,4518,8202,7909,9554,5757,4865,9539,6022,3550,9508,7689,7418}</p>
+<p>7</p>
+<p>5234</p>
+<p>Returns: 1954</p>
+<p></p></div></li><li><div><p>{89,9155,1338,5454,3293,6012,385,3425,395,1826,6253,3416,9648,2737,969,8257,7146,565,4863,2373,5278,8071,9196,2496,9128,7232}</p>
+<p>13</p>
+<p>6380</p>
+<p>Returns: 9856</p>
+<p></p></div></li><li><div><p>{8359,3690,5493,8245,7179,5017,9234,9169,9195,1962,6316,3263,4452,6343,4753,1142,2230,7521,3132,7293,8284,2057,7157,9992,5457,8425,9312,922,2362,3242,9634,4828,7782,5053}</p>
+<p>17</p>
+<p>7626</p>
+<p>Returns: 219011290</p>
+<p></p></div></li><li><div><p>{5623,499,9174,5028,3757,2269,8256,7426,9680,2060,3711,4110,8243,3848,1764,7666,1029,6470,4498,9373,2233,3559,1851,4307,5010,4408,9515,8515,2714,572,8977,1103,6167,5617,3110,3696,9295,6478}</p>
+<p>19</p>
+<p>8725</p>
+<p>Returns: 671813170</p>
+<p></p></div></li></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/13600/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"13600\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"13600\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"13600\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"13600\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"13600\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\n"])</script><script>self.__next_f.push([1,"f:T5aa,"])</script><script>self.__next_f.push([1,"Wolf Sothe is planning a party for his \u003cb xmlns=\"http://topcoder.com\"\u003eM\u003c/b\u003e friends.\nHe wants to give them some okonomiyaki at the party.\n(Okonomiyaki is a Japanese pancake.)\u003cbr xmlns=\"http://topcoder.com\"/\u003e\u003cbr xmlns=\"http://topcoder.com\"/\u003e\n\nSothe just came to an okonomiyaki restaurant.\nThe restaurant makes several types of okonomiyaki.\nEach type of okonomiyaki has its specific size.\nYou are given the sizes of all okonomiyaki types as a \u003ctype xmlns=\"http://topcoder.com\"\u003eint[]\u003c/type\u003e \u003cb xmlns=\"http://topcoder.com\"\u003eosize\u003c/b\u003e.\u003cbr xmlns=\"http://topcoder.com\"/\u003e\u003cbr xmlns=\"http://topcoder.com\"/\u003e\n\nSothe would like to buy exactly \u003cb xmlns=\"http://topcoder.com\"\u003eM\u003c/b\u003e okonomiyaki.\nThey must all have different types, so that the people at the party have the most options to choose from.\nAdditionally, they must all have roughly the same sizes, so that nobody feels disappointed.\nMore precisely, the difference between the size of the largest and smallest okonomiyaki ordered by Sothe must be \u003cb xmlns=\"http://topcoder.com\"\u003eK\u003c/b\u003e or less.\u003cbr xmlns=\"http://topcoder.com\"/\u003e\u003cbr xmlns=\"http://topcoder.com\"/\u003e\n\nYou are given the \u003ctype xmlns=\"http://topcoder.com\"\u003eint[]\u003c/type\u003e \u003cb xmlns=\"http://topcoder.com\"\u003eosize\u003c/b\u003e and the \u003ctype xmlns=\"http://topcoder.com\"\u003eint\u003c/type\u003es \u003cb xmlns=\"http://topcoder.com\"\u003eM\u003c/b\u003e and \u003cb xmlns=\"http://topcoder.com\"\u003eK\u003c/b\u003e.\nCompute and return the number of different orders Sothe could place at the restaurant, modulo 1,000,000,007."])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"OkonomiyakiParty\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"OkonomiyakiParty\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"count\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int[], int, int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int count(int[] osize, int M, int K)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"osize will contain between 2 and 50 elements, inclusive.\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Each element in osize will be between 1 and 10,000, inclusive.\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"M will be between 2 and the number of elements in osize, inclusive.\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"K will be between 1 and 10,000, inclusive.\"}}]}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{1,4,6,7,9}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\\n\u003cp\u003eThere are five types of okonomiyaki.\\nLet's call them types A, B, C, D, and E.\\n(Type A has size 1, type B has size 4, and so on.)\\nSothe wants to buy M=2 different okonomiyaki and their sizes must differ by K=3 or less.\\nThere are 6 valid orders: A+B, B+C, B+D, C+D, C+E, and D+E.\\n\\nNote that B+A is the same order as A+B: you get one pancake of type A and one pancake of type B.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{1,6,2,7,4,2,6,1,5,2,4}\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 60\u003c/p\u003e\\n\u003cp\u003eDifferent types of okonomiyaki may have equal sizes.\\nAn order may contain multiple okonomiyaki of the same size, they are only required to have different types.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{1,4,5,7,10,11,13,16,18}\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003eIn this test case there is no valid order: regardless of which 4 pancakes Sothe wants, the difference between their sizes will be too large.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{55,2,7,232,52,5,5332,623,52,6,532,5147}\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003eReturns: 924\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{5781,8708,1754,4750,9888,3675,4810,1020,922,9834,5695,1101,1236,2496,8431,6727,\\n1376,3373,4423,1839,7438,9407,1851,6966,8715,2905,542,535,8980,2602,2603,3117,3452,\\n5682,7775,4356,5140,8923,9801,3729}\u003c/p\u003e\\n\u003cp\u003e15\u003c/p\u003e\\n\u003cp\u003e4003\u003c/p\u003e\\n\u003cp\u003eReturns: 114514\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{1,1}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{1,10000}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e9998\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{3,3,3}\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"8\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000}\u003c/p\u003e\\n\u003cp\u003e25\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 605552882\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"9\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000}\u003c/p\u003e\\n\u003cp\u003e50\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"10\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{7744,6263,1530,9701,5509,9753}\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e7257\u003c/p\u003e\\n\u003cp\u003eReturns: 13\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"11\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{9712,8352,2844,8706,4109,6394,8331,7367,2170,7933,6918,9848,7973,2869,6981,6224,8550,7593,8165,6170,6552,428,6191,2625,636,4921,7945,9311,9863,8485,7364,3302,4711,7237,1877,432,9930,398,676}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e492\u003c/p\u003e\\n\u003cp\u003eReturns: 79\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"12\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{8135,8426,1630,4031,2728,9127,1744,7335,4105,4761,9750,5621,257,933,5573,1614,2491,4510,7120,7406,5696,4050,328,6720,3498,6825,2597,8650,7357,4185,3094}\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003e2246\u003c/p\u003e\\n\u003cp\u003eReturns: 31\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"13\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{6510,2755,353,5666,6784,8739,802,9691,1331,7338,8196,6657,5964,2012,9428,43,7107,969,6213,9002}\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e4511\u003c/p\u003e\\n\u003cp\u003eReturns: 354\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"14\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{6572,3332,815,4848,565,3198,3626,8439,932,8019,8488,152,9188,9914,4180}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e6996\u003c/p\u003e\\n\u003cp\u003eReturns: 85\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"15\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{4914,5563,1135,2274,3548,8522,4831,9141,5558,7679,4727,8504,598,409,4894,3989,9239,7086,94,7189,2721,3212,8747,2388,5711,9210,5888,8669,3104,3474,1901,7675}\u003c/p\u003e\\n\u003cp\u003e32\u003c/p\u003e\\n\u003cp\u003e5106\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"16\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{4371,1788,9303,7411,1906,2111,5401,7997,143,8586,1861,7048,3925,5732,1159,5387,5220,6401,3416,4056,1683,9875,3062,5007,3603,9269,9366,471,6519,6724,6090,9107,4320,3131,7656,8733,3994,9975,7596,8811,3674,5056,8731}\u003c/p\u003e\\n\u003cp\u003e29\u003c/p\u003e\\n\u003cp\u003e6096\u003c/p\u003e\\n\u003cp\u003eReturns: 526\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"17\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{7695,2949,9874,8354,4475,761,742,6757,5645,3144,1641,3738,4680,6136,1150,1530,7211,6608,4418,5256,3788,9374,7627,7446,4113,9173,3596,7154,5054,5184,1718}\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003e4656\u003c/p\u003e\\n\u003cp\u003eReturns: 335127\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"18\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{3078,8777,5400,655,2729,3003,2162,5456,8871,8317,5695,9382,7931,7481,6605,3387,1360,6208,1955,6080,3703,1366,4454,3733,9837,8433,4564,3018,5108,3584,4911,8468,8117,1547,1720,5529,8072,108,8257,8521,2354,6529,8155,6431,3478,5049}\u003c/p\u003e\\n\u003cp\u003e21\u003c/p\u003e\\n\u003cp\u003e6521\u003c/p\u003e\\n\u003cp\u003eReturns: 219086920\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"19\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{811,5720,7926,8299,2132,1702}\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e6710\u003c/p\u003e\\n\u003cp\u003eReturns: 13\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"20\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{2818,8653,3925,4696,472,1154,4626,979,5617,1143,6598,7089,1733,1918,4405,2744,396,2750,4408,5937,4303,3768,6046,1564,341,3399,4897,3052,7808,1768,4998,8979,651,7810,2331,2361,717,5162}\u003c/p\u003e\\n\u003cp\u003e20\u003c/p\u003e\\n\u003cp\u003e2294\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"21\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{6099,5131,9635,4544,1890,4089,9032,693,402,8675,2295,5694,1166,1950,8766,7738,2459,842,7049,5944,6230,216,7390,7210,389,9755,244,3502,2272,6517,7565,278,6913}\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"22\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{2783,3093,3124,9202,8325,4005,1438,2603,8805,3364,1392,4274,6576,9907,1760,6627,1897,8860,7764,6359,3578,485,7748,7157,5949,3606,5455,6195,3360,3431,4324,5884,1025,1448,203,848,8877,6050,1793,9589,9305,9134}\u003c/p\u003e\\n\u003cp\u003e22\u003c/p\u003e\\n\u003cp\u003e1559\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"23\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{4568,1729}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e8507\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"24\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{8993,1119,3399,1719,9869,1976,580,2120,1364,4597,5380,7917,1467}\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003e3841\u003c/p\u003e\\n\u003cp\u003eReturns: 50\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"25\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{7415,3156,4572,312,6180,797,5301,4217}\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e904\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"26\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{3729,2482,5906,6030,1038,9898,1287,8658,1378,683,9555,6507,758,6530,9581,4642,3867,4853,1934,661,8491,2617,4733,1607,8115,1186,6648,1228,9436,59,9184,1111,1743,9375,605,4672,8873,4606,481,2672,6980}\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e8718\u003c/p\u003e\\n\u003cp\u003eReturns: 9617\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"27\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{3792,1776,3001,5047,1833,8469,4859,227,8179,8667,9469,6255,3704,3464}\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e923\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"28\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{3649,5958,8832,2920,1513,7093,6233,2221,224,8039,8610,7453,8523,1729,1977,5153,1518,1424,1403,8705,1937,9351,1036,7826,1129,3965,3427,4166,4776,3405,4165,6874,7259,3625,5822,8830,3778,2225,227,7605,8452,5038,4839}\u003c/p\u003e\\n\u003cp\u003e33\u003c/p\u003e\\n\u003cp\u003e6626\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"29\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{8576,8689,9898,6821,7079,7967,8798,7056,6675,8229,403,2677,4280,383,4977,1262,6328,1492,3283,75,6762}\u003c/p\u003e\\n\u003cp\u003e19\u003c/p\u003e\\n\u003cp\u003e7343\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"30\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{9806,2319,1876,8939,2321,758}\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e3440\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"31\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{4528,857,9869,8065,2571,4480,6268,4339,1412,3207,3747,3279,2971,7811}\u003c/p\u003e\\n\u003cp\u003e14\u003c/p\u003e\\n\u003cp\u003e5885\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"32\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{7209,7072,7169,9377,5008,3313,8949,6718,8358,6219,9855,991,9854,5240}\u003c/p\u003e\\n\u003cp\u003e14\u003c/p\u003e\\n\u003cp\u003e8450\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"33\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{3975,8822,4637,6329,5786,6494,2268,4244,7532,6955,9140,8984,4284,1685,9016,6597,6089,5535,1652}\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003e7423\u003c/p\u003e\\n\u003cp\u003eReturns: 61490\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"34\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{2626,3886,1398,2577,716,9850,9841,514,8889,6423,7280,5583,1941,867,5547,7801,7164,1923,6279,3046,7237,8758,7900,5186,7272,6818,7993,433,9099,3132,9246,6185,6187,2636,3803,9705,1851,1578,1188,2096,293,6779,7338,3288,4620}\u003c/p\u003e\\n\u003cp\u003e21\u003c/p\u003e\\n\u003cp\u003e4516\u003c/p\u003e\\n\u003cp\u003eReturns: 256\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"35\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{4454,554}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e9889\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"36\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{7176,2090}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e2810\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"37\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{9098,7570,271,5169,7239,6199,2484,7145,8592,7101,4943,7354,9586,3903,4190,9146,7520,1091,2545,9670,6343,761,2698,1701,978,2126,4084,9779,4351,1704,2795}\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003e5681\u003c/p\u003e\\n\u003cp\u003eReturns: 236171\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"38\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{9527,7521,976,5297,8149,8918,5609,9327,3846,283,6935,6467,1037,4646,8305,2644,26,5256}\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e8370\u003c/p\u003e\\n\u003cp\u003eReturns: 6435\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"39\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{7880,4183,7708,740,9357,6124,7919,9336,1098,754,4809,6270,2335,9486,9121,907,2215,1681,9071,9280,5763,7376,6272,5615,7745,8064,3327,2044,4876,1724,9058,6912,9419,4962,8473,8812,4767,4824,4840,5075,2511}\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e9803\u003c/p\u003e\\n\u003cp\u003eReturns: 101270\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"40\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{9923,1237,834,4348,5735,7279,312,7010,4614,9438,9818,214,8151,6604,6070,8288,5492,6550,56,2206,2630,5669,7630,5253,9812,5251,7971,3646,3392,3091,5775,3565,2018,5959,354,2817,8175,9784,4717,3408}\u003c/p\u003e\\n\u003cp\u003e26\u003c/p\u003e\\n\u003cp\u003e8009\u003c/p\u003e\\n\u003cp\u003eReturns: 26526735\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"41\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{4264,7291,6250,9896,5883,1907,9050,7024,3450,2854,2565,4740,8065,8803,4074,4644,1712,3060,6548,8170,977}\u003c/p\u003e\\n\u003cp\u003e15\u003c/p\u003e\\n\u003cp\u003e1153\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"42\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{9349,6090,6266,3511,8303,1998,467,7823,8884}\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003e7129\u003c/p\u003e\\n\u003cp\u003eReturns: 13\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"43\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{2096,5718,5050,6420,8127,5730,579,9537,9184,8575,8049,5039,3907,6314,8293,1892,6220,7791,8017,7549,7764,1518,8018,5942,4449,2099,8387,1223,1808,6226,695,2425,3548,484,2619,48,3891,5439,3565,3896,9542,1078,918,8233}\u003c/p\u003e\\n\u003cp\u003e42\u003c/p\u003e\\n\u003cp\u003e5616\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"44\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{9386,6915,9172,6307,5654,3641,8399,7245,9210,3906,6124,6578,7281,6581,1369,2159,2671,7397,352,1944,3267,4839,4174,6732,853,8035,1982,7863,7299,3202,3940,5999,2312,8885,1874,259,3317,5144,3479,4675,438,3030,9416,2572,5468}\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003e8558\u003c/p\u003e\\n\u003cp\u003eReturns: 599199238\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"45\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{7293,8549,8705,7292,6365,5679,4709,1856,1068,6274,4226,7402,427}\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e3566\u003c/p\u003e\\n\u003cp\u003eReturns: 106\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"46\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{725,3917,3950,9211,1454,5524,4859,8554,9003,156,1960,9107,1288,4358,9004,9883,7985,1488,7811,5443,3771,9962}\u003c/p\u003e\\n\u003cp\u003e20\u003c/p\u003e\\n\u003cp\u003e6787\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"47\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{7098,5876,242,8919,8981,5177,6016,5634,3355,8195,3356,8171,3893,8323,8654,2502,3524,5379,91,6021,7043,268,153,8391,2183,5476,5060,6693,3573,1643,2212,3263,7995,4117,8276,5925,2385,107,780,8374,4008,667,4067}\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e5143\u003c/p\u003e\\n\u003cp\u003eReturns: 6747\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"48\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{4775,3935,6787,9518,1293,899,8349}\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e858\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"49\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{6015,2821,5412,606,7731,5890,6779,8504,7718,4216,256,9961,5506,7454,1555,7612,9340,6370,8032,7905,9735,9087,9036,7017,4446,5166,3328,6877,9135,8601,2580,4603,1560,3652,9871,1746,5154,1948}\u003c/p\u003e\\n\u003cp\u003e25\u003c/p\u003e\\n\u003cp\u003e3252\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"50\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{5484,6962,1131,2221,2866,1780,6342,1876,5568,5244,3748,6258,2621,7197}\u003c/p\u003e\\n\u003cp\u003e13\u003c/p\u003e\\n\u003cp\u003e9017\u003c/p\u003e\\n\u003cp\u003eReturns: 14\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"51\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{3448,6202,5570,9444,2633,979,2548,6347,6636,7265,9248,9453,9110,896,8228,5103,9422,114,4891,8218,3837,5124,6587,4618,2252,841,9728,8032,887,7118,9226,9448,3719,839,9630,2426,1000,5072,2090,4655,8081,4752,8933,9174,8140,5220,7211,7591,5343}\u003c/p\u003e\\n\u003cp\u003e37\u003c/p\u003e\\n\u003cp\u003e8263\u003c/p\u003e\\n\u003cp\u003eReturns: 850746\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"52\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{8185,9718,7098,7918,267,7237,4216,6348,3609,6918,2266,662,2441,7371,5701,3901,9135,3236,9086,4478,6431,6982,4180,3824}\u003c/p\u003e\\n\u003cp\u003e14\u003c/p\u003e\\n\u003cp\u003e5093\u003c/p\u003e\\n\u003cp\u003eReturns: 905\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"53\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{8339,8789,3119,5376,2957,1967,6329,2805,6832,1136,8388,6359,3695,7964,2593,1310,7551,9663,4750,9974,7408,7509,7668,7479,1790,4195,9947,9492,7887,3581,9729,2835,3671,5461,7036,3186,5070}\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e896\u003c/p\u003e\\n\u003cp\u003eReturns: 143\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"54\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{6956,432,7067,1611,6961,7032,1199,2294,9080,5491,8493,1782,9700,9328,9240,7043,1782,5693,6098,3878,6059,4242,6772,8311,4493,641,9368}\u003c/p\u003e\\n\u003cp\u003e20\u003c/p\u003e\\n\u003cp\u003e300\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"55\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{7411,1569,5457,4759,7188,934,6269,5738,2233,7457,3813,7729,7524,9535}\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e3479\u003c/p\u003e\\n\u003cp\u003eReturns: 118\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"56\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{256,4403,8694,9309,2666,8802,5002,4967,7,3359,5853,9381,6914,4564,8537,3635,3043,4479,5261,2521,7491,2977,5227,6104,822,5470,7370,1215,5200,5204,495,6839,9761,6001,552,3190,612,8644,5864,1008,9358,7706}\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e8041\u003c/p\u003e\\n\u003cp\u003eReturns: 320740290\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"57\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{7773,6145,7576,8542,8117,9311,1432,4750,5902,8101,4361,1562,8202,9161,3348,7002,6812,2412,443,9553,7643,6417,4321,7765,4912,7782,306,1295,2245,1552,5188,7612,4792,7695,5715,7620,178,2976,9678,1001,3187,2215,5282,3523,4973,6270,998}\u003c/p\u003e\\n\u003cp\u003e40\u003c/p\u003e\\n\u003cp\u003e5051\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"58\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{9423,9295,9464,8332,551,1135,2005,7079,9968,5003,4231,7524,477,1817,4226,4951,838,2787,6798,9744,9555,9795,9550,6449,2526,721,3445,4111,3807,533,312,9048,2344,1710,2683,6883}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e9347\u003c/p\u003e\\n\u003cp\u003eReturns: 624\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"59\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{3259,7529,1959,5871,1299,5362,7443,8155,7113,5252,6698,4956,1176,4299,8524,7317,5395,9162,868,4057,7584,4801,3885,5914,3541}\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003e658\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"60\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{4748,1624,9554,899,7440,8849,9843,9643,5209,3344,7743,5464,3541,4188,2519,3109,6045,1016,9536,4086,4570,4570,9534,5964,7313,7929,143,8284,626,894,1549,644,6353,8884,2066,2182,9709,2558,4469,1221,7568,7444,8123,727}\u003c/p\u003e\\n\u003cp\u003e22\u003c/p\u003e\\n\u003cp\u003e8122\u003c/p\u003e\\n\u003cp\u003eReturns: 366091927\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"61\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{6309,6316,1876,2657,9955,9920,407,3174,9361,7720,1209,6240,4330,1929,5077}\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003e5204\u003c/p\u003e\\n\u003cp\u003eReturns: 143\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"62\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{5660,9059,2398}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e5541\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"63\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{1129,4110,677,2111}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e8631\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"64\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{9317,7286,1895,4638,9551,6593,5021,6143,4320,8767,3818,3332,9795,3792,2231,3932,2987,3347,5329,9184,256,2851,407,3791,1232,950,2249,7954,4352}\u003c/p\u003e\\n\u003cp\u003e14\u003c/p\u003e\\n\u003cp\u003e6869\u003c/p\u003e\\n\u003cp\u003eReturns: 692682\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"65\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{8580,8807,5110,6097,6947,4576,9257,3216,689,8192,5813,3674,8890,4782,2609,2948,1110,7762,7930,4128,9404,1941,7318,525,8288,4881,8508,596,6486,2182,3542,4010,2064,5788,6198,7510}\u003c/p\u003e\\n\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e6926\u003c/p\u003e\\n\u003cp\u003eReturns: 87121194\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"66\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{9876,4409,1559,4873,3023,95}\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e7837\u003c/p\u003e\\n\u003cp\u003eReturns: 13\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"67\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{324,4124,1663,327,96,9280,6439,3964,1087,2758,9649,694,9012,6765,5094,5229,9230,5511,6002,2456,5283,3169,5911,9013,915,6948,9540,5395}\u003c/p\u003e\\n\u003cp\u003e14\u003c/p\u003e\\n\u003cp\u003e5905\u003c/p\u003e\\n\u003cp\u003eReturns: 10194\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"68\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{1596,9342,489,7575,1206,9453,8428,4043,2613,5692,2626,3627,4418,8419,7437,1686,535,6375,6187,6876,5142,4145,5775,1590,8554,6450,2841,1260,2876,3071,8758,5388}\u003c/p\u003e\\n\u003cp\u003e16\u003c/p\u003e\\n\u003cp\u003e8180\u003c/p\u003e\\n\u003cp\u003eReturns: 140073795\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"69\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{1556,9850,6637,8300,5141}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e5641\u003c/p\u003e\\n\u003cp\u003eReturns: 8\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"70\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{2494,3868,6849,8592,7608,9167,8230,4345,8537,2661,1874,3801,2320,8906,5267,4102,1731,1848,6181,7184,7886,8010,5058,1557,2296,8365,5329,4560,5409,4546,1482,298,3459,3169,7408,7880,4519,6686,3505,7919,9409,942,430,5986,1386,6789,5541,7131,316,4065}\u003c/p\u003e\\n\u003cp\u003e25\u003c/p\u003e\\n\u003cp\u003e7666\u003c/p\u003e\\n\u003cp\u003eReturns: 874176219\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"71\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{1603,9068,9569,3432,4104,3662}\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e9595\u003c/p\u003e\\n\u003cp\u003eReturns: 20\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"72\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{683,3718,298,2422,775,1083,9929,4113,7241,8584,5804,7813,5323,4899,1726,8915,8358,2295,1923,6857,8284,2225,4328,3790,3120,6698,5941,1385,8507,3087,3655,4602,314,7007,4999,1610,5610,9075,2205,3947,5686,5312,8724,2359}\u003c/p\u003e\\n\u003cp\u003e22\u003c/p\u003e\\n\u003cp\u003e5624\u003c/p\u003e\\n\u003cp\u003eReturns: 9280866\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"73\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{3402,1992,4403,3355,1361,6121,3374,5181,7991,4032,8036,369,7195,1221,5332,5957,5487,6896,2875,8980,7031,4429,7574}\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003e6719\u003c/p\u003e\\n\u003cp\u003eReturns: 274924\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"74\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{461,9450,6653,2772,6067,7348,4709,4912,7522,5866,7721,8486,6094,2213,3027,6768,8314,2953,535,168,7338,9169,801,5257,7865,8058,1444,1775,2188,917,9970,503,5347,2314,4970,8795}\u003c/p\u003e\\n\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e5086\u003c/p\u003e\\n\u003cp\u003eReturns: 2471\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"75\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{6512,6036,8007}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e9572\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"76\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{4993,2639,8184,4518,8202,7909,9554,5757,4865,9539,6022,3550,9508,7689,7418}\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003e5234\u003c/p\u003e\\n\u003cp\u003eReturns: 1954\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"77\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{89,9155,1338,5454,3293,6012,385,3425,395,1826,6253,3416,9648,2737,969,8257,7146,565,4863,2373,5278,8071,9196,2496,9128,7232}\u003c/p\u003e\\n\u003cp\u003e13\u003c/p\u003e\\n\u003cp\u003e6380\u003c/p\u003e\\n\u003cp\u003eReturns: 9856\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"78\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{8359,3690,5493,8245,7179,5017,9234,9169,9195,1962,6316,3263,4452,6343,4753,1142,2230,7521,3132,7293,8284,2057,7157,9992,5457,8425,9312,922,2362,3242,9634,4828,7782,5053}\u003c/p\u003e\\n\u003cp\u003e17\u003c/p\u003e\\n\u003cp\u003e7626\u003c/p\u003e\\n\u003cp\u003eReturns: 219011290\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"79\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{5623,499,9174,5028,3757,2269,8256,7426,9680,2060,3711,4110,8243,3848,1764,7666,1029,6470,4498,9373,2233,3559,1851,4307,5010,4408,9515,8515,2714,572,8977,1103,6167,5617,3110,3696,9295,6478}\u003c/p\u003e\\n\u003cp\u003e19\u003c/p\u003e\\n\u003cp\u003e8725\u003c/p\u003e\\n\u003cp\u003eReturns: 671813170\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}]]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

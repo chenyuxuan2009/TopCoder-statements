@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->LinearCombinations<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div>You will be given a <b xmlns="http://topcoder.com">formula</b> in the following form:
+
+<pre xmlns="http://topcoder.com">	aw+bx=cy+dz,</pre>
+
+where a, b, c and d are positive integers between 1 and 9 inclusive. You will also be given positive values for 3 of <b xmlns="http://topcoder.com">w</b>, <b xmlns="http://topcoder.com">x</b>, <b xmlns="http://topcoder.com">y</b>, and <b xmlns="http://topcoder.com">z</b>. The remaining value will be -1, denoting a blank. Return what value the blank must have (possibly 0 or negative) in order to satisfy the given formula.</div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>LinearCombinations</span></dd><dt>Method:</dt><dd><span>computeValue</span></dd><dt>Parameters:</dt><dd><span>String, int, int, int, int</span></dd><dt>Returns:</dt><dd><span>double</span></dd><dt>Method signature:</dt><dd><span>double computeValue(String formula, int w, int x, int y, int z)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Notes</h3><ul><li>The returned value must be accurate to within a relative or absolute value of 1E-9.</li></ul></div><div><h3>Constraints</h3><ul><li><span>formula will contain exactly 11 characters.</span></li><li><span>formula will have the form (quotes for clarity) "aw+bx=cy+dz" where a,b,c,d are positive digits ('1'-'9').</span></li><li><span>Exactly three of w, x, y, and z will be between 1 and 10000 inclusive.</span></li><li><span>Exactly one of w, x, y, and z will be -1.</span></li></ul></div><div><h3>Examples</h3><ol><li><div><p>"2w+3x=4y+5z"</p>
+<p>-1</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>Returns: 10.0</p>
+<p>2w+3(1)=4(2)+5(3) so 2w + 3 = 23.</p></div></li><li><div><p>"1w+1x=1y+1z"</p>
+<p>1</p>
+<p>1</p>
+<p>1</p>
+<p>-1</p>
+<p>Returns: 1.0</p>
+<p>1(1) + 1(1) = 1(1) + 1z so 2 = 1 + z.</p></div></li><li><div><p>"9w+9x=1y+1z"</p>
+<p>10000</p>
+<p>10000</p>
+<p>1</p>
+<p>-1</p>
+<p>Returns: 179999.0</p></div></li><li><div><p>"9w+9x=8y+8z"</p>
+<p>9999</p>
+<p>9996</p>
+<p>3</p>
+<p>-1</p>
+<p>Returns: 22491.375</p></div></li><li><div><p>"9w+8x=1y+9z"</p>
+<p>729</p>
+<p>4096</p>
+<p>1</p>
+<p>-1</p>
+<p>Returns: 4369.777777777777</p></div></li><li><div><p>"1w+2x=3y+4z"</p>
+<p>1</p>
+<p>1</p>
+<p>1</p>
+<p>-1</p>
+<p>Returns: 0.0</p></div></li><li><div><p>"1w+1x=7y+1z"</p>
+<p>1</p>
+<p>1</p>
+<p>-1</p>
+<p>1</p>
+<p>Returns: 0.14285714285714285</p></div></li><li><div><p>"1w+1x=9y+9z"</p>
+<p>1</p>
+<p>-1</p>
+<p>10000</p>
+<p>10000</p>
+<p>Returns: 179999.0</p></div></li><li><div><p>"1w+1x=2y+5z"</p>
+<p>956</p>
+<p>4992</p>
+<p>-1</p>
+<p>5977</p>
+<p>Returns: -11968.5</p></div></li><li><div><p>"1w+2x=3y+5z"</p>
+<p>-1</p>
+<p>6706</p>
+<p>7213</p>
+<p>8898</p>
+<p>Returns: 52717.0</p></div></li><li><div><p>"4w+5x=6y+8z"</p>
+<p>6301</p>
+<p>-1</p>
+<p>9732</p>
+<p>5419</p>
+<p>Returns: 15308.0</p></div></li><li><div><p>"3w+2x=2y+1z"</p>
+<p>3935</p>
+<p>-1</p>
+<p>5464</p>
+<p>2099</p>
+<p>Returns: 611.0</p></div></li><li><div><p>"1w+7x=9y+2z"</p>
+<p>-1</p>
+<p>9689</p>
+<p>4057</p>
+<p>1794</p>
+<p>Returns: -27722.0</p></div></li><li><div><p>"9w+8x=8y+7z"</p>
+<p>3044</p>
+<p>6353</p>
+<p>6088</p>
+<p>-1</p>
+<p>Returns: 4216.571428571428</p></div></li><li><div><p>"1w+6x=2y+9z"</p>
+<p>8352</p>
+<p>-1</p>
+<p>2126</p>
+<p>2424</p>
+<p>Returns: 2952.6666666666665</p></div></li><li><div><p>"4w+9x=9y+8z"</p>
+<p>7694</p>
+<p>7254</p>
+<p>-1</p>
+<p>5248</p>
+<p>Returns: 6008.666666666667</p></div></li><li><div><p>"7w+2x=7y+2z"</p>
+<p>660</p>
+<p>244</p>
+<p>-1</p>
+<p>5534</p>
+<p>Returns: -851.4285714285714</p></div></li><li><div><p>"6w+4x=6y+4z"</p>
+<p>-1</p>
+<p>198</p>
+<p>5561</p>
+<p>2106</p>
+<p>Returns: 6833.0</p></div></li><li><div><p>"1w+4x=9y+4z"</p>
+<p>1707</p>
+<p>-1</p>
+<p>8504</p>
+<p>6949</p>
+<p>Returns: 25656.25</p></div></li><li><div><p>"1w+6x=7y+9z"</p>
+<p>-1</p>
+<p>6129</p>
+<p>2930</p>
+<p>6590</p>
+<p>Returns: 43046.0</p></div></li><li><div><p>"2w+3x=4y+5z"</p>
+<p>845</p>
+<p>7749</p>
+<p>-1</p>
+<p>9656</p>
+<p>Returns: -5835.75</p></div></li><li><div><p>"5w+7x=4y+2z"</p>
+<p>-1</p>
+<p>888</p>
+<p>2550</p>
+<p>8161</p>
+<p>Returns: 4061.2</p></div></li><li><div><p>"4w+2x=4y+8z"</p>
+<p>2108</p>
+<p>8507</p>
+<p>9020</p>
+<p>-1</p>
+<p>Returns: -1329.25</p></div></li><li><div><p>"3w+2x=4y+9z"</p>
+<p>8958</p>
+<p>3844</p>
+<p>-1</p>
+<p>1706</p>
+<p>Returns: 4802.0</p></div></li><li><div><p>"6w+2x=5y+2z"</p>
+<p>2005</p>
+<p>-1</p>
+<p>9620</p>
+<p>6577</p>
+<p>Returns: 24612.0</p></div></li><li><div><p>"2w+4x=3y+1z"</p>
+<p>9241</p>
+<p>2117</p>
+<p>8597</p>
+<p>-1</p>
+<p>Returns: 1159.0</p></div></li><li><div><p>"2w+1x=4y+5z"</p>
+<p>1802</p>
+<p>1304</p>
+<p>-1</p>
+<p>6525</p>
+<p>Returns: -6929.25</p></div></li><li><div><p>"4w+2x=5y+1z"</p>
+<p>5660</p>
+<p>3324</p>
+<p>-1</p>
+<p>8504</p>
+<p>Returns: 4156.8</p></div></li><li><div><p>"4w+4x=8y+5z"</p>
+<p>1814</p>
+<p>5719</p>
+<p>-1</p>
+<p>4036</p>
+<p>Returns: 1244.0</p></div></li><li><div><p>"6w+1x=3y+6z"</p>
+<p>647</p>
+<p>5381</p>
+<p>-1</p>
+<p>9743</p>
+<p>Returns: -16398.333333333332</p></div></li><li><div><p>"8w+7x=2y+2z"</p>
+<p>9231</p>
+<p>1714</p>
+<p>-1</p>
+<p>182</p>
+<p>Returns: 42741.0</p></div></li><li><div><p>"2w+1x=7y+5z"</p>
+<p>-1</p>
+<p>1848</p>
+<p>5067</p>
+<p>1096</p>
+<p>Returns: 19550.5</p></div></li><li><div><p>"5w+6x=7y+6z"</p>
+<p>-1</p>
+<p>6126</p>
+<p>6137</p>
+<p>7349</p>
+<p>Returns: 10059.4</p></div></li><li><div><p>"6w+6x=2y+3z"</p>
+<p>-1</p>
+<p>1945</p>
+<p>5172</p>
+<p>3404</p>
+<p>Returns: 1481.0</p></div></li><li><div><p>"2w+1x=3y+6z"</p>
+<p>-1</p>
+<p>1899</p>
+<p>2469</p>
+<p>1147</p>
+<p>Returns: 6195.0</p></div></li><li><div><p>"2w+2x=7y+6z"</p>
+<p>-1</p>
+<p>6254</p>
+<p>2914</p>
+<p>6584</p>
+<p>Returns: 23697.0</p></div></li><li><div><p>"6w+1x=5y+1z"</p>
+<p>-1</p>
+<p>6188</p>
+<p>3746</p>
+<p>9608</p>
+<p>Returns: 3691.6666666666665</p></div></li><li><div><p>"3w+2x=5y+7z"</p>
+<p>8868</p>
+<p>-1</p>
+<p>2582</p>
+<p>4260</p>
+<p>Returns: 8063.0</p></div></li><li><div><p>"6w+9x=5y+4z"</p>
+<p>63</p>
+<p>-1</p>
+<p>4943</p>
+<p>6336</p>
+<p>Returns: 5520.111111111111</p></div></li><li><div><p>"6w+2x=7y+8z"</p>
+<p>-1</p>
+<p>503</p>
+<p>6895</p>
+<p>3831</p>
+<p>Returns: 12984.5</p></div></li><li><div><p>"6w+8x=9y+5z"</p>
+<p>-1</p>
+<p>2012</p>
+<p>4261</p>
+<p>9869</p>
+<p>Returns: 11933.0</p></div></li><li><div><p>"9w+2x=8y+1z"</p>
+<p>-1</p>
+<p>2578</p>
+<p>6652</p>
+<p>1304</p>
+<p>Returns: 5484.888888888889</p></div></li><li><div><p>"7w+6x=3y+9z"</p>
+<p>4543</p>
+<p>-1</p>
+<p>9492</p>
+<p>2695</p>
+<p>Returns: 3488.3333333333335</p></div></li><li><div><p>"7w+4x=2y+2z"</p>
+<p>9305</p>
+<p>-1</p>
+<p>5102</p>
+<p>8514</p>
+<p>Returns: -9475.75</p></div></li><li><div><p>"5w+1x=8y+3z"</p>
+<p>1902</p>
+<p>-1</p>
+<p>6319</p>
+<p>3288</p>
+<p>Returns: 50906.0</p></div></li><li><div><p>"4w+1x=9y+1z"</p>
+<p>3085</p>
+<p>1433</p>
+<p>2770</p>
+<p>-1</p>
+<p>Returns: -11157.0</p></div></li><li><div><p>"1w+1x=6y+1z"</p>
+<p>-1</p>
+<p>8303</p>
+<p>1333</p>
+<p>1932</p>
+<p>Returns: 1627.0</p></div></li><li><div><p>"3w+1x=8y+2z"</p>
+<p>-1</p>
+<p>4113</p>
+<p>6541</p>
+<p>62</p>
+<p>Returns: 16113.0</p></div></li><li><div><p>"9w+2x=8y+1z"</p>
+<p>8425</p>
+<p>5343</p>
+<p>7240</p>
+<p>-1</p>
+<p>Returns: 28591.0</p></div></li><li><div><p>"2w+9x=4y+1z"</p>
+<p>-1</p>
+<p>4797</p>
+<p>1766</p>
+<p>2744</p>
+<p>Returns: -16682.5</p></div></li><li><div><p>"2w+4x=9y+4z"</p>
+<p>1029</p>
+<p>8269</p>
+<p>2371</p>
+<p>-1</p>
+<p>Returns: 3448.75</p></div></li><li><div><p>"7w+8x=3y+4z"</p>
+<p>7705</p>
+<p>7051</p>
+<p>9167</p>
+<p>-1</p>
+<p>Returns: 20710.5</p></div></li><li><div><p>"1w+5x=2y+4z"</p>
+<p>6223</p>
+<p>7238</p>
+<p>5967</p>
+<p>-1</p>
+<p>Returns: 7619.75</p></div></li><li><div><p>"2w+9x=6y+4z"</p>
+<p>2228</p>
+<p>9561</p>
+<p>1457</p>
+<p>-1</p>
+<p>Returns: 20440.75</p></div></li><li><div><p>"3w+1x=3y+6z"</p>
+<p>7959</p>
+<p>1400</p>
+<p>-1</p>
+<p>9199</p>
+<p>Returns: -9972.333333333334</p></div></li><li><div><p>"5w+1x=2y+8z"</p>
+<p>-1</p>
+<p>4559</p>
+<p>7036</p>
+<p>2993</p>
+<p>Returns: 6691.4</p></div></li><li><div><p>"2w+5x=5y+4z"</p>
+<p>2049</p>
+<p>-1</p>
+<p>8352</p>
+<p>1185</p>
+<p>Returns: 8480.4</p></div></li><li><div><p>"5w+7x=3y+2z"</p>
+<p>-1</p>
+<p>623</p>
+<p>457</p>
+<p>5136</p>
+<p>Returns: 1456.4</p></div></li></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/2948/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"2948\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"2948\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"2948\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"2948\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"2948\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\n"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"LinearCombinations\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"You will be given a \u003cb xmlns=\\\"http://topcoder.com\\\"\u003eformula\u003c/b\u003e in the following form:\\n\\n\u003cpre xmlns=\\\"http://topcoder.com\\\"\u003e\\taw+bx=cy+dz,\u003c/pre\u003e\\n\\nwhere a, b, c and d are positive integers between 1 and 9 inclusive. You will also be given positive values for 3 of \u003cb xmlns=\\\"http://topcoder.com\\\"\u003ew\u003c/b\u003e, \u003cb xmlns=\\\"http://topcoder.com\\\"\u003ex\u003c/b\u003e, \u003cb xmlns=\\\"http://topcoder.com\\\"\u003ey\u003c/b\u003e, and \u003cb xmlns=\\\"http://topcoder.com\\\"\u003ez\u003c/b\u003e. The remaining value will be -1, denoting a blank. Return what value the blank must have (possibly 0 or negative) in order to satisfy the given formula.\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"LinearCombinations\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"computeValue\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String, int, int, int, int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"double\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"double computeValue(String formula, int w, int x, int y, int z)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Notes\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":\"The returned value must be accurate to within a relative or absolute value of 1E-9.\"}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"formula will contain exactly 11 characters.\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"formula will have the form (quotes for clarity) \\\"aw+bx=cy+dz\\\" where a,b,c,d are positive digits ('1'-'9').\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Exactly three of w, x, y, and z will be between 1 and 10000 inclusive.\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Exactly one of w, x, y, and z will be -1.\"}}]}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2w+3x=4y+5z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 10.0\u003c/p\u003e\\n\u003cp\u003e2w+3(1)=4(2)+5(3) so 2w + 3 = 23.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1w+1x=1y+1z\\\"\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003eReturns: 1.0\u003c/p\u003e\\n\u003cp\u003e1(1) + 1(1) = 1(1) + 1z so 2 = 1 + z.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"9w+9x=1y+1z\\\"\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003eReturns: 179999.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"9w+9x=8y+8z\\\"\u003c/p\u003e\\n\u003cp\u003e9999\u003c/p\u003e\\n\u003cp\u003e9996\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003eReturns: 22491.375\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"9w+8x=1y+9z\\\"\u003c/p\u003e\\n\u003cp\u003e729\u003c/p\u003e\\n\u003cp\u003e4096\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003eReturns: 4369.777777777777\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1w+2x=3y+4z\\\"\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1w+1x=7y+1z\\\"\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 0.14285714285714285\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1w+1x=9y+9z\\\"\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003eReturns: 179999.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"8\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1w+1x=2y+5z\\\"\u003c/p\u003e\\n\u003cp\u003e956\u003c/p\u003e\\n\u003cp\u003e4992\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e5977\u003c/p\u003e\\n\u003cp\u003eReturns: -11968.5\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"9\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1w+2x=3y+5z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e6706\u003c/p\u003e\\n\u003cp\u003e7213\u003c/p\u003e\\n\u003cp\u003e8898\u003c/p\u003e\\n\u003cp\u003eReturns: 52717.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"10\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"4w+5x=6y+8z\\\"\u003c/p\u003e\\n\u003cp\u003e6301\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e9732\u003c/p\u003e\\n\u003cp\u003e5419\u003c/p\u003e\\n\u003cp\u003eReturns: 15308.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"11\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"3w+2x=2y+1z\\\"\u003c/p\u003e\\n\u003cp\u003e3935\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e5464\u003c/p\u003e\\n\u003cp\u003e2099\u003c/p\u003e\\n\u003cp\u003eReturns: 611.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"12\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1w+7x=9y+2z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e9689\u003c/p\u003e\\n\u003cp\u003e4057\u003c/p\u003e\\n\u003cp\u003e1794\u003c/p\u003e\\n\u003cp\u003eReturns: -27722.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"13\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"9w+8x=8y+7z\\\"\u003c/p\u003e\\n\u003cp\u003e3044\u003c/p\u003e\\n\u003cp\u003e6353\u003c/p\u003e\\n\u003cp\u003e6088\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003eReturns: 4216.571428571428\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"14\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1w+6x=2y+9z\\\"\u003c/p\u003e\\n\u003cp\u003e8352\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e2126\u003c/p\u003e\\n\u003cp\u003e2424\u003c/p\u003e\\n\u003cp\u003eReturns: 2952.6666666666665\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"15\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"4w+9x=9y+8z\\\"\u003c/p\u003e\\n\u003cp\u003e7694\u003c/p\u003e\\n\u003cp\u003e7254\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e5248\u003c/p\u003e\\n\u003cp\u003eReturns: 6008.666666666667\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"16\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"7w+2x=7y+2z\\\"\u003c/p\u003e\\n\u003cp\u003e660\u003c/p\u003e\\n\u003cp\u003e244\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e5534\u003c/p\u003e\\n\u003cp\u003eReturns: -851.4285714285714\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"17\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"6w+4x=6y+4z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e198\u003c/p\u003e\\n\u003cp\u003e5561\u003c/p\u003e\\n\u003cp\u003e2106\u003c/p\u003e\\n\u003cp\u003eReturns: 6833.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"18\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1w+4x=9y+4z\\\"\u003c/p\u003e\\n\u003cp\u003e1707\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e8504\u003c/p\u003e\\n\u003cp\u003e6949\u003c/p\u003e\\n\u003cp\u003eReturns: 25656.25\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"19\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1w+6x=7y+9z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e6129\u003c/p\u003e\\n\u003cp\u003e2930\u003c/p\u003e\\n\u003cp\u003e6590\u003c/p\u003e\\n\u003cp\u003eReturns: 43046.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"20\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2w+3x=4y+5z\\\"\u003c/p\u003e\\n\u003cp\u003e845\u003c/p\u003e\\n\u003cp\u003e7749\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e9656\u003c/p\u003e\\n\u003cp\u003eReturns: -5835.75\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"21\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"5w+7x=4y+2z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e888\u003c/p\u003e\\n\u003cp\u003e2550\u003c/p\u003e\\n\u003cp\u003e8161\u003c/p\u003e\\n\u003cp\u003eReturns: 4061.2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"22\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"4w+2x=4y+8z\\\"\u003c/p\u003e\\n\u003cp\u003e2108\u003c/p\u003e\\n\u003cp\u003e8507\u003c/p\u003e\\n\u003cp\u003e9020\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003eReturns: -1329.25\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"23\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"3w+2x=4y+9z\\\"\u003c/p\u003e\\n\u003cp\u003e8958\u003c/p\u003e\\n\u003cp\u003e3844\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e1706\u003c/p\u003e\\n\u003cp\u003eReturns: 4802.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"24\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"6w+2x=5y+2z\\\"\u003c/p\u003e\\n\u003cp\u003e2005\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e9620\u003c/p\u003e\\n\u003cp\u003e6577\u003c/p\u003e\\n\u003cp\u003eReturns: 24612.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"25\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2w+4x=3y+1z\\\"\u003c/p\u003e\\n\u003cp\u003e9241\u003c/p\u003e\\n\u003cp\u003e2117\u003c/p\u003e\\n\u003cp\u003e8597\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003eReturns: 1159.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"26\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2w+1x=4y+5z\\\"\u003c/p\u003e\\n\u003cp\u003e1802\u003c/p\u003e\\n\u003cp\u003e1304\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e6525\u003c/p\u003e\\n\u003cp\u003eReturns: -6929.25\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"27\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"4w+2x=5y+1z\\\"\u003c/p\u003e\\n\u003cp\u003e5660\u003c/p\u003e\\n\u003cp\u003e3324\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e8504\u003c/p\u003e\\n\u003cp\u003eReturns: 4156.8\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"28\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"4w+4x=8y+5z\\\"\u003c/p\u003e\\n\u003cp\u003e1814\u003c/p\u003e\\n\u003cp\u003e5719\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e4036\u003c/p\u003e\\n\u003cp\u003eReturns: 1244.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"29\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"6w+1x=3y+6z\\\"\u003c/p\u003e\\n\u003cp\u003e647\u003c/p\u003e\\n\u003cp\u003e5381\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e9743\u003c/p\u003e\\n\u003cp\u003eReturns: -16398.333333333332\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"30\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"8w+7x=2y+2z\\\"\u003c/p\u003e\\n\u003cp\u003e9231\u003c/p\u003e\\n\u003cp\u003e1714\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e182\u003c/p\u003e\\n\u003cp\u003eReturns: 42741.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"31\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2w+1x=7y+5z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e1848\u003c/p\u003e\\n\u003cp\u003e5067\u003c/p\u003e\\n\u003cp\u003e1096\u003c/p\u003e\\n\u003cp\u003eReturns: 19550.5\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"32\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"5w+6x=7y+6z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e6126\u003c/p\u003e\\n\u003cp\u003e6137\u003c/p\u003e\\n\u003cp\u003e7349\u003c/p\u003e\\n\u003cp\u003eReturns: 10059.4\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"33\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"6w+6x=2y+3z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e1945\u003c/p\u003e\\n\u003cp\u003e5172\u003c/p\u003e\\n\u003cp\u003e3404\u003c/p\u003e\\n\u003cp\u003eReturns: 1481.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"34\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2w+1x=3y+6z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e1899\u003c/p\u003e\\n\u003cp\u003e2469\u003c/p\u003e\\n\u003cp\u003e1147\u003c/p\u003e\\n\u003cp\u003eReturns: 6195.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"35\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2w+2x=7y+6z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e6254\u003c/p\u003e\\n\u003cp\u003e2914\u003c/p\u003e\\n\u003cp\u003e6584\u003c/p\u003e\\n\u003cp\u003eReturns: 23697.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"36\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"6w+1x=5y+1z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e6188\u003c/p\u003e\\n\u003cp\u003e3746\u003c/p\u003e\\n\u003cp\u003e9608\u003c/p\u003e\\n\u003cp\u003eReturns: 3691.6666666666665\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"37\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"3w+2x=5y+7z\\\"\u003c/p\u003e\\n\u003cp\u003e8868\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e2582\u003c/p\u003e\\n\u003cp\u003e4260\u003c/p\u003e\\n\u003cp\u003eReturns: 8063.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"38\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"6w+9x=5y+4z\\\"\u003c/p\u003e\\n\u003cp\u003e63\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e4943\u003c/p\u003e\\n\u003cp\u003e6336\u003c/p\u003e\\n\u003cp\u003eReturns: 5520.111111111111\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"39\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"6w+2x=7y+8z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e503\u003c/p\u003e\\n\u003cp\u003e6895\u003c/p\u003e\\n\u003cp\u003e3831\u003c/p\u003e\\n\u003cp\u003eReturns: 12984.5\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"40\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"6w+8x=9y+5z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e2012\u003c/p\u003e\\n\u003cp\u003e4261\u003c/p\u003e\\n\u003cp\u003e9869\u003c/p\u003e\\n\u003cp\u003eReturns: 11933.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"41\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"9w+2x=8y+1z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e2578\u003c/p\u003e\\n\u003cp\u003e6652\u003c/p\u003e\\n\u003cp\u003e1304\u003c/p\u003e\\n\u003cp\u003eReturns: 5484.888888888889\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"42\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"7w+6x=3y+9z\\\"\u003c/p\u003e\\n\u003cp\u003e4543\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e9492\u003c/p\u003e\\n\u003cp\u003e2695\u003c/p\u003e\\n\u003cp\u003eReturns: 3488.3333333333335\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"43\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"7w+4x=2y+2z\\\"\u003c/p\u003e\\n\u003cp\u003e9305\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e5102\u003c/p\u003e\\n\u003cp\u003e8514\u003c/p\u003e\\n\u003cp\u003eReturns: -9475.75\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"44\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"5w+1x=8y+3z\\\"\u003c/p\u003e\\n\u003cp\u003e1902\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e6319\u003c/p\u003e\\n\u003cp\u003e3288\u003c/p\u003e\\n\u003cp\u003eReturns: 50906.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"45\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"4w+1x=9y+1z\\\"\u003c/p\u003e\\n\u003cp\u003e3085\u003c/p\u003e\\n\u003cp\u003e1433\u003c/p\u003e\\n\u003cp\u003e2770\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003eReturns: -11157.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"46\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1w+1x=6y+1z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e8303\u003c/p\u003e\\n\u003cp\u003e1333\u003c/p\u003e\\n\u003cp\u003e1932\u003c/p\u003e\\n\u003cp\u003eReturns: 1627.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"47\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"3w+1x=8y+2z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e4113\u003c/p\u003e\\n\u003cp\u003e6541\u003c/p\u003e\\n\u003cp\u003e62\u003c/p\u003e\\n\u003cp\u003eReturns: 16113.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"48\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"9w+2x=8y+1z\\\"\u003c/p\u003e\\n\u003cp\u003e8425\u003c/p\u003e\\n\u003cp\u003e5343\u003c/p\u003e\\n\u003cp\u003e7240\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003eReturns: 28591.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"49\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2w+9x=4y+1z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e4797\u003c/p\u003e\\n\u003cp\u003e1766\u003c/p\u003e\\n\u003cp\u003e2744\u003c/p\u003e\\n\u003cp\u003eReturns: -16682.5\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"50\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2w+4x=9y+4z\\\"\u003c/p\u003e\\n\u003cp\u003e1029\u003c/p\u003e\\n\u003cp\u003e8269\u003c/p\u003e\\n\u003cp\u003e2371\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003eReturns: 3448.75\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"51\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"7w+8x=3y+4z\\\"\u003c/p\u003e\\n\u003cp\u003e7705\u003c/p\u003e\\n\u003cp\u003e7051\u003c/p\u003e\\n\u003cp\u003e9167\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003eReturns: 20710.5\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"52\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"1w+5x=2y+4z\\\"\u003c/p\u003e\\n\u003cp\u003e6223\u003c/p\u003e\\n\u003cp\u003e7238\u003c/p\u003e\\n\u003cp\u003e5967\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003eReturns: 7619.75\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"53\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2w+9x=6y+4z\\\"\u003c/p\u003e\\n\u003cp\u003e2228\u003c/p\u003e\\n\u003cp\u003e9561\u003c/p\u003e\\n\u003cp\u003e1457\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003eReturns: 20440.75\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"54\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"3w+1x=3y+6z\\\"\u003c/p\u003e\\n\u003cp\u003e7959\u003c/p\u003e\\n\u003cp\u003e1400\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e9199\u003c/p\u003e\\n\u003cp\u003eReturns: -9972.333333333334\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"55\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"5w+1x=2y+8z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e4559\u003c/p\u003e\\n\u003cp\u003e7036\u003c/p\u003e\\n\u003cp\u003e2993\u003c/p\u003e\\n\u003cp\u003eReturns: 6691.4\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"56\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"2w+5x=5y+4z\\\"\u003c/p\u003e\\n\u003cp\u003e2049\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e8352\u003c/p\u003e\\n\u003cp\u003e1185\u003c/p\u003e\\n\u003cp\u003eReturns: 8480.4\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"57\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"5w+7x=3y+2z\\\"\u003c/p\u003e\\n\u003cp\u003e-1\u003c/p\u003e\\n\u003cp\u003e623\u003c/p\u003e\\n\u003cp\u003e457\u003c/p\u003e\\n\u003cp\u003e5136\u003c/p\u003e\\n\u003cp\u003eReturns: 1456.4\u003c/p\u003e\"}}]}]]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

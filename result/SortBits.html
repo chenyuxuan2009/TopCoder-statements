@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->SortBits<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div><pre xmlns="http://topcoder.com">Class name: SortBits
+Method name: countWays
+Parameters: String, int
+Returns: int
+
+TASK OVERVIEW:
+
+Given a String "bitStates" containing only 0's and 1's (zeros and ones) and an
+integer "intervalSize", your task is to determine the total number of different
+ways to sort the string using the minimum operations possible, given that the
+only operation permitted is reversing the order of "intervalSize" consecutive
+characters in the String bitStates.  "Ways" are considered to be unique if
+either the reversals are made at different positions or the reversals are made
+in different orders.
+
+A sorted string is a string in which all the 0's are grouped at the beginning
+of the String and all the 1's are grouped at the end.  0001111 is sorted,
+00111101 is not.
+
+For any string of length n and intervalSize k, there are exactly n - k + 1
+possible reversals that are allowed (unless k &gt; n, in which case no possible
+reversals are allowed).  Thus, for the string "10110" with intervalSize = 3,
+possible reversals include reversing the order of the first three, middle
+three, or last three digits to get "10110", "11100", and "10011", respectively.
+
+EXAMPLE #1:
+
+For example, if bitStates = "1101101" and intervalSize = 4, then four is the
+minimum number of reversals that lead to a completely sorted string
+("0011111").  There are exactly two ways that the string can be sorted using
+only four reversals where each reversal involves reversing the order of
+intervalSize consecutive characters:
+
+Way #1:
+"1101101" --&gt; (reverse positions 1 through 4) --&gt;
+"1011101" --&gt; (reverse positions 2 through 5) --&gt;
+"1111001" --&gt; (reverse positions 3 through 6) --&gt;
+"1100111" --&gt; (reverse positions 1 through 4) --&gt;
+"0011111" (done)
+
+Way #2:
+"1101101" --&gt; (reverse positions 2 through 5) --&gt;
+"1110101" --&gt; (reverse positions 1 through 4) --&gt;
+"0111101" --&gt; (reverse positions 4 through 7) --&gt;
+"0111011" --&gt; (reverse positions 2 through 5) --&gt;
+"0011111" (done)
+
+Thus, the method would return 2, since there are two ways the string can be
+sorted with the minimum number of reversals.  Note that you are NOT responsible
+for returning the minimum number of reversals needed to sort the string;
+instead, you must return the number ways the string can be sorted using that
+minimum number of reversals.
+
+EXAMPLE #2:
+
+Alternatively, if bitStates = "1010" and intervalSize = 2, then three is the
+minimum number of reversals that lead to a completely sorted string ("0011").
+There are exactly two ways to accomplish this:
+
+Way #1:
+"1010" --&gt; (reverse positions 3 through 4) --&gt;
+"1001" --&gt; (reverse positions 1 through 2) --&gt;
+"0101" --&gt; (reverse positions 2 through 3) --&gt;
+"0011" (done)
+
+Way #2:
+"1010" --&gt; (reverse positions 1 through 2) --&gt;
+"0110" --&gt; (reverse positions 3 through 4) --&gt;
+"0101" --&gt; (reverse positions 2 through 3) --&gt;
+"0011" (done)
+
+Thus, the method would return 2 in this case as well.  Note that Way #1 and Way
+#2 in this example consist of the same reversals, done in a different order.
+
+PROBLEM SUMMARY:
+
+Implement a class SortBits containing a method countWays.  The method takes the
+String bitStates and the integer intervalSize and returns the number of ways a
+sorted string can be achieved with a minimum number of reversals of
+intervalSize characters at a time.  If no reversals are necessary to sort
+bitStates, then there is only one way to the achieve the final sorted state, so
+the method should return 1.  If there is no way to sort the String with the
+allowed operations, the method should return -1.
+
+If intervalSize is larger than the length of the String bitStates, no reversals
+may be made.  In such a case, if bitStates is already sorted, then the method
+should return 1.  Otherwise, it should return -1.
+
+The method signature is:
+public int countWays (String bitStates, int intervalSize);
+
+Notes:
+-bitStates must be a String consisting of only the characters "0" and "1"
+between 1 and 10 characters in length, inclusive.
+-intervalSize must satisfy 1 &lt;= intervalSize &lt;= 10.
+-TopCoder will check the validity of the input.
+
+Examples:
+-If bitStates="101010" and intervalSize=4, there are 2 ways to finish in 5
+steps, so the method should return 2.
+-If bitStates="111011011" and intervalSize=6, there are 4 ways to finish in 6
+steps, so the method should return 4.
+-If bitStates="0111" and intervalSize=3, the string is already sorted, so the
+method should return 1.
+-If bitStates="0110" and intervalSize=4, the string cannot be sorted, so the
+method should return -1.
+</pre></div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>SortBits</span></dd><dt>Method:</dt><dd><span>countWays</span></dd><dt>Parameters:</dt><dd><span>String, int</span></dd><dt>Returns:</dt><dd><span>int</span></dd><dt>Method signature:</dt><dd><span>int countWays(String param0, int param1)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul></ul></div><div><h3>Examples</h3><ol></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/143/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"143\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"143\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"143\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"143\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"143\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\nf:T11fc,"])</script><script>self.__next_f.push([1,"\u003cpre xmlns=\"http://topcoder.com\"\u003eClass name: SortBits\nMethod name: countWays\nParameters: String, int\nReturns: int\n\nTASK OVERVIEW:\n\nGiven a String \"bitStates\" containing only 0's and 1's (zeros and ones) and an\ninteger \"intervalSize\", your task is to determine the total number of different\nways to sort the string using the minimum operations possible, given that the\nonly operation permitted is reversing the order of \"intervalSize\" consecutive\ncharacters in the String bitStates.  \"Ways\" are considered to be unique if\neither the reversals are made at different positions or the reversals are made\nin different orders.\n\nA sorted string is a string in which all the 0's are grouped at the beginning\nof the String and all the 1's are grouped at the end.  0001111 is sorted,\n00111101 is not.\n\nFor any string of length n and intervalSize k, there are exactly n - k + 1\npossible reversals that are allowed (unless k \u0026gt; n, in which case no possible\nreversals are allowed).  Thus, for the string \"10110\" with intervalSize = 3,\npossible reversals include reversing the order of the first three, middle\nthree, or last three digits to get \"10110\", \"11100\", and \"10011\", respectively.\n\nEXAMPLE #1:\n\nFor example, if bitStates = \"1101101\" and intervalSize = 4, then four is the\nminimum number of reversals that lead to a completely sorted string\n(\"0011111\").  There are exactly two ways that the string can be sorted using\nonly four reversals where each reversal involves reversing the order of\nintervalSize consecutive characters:\n\nWay #1:\n\"1101101\" --\u0026gt; (reverse positions 1 through 4) --\u0026gt;\n\"1011101\" --\u0026gt; (reverse positions 2 through 5) --\u0026gt;\n\"1111001\" --\u0026gt; (reverse positions 3 through 6) --\u0026gt;\n\"1100111\" --\u0026gt; (reverse positions 1 through 4) --\u0026gt;\n\"0011111\" (done)\n\nWay #2:\n\"1101101\" --\u0026gt; (reverse positions 2 through 5) --\u0026gt;\n\"1110101\" --\u0026gt; (reverse positions 1 through 4) --\u0026gt;\n\"0111101\" --\u0026gt; (reverse positions 4 through 7) --\u0026gt;\n\"0111011\" --\u0026gt; (reverse positions 2 through 5) --\u0026gt;\n\"0011111\" (done)\n\nThus, the method would return 2, since there are two ways the string can be\nsorted with the minimum number of reversals.  Note that you are NOT responsible\nfor returning the minimum number of reversals needed to sort the string;\ninstead, you must return the number ways the string can be sorted using that\nminimum number of reversals.\n\nEXAMPLE #2:\n\nAlternatively, if bitStates = \"1010\" and intervalSize = 2, then three is the\nminimum number of reversals that lead to a completely sorted string (\"0011\").\nThere are exactly two ways to accomplish this:\n\nWay #1:\n\"1010\" --\u0026gt; (reverse positions 3 through 4) --\u0026gt;\n\"1001\" --\u0026gt; (reverse positions 1 through 2) --\u0026gt;\n\"0101\" --\u0026gt; (reverse positions 2 through 3) --\u0026gt;\n\"0011\" (done)\n\nWay #2:\n\"1010\" --\u0026gt; (reverse positions 1 through 2) --\u0026gt;\n\"0110\" --\u0026gt; (reverse positions 3 through 4) --\u0026gt;\n\"0101\" --\u0026gt; (reverse positions 2 through 3) --\u0026gt;\n\"0011\" (done)\n\nThus, the method would return 2 in this case as well.  Note that Way #1 and Way\n#2 in this example consist of the same reversals, done in a different order.\n\nPROBLEM SUMMARY:\n\nImplement a class SortBits containing a method countWays.  The method takes the\nString bitStates and the integer intervalSize and returns the number of ways a\nsorted string can be achieved with a minimum number of reversals of\nintervalSize characters at a time.  If no reversals are necessary to sort\nbitStates, then there is only one way to the achieve the final sorted state, so\nthe method should return 1.  If there is no way to sort the String with the\nallowed operations, the method should return -1.\n\nIf intervalSize is larger than the length of the String bitStates, no reversals\nmay be made.  In such a case, if bitStates is already sorted, then the method\nshould return 1.  Otherwise, it should return -1.\n\nThe method signature is:\npublic int countWays (String bitStates, int intervalSize);\n\nNotes:\n-bitStates must be a String consisting of only the characters \"0\" and \"1\"\nbetween 1 and 10 characters in length, inclusive.\n-intervalSize must satisfy 1 \u0026lt;= intervalSize \u0026lt;= 10.\n-TopCoder will check the validity of the input.\n\nExamples:\n-If bitStates=\"101010\" and intervalSize=4, there are 2 ways to finish in 5\nsteps, so the method should return 2.\n-If bitStates=\"111011011\" and intervalSize=6, there are 4 ways to finish in 6\nsteps, so the method should return 4.\n-If bitStates=\"0111\" and intervalSize=3, the string is already sorted, so the\nmethod should return 1.\n-If bitStates=\"0110\" and intervalSize=4, the string cannot be sorted, so the\nmethod should return -1.\n\u003c/pre\u003e"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"SortBits\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"SortBits\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"countWays\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String, int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int countWays(String param0, int param1)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

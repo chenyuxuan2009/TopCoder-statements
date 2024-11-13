@@ -1,0 +1,276 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->MultiprocessorProgramming<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div><p xmlns="http://topcoder.com">
+As multiprocessor computers become more widespread in our lives, 
+it becomes more and more important to write parallel programs 
+that can solve tasks using several processors.
+</p>
+<p xmlns="http://topcoder.com">
+However, designing parallel programs is difficult for 
+many reasons. Let us consider two of them. First, some 
+amount of work cannot be parallelized and must therefore 
+be executed on a single processor. Besides that, when increasing the number
+of processors, the amount of work needed for synchronization increases. 
+We will assume that there is one special processor that controls the 
+execution and executes the unparallelizable part, and that 
+the increase in time due to synchronization is linear in the number of processors.
+</p>
+<p xmlns="http://topcoder.com">
+You are given <type>int</type>s <b>t0</b>, <b>tp</b>, and <b>ts</b>.  
+<b>t0</b> is the number of seconds needed for the execution of the 
+unparallelizable part.  <b>tp</b> is the number of seconds needed 
+for execution of the parallelizable part on a single processor.  
+<b>ts</b> is the number of seconds added to the synchronization time 
+for each additional processor.
+</p>
+<p xmlns="http://topcoder.com">
+The time needed to execute the whole task on one processor is <b>t0</b>+<b>tp</b>.
+The time needed to execute the whole task on n &gt; 1 processors is 
+max(<b>t0</b>, <b>tp</b>/(n-1) + <b>ts</b>*(n-1)). Here <b>tp</b>/(n-1) is a floating point number. 
+Return the number of processors needed to execute the task in minimal time. 
+If there are multiple solutions, return the smallest among them.
+</p></div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>MultiprocessorProgramming</span></dd><dt>Method:</dt><dd><span>optimalNumberOfProcessors</span></dd><dt>Parameters:</dt><dd><span>int, int, int</span></dd><dt>Returns:</dt><dd><span>long</span></dd><dt>Method signature:</dt><dd><span>long optimalNumberOfProcessors(int t0, int tp, int ts)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul><li><span>t0 will be between 1 and 109, inclusive.</span></li><li><span>tp will be between 1 and 109, inclusive.</span></li><li><span>ts will be between 1 and 109, inclusive.</span></li></ul></div><div><h3>Examples</h3><ol><li><div><p>1</p>
+<p>10</p>
+<p>1</p>
+<p>Returns: 4</p>
+<p>In this case the optimal number of processors is 4. The time needed to complete the task is max(1,10/3+1*3)=19/3.</p></div></li><li><div><p>8</p>
+<p>10</p>
+<p>1</p>
+<p>Returns: 3</p>
+<p>In this case the unparallelizable part is too large, so the optimal number of processors is 3. The time needed to complete the task is max(8,10/2+1*2)=8.</p></div></li><li><div><p>1</p>
+<p>10</p>
+<p>5</p>
+<p>Returns: 1</p>
+<p>In this case synchronization is too difficult, so parallelization is unreasonable.</p></div></li><li><div><p>1</p>
+<p>1000000000</p>
+<p>1</p>
+<p>Returns: 31624</p>
+<p></p></div></li><li><div><p>1000</p>
+<p>999</p>
+<p>1</p>
+<p>Returns: 2</p>
+<p></p></div></li><li><div><p>1000</p>
+<p>1000</p>
+<p>999</p>
+<p>Returns: 2</p>
+<p></p></div></li><li><div><p>81</p>
+<p>58</p>
+<p>8</p>
+<p>Returns: 2</p></div></li><li><div><p>612</p>
+<p>2</p>
+<p>8</p>
+<p>Returns: 2</p></div></li><li><div><p>247</p>
+<p>76</p>
+<p>70</p>
+<p>Returns: 2</p></div></li><li><div><p>8056</p>
+<p>4788</p>
+<p>10</p>
+<p>Returns: 2</p></div></li><li><div><p>7090</p>
+<p>5099</p>
+<p>60</p>
+<p>Returns: 2</p></div></li><li><div><p>7403</p>
+<p>5370</p>
+<p>640</p>
+<p>Returns: 2</p></div></li><li><div><p>57974</p>
+<p>68011</p>
+<p>6</p>
+<p>Returns: 3</p></div></li><li><div><p>64128</p>
+<p>11161</p>
+<p>94</p>
+<p>Returns: 2</p></div></li><li><div><p>43686</p>
+<p>49526</p>
+<p>882</p>
+<p>Returns: 3</p></div></li><li><div><p>88656</p>
+<p>64260</p>
+<p>5275</p>
+<p>Returns: 2</p></div></li><li><div><p>607883</p>
+<p>369740</p>
+<p>3</p>
+<p>Returns: 2</p></div></li><li><div><p>416520</p>
+<p>831568</p>
+<p>3</p>
+<p>Returns: 3</p></div></li><li><div><p>321329</p>
+<p>655719</p>
+<p>405</p>
+<p>Returns: 4</p></div></li><li><div><p>963804</p>
+<p>929852</p>
+<p>8751</p>
+<p>Returns: 2</p></div></li><li><div><p>667946</p>
+<p>990363</p>
+<p>10426</p>
+<p>Returns: 3</p></div></li><li><div><p>4511786</p>
+<p>5711700</p>
+<p>9</p>
+<p>Returns: 3</p></div></li><li><div><p>4314183</p>
+<p>2907204</p>
+<p>25</p>
+<p>Returns: 2</p></div></li><li><div><p>9506894</p>
+<p>7914971</p>
+<p>98</p>
+<p>Returns: 2</p></div></li><li><div><p>2975459</p>
+<p>2772130</p>
+<p>9388</p>
+<p>Returns: 2</p></div></li><li><div><p>7639165</p>
+<p>1657374</p>
+<p>34988</p>
+<p>Returns: 2</p></div></li><li><div><p>2642001</p>
+<p>1222618</p>
+<p>250963</p>
+<p>Returns: 2</p></div></li><li><div><p>10029649</p>
+<p>44482369</p>
+<p>7</p>
+<p>Returns: 6</p></div></li><li><div><p>63348534</p>
+<p>15864854</p>
+<p>5</p>
+<p>Returns: 2</p></div></li><li><div><p>87340276</p>
+<p>95080908</p>
+<p>634</p>
+<p>Returns: 3</p></div></li><li><div><p>30611580</p>
+<p>57017451</p>
+<p>734</p>
+<p>Returns: 3</p></div></li><li><div><p>15459890</p>
+<p>93521237</p>
+<p>57837</p>
+<p>Returns: 8</p></div></li><li><div><p>41747210</p>
+<p>45715858</p>
+<p>770616</p>
+<p>Returns: 3</p></div></li><li><div><p>7969643</p>
+<p>71218675</p>
+<p>1733237</p>
+<p>Returns: 7</p></div></li><li><div><p>352974246</p>
+<p>164429534</p>
+<p>6</p>
+<p>Returns: 2</p></div></li><li><div><p>201814298</p>
+<p>899959279</p>
+<p>47</p>
+<p>Returns: 6</p></div></li><li><div><p>795506370</p>
+<p>172884987</p>
+<p>282</p>
+<p>Returns: 2</p></div></li><li><div><p>531993718</p>
+<p>794543610</p>
+<p>5760</p>
+<p>Returns: 3</p></div></li><li><div><p>6404522</p>
+<p>427863884</p>
+<p>94347</p>
+<p>Returns: 68</p></div></li><li><div><p>55317727</p>
+<p>594560067</p>
+<p>402872</p>
+<p>Returns: 13</p></div></li><li><div><p>129280568</p>
+<p>600000746</p>
+<p>7882576</p>
+<p>Returns: 10</p></div></li><li><div><p>79802243</p>
+<p>402598517</p>
+<p>7120470</p>
+<p>Returns: 9</p></div></li><li><div><p>906216104</p>
+<p>927811713</p>
+<p>871</p>
+<p>Returns: 3</p></div></li><li><div><p>123910816</p>
+<p>451871627</p>
+<p>213</p>
+<p>Returns: 5</p></div></li><li><div><p>183361388</p>
+<p>778040178</p>
+<p>53</p>
+<p>Returns: 6</p></div></li><li><div><p>483848882</p>
+<p>643713062</p>
+<p>17</p>
+<p>Returns: 3</p></div></li><li><div><p>41796044</p>
+<p>397391667</p>
+<p>24</p>
+<p>Returns: 11</p></div></li><li><div><p>17628628</p>
+<p>759013518</p>
+<p>28</p>
+<p>Returns: 45</p></div></li><li><div><p>85679555</p>
+<p>893834648</p>
+<p>1</p>
+<p>Returns: 12</p></div></li><li><div><p>447186548</p>
+<p>887686544</p>
+<p>3</p>
+<p>Returns: 3</p></div></li><li><div><p>722215221</p>
+<p>834312405</p>
+<p>4</p>
+<p>Returns: 3</p></div></li><li><div><p>333511935</p>
+<p>978922496</p>
+<p>7</p>
+<p>Returns: 4</p></div></li><li><div><p>627080187</p>
+<p>776429229</p>
+<p>4</p>
+<p>Returns: 3</p></div></li><li><div><p>542659399</p>
+<p>806221805</p>
+<p>1</p>
+<p>Returns: 3</p></div></li><li><div><p>407439524</p>
+<p>698316020</p>
+<p>3</p>
+<p>Returns: 3</p></div></li><li><div><p>491964889</p>
+<p>903776156</p>
+<p>3</p>
+<p>Returns: 3</p></div></li><li><div><p>203307414</p>
+<p>588935199</p>
+<p>3</p>
+<p>Returns: 4</p></div></li><li><div><p>288181302</p>
+<p>405131831</p>
+<p>1</p>
+<p>Returns: 3</p></div></li><li><div><p>268150757</p>
+<p>625732579</p>
+<p>2</p>
+<p>Returns: 4</p></div></li><li><div><p>870482749</p>
+<p>895757080</p>
+<p>3</p>
+<p>Returns: 3</p></div></li><li><div><p>13617080</p>
+<p>901883228</p>
+<p>1</p>
+<p>Returns: 68</p></div></li><li><div><p>226946144</p>
+<p>822039352</p>
+<p>2</p>
+<p>Returns: 5</p></div></li><li><div><p>617412000</p>
+<p>732662830</p>
+<p>1</p>
+<p>Returns: 3</p></div></li><li><div><p>92612640</p>
+<p>588405357</p>
+<p>1</p>
+<p>Returns: 8</p></div></li><li><div><p>827068480</p>
+<p>879592708</p>
+<p>1</p>
+<p>Returns: 3</p></div></li><li><div><p>268356415</p>
+<p>557715043</p>
+<p>1</p>
+<p>Returns: 4</p></div></li><li><div><p>568940146</p>
+<p>863127854</p>
+<p>1</p>
+<p>Returns: 3</p></div></li><li><div><p>164057265</p>
+<p>721737293</p>
+<p>1</p>
+<p>Returns: 6</p></div></li><li><div><p>639926378</p>
+<p>715111455</p>
+<p>1</p>
+<p>Returns: 3</p></div></li><li><div><p>676591057</p>
+<p>937519782</p>
+<p>1</p>
+<p>Returns: 3</p></div></li><li><div><p>665133317</p>
+<p>809692458</p>
+<p>1</p>
+<p>Returns: 3</p></div></li><li><div><p>737658304</p>
+<p>874418307</p>
+<p>1</p>
+<p>Returns: 3</p></div></li><li><div><p>257378767</p>
+<p>909354792</p>
+<p>1</p>
+<p>Returns: 5</p></div></li><li><div><p>300</p>
+<p>5000</p>
+<p>2</p>
+<p>Returns: 21</p></div></li><li><div><p>1000000000</p>
+<p>1000000000</p>
+<p>1000000000</p>
+<p>Returns: 1</p></div></li><li><div><p>1000000000</p>
+<p>1000000000</p>
+<p>54545555</p>
+<p>Returns: 3</p></div></li><li><div><p>454</p>
+<p>455555555</p>
+<p>2222</p>
+<p>Returns: 454</p></div></li><li><div><p>105455511</p>
+<p>10045445</p>
+<p>2222</p>
+<p>Returns: 2</p></div></li><li><div><p>25</p>
+<p>100</p>
+<p>1</p>
+<p>Returns: 6</p></div></li><li><div><p>1</p>
+<p>12347628</p>
+<p>23884854</p>
+<p>Returns: 1</p></div></li></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/7502/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"7502\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"7502\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"7502\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"7502\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"7502\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\nf:T656,"])</script><script>self.__next_f.push([1,"\u003cp xmlns=\"http://topcoder.com\"\u003e\nAs multiprocessor computers become more widespread in our lives, \nit becomes more and more important to write parallel programs \nthat can solve tasks using several processors.\n\u003c/p\u003e\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nHowever, designing parallel programs is difficult for \nmany reasons. Let us consider two of them. First, some \namount of work cannot be parallelized and must therefore \nbe executed on a single processor. Besides that, when increasing the number\nof processors, the amount of work needed for synchronization increases. \nWe will assume that there is one special processor that controls the \nexecution and executes the unparallelizable part, and that \nthe increase in time due to synchronization is linear in the number of processors.\n\u003c/p\u003e\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nYou are given \u003ctype\u003eint\u003c/type\u003es \u003cb\u003et0\u003c/b\u003e, \u003cb\u003etp\u003c/b\u003e, and \u003cb\u003ets\u003c/b\u003e.  \n\u003cb\u003et0\u003c/b\u003e is the number of seconds needed for the execution of the \nunparallelizable part.  \u003cb\u003etp\u003c/b\u003e is the number of seconds needed \nfor execution of the parallelizable part on a single processor.  \n\u003cb\u003ets\u003c/b\u003e is the number of seconds added to the synchronization time \nfor each additional processor.\n\u003c/p\u003e\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nThe time needed to execute the whole task on one processor is \u003cb\u003et0\u003c/b\u003e+\u003cb\u003etp\u003c/b\u003e.\nThe time needed to execute the whole task on n \u0026gt; 1 processors is \nmax(\u003cb\u003et0\u003c/b\u003e, \u003cb\u003etp\u003c/b\u003e/(n-1) + \u003cb\u003ets\u003c/b\u003e*(n-1)). Here \u003cb\u003etp\u003c/b\u003e/(n-1) is a floating point number. \nReturn the number of processors needed to execute the task in minimal time. \nIf there are multiple solutions, return the smallest among them.\n\u003c/p\u003e"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"MultiprocessorProgramming\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"MultiprocessorProgramming\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"optimalNumberOfProcessors\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int, int, int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"long\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"long optimalNumberOfProcessors(int t0, int tp, int ts)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"t0 will be between 1 and 109, inclusive.\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"tp will be between 1 and 109, inclusive.\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"ts will be between 1 and 109, inclusive.\"}}]}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\\n\u003cp\u003eIn this case the optimal number of processors is 4. The time needed to complete the task is max(1,10/3+1*3)=19/3.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\\n\u003cp\u003eIn this case the unparallelizable part is too large, so the optimal number of processors is 3. The time needed to complete the task is max(8,10/2+1*2)=8.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003eIn this case synchronization is too difficult, so parallelization is unreasonable.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1000000000\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 31624\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1000\u003c/p\u003e\\n\u003cp\u003e999\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1000\u003c/p\u003e\\n\u003cp\u003e1000\u003c/p\u003e\\n\u003cp\u003e999\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e81\u003c/p\u003e\\n\u003cp\u003e58\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e612\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"8\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e247\u003c/p\u003e\\n\u003cp\u003e76\u003c/p\u003e\\n\u003cp\u003e70\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"9\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e8056\u003c/p\u003e\\n\u003cp\u003e4788\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"10\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e7090\u003c/p\u003e\\n\u003cp\u003e5099\u003c/p\u003e\\n\u003cp\u003e60\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"11\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e7403\u003c/p\u003e\\n\u003cp\u003e5370\u003c/p\u003e\\n\u003cp\u003e640\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"12\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e57974\u003c/p\u003e\\n\u003cp\u003e68011\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"13\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e64128\u003c/p\u003e\\n\u003cp\u003e11161\u003c/p\u003e\\n\u003cp\u003e94\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"14\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e43686\u003c/p\u003e\\n\u003cp\u003e49526\u003c/p\u003e\\n\u003cp\u003e882\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"15\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e88656\u003c/p\u003e\\n\u003cp\u003e64260\u003c/p\u003e\\n\u003cp\u003e5275\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"16\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e607883\u003c/p\u003e\\n\u003cp\u003e369740\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"17\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e416520\u003c/p\u003e\\n\u003cp\u003e831568\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"18\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e321329\u003c/p\u003e\\n\u003cp\u003e655719\u003c/p\u003e\\n\u003cp\u003e405\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"19\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e963804\u003c/p\u003e\\n\u003cp\u003e929852\u003c/p\u003e\\n\u003cp\u003e8751\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"20\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e667946\u003c/p\u003e\\n\u003cp\u003e990363\u003c/p\u003e\\n\u003cp\u003e10426\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"21\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e4511786\u003c/p\u003e\\n\u003cp\u003e5711700\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"22\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e4314183\u003c/p\u003e\\n\u003cp\u003e2907204\u003c/p\u003e\\n\u003cp\u003e25\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"23\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e9506894\u003c/p\u003e\\n\u003cp\u003e7914971\u003c/p\u003e\\n\u003cp\u003e98\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"24\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e2975459\u003c/p\u003e\\n\u003cp\u003e2772130\u003c/p\u003e\\n\u003cp\u003e9388\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"25\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e7639165\u003c/p\u003e\\n\u003cp\u003e1657374\u003c/p\u003e\\n\u003cp\u003e34988\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"26\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e2642001\u003c/p\u003e\\n\u003cp\u003e1222618\u003c/p\u003e\\n\u003cp\u003e250963\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"27\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10029649\u003c/p\u003e\\n\u003cp\u003e44482369\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"28\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e63348534\u003c/p\u003e\\n\u003cp\u003e15864854\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"29\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e87340276\u003c/p\u003e\\n\u003cp\u003e95080908\u003c/p\u003e\\n\u003cp\u003e634\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"30\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e30611580\u003c/p\u003e\\n\u003cp\u003e57017451\u003c/p\u003e\\n\u003cp\u003e734\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"31\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e15459890\u003c/p\u003e\\n\u003cp\u003e93521237\u003c/p\u003e\\n\u003cp\u003e57837\u003c/p\u003e\\n\u003cp\u003eReturns: 8\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"32\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e41747210\u003c/p\u003e\\n\u003cp\u003e45715858\u003c/p\u003e\\n\u003cp\u003e770616\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"33\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e7969643\u003c/p\u003e\\n\u003cp\u003e71218675\u003c/p\u003e\\n\u003cp\u003e1733237\u003c/p\u003e\\n\u003cp\u003eReturns: 7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"34\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e352974246\u003c/p\u003e\\n\u003cp\u003e164429534\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"35\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e201814298\u003c/p\u003e\\n\u003cp\u003e899959279\u003c/p\u003e\\n\u003cp\u003e47\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"36\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e795506370\u003c/p\u003e\\n\u003cp\u003e172884987\u003c/p\u003e\\n\u003cp\u003e282\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"37\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e531993718\u003c/p\u003e\\n\u003cp\u003e794543610\u003c/p\u003e\\n\u003cp\u003e5760\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"38\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e6404522\u003c/p\u003e\\n\u003cp\u003e427863884\u003c/p\u003e\\n\u003cp\u003e94347\u003c/p\u003e\\n\u003cp\u003eReturns: 68\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"39\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e55317727\u003c/p\u003e\\n\u003cp\u003e594560067\u003c/p\u003e\\n\u003cp\u003e402872\u003c/p\u003e\\n\u003cp\u003eReturns: 13\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"40\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e129280568\u003c/p\u003e\\n\u003cp\u003e600000746\u003c/p\u003e\\n\u003cp\u003e7882576\u003c/p\u003e\\n\u003cp\u003eReturns: 10\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"41\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e79802243\u003c/p\u003e\\n\u003cp\u003e402598517\u003c/p\u003e\\n\u003cp\u003e7120470\u003c/p\u003e\\n\u003cp\u003eReturns: 9\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"42\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e906216104\u003c/p\u003e\\n\u003cp\u003e927811713\u003c/p\u003e\\n\u003cp\u003e871\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"43\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e123910816\u003c/p\u003e\\n\u003cp\u003e451871627\u003c/p\u003e\\n\u003cp\u003e213\u003c/p\u003e\\n\u003cp\u003eReturns: 5\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"44\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e183361388\u003c/p\u003e\\n\u003cp\u003e778040178\u003c/p\u003e\\n\u003cp\u003e53\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"45\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e483848882\u003c/p\u003e\\n\u003cp\u003e643713062\u003c/p\u003e\\n\u003cp\u003e17\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"46\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e41796044\u003c/p\u003e\\n\u003cp\u003e397391667\u003c/p\u003e\\n\u003cp\u003e24\u003c/p\u003e\\n\u003cp\u003eReturns: 11\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"47\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e17628628\u003c/p\u003e\\n\u003cp\u003e759013518\u003c/p\u003e\\n\u003cp\u003e28\u003c/p\u003e\\n\u003cp\u003eReturns: 45\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"48\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e85679555\u003c/p\u003e\\n\u003cp\u003e893834648\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 12\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"49\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e447186548\u003c/p\u003e\\n\u003cp\u003e887686544\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"50\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e722215221\u003c/p\u003e\\n\u003cp\u003e834312405\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"51\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e333511935\u003c/p\u003e\\n\u003cp\u003e978922496\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"52\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e627080187\u003c/p\u003e\\n\u003cp\u003e776429229\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"53\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e542659399\u003c/p\u003e\\n\u003cp\u003e806221805\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"54\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e407439524\u003c/p\u003e\\n\u003cp\u003e698316020\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"55\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e491964889\u003c/p\u003e\\n\u003cp\u003e903776156\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"56\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e203307414\u003c/p\u003e\\n\u003cp\u003e588935199\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"57\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e288181302\u003c/p\u003e\\n\u003cp\u003e405131831\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"58\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e268150757\u003c/p\u003e\\n\u003cp\u003e625732579\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"59\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e870482749\u003c/p\u003e\\n\u003cp\u003e895757080\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"60\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e13617080\u003c/p\u003e\\n\u003cp\u003e901883228\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 68\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"61\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e226946144\u003c/p\u003e\\n\u003cp\u003e822039352\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: 5\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"62\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e617412000\u003c/p\u003e\\n\u003cp\u003e732662830\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"63\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e92612640\u003c/p\u003e\\n\u003cp\u003e588405357\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 8\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"64\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e827068480\u003c/p\u003e\\n\u003cp\u003e879592708\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"65\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e268356415\u003c/p\u003e\\n\u003cp\u003e557715043\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"66\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e568940146\u003c/p\u003e\\n\u003cp\u003e863127854\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"67\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e164057265\u003c/p\u003e\\n\u003cp\u003e721737293\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"68\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e639926378\u003c/p\u003e\\n\u003cp\u003e715111455\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"69\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e676591057\u003c/p\u003e\\n\u003cp\u003e937519782\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"70\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e665133317\u003c/p\u003e\\n\u003cp\u003e809692458\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"71\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e737658304\u003c/p\u003e\\n\u003cp\u003e874418307\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"72\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e257378767\u003c/p\u003e\\n\u003cp\u003e909354792\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 5\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"73\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e300\u003c/p\u003e\\n\u003cp\u003e5000\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: 21\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"74\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1000000000\u003c/p\u003e\\n\u003cp\u003e1000000000\u003c/p\u003e\\n\u003cp\u003e1000000000\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"75\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1000000000\u003c/p\u003e\\n\u003cp\u003e1000000000\u003c/p\u003e\\n\u003cp\u003e54545555\u003c/p\u003e\\n\u003cp\u003eReturns: 3\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"76\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e454\u003c/p\u003e\\n\u003cp\u003e455555555\u003c/p\u003e\\n\u003cp\u003e2222\u003c/p\u003e\\n\u003cp\u003eReturns: 454\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"77\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e105455511\u003c/p\u003e\\n\u003cp\u003e10045445\u003c/p\u003e\\n\u003cp\u003e2222\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"78\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e25\u003c/p\u003e\\n\u003cp\u003e100\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 6\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"79\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e12347628\u003c/p\u003e\\n\u003cp\u003e23884854\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}]]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

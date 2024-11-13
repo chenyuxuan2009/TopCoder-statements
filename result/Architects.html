@@ -1,0 +1,240 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->Architects<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div>As an architect you want to design a building. It will consist of <b xmlns="http://topcoder.com">n</b> boxes,
+stacked one on top of another (ok, you are not much of an architect). The boxes will
+each have a vertical height of 10, have the same ratio of width to length, all be
+oriented the same way, and
+have their centers on the same verical line (the elevator shaft).
+The bottom box will have its bottom exactly 
+fill the rectangular building lot which has a given <b xmlns="http://topcoder.com">width</b> and <b xmlns="http://topcoder.com">length</b>.
+So your design decision is just to decide on the sizes of the <b xmlns="http://topcoder.com">n</b> boxes.
+<p xmlns="http://topcoder.com">
+Structural integrity provides some constraints on your design. The support area
+of a box (other than the bottom box) is defined to be the common area between it 
+and the box below it. The following 2 rules must be satisfied.</p><ul xmlns="http://topcoder.com"><li>
+
+    The "overhang" rule" says that no point on the bottom of a box may be more 
+    than a distance of 50 from the box's support area. Here the crucial distance 
+    is the distance between a bottom corner of a box and the corresponding upper
+    corner of a smaller box on which it rests. </li><li>
+
+    The "strength rule" says that each box's support area must be big enough to 
+    support the volume of the box (its width times its length times 10) and of all the boxes above it. The total volume 
+    that can be supported by an area is <b>K</b>*area. The strength rule does not apply 
+    to the bottom box which rests on the ground.</li></ul>
+
+Here is a side view of a building made of 4 boxes. The X box must be supported
+by the area of the top of Y. The total of the volumes of X and Y must be 
+supported by the area at the bottom of Y. The total of the X,Y, and Z volumes
+must be supported by the area at the top of Q. X must not overhang Y by more than 50,
+and Z must not overhang Q by more than 50.<pre xmlns="http://topcoder.com">
+
+                   XXXXX
+                    YYY
+               ZZZZZZZZZZZZZ
+                QQQQQQQQQQQ
+</pre>
+
+Our design goal is to make the top floor (the roof) have as large an area as
+possible for our helipad and roof gardens. It may even be larger than our lot.
+Create a class Architect that 
+contains a method roofArea that is given <b xmlns="http://topcoder.com">width</b>, <b xmlns="http://topcoder.com">length</b>, <b xmlns="http://topcoder.com">n</b>, and <b xmlns="http://topcoder.com">K</b> and that
+returns the area of the largest roof possible. Return -1 if no building meets 
+all the requirements.
+</div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>Architects</span></dd><dt>Method:</dt><dd><span>roofArea</span></dd><dt>Parameters:</dt><dd><span>int, int, int, int</span></dd><dt>Returns:</dt><dd><span>double</span></dd><dt>Method signature:</dt><dd><span>double roofArea(int width, int length, int n, int K)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Notes</h3><ul><li>Your return value must have an absolute or relative error less than 1e-9.</li></ul></div><div><h3>Constraints</h3><ul><li><span>width and length will be between 1 and 5000, inclusive.</span></li><li><span>n will be between 1 and 100, inclusive.</span></li><li><span>K will be between 1 and 10000, inclusive.</span></li></ul></div><div><h3>Examples</h3><ol><li><div><p>1000</p>
+<p>1000</p>
+<p>2</p>
+<p>5</p>
+<p>Returns: -1.0</p>
+<p>
+
+   This building has just 2 boxes. The only support requirement is that the
+  area between them must be enough to support the volume of the top box. But
+  K is so low that the area of the bottom of a box cannot support its own volume,
+  so no building meets the requirements.
+
+</p></div></li><li><div><p>1000</p>
+<p>1000</p>
+<p>1</p>
+<p>5</p>
+<p>Returns: 1000000.0</p>
+<p>
+  
+   This building is a single box, supported by the ground. Its size must be
+ 1000 x 1000 to match the width and length of the lot.
+</p></div></li><li><div><p>6</p>
+<p>8</p>
+<p>2</p>
+<p>3000</p>
+<p>Returns: 5808.0</p>
+<p>
+
+   Here the overhang rule determines the size of the top box. The horizontal
+   distance from the center to a corner of the bottom box is 5. So the top
+   box can have its corner 55 from the center. So it can be 11 times as big 
+   linearly, and its area would then be 11*11*(6*8) = 5808. K is large enough
+   so that the support area of 48 can support the 58080 volume of the top box.
+</p></div></li><li><div><p>100</p>
+<p>200</p>
+<p>3</p>
+<p>40</p>
+<p>Returns: 52489.99599679679</p>
+<p>
+
+   The design is (approximately) 100 x 200 = 20,000 on the bottom, 
+   117.28 x 234.56 = 27,510 in 
+   the middle,  and 162 x 324 = 52,490 on top. The bottom box can then just 
+   barely support the top 2 boxes,
+   since their volume is 10*27,510 + 10*52,490 = 800,000 which requires a
+   support area of 800,000/40 = 20,000. The top box is easily supported by 
+   the box under it, but just barely satisfies the overhang rule. The horizontal
+   distance from the center to one of its corners is 131.125 while the distance 
+   from the center to a corner of the top box is 181.125, an overhang of 50.</p></div></li><li><div><p>1000</p>
+<p>1000</p>
+<p>100</p>
+<p>10000</p>
+<p>Returns: 3.457271320057437E7</p>
+<p></p></div></li><li><div><p>1</p>
+<p>1</p>
+<p>100</p>
+<p>11</p>
+<p>Returns: 3.944304526105059E-31</p>
+<p></p></div></li><li><div><p>10</p>
+<p>10</p>
+<p>10</p>
+<p>300</p>
+<p>Returns: 2287.3635709236396</p>
+<p></p></div></li><li><div><p>10</p>
+<p>10</p>
+<p>1</p>
+<p>10</p>
+<p>Returns: 100.0</p>
+<p></p></div></li><li><div><p>10</p>
+<p>10</p>
+<p>2</p>
+<p>10</p>
+<p>Returns: 100.0</p>
+<p></p></div></li><li><div><p>5000</p>
+<p>5000</p>
+<p>3</p>
+<p>10</p>
+<p>Returns: -1.0</p>
+<p></p></div></li><li><div><p>5000</p>
+<p>5000</p>
+<p>100</p>
+<p>10</p>
+<p>Returns: -1.0</p>
+<p></p></div></li><li><div><p>1</p>
+<p>1</p>
+<p>10</p>
+<p>11</p>
+<p>Returns: 5.131581182307066E-9</p>
+<p></p></div></li><li><div><p>1</p>
+<p>1</p>
+<p>100</p>
+<p>11</p>
+<p>Returns: 3.944304526105059E-31</p>
+<p></p></div></li><li><div><p>4999</p>
+<p>3</p>
+<p>10</p>
+<p>75</p>
+<p>Returns: 13575.230351140042</p>
+<p></p></div></li><li><div><p>1</p>
+<p>1</p>
+<p>100</p>
+<p>10000</p>
+<p>Returns: 906.6044494080761</p>
+<p></p></div></li><li><div><p>5000</p>
+<p>4999</p>
+<p>100</p>
+<p>10000</p>
+<p>Returns: 1.4399656894988048E8</p>
+<p></p></div></li><li><div><p>5000</p>
+<p>5000</p>
+<p>100</p>
+<p>10000</p>
+<p>Returns: 1.440085713374673E8</p>
+<p></p></div></li><li><div><p>17</p>
+<p>111</p>
+<p>7</p>
+<p>12</p>
+<p>Returns: 0.29120370370370363</p>
+<p></p></div></li><li><div><p>1162</p>
+<p>3599</p>
+<p>62</p>
+<p>2667</p>
+<p>Returns: 2.8552464655759886E7</p></div></li><li><div><p>3843</p>
+<p>250</p>
+<p>54</p>
+<p>3415</p>
+<p>Returns: 5424808.2075312305</p></div></li><li><div><p>3127</p>
+<p>553</p>
+<p>39</p>
+<p>2633</p>
+<p>Returns: 8344037.218917707</p></div></li><li><div><p>2761</p>
+<p>3006</p>
+<p>99</p>
+<p>3482</p>
+<p>Returns: 7.078527407258719E7</p></div></li><li><div><p>4572</p>
+<p>4883</p>
+<p>76</p>
+<p>3860</p>
+<p>Returns: 1.0045066826889175E8</p></div></li><li><div><p>2603</p>
+<p>2074</p>
+<p>35</p>
+<p>1348</p>
+<p>Returns: 2.206269237523116E7</p></div></li><li><div><p>3312</p>
+<p>620</p>
+<p>81</p>
+<p>714</p>
+<p>Returns: 4502116.1450331565</p></div></li><li><div><p>1789</p>
+<p>3753</p>
+<p>6</p>
+<p>7054</p>
+<p>Returns: 8426130.173917074</p></div></li><li><div><p>4874</p>
+<p>4846</p>
+<p>14</p>
+<p>1854</p>
+<p>Returns: 3.3399280047233723E7</p></div></li><li><div><p>1315</p>
+<p>3333</p>
+<p>61</p>
+<p>9458</p>
+<p>Returns: 3.1352029624960594E7</p></div></li><li><div><p>3957</p>
+<p>1222</p>
+<p>91</p>
+<p>6432</p>
+<p>Returns: 4.868859296954085E7</p></div></li><li><div><p>3646</p>
+<p>587</p>
+<p>49</p>
+<p>170</p>
+<p>Returns: 587352.8191156008</p></div></li><li><div><p>3694</p>
+<p>114</p>
+<p>51</p>
+<p>9557</p>
+<p>Returns: 2331360.817861364</p></div></li><li><div><p>4709</p>
+<p>3027</p>
+<p>95</p>
+<p>9317</p>
+<p>Returns: 1.0231603615957418E8</p></div></li><li><div><p>347</p>
+<p>2169</p>
+<p>90</p>
+<p>8645</p>
+<p>Returns: 1.8006254753502868E7</p></div></li><li><div><p>670</p>
+<p>1254</p>
+<p>75</p>
+<p>5970</p>
+<p>Returns: 2.0525545577459134E7</p></div></li><li><div><p>2035</p>
+<p>4302</p>
+<p>82</p>
+<p>8167</p>
+<p>Returns: 6.3916590328182146E7</p></div></li><li><div><p>4556</p>
+<p>4774</p>
+<p>31</p>
+<p>9683</p>
+<p>Returns: 4.602114915307121E7</p></div></li><li><div><p>2754</p>
+<p>1629</p>
+<p>15</p>
+<p>166</p>
+<p>Returns: 7247602.338271659</p></div></li><li><div><p>3727</p>
+<p>368</p>
+<p>74</p>
+<p>4331</p>
+<p>Returns: 1.1929328990457427E7</p></div></li></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/6865/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"6865\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"6865\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"6865\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"6865\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"6865\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\nf:Ta3d,"])</script><script>self.__next_f.push([1,"As an architect you want to design a building. It will consist of \u003cb xmlns=\"http://topcoder.com\"\u003en\u003c/b\u003e boxes,\nstacked one on top of another (ok, you are not much of an architect). The boxes will\neach have a vertical height of 10, have the same ratio of width to length, all be\noriented the same way, and\nhave their centers on the same verical line (the elevator shaft).\nThe bottom box will have its bottom exactly \nfill the rectangular building lot which has a given \u003cb xmlns=\"http://topcoder.com\"\u003ewidth\u003c/b\u003e and \u003cb xmlns=\"http://topcoder.com\"\u003elength\u003c/b\u003e.\nSo your design decision is just to decide on the sizes of the \u003cb xmlns=\"http://topcoder.com\"\u003en\u003c/b\u003e boxes.\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nStructural integrity provides some constraints on your design. The support area\nof a box (other than the bottom box) is defined to be the common area between it \nand the box below it. The following 2 rules must be satisfied.\u003c/p\u003e\u003cul xmlns=\"http://topcoder.com\"\u003e\u003cli\u003e\n\n    The \"overhang\" rule\" says that no point on the bottom of a box may be more \n    than a distance of 50 from the box's support area. Here the crucial distance \n    is the distance between a bottom corner of a box and the corresponding upper\n    corner of a smaller box on which it rests. \u003c/li\u003e\u003cli\u003e\n\n    The \"strength rule\" says that each box's support area must be big enough to \n    support the volume of the box (its width times its length times 10) and of all the boxes above it. The total volume \n    that can be supported by an area is \u003cb\u003eK\u003c/b\u003e*area. The strength rule does not apply \n    to the bottom box which rests on the ground.\u003c/li\u003e\u003c/ul\u003e\n\nHere is a side view of a building made of 4 boxes. The X box must be supported\nby the area of the top of Y. The total of the volumes of X and Y must be \nsupported by the area at the bottom of Y. The total of the X,Y, and Z volumes\nmust be supported by the area at the top of Q. X must not overhang Y by more than 50,\nand Z must not overhang Q by more than 50.\u003cpre xmlns=\"http://topcoder.com\"\u003e\n\n                   XXXXX\n                    YYY\n               ZZZZZZZZZZZZZ\n                QQQQQQQQQQQ\n\u003c/pre\u003e\n\nOur design goal is to make the top floor (the roof) have as large an area as\npossible for our helipad and roof gardens. It may even be larger than our lot.\nCreate a class Architect that \ncontains a method roofArea that is given \u003cb xmlns=\"http://topcoder.com\"\u003ewidth\u003c/b\u003e, \u003cb xmlns=\"http://topcoder.com\"\u003elength\u003c/b\u003e, \u003cb xmlns=\"http://topcoder.com\"\u003en\u003c/b\u003e, and \u003cb xmlns=\"http://topcoder.com\"\u003eK\u003c/b\u003e and that\nreturns the area of the largest roof possible. Return -1 if no building meets \nall the requirements.\n"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"Architects\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Architects\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"roofArea\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int, int, int, int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"double\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"double roofArea(int width, int length, int n, int K)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Notes\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":\"Your return value must have an absolute or relative error less than 1e-9.\"}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"width and length will be between 1 and 5000, inclusive.\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"n will be between 1 and 100, inclusive.\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"K will be between 1 and 10000, inclusive.\"}}]}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1000\u003c/p\u003e\\n\u003cp\u003e1000\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: -1.0\u003c/p\u003e\\n\u003cp\u003e\\n\\n   This building has just 2 boxes. The only support requirement is that the\\n  area between them must be enough to support the volume of the top box. But\\n  K is so low that the area of the bottom of a box cannot support its own volume,\\n  so no building meets the requirements.\\n\\n\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1000\u003c/p\u003e\\n\u003cp\u003e1000\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: 1000000.0\u003c/p\u003e\\n\u003cp\u003e\\n  \\n   This building is a single box, supported by the ground. Its size must be\\n 1000 x 1000 to match the width and length of the lot.\\n\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e3000\u003c/p\u003e\\n\u003cp\u003eReturns: 5808.0\u003c/p\u003e\\n\u003cp\u003e\\n\\n   Here the overhang rule determines the size of the top box. The horizontal\\n   distance from the center to a corner of the bottom box is 5. So the top\\n   box can have its corner 55 from the center. So it can be 11 times as big \\n   linearly, and its area would then be 11*11*(6*8) = 5808. K is large enough\\n   so that the support area of 48 can support the 58080 volume of the top box.\\n\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e100\u003c/p\u003e\\n\u003cp\u003e200\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e40\u003c/p\u003e\\n\u003cp\u003eReturns: 52489.99599679679\u003c/p\u003e\\n\u003cp\u003e\\n\\n   The design is (approximately) 100 x 200 = 20,000 on the bottom, \\n   117.28 x 234.56 = 27,510 in \\n   the middle,  and 162 x 324 = 52,490 on top. The bottom box can then just \\n   barely support the top 2 boxes,\\n   since their volume is 10*27,510 + 10*52,490 = 800,000 which requires a\\n   support area of 800,000/40 = 20,000. The top box is easily supported by \\n   the box under it, but just barely satisfies the overhang rule. The horizontal\\n   distance from the center to one of its corners is 131.125 while the distance \\n   from the center to a corner of the top box is 181.125, an overhang of 50.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1000\u003c/p\u003e\\n\u003cp\u003e1000\u003c/p\u003e\\n\u003cp\u003e100\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003eReturns: 3.457271320057437E7\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e100\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003eReturns: 3.944304526105059E-31\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e300\u003c/p\u003e\\n\u003cp\u003eReturns: 2287.3635709236396\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: 100.0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"8\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: 100.0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"9\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e5000\u003c/p\u003e\\n\u003cp\u003e5000\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: -1.0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"10\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e5000\u003c/p\u003e\\n\u003cp\u003e5000\u003c/p\u003e\\n\u003cp\u003e100\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: -1.0\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"11\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003eReturns: 5.131581182307066E-9\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"12\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e100\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003eReturns: 3.944304526105059E-31\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"13\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e4999\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e75\u003c/p\u003e\\n\u003cp\u003eReturns: 13575.230351140042\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"14\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e100\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003eReturns: 906.6044494080761\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"15\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e5000\u003c/p\u003e\\n\u003cp\u003e4999\u003c/p\u003e\\n\u003cp\u003e100\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003eReturns: 1.4399656894988048E8\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"16\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e5000\u003c/p\u003e\\n\u003cp\u003e5000\u003c/p\u003e\\n\u003cp\u003e100\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003eReturns: 1.440085713374673E8\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"17\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e17\u003c/p\u003e\\n\u003cp\u003e111\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003e12\u003c/p\u003e\\n\u003cp\u003eReturns: 0.29120370370370363\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"18\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1162\u003c/p\u003e\\n\u003cp\u003e3599\u003c/p\u003e\\n\u003cp\u003e62\u003c/p\u003e\\n\u003cp\u003e2667\u003c/p\u003e\\n\u003cp\u003eReturns: 2.8552464655759886E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"19\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3843\u003c/p\u003e\\n\u003cp\u003e250\u003c/p\u003e\\n\u003cp\u003e54\u003c/p\u003e\\n\u003cp\u003e3415\u003c/p\u003e\\n\u003cp\u003eReturns: 5424808.2075312305\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"20\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3127\u003c/p\u003e\\n\u003cp\u003e553\u003c/p\u003e\\n\u003cp\u003e39\u003c/p\u003e\\n\u003cp\u003e2633\u003c/p\u003e\\n\u003cp\u003eReturns: 8344037.218917707\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"21\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e2761\u003c/p\u003e\\n\u003cp\u003e3006\u003c/p\u003e\\n\u003cp\u003e99\u003c/p\u003e\\n\u003cp\u003e3482\u003c/p\u003e\\n\u003cp\u003eReturns: 7.078527407258719E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"22\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e4572\u003c/p\u003e\\n\u003cp\u003e4883\u003c/p\u003e\\n\u003cp\u003e76\u003c/p\u003e\\n\u003cp\u003e3860\u003c/p\u003e\\n\u003cp\u003eReturns: 1.0045066826889175E8\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"23\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e2603\u003c/p\u003e\\n\u003cp\u003e2074\u003c/p\u003e\\n\u003cp\u003e35\u003c/p\u003e\\n\u003cp\u003e1348\u003c/p\u003e\\n\u003cp\u003eReturns: 2.206269237523116E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"24\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3312\u003c/p\u003e\\n\u003cp\u003e620\u003c/p\u003e\\n\u003cp\u003e81\u003c/p\u003e\\n\u003cp\u003e714\u003c/p\u003e\\n\u003cp\u003eReturns: 4502116.1450331565\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"25\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1789\u003c/p\u003e\\n\u003cp\u003e3753\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003e7054\u003c/p\u003e\\n\u003cp\u003eReturns: 8426130.173917074\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"26\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e4874\u003c/p\u003e\\n\u003cp\u003e4846\u003c/p\u003e\\n\u003cp\u003e14\u003c/p\u003e\\n\u003cp\u003e1854\u003c/p\u003e\\n\u003cp\u003eReturns: 3.3399280047233723E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"27\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1315\u003c/p\u003e\\n\u003cp\u003e3333\u003c/p\u003e\\n\u003cp\u003e61\u003c/p\u003e\\n\u003cp\u003e9458\u003c/p\u003e\\n\u003cp\u003eReturns: 3.1352029624960594E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"28\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3957\u003c/p\u003e\\n\u003cp\u003e1222\u003c/p\u003e\\n\u003cp\u003e91\u003c/p\u003e\\n\u003cp\u003e6432\u003c/p\u003e\\n\u003cp\u003eReturns: 4.868859296954085E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"29\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3646\u003c/p\u003e\\n\u003cp\u003e587\u003c/p\u003e\\n\u003cp\u003e49\u003c/p\u003e\\n\u003cp\u003e170\u003c/p\u003e\\n\u003cp\u003eReturns: 587352.8191156008\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"30\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3694\u003c/p\u003e\\n\u003cp\u003e114\u003c/p\u003e\\n\u003cp\u003e51\u003c/p\u003e\\n\u003cp\u003e9557\u003c/p\u003e\\n\u003cp\u003eReturns: 2331360.817861364\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"31\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e4709\u003c/p\u003e\\n\u003cp\u003e3027\u003c/p\u003e\\n\u003cp\u003e95\u003c/p\u003e\\n\u003cp\u003e9317\u003c/p\u003e\\n\u003cp\u003eReturns: 1.0231603615957418E8\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"32\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e347\u003c/p\u003e\\n\u003cp\u003e2169\u003c/p\u003e\\n\u003cp\u003e90\u003c/p\u003e\\n\u003cp\u003e8645\u003c/p\u003e\\n\u003cp\u003eReturns: 1.8006254753502868E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"33\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e670\u003c/p\u003e\\n\u003cp\u003e1254\u003c/p\u003e\\n\u003cp\u003e75\u003c/p\u003e\\n\u003cp\u003e5970\u003c/p\u003e\\n\u003cp\u003eReturns: 2.0525545577459134E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"34\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e2035\u003c/p\u003e\\n\u003cp\u003e4302\u003c/p\u003e\\n\u003cp\u003e82\u003c/p\u003e\\n\u003cp\u003e8167\u003c/p\u003e\\n\u003cp\u003eReturns: 6.3916590328182146E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"35\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e4556\u003c/p\u003e\\n\u003cp\u003e4774\u003c/p\u003e\\n\u003cp\u003e31\u003c/p\u003e\\n\u003cp\u003e9683\u003c/p\u003e\\n\u003cp\u003eReturns: 4.602114915307121E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"36\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e2754\u003c/p\u003e\\n\u003cp\u003e1629\u003c/p\u003e\\n\u003cp\u003e15\u003c/p\u003e\\n\u003cp\u003e166\u003c/p\u003e\\n\u003cp\u003eReturns: 7247602.338271659\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"37\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3727\u003c/p\u003e\\n\u003cp\u003e368\u003c/p\u003e\\n\u003cp\u003e74\u003c/p\u003e\\n\u003cp\u003e4331\u003c/p\u003e\\n\u003cp\u003eReturns: 1.1929328990457427E7\u003c/p\u003e\"}}]}]]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->MorseEnc<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div><pre xmlns="http://topcoder.com">PROBLEM STATEMENT
+
+In the early days of communications, transmissions could only send Boolean data
+(on or off), and were sent manually.  Transmissions also had to be interpreted
+by humans - not computers.  Morse code (actually developed by Alfred Vail, not
+Samuel Morse as many people believe) was used to communicate.  This code was a
+collection of short pulses (dots) and longer pulses (dashes) and varying delays
+(short breaks for spaces between letters, longer breaks for word breaks).
+
+Create a class MorseEnc that contains the method encode, which takes a string
+argument that contains a message in alphanumerics ('A'-'Z', 'a'-'z' and '0'-'9'
+- all ranges inclusive) and spaces and returns a string representing the
+international Morse code representation of this message.  The representation
+should use the period ('.') character to represent a dot, the hyphen ('-')
+character to represent a dash, the space (' ') character to represent a letter
+break (used to separate encoded letters and numbers), and the slash ('/')
+character, surrounded by single spaces, to represent a word break (used to
+separate encoded words).
+
+
+DEFINITION
+Class: MorseEnc
+Method: encode
+Parameters: String
+Returns: String
+Method signature (be sure your method is public):  String encode(String message);
+
+International Morse code encodings for numbers and letters are as follows:
+
+A: .-      N: -.      0: -----
+B: -...    O: ---     1: .----
+C: -.-.    P: .--.    2: ..---
+D: -..     Q: --.-    3: ...--
+E: .       R: .-.     4: ....-
+F: ..-.    S: ...     5: .....
+G: --.     T: -       6: -....
+H: ....    U: ..-     7: --...
+I: ..      V: ...-    8: ---..
+J: .---    W: .--     9: ----.
+K: -.-     X: -..-
+L: .-..    Y: -.--
+M: --      Z: --..
+
+To save you some typing, here they are in a more usable form - you can copy and
+paste these into your source code if you wish:
+- Encodings for 'A' - 'Z' (inclusive and in alphabetical order) = { ".-",
+"-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..",
+"--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--",
+"-..-", "-.--", "--.." }
+- Encodings for '0' - '9' (inclusive and in numerical order) = { "-----",
+".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----." }
+
+
+NOTES
+- Morse code is NOT case sensitive.  The encoding for a capital and lower-case
+version of a letter are the same.  For example, the encoding for 'a' is ".-"
+which is also the encoding for 'A'.
+- Your result must neither start nor end with a space.
+- Your result must never contain two spaces in a row.
+- You can NOT have spaces within a letter's encoding.
+- You must have exactly one space between each letter's encoding.
+- For those who know Morse code: punctuation and full stops are NOT to be
+included.
+
+
+TopCoder will ensure the validity of the inputs.  Inputs are valid if all of
+the following criteria are met:
+- message will be between 1 and 50 characters in length.
+- message will neither start nor end with a space.
+- message will contain only letters ('A'-'Z' and 'a'-'z' inclusive), numbers
+('0'-'9', inclusive) and spaces.
+- message will not contain more than one space in a row.
+
+
+EXAMPLES
+
+In each of these examples, quotes ('"') and parenthesis ('(' and ')') are
+included for clarity only.  They are never part of the input or output.
+
+Example #1)
+message = "SOS"
+return "... --- ..."
+
+Example #2)
+message = "After you"
+return ".- ..-. - . .-. / -.-- --- ..-"
+
+Example #3)
+message = "Four score and 7 years ago"
+return "..-. --- ..- .-. / ... -.-. --- .-. . / .- -. -.. / --... / -.-- . .-
+.-. ... / .- --. ---"
+
+Example #4)
+message = "abcdefghijklmnopqrstuvwxyz"
+return ".- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- -. --- .--. --.-
+.-. ... - ..- ...- .-- -..- -.-- --.."
+</pre></div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>MorseEnc</span></dd><dt>Method:</dt><dd><span>encode</span></dd><dt>Parameters:</dt><dd><span>String</span></dd><dt>Returns:</dt><dd><span>String</span></dd><dt>Method signature:</dt><dd><span>String encode(String param0)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul></ul></div><div><h3>Examples</h3><ol></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/551/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"551\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"551\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"551\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"551\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"551\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\n"])</script><script>self.__next_f.push([1,"f:Tee5,"])</script><script>self.__next_f.push([1,"\u003cpre xmlns=\"http://topcoder.com\"\u003ePROBLEM STATEMENT\n\nIn the early days of communications, transmissions could only send Boolean data\n(on or off), and were sent manually.  Transmissions also had to be interpreted\nby humans - not computers.  Morse code (actually developed by Alfred Vail, not\nSamuel Morse as many people believe) was used to communicate.  This code was a\ncollection of short pulses (dots) and longer pulses (dashes) and varying delays\n(short breaks for spaces between letters, longer breaks for word breaks).\n\nCreate a class MorseEnc that contains the method encode, which takes a string\nargument that contains a message in alphanumerics ('A'-'Z', 'a'-'z' and '0'-'9'\n- all ranges inclusive) and spaces and returns a string representing the\ninternational Morse code representation of this message.  The representation\nshould use the period ('.') character to represent a dot, the hyphen ('-')\ncharacter to represent a dash, the space (' ') character to represent a letter\nbreak (used to separate encoded letters and numbers), and the slash ('/')\ncharacter, surrounded by single spaces, to represent a word break (used to\nseparate encoded words).\n\n\nDEFINITION\nClass: MorseEnc\nMethod: encode\nParameters: String\nReturns: String\nMethod signature (be sure your method is public):  String encode(String message);\n\nInternational Morse code encodings for numbers and letters are as follows:\n\nA: .-      N: -.      0: -----\nB: -...    O: ---     1: .----\nC: -.-.    P: .--.    2: ..---\nD: -..     Q: --.-    3: ...--\nE: .       R: .-.     4: ....-\nF: ..-.    S: ...     5: .....\nG: --.     T: -       6: -....\nH: ....    U: ..-     7: --...\nI: ..      V: ...-    8: ---..\nJ: .---    W: .--     9: ----.\nK: -.-     X: -..-\nL: .-..    Y: -.--\nM: --      Z: --..\n\nTo save you some typing, here they are in a more usable form - you can copy and\npaste these into your source code if you wish:\n- Encodings for 'A' - 'Z' (inclusive and in alphabetical order) = { \".-\",\n\"-...\", \"-.-.\", \"-..\", \".\", \"..-.\", \"--.\", \"....\", \"..\", \".---\", \"-.-\", \".-..\",\n\"--\", \"-.\", \"---\", \".--.\", \"--.-\", \".-.\", \"...\", \"-\", \"..-\", \"...-\", \".--\",\n\"-..-\", \"-.--\", \"--..\" }\n- Encodings for '0' - '9' (inclusive and in numerical order) = { \"-----\",\n\".----\", \"..---\", \"...--\", \"....-\", \".....\", \"-....\", \"--...\", \"---..\", \"----.\" }\n\n\nNOTES\n- Morse code is NOT case sensitive.  The encoding for a capital and lower-case\nversion of a letter are the same.  For example, the encoding for 'a' is \".-\"\nwhich is also the encoding for 'A'.\n- Your result must neither start nor end with a space.\n- Your result must never contain two spaces in a row.\n- You can NOT have spaces within a letter's encoding.\n- You must have exactly one space between each letter's encoding.\n- For those who know Morse code: punctuation and full stops are NOT to be\nincluded.\n\n\nTopCoder will ensure the validity of the inputs.  Inputs are valid if all of\nthe following criteria are met:\n- message will be between 1 and 50 characters in length.\n- message will neither start nor end with a space.\n- message will contain only letters ('A'-'Z' and 'a'-'z' inclusive), numbers\n('0'-'9', inclusive) and spaces.\n- message will not contain more than one space in a row.\n\n\nEXAMPLES\n\nIn each of these examples, quotes ('\"') and parenthesis ('(' and ')') are\nincluded for clarity only.  They are never part of the input or output.\n\nExample #1)\nmessage = \"SOS\"\nreturn \"... --- ...\"\n\nExample #2)\nmessage = \"After you\"\nreturn \".- ..-. - . .-. / -.-- --- ..-\"\n\nExample #3)\nmessage = \"Four score and 7 years ago\"\nreturn \"..-. --- ..- .-. / ... -.-. --- .-. . / .- -. -.. / --... / -.-- . .-\n.-. ... / .- --. ---\"\n\nExample #4)\nmessage = \"abcdefghijklmnopqrstuvwxyz\"\nreturn \".- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- -. --- .--. --.-\n.-. ... - ..- ...- .-- -..- -.-- --..\"\n\u003c/pre\u003e"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"MorseEnc\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"MorseEnc\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"encode\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String encode(String param0)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

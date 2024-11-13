@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->TwentyOne<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div><pre xmlns="http://topcoder.com">PROBLEM STATEMENT:
+
+TwentyOne is a counting game where the goal is to avoid saying 21.  The game
+goes as follows:
+* Assume N people are playing and the N people are numbered 0 through N - 1.
+* Each player counts one, two, or three consecutive integers starting with 
+  the number one greater than the last number said by the previous player, 
+  or starting with 1 if it is the first turn of the game.
+* Play starts with an arbitrary Player p and the number 1.  Play proceeds to
+  Player (p + 1) % N, then Player (p + 2) % N, etc...
+* The player who counts 21 loses.
+
+For example, suppose there are three people playing and play starts with Player
+0.  The game may go on like this:
+Player 0 says "1, 2, 3"
+Player 1 says "4, 5"
+Player 2 says "6"
+Player 0 says "7, 8, 9"
+Player 1 says "10, 11, 12"
+Player 2 says "13"
+Player 0 says "14"
+Player 1 says "15, 16"
+Player 2 says "17, 18"
+Player 0 says "19, 20"
+Player 1 says "21" and loses.
+
+You have become overly obsessed with TwentyOne and go around challenging your
+friends to the game to prove you are smarter than them. It is thus very
+important that you do not lose.  To help in your quest to be the TwentyOne
+champion, you have decided to write a program which recommends to you which
+numbers you should say on your turn.
+
+Before playing a game, you determine the skill levels of your competitors. The
+competitors either have a skill level of 0 or 1:
+* A skill level of 0 implies the player always chooses how many numbers to
+  say at random.  That is, there is a 1/3 chance the player will say one 
+  number, a 1/3 chance the player will say two numbers, and a 1/3 chance 
+  the player will say three numbers.  Even if saying two or three numbers
+  involves saying 21 or counting past 21, the chances of the player saying
+  one, two, or three numbers are all 1/3.
+* A skill level of 1 implies the player always says the number of numbers
+  that minimizes his chances of losing.  The player determines which
+  numbers to say using the same technique your program should use.
+
+You are player 0 and your skill level is 1.  
+
+Your program assumes it is your turn, inputs the last number said by the
+previous player, and the skill levels of all players and outputs the numbers
+you should say on the current turn to minimize your chances of losing.
+
+DEFINITION:
+Class Name: TwentyOne
+Method Name: getBestOption
+Parameters: int, int[]
+Returns: int[]
+Method Signature (be sure your method is public): 
+  int[] getBestOption(int lastNumber, int[] skillLevels);
+
+TOPCODER WILL ENSURE:
+* lastNumber is between 0 and 20, inclusive.
+* skillLevels contains between 2 and 10 elements, inclusive, and all 
+  elements are either 0 or 1.
+* skillLevels[0] = 1.  (Your skill level is 1).
+
+NOTES:
+* The number of elements in skillLevels is the number of players.
+* skillLevels[i] corresponds to the skill level of player number i.
+* When other players with skill level 1 are calculating what they 
+  will say, they use the same values for the skills of the other 
+  players as you.  They all know your skill level is 1.
+* lastNumber = 0 implies you are going first and must start counting
+  with the number 1.
+* If more than one option yields the same chance of losing, you 
+  (and the other players with skill levels 1) always say the fewest
+  numbers corresponding with this lowest repeated chance of losing.  
+* If a player with skill level 0 must start counting at 19, 20 or 21,
+  there is still a 1/3 chance they will say 1 number, a 1/3 chance they
+  will say 2 numbers, and a 1/3 chance they will say 3 numbers.  That 
+  is, they may count past 21.
+
+EXAMPLES:
+
+EXAMPLE 1:
+If lastNumber = 17, and skillLevels = {1, 0, 0}
+
+If you say 1 number, 18:
+There is a 1/3 chance player 1 will say 19.  If this occurs, there is a 1/3
+chance player 2 will say 20 (in which case you would have to say 21 and lose).
+There is a 1/3 chance player 1 will say 19, 20 in which case you will not lose.
+And there is a 1/3 chance player 1 will say 19, 20, 21 in which case you will
+not lose.
+Thus there is a 1/3 * 1/3 = 1 / 9 chance of you losing if you say 1 number.
+
+If you say 2 numbers, 18 and 19, there is no chance you will lose because
+either player 1 or player 2 will be forced to say 21.
+
+If you say 3 numbers, there is no chance you will lose.
+
+Saying 2 or 3 numbers yields the same results, so the program outputs {18, 19}.
+
+EXAMPLE 2:
+If lastNumber = 16, and skillLevels = {1, 0, 1}
+
+If you say 1 number, 17:
+There is a 1/3 chance player 1 will say 18.  In this case, player 2 will not
+lose if he says 1 or two numbers, so he says 19 and you can say 20 forcing
+player 1 to lose.
+There is a 1/3 chance player 1 will say 18, 19.  In this case, player 2 will
+say 20, and you will lose.
+There is a 1/3 chance player 1 will say 18, 19, 20.  In this case, player 1
+will lose.
+Thus there is a 1/3 * 1/3 = 1/9 chance of your losing if you say 1 number.
+
+If you say 2 numbers, 17, 18:
+There is a 1/3 chance player 1 will say 19.  In this case, player 2 will say
+20, and you will lose.
+There is a 1/3 chance player 1 will say 19, 20.  In this case player 2 will lose.
+There is a 1/3 chance player 1 will say 19, 20, 21.  In this case player 1 will
+lose.
+Thus there is a 1/3 * 1/3 = 1/9 chance of you losing if you say 2 numbers.
+
+If you say 3 numbers, 17, 18, 19:
+There is no chance of your losing.
+
+Thus you the program outputs {17, 18, 19}
+
+EXAMPLE 3:
+If lastNumber = 1, and skillLevels = {1, 1, 0, 0, 1}, the program outputs {2}.
+
+EXAMPLE 4:
+If lastNumber = 18, and skillLevels = {1, 0}.
+If you say 19, there is a 1/3 chance Player 1 will say 20, in which case you
+lose.
+  there is a 1/3 chance Player 1 will say 20, 21, in which case he loses.
+there is a 1/3 chance Player 1 will say 20, 21, 22, in which case he also
+loses.
+Thus there is a 1/3 chance of your losing.
+If you say 19, 20, Player 1 will lose.  If you say 19, 20, 21, you lose.
+Thus, the program outputs: {19, 20}.
+
+EXAMPLE 5:
+If lastNumber = 3, and skillLevels = {1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, the
+program outputs {4}.
+
+EXAMPLE 6:
+If lastNumber = 2, and skillLevels = {1, 0, 0, 1, 1, 1}, the program outputs
+{3, 4, 5}.
+
+EXAMPLE 7:
+If lastNumber = 15, and skillLevels = {1, 0, 1, 0, 0}, the program outputs {16,
+17}.</pre></div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>TwentyOne</span></dd><dt>Method:</dt><dd><span>getBestOption</span></dd><dt>Parameters:</dt><dd><span>int, int[]</span></dd><dt>Returns:</dt><dd><span>int[]</span></dd><dt>Method signature:</dt><dd><span>int[] getBestOption(int param0, int[] param1)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul></ul></div><div><h3>Examples</h3><ol></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/641/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"641\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"641\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"641\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"641\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"641\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\nf:T185e,"])</script><script>self.__next_f.push([1,"\u003cpre xmlns=\"http://topcoder.com\"\u003ePROBLEM STATEMENT:\n\nTwentyOne is a counting game where the goal is to avoid saying 21.  The game\ngoes as follows:\n* Assume N people are playing and the N people are numbered 0 through N - 1.\n* Each player counts one, two, or three consecutive integers starting with \n  the number one greater than the last number said by the previous player, \n  or starting with 1 if it is the first turn of the game.\n* Play starts with an arbitrary Player p and the number 1.  Play proceeds to\n  Player (p + 1) % N, then Player (p + 2) % N, etc...\n* The player who counts 21 loses.\n\nFor example, suppose there are three people playing and play starts with Player\n0.  The game may go on like this:\nPlayer 0 says \"1, 2, 3\"\nPlayer 1 says \"4, 5\"\nPlayer 2 says \"6\"\nPlayer 0 says \"7, 8, 9\"\nPlayer 1 says \"10, 11, 12\"\nPlayer 2 says \"13\"\nPlayer 0 says \"14\"\nPlayer 1 says \"15, 16\"\nPlayer 2 says \"17, 18\"\nPlayer 0 says \"19, 20\"\nPlayer 1 says \"21\" and loses.\n\nYou have become overly obsessed with TwentyOne and go around challenging your\nfriends to the game to prove you are smarter than them. It is thus very\nimportant that you do not lose.  To help in your quest to be the TwentyOne\nchampion, you have decided to write a program which recommends to you which\nnumbers you should say on your turn.\n\nBefore playing a game, you determine the skill levels of your competitors. The\ncompetitors either have a skill level of 0 or 1:\n* A skill level of 0 implies the player always chooses how many numbers to\n  say at random.  That is, there is a 1/3 chance the player will say one \n  number, a 1/3 chance the player will say two numbers, and a 1/3 chance \n  the player will say three numbers.  Even if saying two or three numbers\n  involves saying 21 or counting past 21, the chances of the player saying\n  one, two, or three numbers are all 1/3.\n* A skill level of 1 implies the player always says the number of numbers\n  that minimizes his chances of losing.  The player determines which\n  numbers to say using the same technique your program should use.\n\nYou are player 0 and your skill level is 1.  \n\nYour program assumes it is your turn, inputs the last number said by the\nprevious player, and the skill levels of all players and outputs the numbers\nyou should say on the current turn to minimize your chances of losing.\n\nDEFINITION:\nClass Name: TwentyOne\nMethod Name: getBestOption\nParameters: int, int[]\nReturns: int[]\nMethod Signature (be sure your method is public): \n  int[] getBestOption(int lastNumber, int[] skillLevels);\n\nTOPCODER WILL ENSURE:\n* lastNumber is between 0 and 20, inclusive.\n* skillLevels contains between 2 and 10 elements, inclusive, and all \n  elements are either 0 or 1.\n* skillLevels[0] = 1.  (Your skill level is 1).\n\nNOTES:\n* The number of elements in skillLevels is the number of players.\n* skillLevels[i] corresponds to the skill level of player number i.\n* When other players with skill level 1 are calculating what they \n  will say, they use the same values for the skills of the other \n  players as you.  They all know your skill level is 1.\n* lastNumber = 0 implies you are going first and must start counting\n  with the number 1.\n* If more than one option yields the same chance of losing, you \n  (and the other players with skill levels 1) always say the fewest\n  numbers corresponding with this lowest repeated chance of losing.  \n* If a player with skill level 0 must start counting at 19, 20 or 21,\n  there is still a 1/3 chance they will say 1 number, a 1/3 chance they\n  will say 2 numbers, and a 1/3 chance they will say 3 numbers.  That \n  is, they may count past 21.\n\nEXAMPLES:\n\nEXAMPLE 1:\nIf lastNumber = 17, and skillLevels = {1, 0, 0}\n\nIf you say 1 number, 18:\nThere is a 1/3 chance player 1 will say 19.  If this occurs, there is a 1/3\nchance player 2 will say 20 (in which case you would have to say 21 and lose).\nThere is a 1/3 chance player 1 will say 19, 20 in which case you will not lose.\nAnd there is a 1/3 chance player 1 will say 19, 20, 21 in which case you will\nnot lose.\nThus there is a 1/3 * 1/3 = 1 / 9 chance of you losing if you say 1 number.\n\nIf you say 2 numbers, 18 and 19, there is no chance you will lose because\neither player 1 or player 2 will be forced to say 21.\n\nIf you say 3 numbers, there is no chance you will lose.\n\nSaying 2 or 3 numbers yields the same results, so the program outputs {18, 19}.\n\nEXAMPLE 2:\nIf lastNumber = 16, and skillLevels = {1, 0, 1}\n\nIf you say 1 number, 17:\nThere is a 1/3 chance player 1 will say 18.  In this case, player 2 will not\nlose if he says 1 or two numbers, so he says 19 and you can say 20 forcing\nplayer 1 to lose.\nThere is a 1/3 chance player 1 will say 18, 19.  In this case, player 2 will\nsay 20, and you will lose.\nThere is a 1/3 chance player 1 will say 18, 19, 20.  In this case, player 1\nwill lose.\nThus there is a 1/3 * 1/3 = 1/9 chance of your losing if you say 1 number.\n\nIf you say 2 numbers, 17, 18:\nThere is a 1/3 chance player 1 will say 19.  In this case, player 2 will say\n20, and you will lose.\nThere is a 1/3 chance player 1 will say 19, 20.  In this case player 2 will lose.\nThere is a 1/3 chance player 1 will say 19, 20, 21.  In this case player 1 will\nlose.\nThus there is a 1/3 * 1/3 = 1/9 chance of you losing if you say 2 numbers.\n\nIf you say 3 numbers, 17, 18, 19:\nThere is no chance of your losing.\n\nThus you the program outputs {17, 18, 19}\n\nEXAMPLE 3:\nIf lastNumber = 1, and skillLevels = {1, 1, 0, 0, 1}, the program outputs {2}.\n\nEXAMPLE 4:\nIf lastNumber = 18, and skillLevels = {1, 0}.\nIf you say 19, there is a 1/3 chance Player 1 will say 20, in which case you\nlose.\n  there is a 1/3 chance Player 1 will say 20, 21, in which case he loses.\nthere is a 1/3 chance Player 1 will say 20, 21, 22, in which case he also\nloses.\nThus there is a 1/3 chance of your losing.\nIf you say 19, 20, Player 1 will lose.  If you say 19, 20, 21, you lose.\nThus, the program outputs: {19, 20}.\n\nEXAMPLE 5:\nIf lastNumber = 3, and skillLevels = {1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, the\nprogram outputs {4}.\n\nEXAMPLE 6:\nIf lastNumber = 2, and skillLevels = {1, 0, 0, 1, 1, 1}, the program outputs\n{3, 4, 5}.\n\nEXAMPLE 7:\nIf lastNumber = 15, and skillLevels = {1, 0, 1, 0, 0}, the program outputs {16,\n17}.\u003c/pre\u003e"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"TwentyOne\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"TwentyOne\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"getBestOption\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int, int[]\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int[]\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int[] getBestOption(int param0, int[] param1)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

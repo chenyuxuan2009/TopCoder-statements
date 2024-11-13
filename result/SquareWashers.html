@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->SquareWashers<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div><p xmlns="http://topcoder.com">
+The engineers at Square Washers, Inc., need to improve production efficiency in order to catch up to their competition. Currently, whenever they make their square washers, they start with a rectangular prism of steel, choose an orientation for the washers (along the XY plane, XZ plane, or YZ plane), and chop away, hoping for the best. However, someone recently realized that one of these three planes of orientation may yield better results than the others. In addition, the remaining steel can be used to make more washers. Now, they need to figure out an algorithm to produce the most washers out of one rectangular prism. For the purposes of this problem, a rectangular prism is a 3-dimensional geometric shape with six sides, such that the angle between any two adjacent edges is a right angle.
+</p>
+<p xmlns="http://topcoder.com">
+Since these washers are square, and (for purposes of efficiency) since they don't care about the inside diameter, for all intents and purposes in this problem, a square washer may be treated as a rectangular prism of which at least two dimensions are equal. Further, once it is decided which plane to cut the washers on, as many washers as can be cut in that plane must be cut in that plane. For instance, if the block of steel was 7 x 11 x 3, and the washer size was 3 x 3 x 1 (diameter of 3, thickness of 1) (dimensions given in X x Y x Z order), and the plane used was the XY plane, then 18 washers would be cut in this plane (2 in the X dimension, 3 in the Y dimension, and 3 in the Z dimension). It would be illegal to cut less than 2 in the X dimension, less than 3 in the Y dimension, or less than 3 in the Z dimension.
+</p>
+<p xmlns="http://topcoder.com">
+You will be given the width, height, and depth of the block of steel, as well as the diameter and thickness of the washers that need to be produced. For purposes of this problem, assume the saw blades used are infinitesimally thin. You are to determine the maximum number of washers that can be produced.
+</p>
+<p xmlns="http://topcoder.com">
+In addition to reusing the remaining steel from the initial cutting, the remaining steel from each additional cutting should be used, until no more washers can be made from the remaining steel.
+</p></div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>SquareWashers</span></dd><dt>Method:</dt><dd><span>howMany</span></dd><dt>Parameters:</dt><dd><span>int, int, int, int, int</span></dd><dt>Returns:</dt><dd><span>long</span></dd><dt>Method signature:</dt><dd><span>long howMany(int wide, int high, int deep, int diameter, int thickness)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul><li><span>high will be between 1 and 10000, inclusive.</span></li><li><span>wide will be between 1 and 10000, inclusive.</span></li><li><span>deep will be between 1 and 10000, inclusive.</span></li><li><span>diameter will be between 1 and 10000, inclusive.</span></li><li><span>thickness will be between 1 and 10000, inclusive.</span></li><li><span>thickness will be less than or equal to diameter.</span></li></ul></div><div><h3>Examples</h3><ol><li><div><p>7</p>
+<p>11</p>
+<p>3</p>
+<p>3</p>
+<p>1</p>
+<p>Returns: 25</p>
+<p>The best solution is to cut initially in the XZ plane. This gives us 2 washers in the X dimension, 1 in the Z dimension, and 11 in the Y dimension for a total of 22 washers. The remaining block of steel is 1 x 11 x 3 units, which will yield an additional 3 washers by cutting in the YZ plane. Adding together, we get 22 + 3 = 25.</p></div></li><li><div><p>5</p>
+<p>11</p>
+<p>7</p>
+<p>3</p>
+<p>2</p>
+<p>Returns: 17</p>
+<p>Cutting in the XY plane yields 9 washers. Cutting the remainder first in the YZ plane yields an additional 6, and the remainder of this again in the XZ plane yields 2 more washers. The total is 9 + 6 + 2 = 17.</p></div></li><li><div><p>6807</p>
+<p>1192</p>
+<p>9082</p>
+<p>573</p>
+<p>11</p>
+<p>Returns: 20168</p></div></li><li><div><p>9056</p>
+<p>8709</p>
+<p>2352</p>
+<p>245</p>
+<p>23</p>
+<p>Returns: 133290</p></div></li><li><div><p>5428</p>
+<p>8274</p>
+<p>9307</p>
+<p>767</p>
+<p>60</p>
+<p>Returns: 11710</p></div></li><li><div><p>5542</p>
+<p>43</p>
+<p>8184</p>
+<p>903</p>
+<p>40</p>
+<p>Returns: 54</p></div></li><li><div><p>3788</p>
+<p>4286</p>
+<p>2453</p>
+<p>668</p>
+<p>60</p>
+<p>Returns: 1404</p></div></li><li><div><p>3543</p>
+<p>2376</p>
+<p>3016</p>
+<p>198</p>
+<p>76</p>
+<p>Returns: 8316</p></div></li><li><div><p>1661</p>
+<p>812</p>
+<p>7411</p>
+<p>158</p>
+<p>65</p>
+<p>Returns: 5930</p></div></li><li><div><p>1101</p>
+<p>1775</p>
+<p>7119</p>
+<p>624</p>
+<p>46</p>
+<p>Returns: 649</p></div></li><li><div><p>9502</p>
+<p>4657</p>
+<p>4803</p>
+<p>834</p>
+<p>9</p>
+<p>Returns: 33195</p></div></li><li><div><p>9756</p>
+<p>2402</p>
+<p>186</p>
+<p>448</p>
+<p>29</p>
+<p>Returns: 630</p></div></li><li><div><p>57</p>
+<p>67</p>
+<p>37</p>
+<p>11</p>
+<p>3</p>
+<p>Returns: 372</p></div></li><li><div><p>8427</p>
+<p>4676</p>
+<p>2927</p>
+<p>789</p>
+<p>41</p>
+<p>Returns: 4265</p></div></li><li><div><p>2367</p>
+<p>7539</p>
+<p>172</p>
+<p>956</p>
+<p>90</p>
+<p>Returns: 14</p></div></li><li><div><p>8960</p>
+<p>529</p>
+<p>969</p>
+<p>775</p>
+<p>28</p>
+<p>Returns: 198</p></div></li><li><div><p>7392</p>
+<p>4247</p>
+<p>266</p>
+<p>630</p>
+<p>34</p>
+<p>Returns: 462</p></div></li><li><div><p>8683</p>
+<p>1524</p>
+<p>6560</p>
+<p>99</p>
+<p>65</p>
+<p>Returns: 133056</p></div></li><li><div><p>3421</p>
+<p>5169</p>
+<p>6298</p>
+<p>111</p>
+<p>68</p>
+<p>Returns: 131636</p></div></li><li><div><p>6596</p>
+<p>3200</p>
+<p>8481</p>
+<p>648</p>
+<p>66</p>
+<p>Returns: 6342</p></div></li><li><div><p>275</p>
+<p>8355</p>
+<p>7829</p>
+<p>246</p>
+<p>82</p>
+<p>Returns: 3197</p></div></li><li><div><p>1546</p>
+<p>6742</p>
+<p>456</p>
+<p>17</p>
+<p>5</p>
+<p>Returns: 3278808</p></div></li><li><div><p>10000</p>
+<p>10000</p>
+<p>10000</p>
+<p>1</p>
+<p>1</p>
+<p>Returns: 1000000000000</p></div></li><li><div><p>123</p>
+<p>457</p>
+<p>789</p>
+<p>457</p>
+<p>124</p>
+<p>Returns: 0</p></div></li><li><div><p>10000</p>
+<p>10000</p>
+<p>10000</p>
+<p>10000</p>
+<p>10000</p>
+<p>Returns: 1</p></div></li><li><div><p>1</p>
+<p>1</p>
+<p>1</p>
+<p>1</p>
+<p>1</p>
+<p>Returns: 1</p></div></li><li><div><p>1</p>
+<p>1</p>
+<p>1</p>
+<p>10000</p>
+<p>10000</p>
+<p>Returns: 0</p></div></li><li><div><p>10000</p>
+<p>1</p>
+<p>1</p>
+<p>10000</p>
+<p>1</p>
+<p>Returns: 0</p></div></li><li><div><p>10000</p>
+<p>1</p>
+<p>10000</p>
+<p>10000</p>
+<p>1</p>
+<p>Returns: 1</p></div></li><li><div><p>10000</p>
+<p>1</p>
+<p>10000</p>
+<p>100</p>
+<p>1</p>
+<p>Returns: 10000</p></div></li><li><div><p>1</p>
+<p>10000</p>
+<p>10000</p>
+<p>250</p>
+<p>2</p>
+<p>Returns: 0</p></div></li><li><div><p>3</p>
+<p>10000</p>
+<p>10000</p>
+<p>250</p>
+<p>2</p>
+<p>Returns: 1600</p></div></li></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/2335/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"2335\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"2335\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"2335\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"2335\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"2335\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\n"])</script><script>self.__next_f.push([1,"f:T8e2,"])</script><script>self.__next_f.push([1,"\u003cp xmlns=\"http://topcoder.com\"\u003e\nThe engineers at Square Washers, Inc., need to improve production efficiency in order to catch up to their competition. Currently, whenever they make their square washers, they start with a rectangular prism of steel, choose an orientation for the washers (along the XY plane, XZ plane, or YZ plane), and chop away, hoping for the best. However, someone recently realized that one of these three planes of orientation may yield better results than the others. In addition, the remaining steel can be used to make more washers. Now, they need to figure out an algorithm to produce the most washers out of one rectangular prism. For the purposes of this problem, a rectangular prism is a 3-dimensional geometric shape with six sides, such that the angle between any two adjacent edges is a right angle.\n\u003c/p\u003e\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nSince these washers are square, and (for purposes of efficiency) since they don't care about the inside diameter, for all intents and purposes in this problem, a square washer may be treated as a rectangular prism of which at least two dimensions are equal. Further, once it is decided which plane to cut the washers on, as many washers as can be cut in that plane must be cut in that plane. For instance, if the block of steel was 7 x 11 x 3, and the washer size was 3 x 3 x 1 (diameter of 3, thickness of 1) (dimensions given in X x Y x Z order), and the plane used was the XY plane, then 18 washers would be cut in this plane (2 in the X dimension, 3 in the Y dimension, and 3 in the Z dimension). It would be illegal to cut less than 2 in the X dimension, less than 3 in the Y dimension, or less than 3 in the Z dimension.\n\u003c/p\u003e\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nYou will be given the width, height, and depth of the block of steel, as well as the diameter and thickness of the washers that need to be produced. For purposes of this problem, assume the saw blades used are infinitesimally thin. You are to determine the maximum number of washers that can be produced.\n\u003c/p\u003e\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nIn addition to reusing the remaining steel from the initial cutting, the remaining steel from each additional cutting should be used, until no more washers can be made from the remaining steel.\n\u003c/p\u003e"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"SquareWashers\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"SquareWashers\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"howMany\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int, int, int, int, int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"long\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"long howMany(int wide, int high, int deep, int diameter, int thickness)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"high will be between 1 and 10000, inclusive.\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"wide will be between 1 and 10000, inclusive.\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"deep will be between 1 and 10000, inclusive.\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"diameter will be between 1 and 10000, inclusive.\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"thickness will be between 1 and 10000, inclusive.\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"thickness will be less than or equal to diameter.\"}}]}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 25\u003c/p\u003e\\n\u003cp\u003eThe best solution is to cut initially in the XZ plane. This gives us 2 washers in the X dimension, 1 in the Z dimension, and 11 in the Y dimension for a total of 22 washers. The remaining block of steel is 1 x 11 x 3 units, which will yield an additional 3 washers by cutting in the YZ plane. Adding together, we get 22 + 3 = 25.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: 17\u003c/p\u003e\\n\u003cp\u003eCutting in the XY plane yields 9 washers. Cutting the remainder first in the YZ plane yields an additional 6, and the remainder of this again in the XZ plane yields 2 more washers. The total is 9 + 6 + 2 = 17.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e6807\u003c/p\u003e\\n\u003cp\u003e1192\u003c/p\u003e\\n\u003cp\u003e9082\u003c/p\u003e\\n\u003cp\u003e573\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003eReturns: 20168\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e9056\u003c/p\u003e\\n\u003cp\u003e8709\u003c/p\u003e\\n\u003cp\u003e2352\u003c/p\u003e\\n\u003cp\u003e245\u003c/p\u003e\\n\u003cp\u003e23\u003c/p\u003e\\n\u003cp\u003eReturns: 133290\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e5428\u003c/p\u003e\\n\u003cp\u003e8274\u003c/p\u003e\\n\u003cp\u003e9307\u003c/p\u003e\\n\u003cp\u003e767\u003c/p\u003e\\n\u003cp\u003e60\u003c/p\u003e\\n\u003cp\u003eReturns: 11710\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e5542\u003c/p\u003e\\n\u003cp\u003e43\u003c/p\u003e\\n\u003cp\u003e8184\u003c/p\u003e\\n\u003cp\u003e903\u003c/p\u003e\\n\u003cp\u003e40\u003c/p\u003e\\n\u003cp\u003eReturns: 54\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3788\u003c/p\u003e\\n\u003cp\u003e4286\u003c/p\u003e\\n\u003cp\u003e2453\u003c/p\u003e\\n\u003cp\u003e668\u003c/p\u003e\\n\u003cp\u003e60\u003c/p\u003e\\n\u003cp\u003eReturns: 1404\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3543\u003c/p\u003e\\n\u003cp\u003e2376\u003c/p\u003e\\n\u003cp\u003e3016\u003c/p\u003e\\n\u003cp\u003e198\u003c/p\u003e\\n\u003cp\u003e76\u003c/p\u003e\\n\u003cp\u003eReturns: 8316\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"8\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1661\u003c/p\u003e\\n\u003cp\u003e812\u003c/p\u003e\\n\u003cp\u003e7411\u003c/p\u003e\\n\u003cp\u003e158\u003c/p\u003e\\n\u003cp\u003e65\u003c/p\u003e\\n\u003cp\u003eReturns: 5930\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"9\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1101\u003c/p\u003e\\n\u003cp\u003e1775\u003c/p\u003e\\n\u003cp\u003e7119\u003c/p\u003e\\n\u003cp\u003e624\u003c/p\u003e\\n\u003cp\u003e46\u003c/p\u003e\\n\u003cp\u003eReturns: 649\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"10\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e9502\u003c/p\u003e\\n\u003cp\u003e4657\u003c/p\u003e\\n\u003cp\u003e4803\u003c/p\u003e\\n\u003cp\u003e834\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003eReturns: 33195\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"11\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e9756\u003c/p\u003e\\n\u003cp\u003e2402\u003c/p\u003e\\n\u003cp\u003e186\u003c/p\u003e\\n\u003cp\u003e448\u003c/p\u003e\\n\u003cp\u003e29\u003c/p\u003e\\n\u003cp\u003eReturns: 630\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"12\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e57\u003c/p\u003e\\n\u003cp\u003e67\u003c/p\u003e\\n\u003cp\u003e37\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 372\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"13\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e8427\u003c/p\u003e\\n\u003cp\u003e4676\u003c/p\u003e\\n\u003cp\u003e2927\u003c/p\u003e\\n\u003cp\u003e789\u003c/p\u003e\\n\u003cp\u003e41\u003c/p\u003e\\n\u003cp\u003eReturns: 4265\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"14\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e2367\u003c/p\u003e\\n\u003cp\u003e7539\u003c/p\u003e\\n\u003cp\u003e172\u003c/p\u003e\\n\u003cp\u003e956\u003c/p\u003e\\n\u003cp\u003e90\u003c/p\u003e\\n\u003cp\u003eReturns: 14\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"15\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e8960\u003c/p\u003e\\n\u003cp\u003e529\u003c/p\u003e\\n\u003cp\u003e969\u003c/p\u003e\\n\u003cp\u003e775\u003c/p\u003e\\n\u003cp\u003e28\u003c/p\u003e\\n\u003cp\u003eReturns: 198\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"16\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e7392\u003c/p\u003e\\n\u003cp\u003e4247\u003c/p\u003e\\n\u003cp\u003e266\u003c/p\u003e\\n\u003cp\u003e630\u003c/p\u003e\\n\u003cp\u003e34\u003c/p\u003e\\n\u003cp\u003eReturns: 462\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"17\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e8683\u003c/p\u003e\\n\u003cp\u003e1524\u003c/p\u003e\\n\u003cp\u003e6560\u003c/p\u003e\\n\u003cp\u003e99\u003c/p\u003e\\n\u003cp\u003e65\u003c/p\u003e\\n\u003cp\u003eReturns: 133056\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"18\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3421\u003c/p\u003e\\n\u003cp\u003e5169\u003c/p\u003e\\n\u003cp\u003e6298\u003c/p\u003e\\n\u003cp\u003e111\u003c/p\u003e\\n\u003cp\u003e68\u003c/p\u003e\\n\u003cp\u003eReturns: 131636\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"19\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e6596\u003c/p\u003e\\n\u003cp\u003e3200\u003c/p\u003e\\n\u003cp\u003e8481\u003c/p\u003e\\n\u003cp\u003e648\u003c/p\u003e\\n\u003cp\u003e66\u003c/p\u003e\\n\u003cp\u003eReturns: 6342\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"20\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e275\u003c/p\u003e\\n\u003cp\u003e8355\u003c/p\u003e\\n\u003cp\u003e7829\u003c/p\u003e\\n\u003cp\u003e246\u003c/p\u003e\\n\u003cp\u003e82\u003c/p\u003e\\n\u003cp\u003eReturns: 3197\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"21\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1546\u003c/p\u003e\\n\u003cp\u003e6742\u003c/p\u003e\\n\u003cp\u003e456\u003c/p\u003e\\n\u003cp\u003e17\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: 3278808\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"22\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 1000000000000\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"23\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e123\u003c/p\u003e\\n\u003cp\u003e457\u003c/p\u003e\\n\u003cp\u003e789\u003c/p\u003e\\n\u003cp\u003e457\u003c/p\u003e\\n\u003cp\u003e124\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"24\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"25\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"26\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"27\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"28\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"29\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e100\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 10000\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"30\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e250\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"31\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e10000\u003c/p\u003e\\n\u003cp\u003e250\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: 1600\u003c/p\u003e\"}}]}]]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

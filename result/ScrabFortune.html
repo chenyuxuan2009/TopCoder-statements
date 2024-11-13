@@ -1,0 +1,505 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->ScrabFortune<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div>You are playing a game that borrows principles from the popular games Scrabble and Wheel of Fortune.  The game board consists of one or more words, all of which are completely hidden at the very beginning.  You have a pool of letters, and you select one letter at a time.  Each time you select a letter, all instances of that letter will be revealed on the board.  The goal of the game is to accurately guess all the words.<br xmlns="http://topcoder.com"/><br xmlns="http://topcoder.com"/>
+
+You are given a <type xmlns="http://topcoder.com">String</type> <b xmlns="http://topcoder.com">pool</b> and a <type xmlns="http://topcoder.com">String[]</type> <b xmlns="http://topcoder.com">board</b>.  <b xmlns="http://topcoder.com">pool</b> contains all the letters in your pool and <b xmlns="http://topcoder.com">board</b> contains all the words on the board.  You are also given an <type xmlns="http://topcoder.com">int</type> <b xmlns="http://topcoder.com">threshold</b>.  When the total number of hidden letters on the board is less than or equal to <b xmlns="http://topcoder.com">threshold</b>, you will be able to accurately guess all the words and win.  The total number of hidden letters includes all occurrences of letters, not just distinct letters.  For example, if the hidden letters are "aaab", the total number of hidden letters is 4.<br xmlns="http://topcoder.com"/><br xmlns="http://topcoder.com"/>
+
+Your goal is to win the game by selecting the minimum possible number of letters from your pool.  Return a <type xmlns="http://topcoder.com">String</type> containing the letters you should choose (all lowercase).  If there are multiple solutions, return the one that comes first alphabetically.  If it is impossible to win, return "IMPOSSIBLE" (quotes for clarity).<br xmlns="http://topcoder.com"/><br xmlns="http://topcoder.com"/></div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>ScrabFortune</span></dd><dt>Method:</dt><dd><span>getMin</span></dd><dt>Parameters:</dt><dd><span>String, String[], int</span></dd><dt>Returns:</dt><dd><span>String</span></dd><dt>Method signature:</dt><dd><span>String getMin(String pool, String[] board, int threshold)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Notes</h3><ul><li>The letters in pool may or may not be distinct.</li></ul></div><div><h3>Constraints</h3><ul><li><span>pool will contain between 1 and 50 lowercase letters ('a'-'z'), inclusive.</span></li><li><span>board will contain between 1 and 50 elements, inclusive.</span></li><li><span>Each element of board will contain between 1 and 50 lowercase letters ('a'-'z'), inclusive.</span></li><li><span>threshold will be between 0 and 2500, inclusive.</span></li></ul></div><div><h3>Examples</h3><ol><li><div><p>"fpsctyba"</p>
+<p>{"scrab",
+ "fortune",
+ "is",
+ "fun"}</p>
+<p>10</p>
+<p>Returns: "abcfs"</p>
+<p>Using the letters a, b, and c reveals a total of 3 letters in the board.  Now, if we choose f and s, we reveal 4 more letters, for a total of 7.  Since exactly 10 hidden letters remain, the game is won.</p></div></li><li><div><p>"lllllo"</p>
+<p>{"hello",
+ "world"}</p>
+<p>6</p>
+<p>Returns: "lo"</p>
+<p>Watch out for multiple occurrences of the same letter in pool.</p></div></li><li><div><p>"az"</p>
+<p>{"zzzzzzzzzzzzzaaa"}</p>
+<p>14</p>
+<p>Returns: "a"</p>
+<p></p></div></li><li><div><p>"lllll"</p>
+<p>{"hello"}</p>
+<p>0</p>
+<p>Returns: "IMPOSSIBLE"</p>
+<p></p></div></li><li><div><p>"l"</p>
+<p>{"lo"}</p>
+<p>0</p>
+<p>Returns: "IMPOSSIBLE"</p>
+<p></p></div></li><li><div><p>"elu"</p>
+<p>{"eleusive",
+ "likes",
+ "to",
+ "write",
+ "problems"}</p>
+<p>18</p>
+<p>Returns: "elu"</p>
+<p></p></div></li><li><div><p>"abcd"</p>
+<p>{"a",
+ "b",
+ "c",
+ "d"}</p>
+<p>0</p>
+<p>Returns: "abcd"</p>
+<p></p></div></li><li><div><p>"helo"</p>
+<p>{"hello"}</p>
+<p>0</p>
+<p>Returns: "ehlo"</p>
+<p></p></div></li><li><div><p>"lo"</p>
+<p>{"hello"}</p>
+<p>1</p>
+<p>Returns: "IMPOSSIBLE"</p>
+<p></p></div></li><li><div><p>"l"</p>
+<p>{"blbvbvb",
+ "ajllkjk",
+ "bjkdfle"}</p>
+<p>16</p>
+<p>Returns: "IMPOSSIBLE"</p>
+<p></p></div></li><li><div><p>"a"</p>
+<p>{"b"}</p>
+<p>0</p>
+<p>Returns: "IMPOSSIBLE"</p>
+<p></p></div></li><li><div><p>"a"</p>
+<p>{"bb"}</p>
+<p>1</p>
+<p>Returns: "IMPOSSIBLE"</p>
+<p></p></div></li><li><div><p>"la"</p>
+<p>{"llllllllllllllllll",
+ "llllllllllllllllll",
+ "lllllllallllllllll"}</p>
+<p>1</p>
+<p>Returns: "l"</p>
+<p></p></div></li><li><div><p>"la"</p>
+<p>{"llllllllllllllllll",
+ "llllllllllllllllll",
+ "lllllllallllllllll"}</p>
+<p>20</p>
+<p>Returns: "l"</p>
+<p></p></div></li><li><div><p>"la"</p>
+<p>{"llllllllllllllllll",
+ "llllllllllllllllll",
+ "lllllllallllllllll"}</p>
+<p>0</p>
+<p>Returns: "al"</p>
+<p></p></div></li><li><div><p>"zcdefghijlmnaopqrstuvwbkxy"</p>
+<p>{
+"utisphy",
+"rxuygcontculqw",
+"foiyttydkjb",
+"nbayrjmgdrkrpptueis",
+"zargzemjiwc",
+"x",
+"sanzazvoc",
+"wsfuoltu",
+"emuzdqjqvoxlyq",
+"ocdef",
+"hkwcmec",
+"fwrokmsnu",
+"mxxaqhofewl",
+"iotuxkfyqzg"
+}</p>
+<p>0</p>
+<p>Returns: "abcdefghijklmnopqrstuvwxyz"</p>
+<p></p></div></li><li><div><p>"jn"</p>
+<p>{
+"iljejlujnv",
+"dwyzef",
+"sjnwxnlec",
+"bm",
+"i",
+"yv"
+}</p>
+<p>30</p>
+<p>Returns: ""</p>
+<p></p></div></li><li><div><p>"xynafmsuicngonjz"</p>
+<p>{
+"km",
+"mkbzlgtsue",
+"hpm",
+"mepkahwtrnfyqlobyg",
+"sbl",
+"apurcrdicatnxeppyex"
+}</p>
+<p>45</p>
+<p>Returns: "amy"</p>
+<p></p></div></li><li><div><p>"kazmb"</p>
+<p>{
+"crjycxmokltwk",
+"ljy",
+"zxgahhu",
+"efxymlcxootllvhkawg",
+"amwtjiqjuebarmp",
+"jvocwm",
+"psayj",
+"slncd"
+}</p>
+<p>59</p>
+<p>Returns: "abkm"</p>
+<p></p></div></li><li><div><p>"zjacpwfiix"</p>
+<p>{
+"mwvydlpdkyzn",
+"pwmhuw",
+"iivupgzfnrpomjlabhu",
+"aypxmmkhfec",
+"jdsbggxjo",
+"wrnl",
+"vfhqfz",
+"eklpyj",
+"rynkjvlyclbdgsbrq",
+"jjiriqrtowzlpphqs",
+"ocoxmpnxbpl",
+"gkuqalfborlukxyyw"
+}</p>
+<p>98</p>
+<p>Returns: "fijpwx"</p>
+<p></p></div></li><li><div><p>"ouisvcur"</p>
+<p>{
+"wwbdnffvzvbkud",
+"acbyrducc",
+"nsghldfkhdlysp",
+"gehyhvsjsqrudmqec",
+"xshkbgumnr",
+"vrbjmimjmmstxoy",
+"zhgzucmgseifjbqokg",
+"dmizcixdxbfrouvem",
+"dr",
+"njaaydtcrahx"
+}</p>
+<p>68</p>
+<p>Returns: "IMPOSSIBLE"</p>
+<p></p></div></li><li><div><p>"cukcfuycxix"</p>
+<p>{
+"xqdcgpfcu",
+"wrmrhbwsyiygmtfqtgwq",
+"uwuezbpyjzszf",
+"tuctxejpewh"
+}</p>
+<p>42</p>
+<p>Returns: "cfiu"</p>
+<p></p></div></li><li><div><p>"amzkmvptprvs"</p>
+<p>{
+"qvfqbeavrhszhlmfqq",
+"pmoxsdmsbwffdkusje",
+"swmaljvkysagwq",
+"ajdwgbefh",
+"xtftvdbrxvcvxsm",
+"xizsedqazdnfsgpkl",
+"ziar",
+"bztwmjc",
+"decsli",
+"sxbby",
+"fzwglf",
+"gugttztlyn",
+"xnq"
+}</p>
+<p>56</p>
+<p>Returns: "IMPOSSIBLE"</p>
+<p></p></div></li><li><div><p>"yyabnyrjkmg"</p>
+<p>{
+"itxqiiryrhzuvzqgfdjc",
+"ssgmd",
+"ulhizgyqynivyio",
+"mekpyjjsear",
+"edqssv",
+"blxsaxe",
+"gmufnrapmmltwrf",
+"gmj",
+"wuopsygsaswagk",
+"onjzbtrlqgiwffuecft",
+"iegirwhffaeuspevywy"
+}</p>
+<p>98</p>
+<p>Returns: "agmry"</p>
+<p></p></div></li><li><div><p>"thsurdf"</p>
+<p>{
+"ecxumrqrvmvpks",
+"ys",
+"ztfqhucvakpgizxu",
+"gqdel",
+"ee",
+"agqjloum",
+"lzfikknedeifyt",
+"pgxkhsqelhexpbx",
+"ufctleovwwvixfb",
+"we",
+"iaj"
+}</p>
+<p>77</p>
+<p>Returns: "fhstu"</p>
+<p></p></div></li><li><div><p>"atsmnjyu"</p>
+<p>{
+"tlmfvomyunmpiivw",
+"ubsjv"
+}</p>
+<p>23</p>
+<p>Returns: ""</p>
+<p></p></div></li><li><div><p>"igckvsc"</p>
+<p>{
+"qwmpylse",
+"pvwqkjt",
+"smcqwrtdugapperjpu",
+"hihstc",
+"htudlkoowssoygghaus",
+"fqxtrmnbivowgpnumnhl"
+}</p>
+<p>69</p>
+<p>Returns: "gs"</p>
+<p></p></div></li><li><div><p>"qivrjcyzhayq"</p>
+<p>{
+"jthkgacryspgi",
+"npkljvdyheuzwwbzx",
+"agzwpofbooxhdkbg",
+"lmtxihpzsozspsm",
+"jkxmho",
+"lilk",
+"rinkrxzvpvpzcbc",
+"bxskaqddjzqns",
+"zkgwkwukctjnt",
+"fg",
+"chicclw"
+}</p>
+<p>98</p>
+<p>Returns: "achz"</p>
+<p></p></div></li><li><div><p>"zjtjprbojw"</p>
+<p>{
+"wftap",
+"fruqspcneqmpg",
+"ugbpdikt",
+"ksiwgmqhwyxnwmnz",
+"lvxedwbpxiosrrz",
+"pn",
+"doxzwbtmrpab",
+"iqdojfuswclbw",
+"oiasltrmxcxbsa",
+"zdmclfm",
+"csrh",
+"sva",
+"iuxfzfdbg",
+"zfffujslwjoiy",
+"hcojjniaizhceclzcolw"
+}</p>
+<p>94</p>
+<p>Returns: "IMPOSSIBLE"</p>
+<p></p></div></li><li><div><p>"ayluhdwllviyvsijsr"</p>
+<p>{
+"ycwtqzy",
+"xsfghgf"
+}</p>
+<p>11</p>
+<p>Returns: "hy"</p>
+<p></p></div></li><li><div><p>"daxmcndciaf"</p>
+<p>{
+"srouhwppjubqcsblar",
+"pvhihvxaundv",
+"musiwvpevkjbeljgppa",
+"esdhpmpaqi",
+"eylvqwmfruaifmuof",
+"tpvxyvkaar",
+"ges",
+"auwswfepvrygpqdtw",
+"rbujlfxsn",
+"loi",
+"qszkcwlnzforo",
+"fqulgljqigxvz",
+"rqctyzwrfximke",
+"uaxyllhisj",
+"f"
+}</p>
+<p>122</p>
+<p>Returns: "IMPOSSIBLE"</p>
+<p></p></div></li><li><div><p>"daxmcndciaf"</p>
+<p>{
+"srouhwppjubqcsblar",
+"pvhihvxaundv",
+"musiwvpevkjbeljgppa",
+"esdhpmpaqi",
+"eylvqwmfruaifmuof",
+"tpvxyvkaar",
+"ges",
+"auwswfepvrygpqdtw",
+"rbujlfxsn",
+"loi",
+"qszkcwlnzforo",
+"fqulgljqigxvz",
+"rqctyzwrfximke",
+"uaxyllhisj",
+"f"
+}</p>
+<p>123</p>
+<p>Returns: "acdfimnx"</p>
+<p></p></div></li><li><div><p>"hm"</p>
+<p>{
+"p",
+"wxpagjafhbiact",
+"imdxckemtfgwgqgryqaz",
+"foeokpauq",
+"awhvtly",
+"oaqzpgqtwzrr"
+}</p>
+<p>60</p>
+<p>Returns: "hm"</p>
+<p></p></div></li><li><div><p>"fnrkqitrb"</p>
+<p>{
+"chxzakgvl",
+"rck",
+"bpcrgsruwuhcpbtitzg",
+"pncdntlqbdjssuc",
+"ntbfbzanzifuazshmzv",
+"frpec",
+"edhmiigyjlzzykrunal",
+"xaxupzuqhvbynjjccr",
+"hwq",
+"qqpchhcske",
+"suwudwxojkguokemj",
+"pygelostrvdcck",
+"egihtticushfgmick",
+"dsgfqgdozcgx",
+"uocktiesalkpntoisr",
+"pblertheibkljwyg",
+"kqg",
+"gge",
+"yyywfisubpfiiifogi"
+}</p>
+<p>167</p>
+<p>Returns: "bfiknqrt"</p>
+<p></p></div></li><li><div><p>"nbpfmficlqnpgqtwrhe"</p>
+<p>{
+"pjybntfiy",
+"zf",
+"gamsccionjjdo",
+"xqkxuvgnyfnwbrsvss",
+"tvejutjzcynzgpuimin",
+"fg",
+"la",
+"sorm",
+"dhnbrlpiitjvjzxqrku",
+"kxpasv",
+"vuydmggiliyqfuo",
+"ccfzp",
+"hgwvjrpknmht",
+"gaezjxmwzbwexh",
+"ckkhepeeommtmuvfgcam",
+"tdiokdivvpmviwffavnv",
+"znazdfc",
+"lcczduzci",
+"glkertg",
+"wsyppcbousbbkoyyvtd"
+}</p>
+<p>678</p>
+<p>Returns: ""</p>
+<p></p></div></li><li><div><p>"abc"</p>
+<p> {"caccc"}</p>
+<p>4</p>
+<p>Returns: "a"</p>
+<p></p></div></li><li><div><p>"abc"</p>
+<p>{"aabbccc"}</p>
+<p>3</p>
+<p>Returns: "ab"</p>
+<p></p></div></li><li><div><p>"tkse"</p>
+<p>{
+"easy",
+"to",
+"solve"}</p>
+<p>600</p>
+<p>Returns: ""</p>
+<p>You can win the game without selecting any letters.</p></div></li><li><div><p>"abcde"</p>
+<p>{"abbcccddddeeeee"}</p>
+<p>14</p>
+<p>Returns: "a"</p>
+<p></p></div></li><li><div><p>"abcde"</p>
+<p>{"abbcccddddeeeee"}</p>
+<p>11</p>
+<p>Returns: "d"</p>
+<p></p></div></li><li><div><p>"abc"</p>
+<p>{"aabbbccccc"}</p>
+<p>3</p>
+<p>Returns: "ac"</p>
+<p></p></div></li><li><div><p>"cba"</p>
+<p>{"accdbab"}</p>
+<p>4</p>
+<p>Returns: "ab"</p>
+<p></p></div></li><li><div><p>"abc"</p>
+<p>{"aabbccc" }</p>
+<p>3</p>
+<p>Returns: "ab"</p></div></li><li><div><p>"adaggfjghkabcdefdsgfagghijklmnpfsdgfsdgrsdfsgsduvz"</p>
+<p>{"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw" }</p>
+<p>1500</p>
+<p>Returns: "adehn"</p></div></li><li><div><p>"aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyz"</p>
+<p>{"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz" }</p>
+<p>99</p>
+<p>Returns: "acdefghijklmnopqrstuvwxyz"</p></div></li><li><div><p>"aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyz"</p>
+<p>{"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz" }</p>
+<p>100</p>
+<p>Returns: "cdefghijklmnopqrstuvwxyz"</p></div></li><li><div><p>"ivomarina"</p>
+<p>{"ivomarnaaar" }</p>
+<p>5</p>
+<p>Returns: "ar"</p></div></li><li><div><p>"efg"</p>
+<p>{"eeffggg" }</p>
+<p>3</p>
+<p>Returns: "ef"</p></div></li><li><div><p>"abcdef"</p>
+<p>{"abbbbb" }</p>
+<p>1</p>
+<p>Returns: "b"</p></div></li><li><div><p>"ab"</p>
+<p>{"bba" }</p>
+<p>2</p>
+<p>Returns: "a"</p></div></li><li><div><p>"abcdefghijklmnopqrstuvwxyz"</p>
+<p>{"abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz" }</p>
+<p>0</p>
+<p>Returns: "abcdefghijklmnopqrstuvwxyz"</p></div></li><li><div><p>"abcd"</p>
+<p>{"aa", "bc", "dd" }</p>
+<p>2</p>
+<p>Returns: "ad"</p></div></li><li><div><p>"abcd"</p>
+<p>{"a", "b", "c", "dd" }</p>
+<p>2</p>
+<p>Returns: "ad"</p></div></li><li><div><p>"abc"</p>
+<p>{"aabbcccccccccccccccccccccccc" }</p>
+<p>3</p>
+<p>Returns: "ac"</p></div></li><li><div><p>"abcdefghijklmn"</p>
+<p>{"abcdefggg", "ggghijklm" }</p>
+<p>12</p>
+<p>Returns: "g"</p></div></li><li><div><p>"stifubeaonrpcwnwclwwmnhbrqxadippbiwcq"</p>
+<p>{"shlnahossnqclwkaeocnqunioggghuvsitsrjbr", "mlialjkktnpqmunwrtubmauqvooihqfriwpwdvd", "kejjvxgipfeilejvebqmgnxvljwfgqdxmqlpwtl", "llqmgtsfsgckacflheupaoexkocxoxvpjqxardb", "jgbsrpquhowewjxeuwsocklpvwrvcophbpaqifd", "pbwpwwppeaiorooootosparmwbqjnunaatlbete", "cavnfpbhvolvxqovoemfgximkuscsnrmueaqccx", "jutkiemwhadhlfsiggxsfucnvplufdasqwrtrvq", "gthaomjbioqmxkfrcbcdpilvqhqeugoijmghfof", "qujkbmepgeehxtvnefknpxcmoehruqupdbsljoh", "qmaussfjprlxbqbjrarigtkkkpcwnxbxlpbtarb", "gmbaisropkswswaiekamrebbitmlnfrccqpxrri", "krtxgkixogtbrhnjjpooshumfapqeqnhqbitomn", "tavbohleehopblfjppmvpmhalfngtbtmsctqmsk", "mwnlksjtbwbkwqccwifixsteggpgdwuxcdhbkmq", "eafcogacgmcugqmaksemjiithrxtmnemnrqvnjk", "axnnntoonlcjnacpkovgdronkkrcvkldjrwfwld", "mnbcpfhopvhumfcjefgtrxiawahlgbdfaeihtcd", "wkrxhudusecwmxxfuhrgpttvoaovnbowhwbsneb", "unrdfxsifdljkwchpeqqepngwnxjupgvnoaoqje", "hkbftwnnlejdnrblgguqoqmqrlbuotnsbrckdxa", "jritvkhiojkqfdkoesckrakqjhxcfnicdgamljt", "ammwfdeajpexfmoiflqpocopinggcqqqupdpqfv", "ekfluhbokjnpnagbfvmmqibslrfcxlqtseckhst", "ulqspvfukjfevqrrmqsavudwaimkgdlgcqniflk", "rongbwmlmadmnhrngdawrlegwgnucndriigbwih", "rhuhsaoclsnwntngxqtoktcshnepnbcgpfuabnu", "ddwuqouqvtaggdrcdrfwnenhlqtkmuivqpwdqmp" }</p>
+<p>608</p>
+<p>Returns: "abcdefhnoq"</p></div></li><li><div><p>"abc"</p>
+<p>{"aabbccc" }</p>
+<p>3</p>
+<p>Returns: "ab"</p></div></li><li><div><p>"adaggfjghkabcdefdsgfagghijklmnpfsdgfsdgrsdfsgsduvz"</p>
+<p>{"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf", "afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw", "afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw" }</p>
+<p>1500</p>
+<p>Returns: "adehn"</p></div></li><li><div><p>"aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyz"</p>
+<p>{"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz" }</p>
+<p>99</p>
+<p>Returns: "acdefghijklmnopqrstuvwxyz"</p></div></li><li><div><p>"aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyz"</p>
+<p>{"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz" }</p>
+<p>100</p>
+<p>Returns: "cdefghijklmnopqrstuvwxyz"</p></div></li><li><div><p>"ivomarina"</p>
+<p>{"ivomarnaaar" }</p>
+<p>5</p>
+<p>Returns: "ar"</p></div></li><li><div><p>"efg"</p>
+<p>{"eeffggg" }</p>
+<p>3</p>
+<p>Returns: "ef"</p></div></li><li><div><p>"abcdef"</p>
+<p>{"abbbbb" }</p>
+<p>1</p>
+<p>Returns: "b"</p></div></li><li><div><p>"ab"</p>
+<p>{"bba" }</p>
+<p>2</p>
+<p>Returns: "a"</p></div></li><li><div><p>"abcdefghijklmnopqrstuvwxyz"</p>
+<p>{"abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz" }</p>
+<p>0</p>
+<p>Returns: "abcdefghijklmnopqrstuvwxyz"</p></div></li><li><div><p>"abcd"</p>
+<p>{"aa", "bc", "dd" }</p>
+<p>2</p>
+<p>Returns: "ad"</p></div></li><li><div><p>"abcd"</p>
+<p>{"a", "b", "c", "dd" }</p>
+<p>2</p>
+<p>Returns: "ad"</p></div></li><li><div><p>"abc"</p>
+<p>{"aabbcccccccccccccccccccccccc" }</p>
+<p>3</p>
+<p>Returns: "ac"</p></div></li><li><div><p>"abcdefghijklmn"</p>
+<p>{"abcdefggg", "ggghijklm" }</p>
+<p>12</p>
+<p>Returns: "g"</p></div></li><li><div><p>"stifubeaonrpcwnwclwwmnhbrqxadippbiwcq"</p>
+<p>{"shlnahossnqclwkaeocnqunioggghuvsitsrjbr", "mlialjkktnpqmunwrtubmauqvooihqfriwpwdvd", "kejjvxgipfeilejvebqmgnxvljwfgqdxmqlpwtl", "llqmgtsfsgckacflheupaoexkocxoxvpjqxardb", "jgbsrpquhowewjxeuwsocklpvwrvcophbpaqifd", "pbwpwwppeaiorooootosparmwbqjnunaatlbete", "cavnfpbhvolvxqovoemfgximkuscsnrmueaqccx", "jutkiemwhadhlfsiggxsfucnvplufdasqwrtrvq", "gthaomjbioqmxkfrcbcdpilvqhqeugoijmghfof", "qujkbmepgeehxtvnefknpxcmoehruqupdbsljoh", "qmaussfjprlxbqbjrarigtkkkpcwnxbxlpbtarb", "gmbaisropkswswaiekamrebbitmlnfrccqpxrri", "krtxgkixogtbrhnjjpooshumfapqeqnhqbitomn", "tavbohleehopblfjppmvpmhalfngtbtmsctqmsk", "mwnlksjtbwbkwqccwifixsteggpgdwuxcdhbkmq", "eafcogacgmcugqmaksemjiithrxtmnemnrqvnjk", "axnnntoonlcjnacpkovgdronkkrcvkldjrwfwld", "mnbcpfhopvhumfcjefgtrxiawahlgbdfaeihtcd", "wkrxhudusecwmxxfuhrgpttvoaovnbowhwbsneb", "unrdfxsifdljkwchpeqqepngwnxjupgvnoaoqje", "hkbftwnnlejdnrblgguqoqmqrlbuotnsbrckdxa", "jritvkhiojkqfdkoesckrakqjhxcfnicdgamljt", "ammwfdeajpexfmoiflqpocopinggcqqqupdpqfv", "ekfluhbokjnpnagbfvmmqibslrfcxlqtseckhst", "ulqspvfukjfevqrrmqsavudwaimkgdlgcqniflk", "rongbwmlmadmnhrngdawrlegwgnucndriigbwih", "rhuhsaoclsnwntngxqtoktcshnepnbcgpfuabnu", "ddwuqouqvtaggdrcdrfwnenhlqtkmuivqpwdqmp" }</p>
+<p>608</p>
+<p>Returns: "abcdefhnoq"</p></div></li></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/3453/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"3453\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"3453\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"3453\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"3453\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"3453\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\n"])</script><script>self.__next_f.push([1,"f:T730,"])</script><script>self.__next_f.push([1,"You are playing a game that borrows principles from the popular games Scrabble and Wheel of Fortune.  The game board consists of one or more words, all of which are completely hidden at the very beginning.  You have a pool of letters, and you select one letter at a time.  Each time you select a letter, all instances of that letter will be revealed on the board.  The goal of the game is to accurately guess all the words.\u003cbr xmlns=\"http://topcoder.com\"/\u003e\u003cbr xmlns=\"http://topcoder.com\"/\u003e\n\nYou are given a \u003ctype xmlns=\"http://topcoder.com\"\u003eString\u003c/type\u003e \u003cb xmlns=\"http://topcoder.com\"\u003epool\u003c/b\u003e and a \u003ctype xmlns=\"http://topcoder.com\"\u003eString[]\u003c/type\u003e \u003cb xmlns=\"http://topcoder.com\"\u003eboard\u003c/b\u003e.  \u003cb xmlns=\"http://topcoder.com\"\u003epool\u003c/b\u003e contains all the letters in your pool and \u003cb xmlns=\"http://topcoder.com\"\u003eboard\u003c/b\u003e contains all the words on the board.  You are also given an \u003ctype xmlns=\"http://topcoder.com\"\u003eint\u003c/type\u003e \u003cb xmlns=\"http://topcoder.com\"\u003ethreshold\u003c/b\u003e.  When the total number of hidden letters on the board is less than or equal to \u003cb xmlns=\"http://topcoder.com\"\u003ethreshold\u003c/b\u003e, you will be able to accurately guess all the words and win.  The total number of hidden letters includes all occurrences of letters, not just distinct letters.  For example, if the hidden letters are \"aaab\", the total number of hidden letters is 4.\u003cbr xmlns=\"http://topcoder.com\"/\u003e\u003cbr xmlns=\"http://topcoder.com\"/\u003e\n\nYour goal is to win the game by selecting the minimum possible number of letters from your pool.  Return a \u003ctype xmlns=\"http://topcoder.com\"\u003eString\u003c/type\u003e containing the letters you should choose (all lowercase).  If there are multiple solutions, return the one that comes first alphabetically.  If it is impossible to win, return \"IMPOSSIBLE\" (quotes for clarity).\u003cbr xmlns=\"http://topcoder.com\"/\u003e\u003cbr xmlns=\"http://topcoder.com\"/\u003e"])</script><script>self.__next_f.push([1,"10:Taf4,"])</script><script>self.__next_f.push([1,"\u003cp\u003e\"adaggfjghkabcdefdsgfagghijklmnpfsdgfsdgrsdfsgsduvz\"\u003c/p\u003e\n\u003cp\u003e{\"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\" }\u003c/p\u003e\n\u003cp\u003e1500\u003c/p\u003e\n\u003cp\u003eReturns: \"adehn\"\u003c/p\u003e"])</script><script>self.__next_f.push([1,"11:Tb06,"])</script><script>self.__next_f.push([1,"\u003cp\u003e\"aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyz\"\u003c/p\u003e\n\u003cp\u003e{\"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\" }\u003c/p\u003e\n\u003cp\u003e99\u003c/p\u003e\n\u003cp\u003eReturns: \"acdefghijklmnopqrstuvwxyz\"\u003c/p\u003e"])</script><script>self.__next_f.push([1,"12:Tb06,"])</script><script>self.__next_f.push([1,"\u003cp\u003e\"aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyz\"\u003c/p\u003e\n\u003cp\u003e{\"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\" }\u003c/p\u003e\n\u003cp\u003e100\u003c/p\u003e\n\u003cp\u003eReturns: \"cdefghijklmnopqrstuvwxyz\"\u003c/p\u003e"])</script><script>self.__next_f.push([1,"13:T513,"])</script><script>self.__next_f.push([1,"\u003cp\u003e\"stifubeaonrpcwnwclwwmnhbrqxadippbiwcq\"\u003c/p\u003e\n\u003cp\u003e{\"shlnahossnqclwkaeocnqunioggghuvsitsrjbr\", \"mlialjkktnpqmunwrtubmauqvooihqfriwpwdvd\", \"kejjvxgipfeilejvebqmgnxvljwfgqdxmqlpwtl\", \"llqmgtsfsgckacflheupaoexkocxoxvpjqxardb\", \"jgbsrpquhowewjxeuwsocklpvwrvcophbpaqifd\", \"pbwpwwppeaiorooootosparmwbqjnunaatlbete\", \"cavnfpbhvolvxqovoemfgximkuscsnrmueaqccx\", \"jutkiemwhadhlfsiggxsfucnvplufdasqwrtrvq\", \"gthaomjbioqmxkfrcbcdpilvqhqeugoijmghfof\", \"qujkbmepgeehxtvnefknpxcmoehruqupdbsljoh\", \"qmaussfjprlxbqbjrarigtkkkpcwnxbxlpbtarb\", \"gmbaisropkswswaiekamrebbitmlnfrccqpxrri\", \"krtxgkixogtbrhnjjpooshumfapqeqnhqbitomn\", \"tavbohleehopblfjppmvpmhalfngtbtmsctqmsk\", \"mwnlksjtbwbkwqccwifixsteggpgdwuxcdhbkmq\", \"eafcogacgmcugqmaksemjiithrxtmnemnrqvnjk\", \"axnnntoonlcjnacpkovgdronkkrcvkldjrwfwld\", \"mnbcpfhopvhumfcjefgtrxiawahlgbdfaeihtcd\", \"wkrxhudusecwmxxfuhrgpttvoaovnbowhwbsneb\", \"unrdfxsifdljkwchpeqqepngwnxjupgvnoaoqje\", \"hkbftwnnlejdnrblgguqoqmqrlbuotnsbrckdxa\", \"jritvkhiojkqfdkoesckrakqjhxcfnicdgamljt\", \"ammwfdeajpexfmoiflqpocopinggcqqqupdpqfv\", \"ekfluhbokjnpnagbfvmmqibslrfcxlqtseckhst\", \"ulqspvfukjfevqrrmqsavudwaimkgdlgcqniflk\", \"rongbwmlmadmnhrngdawrlegwgnucndriigbwih\", \"rhuhsaoclsnwntngxqtoktcshnepnbcgpfuabnu\", \"ddwuqouqvtaggdrcdrfwnenhlqtkmuivqpwdqmp\" }\u003c/p\u003e\n\u003cp\u003e608\u003c/p\u003e\n\u003cp\u003eReturns: \"abcdefhnoq\"\u003c/p\u003e"])</script><script>self.__next_f.push([1,"14:Taf4,"])</script><script>self.__next_f.push([1,"\u003cp\u003e\"adaggfjghkabcdefdsgfagghijklmnpfsdgfsdgrsdfsgsduvz\"\u003c/p\u003e\n\u003cp\u003e{\"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoipanveoitnaoivtuyanklhrtandsf\", \"afkabthawegsathjesrtsrpanveoitnaoivtuyanklhrtandsf\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\", \"afkljhafhaeoipvjoaenoitjstrehtsethsegtaeaegtaetgaw\" }\u003c/p\u003e\n\u003cp\u003e1500\u003c/p\u003e\n\u003cp\u003eReturns: \"adehn\"\u003c/p\u003e"])</script><script>self.__next_f.push([1,"15:Tb06,"])</script><script>self.__next_f.push([1,"\u003cp\u003e\"aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyz\"\u003c/p\u003e\n\u003cp\u003e{\"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\" }\u003c/p\u003e\n\u003cp\u003e99\u003c/p\u003e\n\u003cp\u003eReturns: \"acdefghijklmnopqrstuvwxyz\"\u003c/p\u003e"])</script><script>self.__next_f.push([1,"16:Tb06,"])</script><script>self.__next_f.push([1,"\u003cp\u003e\"aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyz\"\u003c/p\u003e\n\u003cp\u003e{\"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\", \"abccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz\" }\u003c/p\u003e\n\u003cp\u003e100\u003c/p\u003e\n\u003cp\u003eReturns: \"cdefghijklmnopqrstuvwxyz\"\u003c/p\u003e"])</script><script>self.__next_f.push([1,"17:T513,"])</script><script>self.__next_f.push([1,"\u003cp\u003e\"stifubeaonrpcwnwclwwmnhbrqxadippbiwcq\"\u003c/p\u003e\n\u003cp\u003e{\"shlnahossnqclwkaeocnqunioggghuvsitsrjbr\", \"mlialjkktnpqmunwrtubmauqvooihqfriwpwdvd\", \"kejjvxgipfeilejvebqmgnxvljwfgqdxmqlpwtl\", \"llqmgtsfsgckacflheupaoexkocxoxvpjqxardb\", \"jgbsrpquhowewjxeuwsocklpvwrvcophbpaqifd\", \"pbwpwwppeaiorooootosparmwbqjnunaatlbete\", \"cavnfpbhvolvxqovoemfgximkuscsnrmueaqccx\", \"jutkiemwhadhlfsiggxsfucnvplufdasqwrtrvq\", \"gthaomjbioqmxkfrcbcdpilvqhqeugoijmghfof\", \"qujkbmepgeehxtvnefknpxcmoehruqupdbsljoh\", \"qmaussfjprlxbqbjrarigtkkkpcwnxbxlpbtarb\", \"gmbaisropkswswaiekamrebbitmlnfrccqpxrri\", \"krtxgkixogtbrhnjjpooshumfapqeqnhqbitomn\", \"tavbohleehopblfjppmvpmhalfngtbtmsctqmsk\", \"mwnlksjtbwbkwqccwifixsteggpgdwuxcdhbkmq\", \"eafcogacgmcugqmaksemjiithrxtmnemnrqvnjk\", \"axnnntoonlcjnacpkovgdronkkrcvkldjrwfwld\", \"mnbcpfhopvhumfcjefgtrxiawahlgbdfaeihtcd\", \"wkrxhudusecwmxxfuhrgpttvoaovnbowhwbsneb\", \"unrdfxsifdljkwchpeqqepngwnxjupgvnoaoqje\", \"hkbftwnnlejdnrblgguqoqmqrlbuotnsbrckdxa\", \"jritvkhiojkqfdkoesckrakqjhxcfnicdgamljt\", \"ammwfdeajpexfmoiflqpocopinggcqqqupdpqfv\", \"ekfluhbokjnpnagbfvmmqibslrfcxlqtseckhst\", \"ulqspvfukjfevqrrmqsavudwaimkgdlgcqniflk\", \"rongbwmlmadmnhrngdawrlegwgnucndriigbwih\", \"rhuhsaoclsnwntngxqtoktcshnepnbcgpfuabnu\", \"ddwuqouqvtaggdrcdrfwnenhlqtkmuivqpwdqmp\" }\u003c/p\u003e\n\u003cp\u003e608\u003c/p\u003e\n\u003cp\u003eReturns: \"abcdefhnoq\"\u003c/p\u003e"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"ScrabFortune\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"ScrabFortune\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"getMin\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String, String[], int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String getMin(String pool, String[] board, int threshold)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Notes\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":\"The letters in pool may or may not be distinct.\"}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"pool will contain between 1 and 50 lowercase letters ('a'-'z'), inclusive.\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"board will contain between 1 and 50 elements, inclusive.\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Each element of board will contain between 1 and 50 lowercase letters ('a'-'z'), inclusive.\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"threshold will be between 0 and 2500, inclusive.\"}}]}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"fpsctyba\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"scrab\\\",\\n \\\"fortune\\\",\\n \\\"is\\\",\\n \\\"fun\\\"}\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"abcfs\\\"\u003c/p\u003e\\n\u003cp\u003eUsing the letters a, b, and c reveals a total of 3 letters in the board.  Now, if we choose f and s, we reveal 4 more letters, for a total of 7.  Since exactly 10 hidden letters remain, the game is won.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"lllllo\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"hello\\\",\\n \\\"world\\\"}\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"lo\\\"\u003c/p\u003e\\n\u003cp\u003eWatch out for multiple occurrences of the same letter in pool.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"az\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"zzzzzzzzzzzzzaaa\\\"}\u003c/p\u003e\\n\u003cp\u003e14\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"a\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"lllll\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"hello\\\"}\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"IMPOSSIBLE\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"l\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"lo\\\"}\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"IMPOSSIBLE\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"elu\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"eleusive\\\",\\n \\\"likes\\\",\\n \\\"to\\\",\\n \\\"write\\\",\\n \\\"problems\\\"}\u003c/p\u003e\\n\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"elu\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abcd\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"a\\\",\\n \\\"b\\\",\\n \\\"c\\\",\\n \\\"d\\\"}\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"abcd\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"helo\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"hello\\\"}\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"ehlo\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"8\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"lo\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"hello\\\"}\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"IMPOSSIBLE\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"9\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"l\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"blbvbvb\\\",\\n \\\"ajllkjk\\\",\\n \\\"bjkdfle\\\"}\u003c/p\u003e\\n\u003cp\u003e16\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"IMPOSSIBLE\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"10\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"b\\\"}\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"IMPOSSIBLE\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"11\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"a\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"bb\\\"}\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"IMPOSSIBLE\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"12\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"la\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"llllllllllllllllll\\\",\\n \\\"llllllllllllllllll\\\",\\n \\\"lllllllallllllllll\\\"}\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"l\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"13\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"la\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"llllllllllllllllll\\\",\\n \\\"llllllllllllllllll\\\",\\n \\\"lllllllallllllllll\\\"}\u003c/p\u003e\\n\u003cp\u003e20\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"l\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"14\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"la\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"llllllllllllllllll\\\",\\n \\\"llllllllllllllllll\\\",\\n \\\"lllllllallllllllll\\\"}\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"al\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"15\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"zcdefghijlmnaopqrstuvwbkxy\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"utisphy\\\",\\n\\\"rxuygcontculqw\\\",\\n\\\"foiyttydkjb\\\",\\n\\\"nbayrjmgdrkrpptueis\\\",\\n\\\"zargzemjiwc\\\",\\n\\\"x\\\",\\n\\\"sanzazvoc\\\",\\n\\\"wsfuoltu\\\",\\n\\\"emuzdqjqvoxlyq\\\",\\n\\\"ocdef\\\",\\n\\\"hkwcmec\\\",\\n\\\"fwrokmsnu\\\",\\n\\\"mxxaqhofewl\\\",\\n\\\"iotuxkfyqzg\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"abcdefghijklmnopqrstuvwxyz\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"16\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"jn\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"iljejlujnv\\\",\\n\\\"dwyzef\\\",\\n\\\"sjnwxnlec\\\",\\n\\\"bm\\\",\\n\\\"i\\\",\\n\\\"yv\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e30\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"17\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"xynafmsuicngonjz\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"km\\\",\\n\\\"mkbzlgtsue\\\",\\n\\\"hpm\\\",\\n\\\"mepkahwtrnfyqlobyg\\\",\\n\\\"sbl\\\",\\n\\\"apurcrdicatnxeppyex\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e45\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"amy\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"18\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"kazmb\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"crjycxmokltwk\\\",\\n\\\"ljy\\\",\\n\\\"zxgahhu\\\",\\n\\\"efxymlcxootllvhkawg\\\",\\n\\\"amwtjiqjuebarmp\\\",\\n\\\"jvocwm\\\",\\n\\\"psayj\\\",\\n\\\"slncd\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e59\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"abkm\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"19\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"zjacpwfiix\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"mwvydlpdkyzn\\\",\\n\\\"pwmhuw\\\",\\n\\\"iivupgzfnrpomjlabhu\\\",\\n\\\"aypxmmkhfec\\\",\\n\\\"jdsbggxjo\\\",\\n\\\"wrnl\\\",\\n\\\"vfhqfz\\\",\\n\\\"eklpyj\\\",\\n\\\"rynkjvlyclbdgsbrq\\\",\\n\\\"jjiriqrtowzlpphqs\\\",\\n\\\"ocoxmpnxbpl\\\",\\n\\\"gkuqalfborlukxyyw\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e98\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"fijpwx\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"20\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"ouisvcur\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"wwbdnffvzvbkud\\\",\\n\\\"acbyrducc\\\",\\n\\\"nsghldfkhdlysp\\\",\\n\\\"gehyhvsjsqrudmqec\\\",\\n\\\"xshkbgumnr\\\",\\n\\\"vrbjmimjmmstxoy\\\",\\n\\\"zhgzucmgseifjbqokg\\\",\\n\\\"dmizcixdxbfrouvem\\\",\\n\\\"dr\\\",\\n\\\"njaaydtcrahx\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e68\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"IMPOSSIBLE\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"21\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"cukcfuycxix\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"xqdcgpfcu\\\",\\n\\\"wrmrhbwsyiygmtfqtgwq\\\",\\n\\\"uwuezbpyjzszf\\\",\\n\\\"tuctxejpewh\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e42\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"cfiu\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"22\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"amzkmvptprvs\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"qvfqbeavrhszhlmfqq\\\",\\n\\\"pmoxsdmsbwffdkusje\\\",\\n\\\"swmaljvkysagwq\\\",\\n\\\"ajdwgbefh\\\",\\n\\\"xtftvdbrxvcvxsm\\\",\\n\\\"xizsedqazdnfsgpkl\\\",\\n\\\"ziar\\\",\\n\\\"bztwmjc\\\",\\n\\\"decsli\\\",\\n\\\"sxbby\\\",\\n\\\"fzwglf\\\",\\n\\\"gugttztlyn\\\",\\n\\\"xnq\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e56\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"IMPOSSIBLE\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"23\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"yyabnyrjkmg\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"itxqiiryrhzuvzqgfdjc\\\",\\n\\\"ssgmd\\\",\\n\\\"ulhizgyqynivyio\\\",\\n\\\"mekpyjjsear\\\",\\n\\\"edqssv\\\",\\n\\\"blxsaxe\\\",\\n\\\"gmufnrapmmltwrf\\\",\\n\\\"gmj\\\",\\n\\\"wuopsygsaswagk\\\",\\n\\\"onjzbtrlqgiwffuecft\\\",\\n\\\"iegirwhffaeuspevywy\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e98\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"agmry\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"24\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"thsurdf\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"ecxumrqrvmvpks\\\",\\n\\\"ys\\\",\\n\\\"ztfqhucvakpgizxu\\\",\\n\\\"gqdel\\\",\\n\\\"ee\\\",\\n\\\"agqjloum\\\",\\n\\\"lzfikknedeifyt\\\",\\n\\\"pgxkhsqelhexpbx\\\",\\n\\\"ufctleovwwvixfb\\\",\\n\\\"we\\\",\\n\\\"iaj\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e77\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"fhstu\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"25\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"atsmnjyu\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"tlmfvomyunmpiivw\\\",\\n\\\"ubsjv\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e23\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"26\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"igckvsc\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"qwmpylse\\\",\\n\\\"pvwqkjt\\\",\\n\\\"smcqwrtdugapperjpu\\\",\\n\\\"hihstc\\\",\\n\\\"htudlkoowssoygghaus\\\",\\n\\\"fqxtrmnbivowgpnumnhl\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e69\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"gs\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"27\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"qivrjcyzhayq\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"jthkgacryspgi\\\",\\n\\\"npkljvdyheuzwwbzx\\\",\\n\\\"agzwpofbooxhdkbg\\\",\\n\\\"lmtxihpzsozspsm\\\",\\n\\\"jkxmho\\\",\\n\\\"lilk\\\",\\n\\\"rinkrxzvpvpzcbc\\\",\\n\\\"bxskaqddjzqns\\\",\\n\\\"zkgwkwukctjnt\\\",\\n\\\"fg\\\",\\n\\\"chicclw\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e98\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"achz\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"28\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"zjtjprbojw\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"wftap\\\",\\n\\\"fruqspcneqmpg\\\",\\n\\\"ugbpdikt\\\",\\n\\\"ksiwgmqhwyxnwmnz\\\",\\n\\\"lvxedwbpxiosrrz\\\",\\n\\\"pn\\\",\\n\\\"doxzwbtmrpab\\\",\\n\\\"iqdojfuswclbw\\\",\\n\\\"oiasltrmxcxbsa\\\",\\n\\\"zdmclfm\\\",\\n\\\"csrh\\\",\\n\\\"sva\\\",\\n\\\"iuxfzfdbg\\\",\\n\\\"zfffujslwjoiy\\\",\\n\\\"hcojjniaizhceclzcolw\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e94\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"IMPOSSIBLE\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"29\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"ayluhdwllviyvsijsr\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"ycwtqzy\\\",\\n\\\"xsfghgf\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"hy\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"30\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"daxmcndciaf\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"srouhwppjubqcsblar\\\",\\n\\\"pvhihvxaundv\\\",\\n\\\"musiwvpevkjbeljgppa\\\",\\n\\\"esdhpmpaqi\\\",\\n\\\"eylvqwmfruaifmuof\\\",\\n\\\"tpvxyvkaar\\\",\\n\\\"ges\\\",\\n\\\"auwswfepvrygpqdtw\\\",\\n\\\"rbujlfxsn\\\",\\n\\\"loi\\\",\\n\\\"qszkcwlnzforo\\\",\\n\\\"fqulgljqigxvz\\\",\\n\\\"rqctyzwrfximke\\\",\\n\\\"uaxyllhisj\\\",\\n\\\"f\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e122\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"IMPOSSIBLE\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"31\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"daxmcndciaf\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"srouhwppjubqcsblar\\\",\\n\\\"pvhihvxaundv\\\",\\n\\\"musiwvpevkjbeljgppa\\\",\\n\\\"esdhpmpaqi\\\",\\n\\\"eylvqwmfruaifmuof\\\",\\n\\\"tpvxyvkaar\\\",\\n\\\"ges\\\",\\n\\\"auwswfepvrygpqdtw\\\",\\n\\\"rbujlfxsn\\\",\\n\\\"loi\\\",\\n\\\"qszkcwlnzforo\\\",\\n\\\"fqulgljqigxvz\\\",\\n\\\"rqctyzwrfximke\\\",\\n\\\"uaxyllhisj\\\",\\n\\\"f\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e123\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"acdfimnx\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"32\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"hm\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"p\\\",\\n\\\"wxpagjafhbiact\\\",\\n\\\"imdxckemtfgwgqgryqaz\\\",\\n\\\"foeokpauq\\\",\\n\\\"awhvtly\\\",\\n\\\"oaqzpgqtwzrr\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e60\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"hm\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"33\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"fnrkqitrb\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"chxzakgvl\\\",\\n\\\"rck\\\",\\n\\\"bpcrgsruwuhcpbtitzg\\\",\\n\\\"pncdntlqbdjssuc\\\",\\n\\\"ntbfbzanzifuazshmzv\\\",\\n\\\"frpec\\\",\\n\\\"edhmiigyjlzzykrunal\\\",\\n\\\"xaxupzuqhvbynjjccr\\\",\\n\\\"hwq\\\",\\n\\\"qqpchhcske\\\",\\n\\\"suwudwxojkguokemj\\\",\\n\\\"pygelostrvdcck\\\",\\n\\\"egihtticushfgmick\\\",\\n\\\"dsgfqgdozcgx\\\",\\n\\\"uocktiesalkpntoisr\\\",\\n\\\"pblertheibkljwyg\\\",\\n\\\"kqg\\\",\\n\\\"gge\\\",\\n\\\"yyywfisubpfiiifogi\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e167\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"bfiknqrt\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"34\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"nbpfmficlqnpgqtwrhe\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"pjybntfiy\\\",\\n\\\"zf\\\",\\n\\\"gamsccionjjdo\\\",\\n\\\"xqkxuvgnyfnwbrsvss\\\",\\n\\\"tvejutjzcynzgpuimin\\\",\\n\\\"fg\\\",\\n\\\"la\\\",\\n\\\"sorm\\\",\\n\\\"dhnbrlpiitjvjzxqrku\\\",\\n\\\"kxpasv\\\",\\n\\\"vuydmggiliyqfuo\\\",\\n\\\"ccfzp\\\",\\n\\\"hgwvjrpknmht\\\",\\n\\\"gaezjxmwzbwexh\\\",\\n\\\"ckkhepeeommtmuvfgcam\\\",\\n\\\"tdiokdivvpmviwffavnv\\\",\\n\\\"znazdfc\\\",\\n\\\"lcczduzci\\\",\\n\\\"glkertg\\\",\\n\\\"wsyppcbousbbkoyyvtd\\\"\\n}\u003c/p\u003e\\n\u003cp\u003e678\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"35\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abc\\\"\u003c/p\u003e\\n\u003cp\u003e {\\\"caccc\\\"}\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"a\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"36\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abc\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"aabbccc\\\"}\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"ab\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"37\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"tkse\\\"\u003c/p\u003e\\n\u003cp\u003e{\\n\\\"easy\\\",\\n\\\"to\\\",\\n\\\"solve\\\"}\u003c/p\u003e\\n\u003cp\u003e600\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"\\\"\u003c/p\u003e\\n\u003cp\u003eYou can win the game without selecting any letters.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"38\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abcde\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"abbcccddddeeeee\\\"}\u003c/p\u003e\\n\u003cp\u003e14\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"a\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"39\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abcde\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"abbcccddddeeeee\\\"}\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"d\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"40\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abc\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"aabbbccccc\\\"}\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"ac\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"41\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"cba\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"accdbab\\\"}\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"ab\\\"\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"42\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abc\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"aabbccc\\\" }\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"ab\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"43\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$10\"}}]}],[\"$\",\"li\",\"44\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$11\"}}]}],[\"$\",\"li\",\"45\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$12\"}}]}],[\"$\",\"li\",\"46\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"ivomarina\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"ivomarnaaar\\\" }\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"ar\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"47\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"efg\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"eeffggg\\\" }\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"ef\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"48\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abcdef\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"abbbbb\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"b\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"49\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"ab\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"bba\\\" }\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"a\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"50\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abcdefghijklmnopqrstuvwxyz\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"abcdefghijklmnopqrstuvwxyz\\\", \\\"abcdefghijklmnopqrstuvwxyz\\\", \\\"abcdefghijklmnopqrstuvwxyz\\\", \\\"abcdefghijklmnopqrstuvwxyz\\\", \\\"abcdefghijklmnopqrstuvwxyz\\\", \\\"abcdefghijklmnopqrstuvwxyz\\\", \\\"abcdefghijklmnopqrstuvwxyz\\\", \\\"abcdefghijklmnopqrstuvwxyz\\\", \\\"abcdefghijklmnopqrstuvwxyz\\\", \\\"abcdefghijklmnopqrstuvwxyz\\\" }\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"abcdefghijklmnopqrstuvwxyz\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"51\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abcd\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"aa\\\", \\\"bc\\\", \\\"dd\\\" }\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"ad\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"52\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abcd\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"a\\\", \\\"b\\\", \\\"c\\\", \\\"dd\\\" }\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"ad\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"53\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abc\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"aabbcccccccccccccccccccccccc\\\" }\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"ac\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"54\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abcdefghijklmn\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"abcdefggg\\\", \\\"ggghijklm\\\" }\u003c/p\u003e\\n\u003cp\u003e12\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"g\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"55\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$13\"}}]}],[\"$\",\"li\",\"56\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abc\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"aabbccc\\\" }\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"ab\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"57\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$14\"}}]}],[\"$\",\"li\",\"58\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$15\"}}]}],[\"$\",\"li\",\"59\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$16\"}}]}],[\"$\",\"li\",\"60\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"ivomarina\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"ivomarnaaar\\\" }\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"ar\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"61\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"efg\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"eeffggg\\\" }\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"ef\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"62\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abcdef\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"abbbbb\\\" }\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"b\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"63\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"ab\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"bba\\\" }\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"a\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"64\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abcdefghijklmnopqrstuvwxyz\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"abcdefghijklmnopqrstuvwxyz\\\", \\\"abcdefghijklmnopqrstuvwxyz\\\", \\\"abcdefghijklmnopqrstuvwxyz\\\", \\\"abcdefghijklmnopqrstuvwxyz\\\", \\\"abcdefghijklmnopqrstuvwxyz\\\", \\\"abcdefghijklmnopqrstuvwxyz\\\", \\\"abcdefghijklmnopqrstuvwxyz\\\", \\\"abcdefghijklmnopqrstuvwxyz\\\", \\\"abcdefghijklmnopqrstuvwxyz\\\", \\\"abcdefghijklmnopqrstuvwxyz\\\" }\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"abcdefghijklmnopqrstuvwxyz\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"65\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abcd\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"aa\\\", \\\"bc\\\", \\\"dd\\\" }\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"ad\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"66\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abcd\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"a\\\", \\\"b\\\", \\\"c\\\", \\\"dd\\\" }\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"ad\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"67\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abc\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"aabbcccccccccccccccccccccccc\\\" }\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"ac\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"68\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"abcdefghijklmn\\\"\u003c/p\u003e\\n\u003cp\u003e{\\\"abcdefggg\\\", \\\"ggghijklm\\\" }\u003c/p\u003e\\n\u003cp\u003e12\u003c/p\u003e\\n\u003cp\u003eReturns: \\\"g\\\"\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"69\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$17\"}}]}]]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

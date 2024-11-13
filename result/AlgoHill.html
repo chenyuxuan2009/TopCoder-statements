@@ -1,0 +1,850 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->AlgoHill<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div><p xmlns="http://topcoder.com">
+Given a map of a hill, there are many ways for an agent to get from one point to another point.  Many different algorithms have been developed to find the best, or reasonably good ways to get from a starting location to an ending location.  One such method is the breadth-first-search (BFS) algorithm, where the agent always expands the location with the least accumulated cost.  Another method is called A*, which involves predicting the total cost to the goal based on the cost so far, and a heuristic which calculates the expected cost to come, and then expanding the nodes in a BFS-fashion based on this expected, rather than already accumulated, cost.
+</p><p xmlns="http://topcoder.com">
+When a search method expands a node, it assigns a new cost to each neighbor, unless that neighbor already has an equal or lesser cost assigned.  In BFS, this cost is the cost to get to the current node plus the cost of moving from the current node to the given neighboring node.  In A*, this is the total cost as in BFS plus the predicted cost based on the heuristic function.  The search ends when the goal node is expanded, and not when its cost is calculated.  This is because different neighboring nodes can assign different costs to the goal, so terminating before the goal node itself is expanded can give a sub-optimal solution.  Once the goal is expanded, however, you are guaranteed that no neighbor will assign it a lower cost than the one it currently has, and thus it is optimal.
+</p><p xmlns="http://topcoder.com">
+BFS (for reference): For BFS, the agent starts at the starting location (hereafter referred to as S) with a cost of 0.  The agent expands this location (also referred to as a node), calculating the cost for all of its neighbors.  It then expands all nodes with a calculated cost of 1, then all nodes with a calculated cost of 2, and so forth, until it has expanded the goal node.  Notice that a given node may be assigned different costs by different neighbors, but this is okay because we assume that the cost is always increasing, so it should be assigned the lowest cost possible and expanded in turn.
+</p><p xmlns="http://topcoder.com">
+A*: For A*, the agent starts at S, with a so-far cost of 0.  The heuristic function our agent uses will be the "Manhattan Distance" from the current node to the goal node (hereafter referred to as G), that is, the positive difference in X values plus the positive difference in Y values.  The agent expands S, assigning all of its neighbors a cost as with BFS, but with an additional predicted cost (the Manhattan Distance to the goal).  It then expands the nodes in a BFS-fashion using these total predicted costs.  A* should NOT expand a node that it has already expanded previously.
+</p><p xmlns="http://topcoder.com">
+For this problem, the agent can move across the hill in any of the four cardinal directions (north, east, west and south.)  The cost of moving down the hill is 1, of moving across a plateau (between 2 squares of equal altitude) is 2, and of moving up the hill is 3.  The hill is represented by a <type>String[]</type> <b>hill</b>, which represents the altitudes as 1 through 9 (with 9 being the highest altitude).  The x and y coordinates of S and G are represented respectively by <type>int</type> <b>sx sy gx</b> and <b>gy</b>.  The y coordinate is the 0-indexed element in <b>hill</b>, and the x coordinate is the 0-indexed location in the element of <b>hill</b>.  Use the A* method to search for G starting from S, and return the number of nodes expanded.  Expand all nodes that share the same predicted cost as G.  For example, if you expand G with a predicted cost of 10, make sure that all other nodes with a predicted cost of 10 are also expanded, to avoid ambiguities.
+</p>
+</div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>AlgoHill</span></dd><dt>Method:</dt><dd><span>astar</span></dd><dt>Parameters:</dt><dd><span>String[], int, int, int, int</span></dd><dt>Returns:</dt><dd><span>int</span></dd><dt>Method signature:</dt><dd><span>int astar(String[] hill, int sx, int sy, int gx, int gy)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul><li><span>hill will contain between 5 and 50 elements, inclusive.</span></li><li><span>each element of hill will have between 5 and 50 characters, inclusive.</span></li><li><span>each element of hill will have the same number of characters as every other element of hill.</span></li><li><span>each element of hill will contain only the characters '1' through '9'.</span></li><li><span>sy and gy will each be between 0 and one less than the number of elements in hill, inclusive.</span></li><li><span>sx and gx will each be between 0 and one less than the length of the elements in hill, inclusive.</span></li></ul></div><div><h3>Examples</h3><ol><li><div><p>{"34567",
+ "23456",
+ "12345",
+ "23456",
+ "34567"}</p>
+<p>0</p>
+<p>2</p>
+<p>2</p>
+<p>2</p>
+<p>Returns: 5</p>
+<p>A* will assign the following costs:
+
+10 *  *  *  *
+6  8  10 *  *
+2  4  6  10 *
+6  8  10 *  *
+10 *  *  *  *
+
+All nodes with a predicted cost less than or equal to 6 will be expanded (5 nodes).
+</p></div></li><li><div><p>{"55555",
+ "54555",
+ "55355",
+ "55525",
+ "55551"}
+</p>
+<p>0</p>
+<p>0</p>
+<p>4</p>
+<p>4</p>
+<p>Returns: 25</p>
+<p>In this case, A* expands all nodes.
+Also, note that several times in this example, a node of cost C expands to form another node with cost C, and this new node must also be expanded before going on to expand nodes of cost greater than C.
+</p></div></li><li><div><p>{"55555",
+ "54445",
+ "54345",
+ "54445",
+ "55555"}</p>
+<p>0</p>
+<p>1</p>
+<p>4</p>
+<p>3</p>
+<p>Returns: 21</p></div></li><li><div><p>{"99999",
+ "89992",
+ "76543",
+ "99992",
+ "99991"}
+</p>
+<p>0</p>
+<p>0</p>
+<p>4</p>
+<p>0</p>
+<p>Returns: 13</p>
+<p>Note that the node at (4,1) gets expanded by A*.  Prior to expanding nodes with a predicted cost of 8, this node has no cost.  After expanding the node at (4,2), this is assigned a predicted cost of 8 (the same as the goal) and therefore should be expanded.</p></div></li><li><div><p>{"68233335836531",
+ "57244363483169",
+ "92744511826738",
+ "76864574378195",
+ "39927887799237",
+ "89447973623642",
+ "19758793475135",
+ "33857155647757",
+ "82987352116383",
+ "18813823791825",
+ "91772225881964",
+ "46692256258431",
+ "41961397519198",
+ "48265328441524",
+ "31422961925492",
+ "17844758382392",
+ "47549368526297",
+ "27955796939522",
+ "59699922792416",
+ "56366572279148",
+ "26884644728715",
+ "98234493558879",
+ "38984599399327",
+ "66812381124583",
+ "73833939626911",
+ "13681831986111",
+ "69237772565286",
+ "34347792857462"}</p>
+<p>8</p>
+<p>2</p>
+<p>8</p>
+<p>2</p>
+<p>Returns: 1</p>
+<p>The start node is the goal node, and is the only node that you expand.</p></div></li><li><div><p>{"68233335836531",
+ "57244363483169",
+ "92744511826738",
+ "76864574378195",
+ "39927887799237",
+ "89447973623642",
+ "19758793475135",
+ "33857155647757",
+ "82987352116383",
+ "18813823791825",
+ "91772225881964",
+ "46692256258431",
+ "41961397519198",
+ "48265328441524",
+ "31422961925492",
+ "17844758382392",
+ "47549368526297",
+ "27955796939522",
+ "59699922792416",
+ "56366572279148",
+ "26884644728715",
+ "98234493558879",
+ "38984599399327",
+ "66812381124583",
+ "73833939626911",
+ "13681831986111",
+ "69237772565286",
+ "34347792857462"}</p>
+<p>8</p>
+<p>2</p>
+<p>0</p>
+<p>22</p>
+<p>Returns: 289</p></div></li><li><div><p>{"53677323542641727332579466",
+ "32597471712442334564933585",
+ "98411224482518816694261743",
+ "31444822629962614713435396",
+ "78357784757499149183223216",
+ "87757583191194547627728168",
+ "75421763226342185162384459",
+ "93822113841735449147411738",
+ "86638911359319641855566961",
+ "35262542714283275711784799",
+ "61149662211819669388358868",
+ "72181823124428233154148532",
+ "47665774861764355254155331",
+ "39655739116158421271871987",
+ "11354779961418748836265258",
+ "19682473162284478873743444",
+ "88857667612244389295771528",
+ "37452314249446934362262127"}</p>
+<p>2</p>
+<p>13</p>
+<p>16</p>
+<p>12</p>
+<p>Returns: 110</p></div></li><li><div><p>{"41293823572123573659761",
+ "76811626374682433519188",
+ "33321151279966848381858",
+ "94343589811288176472241",
+ "96426133287818273145323",
+ "75193592616465893415834",
+ "38836423785865985824661",
+ "99331316225498348713232",
+ "93672134412457531239776",
+ "45749541632196952481278",
+ "67773433897818722799375",
+ "89729435615878133239519",
+ "57197413964621663882464",
+ "84827191754587753587136",
+ "11443467388172893398576",
+ "36961611288535744942973",
+ "29225826262568419894485",
+ "49365644472639984178674",
+ "44456715313919971174547",
+ "23342188592372623896384",
+ "95191956357546132747722",
+ "36718715559365979739181"}</p>
+<p>0</p>
+<p>0</p>
+<p>20</p>
+<p>20</p>
+<p>Returns: 484</p></div></li><li><div><p>{"915252393236674547629441226232474614589357383",
+ "569861928145994765117914472125537772732624159",
+ "472238676749998581757461785187593894556515649",
+ "936638846154411272284977618959482211958337454",
+ "742119447249494694233185263932444264439658181",
+ "249959831326218939818929111726639839377222597",
+ "929641862333185193331774262375982714716322642",
+ "614517719759472454993883524438516991775827637",
+ "356419517728971836844154584655412235797525932",
+ "894783751975392953745515193826538346979414469",
+ "951487287127153422147431177128926876274663153",
+ "181928523493537514225298644753787862626297568",
+ "486712578137732678415136177165247334815595253",
+ "585738343369692211299721396915293168872319518",
+ "989859456345869119613219269774379219937231598",
+ "192467926579865651983123852777162762712981294"}</p>
+<p>0</p>
+<p>2</p>
+<p>43</p>
+<p>12</p>
+<p>Returns: 645</p></div></li><li><div><p>{"8491225711595815495912239581758297",
+ "3244315226816772677913939695746561",
+ "3638898328352333277531363438149441",
+ "1128811379914197755319933638765289",
+ "5279199313438164545163363389259453",
+ "5147672747326133442919476541526914",
+ "4892352479949733672345835585346927",
+ "8932934324324757989182334133645334",
+ "5477825834418263912335116859787369",
+ "4889878361956147568985576664113722",
+ "1975597711193389329784132218176834",
+ "8317879828178575561517686876541212",
+ "5893226895683783828539835435222131",
+ "2819871862128723571788644854298975",
+ "3572996937252367249373253674179857",
+ "3426444321589674571796893162428231",
+ "1547853522141649394967937847388672",
+ "3369468275219316521953372416948841",
+ "6445551238441458551261336851723255",
+ "5456793243865292153115473261259788",
+ "3275627328277582128518687374626497",
+ "1329267418167319553448936993447371",
+ "8922932893419553128151581796932651",
+ "7283795561656521873511347974144765",
+ "4972127224818773638833212699194151",
+ "8465132242879839117957963231462583",
+ "2516489194817369914882297653785168",
+ "7366868456143819553922256512685482",
+ "9982498587723594417498147672895533",
+ "5559543489755184724345592973243743",
+ "4326538171273886812887641143778764",
+ "6488561981813275963261293749347314",
+ "1744692612627464812164418313357363",
+ "4859911545954948684862873396962828",
+ "9957681311718334756475824696487565",
+ "2491351447172622982966236979236141",
+ "5545167356411738863494845531191824",
+ "1969118279138636485351696326682849",
+ "8927419555234564348649119848491618",
+ "5233292633383426346521835551738644",
+ "5497955547955555139893314599791687",
+ "7328257996275862443358579848378119"}</p>
+<p>33</p>
+<p>33</p>
+<p>0</p>
+<p>0</p>
+<p>Returns: 1421</p></div></li><li><div><p>{"622796249598652786557143639169999976812",
+ "354724195486368828619819263921147519849",
+ "277584457371434771829447659354959882367",
+ "926791769483443565573363574147348621865",
+ "585178669896668326966465593714368747687",
+ "877247246533559376783872194334952391336",
+ "634728616817785331436838773575115873461",
+ "881587785491534682734558529354824822679",
+ "751748246376888143714669873614342479576",
+ "711636154473478342595632478668697495746",
+ "419812976344656434661969963442393787721",
+ "551173912547515233927882267194115333251",
+ "723524227147698783388727929777336643325",
+ "261223886657585444161857399418694987379",
+ "892834475899538226128112751645735957594",
+ "915725247959296566595748316214332987477",
+ "654959813512524639511113729296698765975",
+ "931658251651881134756797595953128318643",
+ "225342625481832627517291365786141967163",
+ "717786432494751758116951574862425737356",
+ "853421717859492425444194816761149271532",
+ "228128846837468329914738648121867981479",
+ "987885967688529157941518612182577788752",
+ "424838778958887133594412227599812182375",
+ "742387823238344417532591332293523396256",
+ "558771827947161158266679642912942682611",
+ "546344829532643458751223655639668112423",
+ "142931569327738559483276964156385691847",
+ "941684965546334272336812821872816261214",
+ "668543656867665724931982316164428672859",
+ "735211224818373563661646595243415128365",
+ "424369577642975549992637241291845551419"}</p>
+<p>13</p>
+<p>17</p>
+<p>22</p>
+<p>1</p>
+<p>Returns: 311</p></div></li><li><div><p>{"8491225711595815495912239581758297",
+ "3244315226816772677913939695746561",
+ "3638898328352333277531363438149441",
+ "1128811379914197755319933638765289",
+ "5279199313438164545163363389259453",
+ "5147672747326133442919476541526914",
+ "4892352479949733672345835585346927",
+ "8932934324324757989182334133645334",
+ "5477825834418263912335116859787369",
+ "4889878361956147568985576664113722",
+ "1975597711193389329784132218176834",
+ "8317879828178575561517686876541212",
+ "5893226895683783828539835435222131",
+ "2819871862128723571788644854298975",
+ "3572996937252367249373253674179857",
+ "3426444321589674571796893162428231",
+ "1547853522141649394967937847388672",
+ "3369468275219316521953372416948841",
+ "6445551238441458551261336851723255",
+ "5456793243865292153115473261259788",
+ "3275627328277582128518687374626497",
+ "1329267418167319553448936993447371",
+ "8922932893419553128151581796932651",
+ "7283795561656521873511347974144765",
+ "4972127224818773638833212699194151",
+ "8465132242879839117957963231462583",
+ "2516489194817369914882297653785168",
+ "7366868456143819553922256512685482",
+ "9982498587723594417498147672895533",
+ "5559543489755184724345592973243743",
+ "4326538171273886812887641143778764",
+ "6488561981813275963261293749347314",
+ "1744692612627464812164418313357363",
+ "4859911545954948684862873396962828",
+ "9957681311718334756475824696487565",
+ "2491351447172622982966236979236141",
+ "5545167356411738863494845531191824",
+ "1969118279138636485351696326682849",
+ "8927419555234564348649119848491618",
+ "5233292633383426346521835551738644",
+ "5497955547955555139893314599791687",
+ "7328257996275862443358579848378119"}</p>
+<p>17</p>
+<p>17</p>
+<p>0</p>
+<p>0</p>
+<p>Returns: 533</p></div></li><li><div><p>{"39974333254494383474697532",
+ "21713983747428752975429293",
+ "63751834161795467845329473",
+ "51176915763266624416998417",
+ "93227734944799677227957283",
+ "16831921677594572714398598",
+ "95486728391229369268616939",
+ "83118477467444938947495898",
+ "88631487794537293847395989",
+ "82771722835943584872716616",
+ "46439462862665749968142555",
+ "27498658615445515131853746",
+ "14217685996324936314996832",
+ "86114447262882865813311772",
+ "29638588739516754662896487",
+ "27257167499655792532111637",
+ "34364529887179274419519939",
+ "44868138875211733996745729",
+ "39338744693444818475351619",
+ "52446582513233933165529271",
+ "76229239858685783721241258",
+ "83512791747712753346324595",
+ "49656989515368125725444564",
+ "35752236862538941699268591",
+ "52127296654942171327473871",
+ "19167397796517717353786538",
+ "38758116421975435197844563",
+ "15721692769817395756194879",
+ "89876973643733264874734841",
+ "59914576814997691332319515",
+ "58681224586227469827824417",
+ "28863492531957728535835951",
+ "66281544183435852199229446",
+ "59328943251216883659795224",
+ "73923745695151282745975542",
+ "36224799687523813827795934",
+ "77464525823497381739696938",
+ "96551384418737487244719772"}</p>
+<p>9</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>Returns: 44</p></div></li><li><div><p>{"42798",
+ "51578",
+ "91857",
+ "54516",
+ "45316",
+ "65652",
+ "65975",
+ "77572",
+ "75473",
+ "55722",
+ "84798",
+ "44461",
+ "25312",
+ "67581",
+ "11368",
+ "63165",
+ "97717",
+ "18436"}</p>
+<p>1</p>
+<p>1</p>
+<p>1</p>
+<p>1</p>
+<p>Returns: 1</p></div></li><li><div><p>{"64577623745589223887847888312817578",
+ "29875398958916651422535591389187319",
+ "87875742325551573757984797776239841",
+ "89915277722266263844425461194495194",
+ "74917741894248194137533835877298176",
+ "75776462864136186719313256678763151",
+ "71929562258791681685435221441637774",
+ "16853874841388944468955735569684171",
+ "42757747185648133946271691457351465",
+ "86935125987294491332796217749471341",
+ "27125896863442915656879145191256724",
+ "18675562382464227627117575256279278",
+ "54947852686777584953862893932523898",
+ "38537498848818788933663374846481578",
+ "59831389476667826255125964737748619",
+ "61854813182166516142289627377464621",
+ "49472161146267924279364873961557595",
+ "27739554888691646842227435898655746",
+ "23493582534723896837923987477237879",
+ "99146165768458886331564238475222154",
+ "81644362471871459795657675637574341",
+ "13751769368989726717172731368626917",
+ "11624877853822987847269372677925578",
+ "35352537512111747671581789281771145",
+ "63497452654121371175943959831246818",
+ "85522953633113945582615485516733338",
+ "49816823246974683884612561785313894",
+ "94656321761858222586891433743635111",
+ "58757655891994834588865234383896192",
+ "54487742218528917619189697418254698",
+ "12124783769741795714517589948493254",
+ "28153559546274718557916338765386538",
+ "16161194896451617277336585123613894",
+ "52363251657342913917696295959967366",
+ "58359339854744624481783845965292539",
+ "94748893995937633372117474148267155",
+ "44738641723796377482775657461515414",
+ "98151572394916436546617871347866542",
+ "77236744131286229634519744965646424",
+ "78517558532439181894113242186512827"}</p>
+<p>8</p>
+<p>2</p>
+<p>3</p>
+<p>21</p>
+<p>Returns: 272</p></div></li><li><div><p>{"486768838783642748726389258",
+ "931846132826589125292193855",
+ "743117893789978295573417881",
+ "759518462356865918738919928",
+ "943552958917569581426812491",
+ "285373444113114421363159196",
+ "949126574396721662765812732",
+ "164579168924496848379268112",
+ "689785418882949669231458211",
+ "688773374232956741745598391",
+ "686631323783833982683618382",
+ "972845169244254142974928378",
+ "812142526195828965891862784",
+ "161187693819278161765479733",
+ "549186986266596539638796221",
+ "762451518791165464326198637",
+ "877237442548926613986496876",
+ "125722586929656174176719875",
+ "388595314567982584799549351",
+ "865464996243964854929928739",
+ "826514923322723513971345779",
+ "611991939495915978116815412",
+ "428439387714852224483236965",
+ "416459736111986812825694918",
+ "798888653366759193897756639",
+ "969773459481627544876159516",
+ "781418426319743491336574277",
+ "425826368886489432415597872",
+ "435784992788572158471811991",
+ "534552852743938689898332223",
+ "524157387638453435621424939",
+ "486579868124681119485439761",
+ "368638849661336388873869572",
+ "349465312875295684263245712",
+ "658968831336849347743848117",
+ "995343212235578777424122499",
+ "512849358496744699686743271",
+ "129318124547986299368867413",
+ "543268939473149646267393269",
+ "578485823183357911532425319",
+ "797892348675734852467312912",
+ "497172724922299831671839558",
+ "267857736612563452692841795",
+ "595628894825982317998897819",
+ "445523249431296454992538296"}</p>
+<p>5</p>
+<p>10</p>
+<p>15</p>
+<p>30</p>
+<p>Returns: 399</p></div></li><li><div><p>{"486768838783642748726389258",
+ "931846132826589125292193855",
+ "743117893789978295573417881",
+ "759518462356865918738919928",
+ "943552958917569581426812491",
+ "285373444113114421363159196",
+ "949126574396721662765812732",
+ "164579168924496848379268112",
+ "689785418882949669231458211",
+ "688773374232956741745598391",
+ "686631323783833982683618382",
+ "972845169244254142974928378",
+ "812142526195828965891862784",
+ "161187693819278161765479733",
+ "549186986266596539638796221",
+ "762451518791165464326198637",
+ "877237442548926613986496876",
+ "125722586929656174176719875",
+ "388595314567982584799549351",
+ "865464996243964854929928739",
+ "826514923322723513971345779",
+ "611991939495915978116815412",
+ "428439387714852224483236965",
+ "416459736111986812825694918",
+ "798888653366759193897756639",
+ "969773459481627544876159516",
+ "781418426319743491336574277",
+ "425826368886489432415597872",
+ "435784992788572158471811991",
+ "534552852743938689898332223",
+ "524157387638453435621424939",
+ "486579868124681119485439761",
+ "368638849661336388873869572",
+ "349465312875295684263245712",
+ "658968831336849347743848117",
+ "995343212235578777424122499",
+ "512849358496744699686743271",
+ "129318124547986299368867413",
+ "543268939473149646267393269",
+ "578485823183357911532425319",
+ "797892348675734852467312912",
+ "497172724922299831671839558",
+ "267857736612563452692841795",
+ "595628894825982317998897819",
+ "445523249431296454992538296"}</p>
+<p>8</p>
+<p>7</p>
+<p>6</p>
+<p>5</p>
+<p>Returns: 12</p></div></li><li><div><p>{"2411756927",
+ "7177898994",
+ "8169642357",
+ "5878759974",
+ "4946892585",
+ "4541137391",
+ "8235985547",
+ "4982446138",
+ "4894311665",
+ "5822356513",
+ "8566435893",
+ "6558656686",
+ "3939249741",
+ "4712456247",
+ "8473778363",
+ "4177297254",
+ "8544226842",
+ "1212614883",
+ "5914737324",
+ "6737466783",
+ "7467839472",
+ "7289576578",
+ "7844861324",
+ "4189836187",
+ "6183626753",
+ "1624871257",
+ "2256613233",
+ "9765898385",
+ "2163245259",
+ "1947732374"}</p>
+<p>1</p>
+<p>16</p>
+<p>5</p>
+<p>11</p>
+<p>Returns: 36</p></div></li><li><div><p>{"6231739259995941972117661551986",
+ "2579863349291888224135527987678",
+ "5157222894358365637375457896453",
+ "7835654712246537359456147993791",
+ "1193982569547764277456999918989",
+ "8339663772686513978411524563274",
+ "1124467876968159318942219127969",
+ "8142219921394122593323361245357",
+ "2942468356681373973942717671832",
+ "2329257128737136649663229895951",
+ "8972659632749923515849234126677",
+ "1332324375521456286265995715191",
+ "9257923613621493533659858845835",
+ "3499356658375672366376332987672",
+ "2867285241962685563895567791946",
+ "7926444311447961382398316181994",
+ "4225147373364734626634675325663",
+ "6259336715589149489737965416179",
+ "9193988889833222914135994498724",
+ "8654595767361289734921211227474",
+ "4817793598366186378177349496818",
+ "5416595377235465144682139471768",
+ "2811121921125937869457364481383",
+ "1874328691891523179957691231248",
+ "7567877666636622841571314454992",
+ "9157374275277727968617355179193",
+ "5841553866264614811466887372956",
+ "1314296241411894397552252651753",
+ "3551784713589251986175762458883",
+ "8141854331225382563692659179331",
+ "6619427461365325948588767755275",
+ "7182334327927259625473416917658",
+ "4381392827293891423118956285834",
+ "9123988181912977263291893138141",
+ "8269228268523856926647145374292",
+ "7824122196321993519151854357763",
+ "9497385966389918672544154376868",
+ "2829595792445656448159798729618",
+ "1674984547338975169646268745299"}</p>
+<p>12</p>
+<p>18</p>
+<p>18</p>
+<p>12</p>
+<p>Returns: 95</p></div></li><li><div><p>{"6231739259995941972117661551986",
+ "2579863349291888224135527987678",
+ "5157222894358365637375457896453",
+ "7835654712246537359456147993791",
+ "1193982569547764277456999918989",
+ "8339663772686513978411524563274",
+ "1124467876968159318942219127969",
+ "8142219921394122593323361245357",
+ "2942468356681373973942717671832",
+ "2329257128737136649663229895951",
+ "8972659632749923515849234126677",
+ "1332324375521456286265995715191",
+ "9257923613621493533659858845835",
+ "3499356658375672366376332987672",
+ "2867285241962685563895567791946",
+ "7926444311447961382398316181994",
+ "4225147373364734626634675325663",
+ "6259336715589149489737965416179",
+ "9193988889833222914135994498724",
+ "8654595767361289734921211227474",
+ "4817793598366186378177349496818",
+ "5416595377235465144682139471768",
+ "2811121921125937869457364481383",
+ "1874328691891523179957691231248",
+ "7567877666636622841571314454992",
+ "9157374275277727968617355179193",
+ "5841553866264614811466887372956",
+ "1314296241411894397552252651753",
+ "3551784713589251986175762458883",
+ "8141854331225382563692659179331",
+ "6619427461365325948588767755275",
+ "7182334327927259625473416917658",
+ "4381392827293891423118956285834",
+ "9123988181912977263291893138141",
+ "8269228268523856926647145374292",
+ "7824122196321993519151854357763",
+ "9497385966389918672544154376868",
+ "2829595792445656448159798729618",
+ "1674984547338975169646268745299"}</p>
+<p>18</p>
+<p>12</p>
+<p>12</p>
+<p>18</p>
+<p>Returns: 78</p></div></li><li><div><p>{"7365456325",
+ "6839217227",
+ "7428524784",
+ "4576681522",
+ "6295929431",
+ "3433715968",
+ "5493925577",
+ "4345949426",
+ "2874744215",
+ "1263979636",
+ "8772482273",
+ "4588648991",
+ "2683171483",
+ "2951668265",
+ "5793972237",
+ "8921454696",
+ "4643591892",
+ "3968348379",
+ "6891748787",
+ "2648733435",
+ "9641429798",
+ "8381128729",
+ "6157174216",
+ "1129999739",
+ "5743581888"}</p>
+<p>0</p>
+<p>0</p>
+<p>7</p>
+<p>7</p>
+<p>Returns: 68</p></div></li><li><div><p>{"7365456325",
+ "6839217227",
+ "7428524784",
+ "4576681522",
+ "6295929431",
+ "3433715968",
+ "5493925577",
+ "4345949426",
+ "2874744215",
+ "1263979636",
+ "8772482273",
+ "4588648991",
+ "2683171483",
+ "2951668265",
+ "5793972237",
+ "8921454696",
+ "4643591892",
+ "3968348379",
+ "6891748787",
+ "2648733435",
+ "9641429798",
+ "8381128729",
+ "6157174216",
+ "1129999739",
+ "5743581888"}</p>
+<p>7</p>
+<p>7</p>
+<p>0</p>
+<p>0</p>
+<p>Returns: 104</p></div></li><li><div><p>{"824229445433825493",
+ "334644449716781224",
+ "687497519979826626",
+ "879953364544226481",
+ "798234128596242419",
+ "698389388686265167",
+ "468871581236491289",
+ "668621217737418487",
+ "443651796957897492",
+ "681513235895126321",
+ "141962524129415994",
+ "521789176161379568"}</p>
+<p>2</p>
+<p>2</p>
+<p>8</p>
+<p>8</p>
+<p>Returns: 83</p></div></li><li><div><p>{"91537",
+ "41784",
+ "69889",
+ "34173",
+ "98359",
+ "51734",
+ "28245",
+ "55655",
+ "77376",
+ "34588",
+ "89951",
+ "41298",
+ "88865",
+ "58532",
+ "82777",
+ "75829",
+ "25514",
+ "15824",
+ "55337",
+ "87587",
+ "36374",
+ "56765",
+ "33188",
+ "16837",
+ "23729",
+ "68835",
+ "46861",
+ "66647",
+ "53881",
+ "17161",
+ "79797",
+ "37157",
+ "21254"}</p>
+<p>0</p>
+<p>10</p>
+<p>4</p>
+<p>10</p>
+<p>Returns: 8</p></div></li><li><div><p>{"91537",
+ "41784",
+ "69889",
+ "34173",
+ "98359",
+ "51734",
+ "28245",
+ "55655",
+ "77376",
+ "34588",
+ "89951",
+ "41298",
+ "88865",
+ "58532",
+ "82777",
+ "75829",
+ "25514",
+ "15824",
+ "55337",
+ "87587",
+ "36374",
+ "56765",
+ "33188",
+ "16837",
+ "23729",
+ "68835",
+ "46861",
+ "66647",
+ "53881",
+ "17161",
+ "79797",
+ "37157",
+ "21254"}</p>
+<p>2</p>
+<p>0</p>
+<p>2</p>
+<p>20</p>
+<p>Returns: 102</p></div></li><li><div><p>{"68233335836531",
+ "57244363483169",
+ "92744511826738",
+ "76864574378195",
+ "39927887799237",
+ "89447973623642",
+ "19758793475135",
+ "33857155647757",
+ "82987352116383",
+ "18813823791825",
+ "91772225881964",
+ "46692256258431",
+ "41961397519198",
+ "48265328441524",
+ "31422961925492",
+ "17844758382392",
+ "47549368526297",
+ "27955796939522",
+ "59699922792416",
+ "56366572279148",
+ "26884644728715",
+ "98234493558879",
+ "38984599399327",
+ "66812381124583",
+ "73833939626911",
+ "13681831986111",
+ "69237772565286",
+ "34347792857462"}</p>
+<p>0</p>
+<p>0</p>
+<p>2</p>
+<p>2</p>
+<p>Returns: 11</p></div></li><li><div><p>{"44435",
+ "44425",
+ "44445",
+ "32445",
+ "55555"}</p>
+<p>0</p>
+<p>0</p>
+<p>2</p>
+<p>2</p>
+<p>Returns: 13</p></div></li><li><div><p>{ "123454321",  "123454321",  "123454321",  "123454321",  "123454321",  "123454321",  "123454321",  "123454321" }</p>
+<p>0</p>
+<p>0</p>
+<p>8</p>
+<p>7</p>
+<p>Returns: 72</p></div></li><li><div><p>{ "123454321",  "123454321",  "123454321",  "123454321",  "123454321",  "123454321",  "123454321",  "123454321" }</p>
+<p>0</p>
+<p>0</p>
+<p>8</p>
+<p>7</p>
+<p>Returns: 72</p></div></li></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/1946/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"1946\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"1946\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"1946\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"1946\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"1946\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\n"])</script><script>self.__next_f.push([1,"f:Ted7,"])</script><script>self.__next_f.push([1,"\u003cp xmlns=\"http://topcoder.com\"\u003e\nGiven a map of a hill, there are many ways for an agent to get from one point to another point.  Many different algorithms have been developed to find the best, or reasonably good ways to get from a starting location to an ending location.  One such method is the breadth-first-search (BFS) algorithm, where the agent always expands the location with the least accumulated cost.  Another method is called A*, which involves predicting the total cost to the goal based on the cost so far, and a heuristic which calculates the expected cost to come, and then expanding the nodes in a BFS-fashion based on this expected, rather than already accumulated, cost.\n\u003c/p\u003e\u003cp xmlns=\"http://topcoder.com\"\u003e\nWhen a search method expands a node, it assigns a new cost to each neighbor, unless that neighbor already has an equal or lesser cost assigned.  In BFS, this cost is the cost to get to the current node plus the cost of moving from the current node to the given neighboring node.  In A*, this is the total cost as in BFS plus the predicted cost based on the heuristic function.  The search ends when the goal node is expanded, and not when its cost is calculated.  This is because different neighboring nodes can assign different costs to the goal, so terminating before the goal node itself is expanded can give a sub-optimal solution.  Once the goal is expanded, however, you are guaranteed that no neighbor will assign it a lower cost than the one it currently has, and thus it is optimal.\n\u003c/p\u003e\u003cp xmlns=\"http://topcoder.com\"\u003e\nBFS (for reference): For BFS, the agent starts at the starting location (hereafter referred to as S) with a cost of 0.  The agent expands this location (also referred to as a node), calculating the cost for all of its neighbors.  It then expands all nodes with a calculated cost of 1, then all nodes with a calculated cost of 2, and so forth, until it has expanded the goal node.  Notice that a given node may be assigned different costs by different neighbors, but this is okay because we assume that the cost is always increasing, so it should be assigned the lowest cost possible and expanded in turn.\n\u003c/p\u003e\u003cp xmlns=\"http://topcoder.com\"\u003e\nA*: For A*, the agent starts at S, with a so-far cost of 0.  The heuristic function our agent uses will be the \"Manhattan Distance\" from the current node to the goal node (hereafter referred to as G), that is, the positive difference in X values plus the positive difference in Y values.  The agent expands S, assigning all of its neighbors a cost as with BFS, but with an additional predicted cost (the Manhattan Distance to the goal).  It then expands the nodes in a BFS-fashion using these total predicted costs.  A* should NOT expand a node that it has already expanded previously.\n\u003c/p\u003e\u003cp xmlns=\"http://topcoder.com\"\u003e\nFor this problem, the agent can move across the hill in any of the four cardinal directions (north, east, west and south.)  The cost of moving down the hill is 1, of moving across a plateau (between 2 squares of equal altitude) is 2, and of moving up the hill is 3.  The hill is represented by a \u003ctype\u003eString[]\u003c/type\u003e \u003cb\u003ehill\u003c/b\u003e, which represents the altitudes as 1 through 9 (with 9 being the highest altitude).  The x and y coordinates of S and G are represented respectively by \u003ctype\u003eint\u003c/type\u003e \u003cb\u003esx sy gx\u003c/b\u003e and \u003cb\u003egy\u003c/b\u003e.  The y coordinate is the 0-indexed element in \u003cb\u003ehill\u003c/b\u003e, and the x coordinate is the 0-indexed location in the element of \u003cb\u003ehill\u003c/b\u003e.  Use the A* method to search for G starting from S, and return the number of nodes expanded.  Expand all nodes that share the same predicted cost as G.  For example, if you expand G with a predicted cost of 10, make sure that all other nodes with a predicted cost of 10 are also expanded, to avoid ambiguities.\n\u003c/p\u003e\n"])</script><script>self.__next_f.push([1,"10:T6a7,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"8491225711595815495912239581758297\",\n \"3244315226816772677913939695746561\",\n \"3638898328352333277531363438149441\",\n \"1128811379914197755319933638765289\",\n \"5279199313438164545163363389259453\",\n \"5147672747326133442919476541526914\",\n \"4892352479949733672345835585346927\",\n \"8932934324324757989182334133645334\",\n \"5477825834418263912335116859787369\",\n \"4889878361956147568985576664113722\",\n \"1975597711193389329784132218176834\",\n \"8317879828178575561517686876541212\",\n \"5893226895683783828539835435222131\",\n \"2819871862128723571788644854298975\",\n \"3572996937252367249373253674179857\",\n \"3426444321589674571796893162428231\",\n \"1547853522141649394967937847388672\",\n \"3369468275219316521953372416948841\",\n \"6445551238441458551261336851723255\",\n \"5456793243865292153115473261259788\",\n \"3275627328277582128518687374626497\",\n \"1329267418167319553448936993447371\",\n \"8922932893419553128151581796932651\",\n \"7283795561656521873511347974144765\",\n \"4972127224818773638833212699194151\",\n \"8465132242879839117957963231462583\",\n \"2516489194817369914882297653785168\",\n \"7366868456143819553922256512685482\",\n \"9982498587723594417498147672895533\",\n \"5559543489755184724345592973243743\",\n \"4326538171273886812887641143778764\",\n \"6488561981813275963261293749347314\",\n \"1744692612627464812164418313357363\",\n \"4859911545954948684862873396962828\",\n \"9957681311718334756475824696487565\",\n \"2491351447172622982966236979236141\",\n \"5545167356411738863494845531191824\",\n \"1969118279138636485351696326682849\",\n \"8927419555234564348649119848491618\",\n \"5233292633383426346521835551738644\",\n \"5497955547955555139893314599791687\",\n \"7328257996275862443358579848378119\"}\u003c/p\u003e\n\u003cp\u003e33\u003c/p\u003e\n\u003cp\u003e33\u003c/p\u003e\n\u003cp\u003e0\u003c/p\u003e\n\u003cp\u003e0\u003c/p\u003e\n\u003cp\u003eReturns: 1421\u003c/p\u003e"])</script><script>self.__next_f.push([1,"11:T5c1,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"622796249598652786557143639169999976812\",\n \"354724195486368828619819263921147519849\",\n \"277584457371434771829447659354959882367\",\n \"926791769483443565573363574147348621865\",\n \"585178669896668326966465593714368747687\",\n \"877247246533559376783872194334952391336\",\n \"634728616817785331436838773575115873461\",\n \"881587785491534682734558529354824822679\",\n \"751748246376888143714669873614342479576\",\n \"711636154473478342595632478668697495746\",\n \"419812976344656434661969963442393787721\",\n \"551173912547515233927882267194115333251\",\n \"723524227147698783388727929777336643325\",\n \"261223886657585444161857399418694987379\",\n \"892834475899538226128112751645735957594\",\n \"915725247959296566595748316214332987477\",\n \"654959813512524639511113729296698765975\",\n \"931658251651881134756797595953128318643\",\n \"225342625481832627517291365786141967163\",\n \"717786432494751758116951574862425737356\",\n \"853421717859492425444194816761149271532\",\n \"228128846837468329914738648121867981479\",\n \"987885967688529157941518612182577788752\",\n \"424838778958887133594412227599812182375\",\n \"742387823238344417532591332293523396256\",\n \"558771827947161158266679642912942682611\",\n \"546344829532643458751223655639668112423\",\n \"142931569327738559483276964156385691847\",\n \"941684965546334272336812821872816261214\",\n \"668543656867665724931982316164428672859\",\n \"735211224818373563661646595243415128365\",\n \"424369577642975549992637241291845551419\"}\u003c/p\u003e\n\u003cp\u003e13\u003c/p\u003e\n\u003cp\u003e17\u003c/p\u003e\n\u003cp\u003e22\u003c/p\u003e\n\u003cp\u003e1\u003c/p\u003e\n\u003cp\u003eReturns: 311\u003c/p\u003e"])</script><script>self.__next_f.push([1,"12:T6a6,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"8491225711595815495912239581758297\",\n \"3244315226816772677913939695746561\",\n \"3638898328352333277531363438149441\",\n \"1128811379914197755319933638765289\",\n \"5279199313438164545163363389259453\",\n \"5147672747326133442919476541526914\",\n \"4892352479949733672345835585346927\",\n \"8932934324324757989182334133645334\",\n \"5477825834418263912335116859787369\",\n \"4889878361956147568985576664113722\",\n \"1975597711193389329784132218176834\",\n \"8317879828178575561517686876541212\",\n \"5893226895683783828539835435222131\",\n \"2819871862128723571788644854298975\",\n \"3572996937252367249373253674179857\",\n \"3426444321589674571796893162428231\",\n \"1547853522141649394967937847388672\",\n \"3369468275219316521953372416948841\",\n \"6445551238441458551261336851723255\",\n \"5456793243865292153115473261259788\",\n \"3275627328277582128518687374626497\",\n \"1329267418167319553448936993447371\",\n \"8922932893419553128151581796932651\",\n \"7283795561656521873511347974144765\",\n \"4972127224818773638833212699194151\",\n \"8465132242879839117957963231462583\",\n \"2516489194817369914882297653785168\",\n \"7366868456143819553922256512685482\",\n \"9982498587723594417498147672895533\",\n \"5559543489755184724345592973243743\",\n \"4326538171273886812887641143778764\",\n \"6488561981813275963261293749347314\",\n \"1744692612627464812164418313357363\",\n \"4859911545954948684862873396962828\",\n \"9957681311718334756475824696487565\",\n \"2491351447172622982966236979236141\",\n \"5545167356411738863494845531191824\",\n \"1969118279138636485351696326682849\",\n \"8927419555234564348649119848491618\",\n \"5233292633383426346521835551738644\",\n \"5497955547955555139893314599791687\",\n \"7328257996275862443358579848378119\"}\u003c/p\u003e\n\u003cp\u003e17\u003c/p\u003e\n\u003cp\u003e17\u003c/p\u003e\n\u003cp\u003e0\u003c/p\u003e\n\u003cp\u003e0\u003c/p\u003e\n\u003cp\u003eReturns: 533\u003c/p\u003e"])</script><script>self.__next_f.push([1,"13:T4d7,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"39974333254494383474697532\",\n \"21713983747428752975429293\",\n \"63751834161795467845329473\",\n \"51176915763266624416998417\",\n \"93227734944799677227957283\",\n \"16831921677594572714398598\",\n \"95486728391229369268616939\",\n \"83118477467444938947495898\",\n \"88631487794537293847395989\",\n \"82771722835943584872716616\",\n \"46439462862665749968142555\",\n \"27498658615445515131853746\",\n \"14217685996324936314996832\",\n \"86114447262882865813311772\",\n \"29638588739516754662896487\",\n \"27257167499655792532111637\",\n \"34364529887179274419519939\",\n \"44868138875211733996745729\",\n \"39338744693444818475351619\",\n \"52446582513233933165529271\",\n \"76229239858685783721241258\",\n \"83512791747712753346324595\",\n \"49656989515368125725444564\",\n \"35752236862538941699268591\",\n \"52127296654942171327473871\",\n \"19167397796517717353786538\",\n \"38758116421975435197844563\",\n \"15721692769817395756194879\",\n \"89876973643733264874734841\",\n \"59914576814997691332319515\",\n \"58681224586227469827824417\",\n \"28863492531957728535835951\",\n \"66281544183435852199229446\",\n \"59328943251216883659795224\",\n \"73923745695151282745975542\",\n \"36224799687523813827795934\",\n \"77464525823497381739696938\",\n \"96551384418737487244719772\"}\u003c/p\u003e\n\u003cp\u003e9\u003c/p\u003e\n\u003cp\u003e1\u003c/p\u003e\n\u003cp\u003e2\u003c/p\u003e\n\u003cp\u003e3\u003c/p\u003e\n\u003cp\u003eReturns: 44\u003c/p\u003e"])</script><script>self.__next_f.push([1,"14:T67f,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"64577623745589223887847888312817578\",\n \"29875398958916651422535591389187319\",\n \"87875742325551573757984797776239841\",\n \"89915277722266263844425461194495194\",\n \"74917741894248194137533835877298176\",\n \"75776462864136186719313256678763151\",\n \"71929562258791681685435221441637774\",\n \"16853874841388944468955735569684171\",\n \"42757747185648133946271691457351465\",\n \"86935125987294491332796217749471341\",\n \"27125896863442915656879145191256724\",\n \"18675562382464227627117575256279278\",\n \"54947852686777584953862893932523898\",\n \"38537498848818788933663374846481578\",\n \"59831389476667826255125964737748619\",\n \"61854813182166516142289627377464621\",\n \"49472161146267924279364873961557595\",\n \"27739554888691646842227435898655746\",\n \"23493582534723896837923987477237879\",\n \"99146165768458886331564238475222154\",\n \"81644362471871459795657675637574341\",\n \"13751769368989726717172731368626917\",\n \"11624877853822987847269372677925578\",\n \"35352537512111747671581789281771145\",\n \"63497452654121371175943959831246818\",\n \"85522953633113945582615485516733338\",\n \"49816823246974683884612561785313894\",\n \"94656321761858222586891433743635111\",\n \"58757655891994834588865234383896192\",\n \"54487742218528917619189697418254698\",\n \"12124783769741795714517589948493254\",\n \"28153559546274718557916338765386538\",\n \"16161194896451617277336585123613894\",\n \"52363251657342913917696295959967366\",\n \"58359339854744624481783845965292539\",\n \"94748893995937633372117474148267155\",\n \"44738641723796377482775657461515414\",\n \"98151572394916436546617871347866542\",\n \"77236744131286229634519744965646424\",\n \"78517558532439181894113242186512827\"}\u003c/p\u003e\n\u003cp\u003e8\u003c/p\u003e\n\u003cp\u003e2\u003c/p\u003e\n\u003cp\u003e3\u003c/p\u003e\n\u003cp\u003e21\u003c/p\u003e\n\u003cp\u003eReturns: 272\u003c/p\u003e"])</script><script>self.__next_f.push([1,"15:T5e1,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"486768838783642748726389258\",\n \"931846132826589125292193855\",\n \"743117893789978295573417881\",\n \"759518462356865918738919928\",\n \"943552958917569581426812491\",\n \"285373444113114421363159196\",\n \"949126574396721662765812732\",\n \"164579168924496848379268112\",\n \"689785418882949669231458211\",\n \"688773374232956741745598391\",\n \"686631323783833982683618382\",\n \"972845169244254142974928378\",\n \"812142526195828965891862784\",\n \"161187693819278161765479733\",\n \"549186986266596539638796221\",\n \"762451518791165464326198637\",\n \"877237442548926613986496876\",\n \"125722586929656174176719875\",\n \"388595314567982584799549351\",\n \"865464996243964854929928739\",\n \"826514923322723513971345779\",\n \"611991939495915978116815412\",\n \"428439387714852224483236965\",\n \"416459736111986812825694918\",\n \"798888653366759193897756639\",\n \"969773459481627544876159516\",\n \"781418426319743491336574277\",\n \"425826368886489432415597872\",\n \"435784992788572158471811991\",\n \"534552852743938689898332223\",\n \"524157387638453435621424939\",\n \"486579868124681119485439761\",\n \"368638849661336388873869572\",\n \"349465312875295684263245712\",\n \"658968831336849347743848117\",\n \"995343212235578777424122499\",\n \"512849358496744699686743271\",\n \"129318124547986299368867413\",\n \"543268939473149646267393269\",\n \"578485823183357911532425319\",\n \"797892348675734852467312912\",\n \"497172724922299831671839558\",\n \"267857736612563452692841795\",\n \"595628894825982317998897819\",\n \"445523249431296454992538296\"}\u003c/p\u003e\n\u003cp\u003e5\u003c/p\u003e\n\u003cp\u003e10\u003c/p\u003e\n\u003cp\u003e15\u003c/p\u003e\n\u003cp\u003e30\u003c/p\u003e\n\u003cp\u003eReturns: 399\u003c/p\u003e"])</script><script>self.__next_f.push([1,"16:T5dd,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"486768838783642748726389258\",\n \"931846132826589125292193855\",\n \"743117893789978295573417881\",\n \"759518462356865918738919928\",\n \"943552958917569581426812491\",\n \"285373444113114421363159196\",\n \"949126574396721662765812732\",\n \"164579168924496848379268112\",\n \"689785418882949669231458211\",\n \"688773374232956741745598391\",\n \"686631323783833982683618382\",\n \"972845169244254142974928378\",\n \"812142526195828965891862784\",\n \"161187693819278161765479733\",\n \"549186986266596539638796221\",\n \"762451518791165464326198637\",\n \"877237442548926613986496876\",\n \"125722586929656174176719875\",\n \"388595314567982584799549351\",\n \"865464996243964854929928739\",\n \"826514923322723513971345779\",\n \"611991939495915978116815412\",\n \"428439387714852224483236965\",\n \"416459736111986812825694918\",\n \"798888653366759193897756639\",\n \"969773459481627544876159516\",\n \"781418426319743491336574277\",\n \"425826368886489432415597872\",\n \"435784992788572158471811991\",\n \"534552852743938689898332223\",\n \"524157387638453435621424939\",\n \"486579868124681119485439761\",\n \"368638849661336388873869572\",\n \"349465312875295684263245712\",\n \"658968831336849347743848117\",\n \"995343212235578777424122499\",\n \"512849358496744699686743271\",\n \"129318124547986299368867413\",\n \"543268939473149646267393269\",\n \"578485823183357911532425319\",\n \"797892348675734852467312912\",\n \"497172724922299831671839558\",\n \"267857736612563452692841795\",\n \"595628894825982317998897819\",\n \"445523249431296454992538296\"}\u003c/p\u003e\n\u003cp\u003e8\u003c/p\u003e\n\u003cp\u003e7\u003c/p\u003e\n\u003cp\u003e6\u003c/p\u003e\n\u003cp\u003e5\u003c/p\u003e\n\u003cp\u003eReturns: 12\u003c/p\u003e"])</script><script>self.__next_f.push([1,"17:T5bd,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"6231739259995941972117661551986\",\n \"2579863349291888224135527987678\",\n \"5157222894358365637375457896453\",\n \"7835654712246537359456147993791\",\n \"1193982569547764277456999918989\",\n \"8339663772686513978411524563274\",\n \"1124467876968159318942219127969\",\n \"8142219921394122593323361245357\",\n \"2942468356681373973942717671832\",\n \"2329257128737136649663229895951\",\n \"8972659632749923515849234126677\",\n \"1332324375521456286265995715191\",\n \"9257923613621493533659858845835\",\n \"3499356658375672366376332987672\",\n \"2867285241962685563895567791946\",\n \"7926444311447961382398316181994\",\n \"4225147373364734626634675325663\",\n \"6259336715589149489737965416179\",\n \"9193988889833222914135994498724\",\n \"8654595767361289734921211227474\",\n \"4817793598366186378177349496818\",\n \"5416595377235465144682139471768\",\n \"2811121921125937869457364481383\",\n \"1874328691891523179957691231248\",\n \"7567877666636622841571314454992\",\n \"9157374275277727968617355179193\",\n \"5841553866264614811466887372956\",\n \"1314296241411894397552252651753\",\n \"3551784713589251986175762458883\",\n \"8141854331225382563692659179331\",\n \"6619427461365325948588767755275\",\n \"7182334327927259625473416917658\",\n \"4381392827293891423118956285834\",\n \"9123988181912977263291893138141\",\n \"8269228268523856926647145374292\",\n \"7824122196321993519151854357763\",\n \"9497385966389918672544154376868\",\n \"2829595792445656448159798729618\",\n \"1674984547338975169646268745299\"}\u003c/p\u003e\n\u003cp\u003e12\u003c/p\u003e\n\u003cp\u003e18\u003c/p\u003e\n\u003cp\u003e18\u003c/p\u003e\n\u003cp\u003e12\u003c/p\u003e\n\u003cp\u003eReturns: 95\u003c/p\u003e"])</script><script>self.__next_f.push([1,"18:T5bd,"])</script><script>self.__next_f.push([1,"\u003cp\u003e{\"6231739259995941972117661551986\",\n \"2579863349291888224135527987678\",\n \"5157222894358365637375457896453\",\n \"7835654712246537359456147993791\",\n \"1193982569547764277456999918989\",\n \"8339663772686513978411524563274\",\n \"1124467876968159318942219127969\",\n \"8142219921394122593323361245357\",\n \"2942468356681373973942717671832\",\n \"2329257128737136649663229895951\",\n \"8972659632749923515849234126677\",\n \"1332324375521456286265995715191\",\n \"9257923613621493533659858845835\",\n \"3499356658375672366376332987672\",\n \"2867285241962685563895567791946\",\n \"7926444311447961382398316181994\",\n \"4225147373364734626634675325663\",\n \"6259336715589149489737965416179\",\n \"9193988889833222914135994498724\",\n \"8654595767361289734921211227474\",\n \"4817793598366186378177349496818\",\n \"5416595377235465144682139471768\",\n \"2811121921125937869457364481383\",\n \"1874328691891523179957691231248\",\n \"7567877666636622841571314454992\",\n \"9157374275277727968617355179193\",\n \"5841553866264614811466887372956\",\n \"1314296241411894397552252651753\",\n \"3551784713589251986175762458883\",\n \"8141854331225382563692659179331\",\n \"6619427461365325948588767755275\",\n \"7182334327927259625473416917658\",\n \"4381392827293891423118956285834\",\n \"9123988181912977263291893138141\",\n \"8269228268523856926647145374292\",\n \"7824122196321993519151854357763\",\n \"9497385966389918672544154376868\",\n \"2829595792445656448159798729618\",\n \"1674984547338975169646268745299\"}\u003c/p\u003e\n\u003cp\u003e18\u003c/p\u003e\n\u003cp\u003e12\u003c/p\u003e\n\u003cp\u003e12\u003c/p\u003e\n\u003cp\u003e18\u003c/p\u003e\n\u003cp\u003eReturns: 78\u003c/p\u003e"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"AlgoHill\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"AlgoHill\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"astar\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String[], int, int, int, int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int astar(String[] hill, int sx, int sy, int gx, int gy)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"hill will contain between 5 and 50 elements, inclusive.\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"each element of hill will have between 5 and 50 characters, inclusive.\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"each element of hill will have the same number of characters as every other element of hill.\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"each element of hill will contain only the characters '1' through '9'.\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"sy and gy will each be between 0 and one less than the number of elements in hill, inclusive.\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"sx and gx will each be between 0 and one less than the length of the elements in hill, inclusive.\"}}]}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"34567\\\",\\n \\\"23456\\\",\\n \\\"12345\\\",\\n \\\"23456\\\",\\n \\\"34567\\\"}\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: 5\u003c/p\u003e\\n\u003cp\u003eA* will assign the following costs:\\n\\n10 *  *  *  *\\n6  8  10 *  *\\n2  4  6  10 *\\n6  8  10 *  *\\n10 *  *  *  *\\n\\nAll nodes with a predicted cost less than or equal to 6 will be expanded (5 nodes).\\n\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"55555\\\",\\n \\\"54555\\\",\\n \\\"55355\\\",\\n \\\"55525\\\",\\n \\\"55551\\\"}\\n\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003eReturns: 25\u003c/p\u003e\\n\u003cp\u003eIn this case, A* expands all nodes.\\nAlso, note that several times in this example, a node of cost C expands to form another node with cost C, and this new node must also be expanded before going on to expand nodes of cost greater than C.\\n\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"55555\\\",\\n \\\"54445\\\",\\n \\\"54345\\\",\\n \\\"54445\\\",\\n \\\"55555\\\"}\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003eReturns: 21\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"99999\\\",\\n \\\"89992\\\",\\n \\\"76543\\\",\\n \\\"99992\\\",\\n \\\"99991\\\"}\\n\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: 13\u003c/p\u003e\\n\u003cp\u003eNote that the node at (4,1) gets expanded by A*.  Prior to expanding nodes with a predicted cost of 8, this node has no cost.  After expanding the node at (4,2), this is assigned a predicted cost of 8 (the same as the goal) and therefore should be expanded.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"68233335836531\\\",\\n \\\"57244363483169\\\",\\n \\\"92744511826738\\\",\\n \\\"76864574378195\\\",\\n \\\"39927887799237\\\",\\n \\\"89447973623642\\\",\\n \\\"19758793475135\\\",\\n \\\"33857155647757\\\",\\n \\\"82987352116383\\\",\\n \\\"18813823791825\\\",\\n \\\"91772225881964\\\",\\n \\\"46692256258431\\\",\\n \\\"41961397519198\\\",\\n \\\"48265328441524\\\",\\n \\\"31422961925492\\\",\\n \\\"17844758382392\\\",\\n \\\"47549368526297\\\",\\n \\\"27955796939522\\\",\\n \\\"59699922792416\\\",\\n \\\"56366572279148\\\",\\n \\\"26884644728715\\\",\\n \\\"98234493558879\\\",\\n \\\"38984599399327\\\",\\n \\\"66812381124583\\\",\\n \\\"73833939626911\\\",\\n \\\"13681831986111\\\",\\n \\\"69237772565286\\\",\\n \\\"34347792857462\\\"}\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\\n\u003cp\u003eThe start node is the goal node, and is the only node that you expand.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"68233335836531\\\",\\n \\\"57244363483169\\\",\\n \\\"92744511826738\\\",\\n \\\"76864574378195\\\",\\n \\\"39927887799237\\\",\\n \\\"89447973623642\\\",\\n \\\"19758793475135\\\",\\n \\\"33857155647757\\\",\\n \\\"82987352116383\\\",\\n \\\"18813823791825\\\",\\n \\\"91772225881964\\\",\\n \\\"46692256258431\\\",\\n \\\"41961397519198\\\",\\n \\\"48265328441524\\\",\\n \\\"31422961925492\\\",\\n \\\"17844758382392\\\",\\n \\\"47549368526297\\\",\\n \\\"27955796939522\\\",\\n \\\"59699922792416\\\",\\n \\\"56366572279148\\\",\\n \\\"26884644728715\\\",\\n \\\"98234493558879\\\",\\n \\\"38984599399327\\\",\\n \\\"66812381124583\\\",\\n \\\"73833939626911\\\",\\n \\\"13681831986111\\\",\\n \\\"69237772565286\\\",\\n \\\"34347792857462\\\"}\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e22\u003c/p\u003e\\n\u003cp\u003eReturns: 289\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"53677323542641727332579466\\\",\\n \\\"32597471712442334564933585\\\",\\n \\\"98411224482518816694261743\\\",\\n \\\"31444822629962614713435396\\\",\\n \\\"78357784757499149183223216\\\",\\n \\\"87757583191194547627728168\\\",\\n \\\"75421763226342185162384459\\\",\\n \\\"93822113841735449147411738\\\",\\n \\\"86638911359319641855566961\\\",\\n \\\"35262542714283275711784799\\\",\\n \\\"61149662211819669388358868\\\",\\n \\\"72181823124428233154148532\\\",\\n \\\"47665774861764355254155331\\\",\\n \\\"39655739116158421271871987\\\",\\n \\\"11354779961418748836265258\\\",\\n \\\"19682473162284478873743444\\\",\\n \\\"88857667612244389295771528\\\",\\n \\\"37452314249446934362262127\\\"}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e13\u003c/p\u003e\\n\u003cp\u003e16\u003c/p\u003e\\n\u003cp\u003e12\u003c/p\u003e\\n\u003cp\u003eReturns: 110\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"41293823572123573659761\\\",\\n \\\"76811626374682433519188\\\",\\n \\\"33321151279966848381858\\\",\\n \\\"94343589811288176472241\\\",\\n \\\"96426133287818273145323\\\",\\n \\\"75193592616465893415834\\\",\\n \\\"38836423785865985824661\\\",\\n \\\"99331316225498348713232\\\",\\n \\\"93672134412457531239776\\\",\\n \\\"45749541632196952481278\\\",\\n \\\"67773433897818722799375\\\",\\n \\\"89729435615878133239519\\\",\\n \\\"57197413964621663882464\\\",\\n \\\"84827191754587753587136\\\",\\n \\\"11443467388172893398576\\\",\\n \\\"36961611288535744942973\\\",\\n \\\"29225826262568419894485\\\",\\n \\\"49365644472639984178674\\\",\\n \\\"44456715313919971174547\\\",\\n \\\"23342188592372623896384\\\",\\n \\\"95191956357546132747722\\\",\\n \\\"36718715559365979739181\\\"}\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e20\u003c/p\u003e\\n\u003cp\u003e20\u003c/p\u003e\\n\u003cp\u003eReturns: 484\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"8\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"915252393236674547629441226232474614589357383\\\",\\n \\\"569861928145994765117914472125537772732624159\\\",\\n \\\"472238676749998581757461785187593894556515649\\\",\\n \\\"936638846154411272284977618959482211958337454\\\",\\n \\\"742119447249494694233185263932444264439658181\\\",\\n \\\"249959831326218939818929111726639839377222597\\\",\\n \\\"929641862333185193331774262375982714716322642\\\",\\n \\\"614517719759472454993883524438516991775827637\\\",\\n \\\"356419517728971836844154584655412235797525932\\\",\\n \\\"894783751975392953745515193826538346979414469\\\",\\n \\\"951487287127153422147431177128926876274663153\\\",\\n \\\"181928523493537514225298644753787862626297568\\\",\\n \\\"486712578137732678415136177165247334815595253\\\",\\n \\\"585738343369692211299721396915293168872319518\\\",\\n \\\"989859456345869119613219269774379219937231598\\\",\\n \\\"192467926579865651983123852777162762712981294\\\"}\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e43\u003c/p\u003e\\n\u003cp\u003e12\u003c/p\u003e\\n\u003cp\u003eReturns: 645\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"9\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$10\"}}]}],[\"$\",\"li\",\"10\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$11\"}}]}],[\"$\",\"li\",\"11\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$12\"}}]}],[\"$\",\"li\",\"12\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$13\"}}]}],[\"$\",\"li\",\"13\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"42798\\\",\\n \\\"51578\\\",\\n \\\"91857\\\",\\n \\\"54516\\\",\\n \\\"45316\\\",\\n \\\"65652\\\",\\n \\\"65975\\\",\\n \\\"77572\\\",\\n \\\"75473\\\",\\n \\\"55722\\\",\\n \\\"84798\\\",\\n \\\"44461\\\",\\n \\\"25312\\\",\\n \\\"67581\\\",\\n \\\"11368\\\",\\n \\\"63165\\\",\\n \\\"97717\\\",\\n \\\"18436\\\"}\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003eReturns: 1\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"14\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$14\"}}]}],[\"$\",\"li\",\"15\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$15\"}}]}],[\"$\",\"li\",\"16\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$16\"}}]}],[\"$\",\"li\",\"17\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"2411756927\\\",\\n \\\"7177898994\\\",\\n \\\"8169642357\\\",\\n \\\"5878759974\\\",\\n \\\"4946892585\\\",\\n \\\"4541137391\\\",\\n \\\"8235985547\\\",\\n \\\"4982446138\\\",\\n \\\"4894311665\\\",\\n \\\"5822356513\\\",\\n \\\"8566435893\\\",\\n \\\"6558656686\\\",\\n \\\"3939249741\\\",\\n \\\"4712456247\\\",\\n \\\"8473778363\\\",\\n \\\"4177297254\\\",\\n \\\"8544226842\\\",\\n \\\"1212614883\\\",\\n \\\"5914737324\\\",\\n \\\"6737466783\\\",\\n \\\"7467839472\\\",\\n \\\"7289576578\\\",\\n \\\"7844861324\\\",\\n \\\"4189836187\\\",\\n \\\"6183626753\\\",\\n \\\"1624871257\\\",\\n \\\"2256613233\\\",\\n \\\"9765898385\\\",\\n \\\"2163245259\\\",\\n \\\"1947732374\\\"}\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e16\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003eReturns: 36\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"18\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$17\"}}]}],[\"$\",\"li\",\"19\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$18\"}}]}],[\"$\",\"li\",\"20\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"7365456325\\\",\\n \\\"6839217227\\\",\\n \\\"7428524784\\\",\\n \\\"4576681522\\\",\\n \\\"6295929431\\\",\\n \\\"3433715968\\\",\\n \\\"5493925577\\\",\\n \\\"4345949426\\\",\\n \\\"2874744215\\\",\\n \\\"1263979636\\\",\\n \\\"8772482273\\\",\\n \\\"4588648991\\\",\\n \\\"2683171483\\\",\\n \\\"2951668265\\\",\\n \\\"5793972237\\\",\\n \\\"8921454696\\\",\\n \\\"4643591892\\\",\\n \\\"3968348379\\\",\\n \\\"6891748787\\\",\\n \\\"2648733435\\\",\\n \\\"9641429798\\\",\\n \\\"8381128729\\\",\\n \\\"6157174216\\\",\\n \\\"1129999739\\\",\\n \\\"5743581888\\\"}\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003eReturns: 68\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"21\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"7365456325\\\",\\n \\\"6839217227\\\",\\n \\\"7428524784\\\",\\n \\\"4576681522\\\",\\n \\\"6295929431\\\",\\n \\\"3433715968\\\",\\n \\\"5493925577\\\",\\n \\\"4345949426\\\",\\n \\\"2874744215\\\",\\n \\\"1263979636\\\",\\n \\\"8772482273\\\",\\n \\\"4588648991\\\",\\n \\\"2683171483\\\",\\n \\\"2951668265\\\",\\n \\\"5793972237\\\",\\n \\\"8921454696\\\",\\n \\\"4643591892\\\",\\n \\\"3968348379\\\",\\n \\\"6891748787\\\",\\n \\\"2648733435\\\",\\n \\\"9641429798\\\",\\n \\\"8381128729\\\",\\n \\\"6157174216\\\",\\n \\\"1129999739\\\",\\n \\\"5743581888\\\"}\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: 104\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"22\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"824229445433825493\\\",\\n \\\"334644449716781224\\\",\\n \\\"687497519979826626\\\",\\n \\\"879953364544226481\\\",\\n \\\"798234128596242419\\\",\\n \\\"698389388686265167\\\",\\n \\\"468871581236491289\\\",\\n \\\"668621217737418487\\\",\\n \\\"443651796957897492\\\",\\n \\\"681513235895126321\\\",\\n \\\"141962524129415994\\\",\\n \\\"521789176161379568\\\"}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003eReturns: 83\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"23\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"91537\\\",\\n \\\"41784\\\",\\n \\\"69889\\\",\\n \\\"34173\\\",\\n \\\"98359\\\",\\n \\\"51734\\\",\\n \\\"28245\\\",\\n \\\"55655\\\",\\n \\\"77376\\\",\\n \\\"34588\\\",\\n \\\"89951\\\",\\n \\\"41298\\\",\\n \\\"88865\\\",\\n \\\"58532\\\",\\n \\\"82777\\\",\\n \\\"75829\\\",\\n \\\"25514\\\",\\n \\\"15824\\\",\\n \\\"55337\\\",\\n \\\"87587\\\",\\n \\\"36374\\\",\\n \\\"56765\\\",\\n \\\"33188\\\",\\n \\\"16837\\\",\\n \\\"23729\\\",\\n \\\"68835\\\",\\n \\\"46861\\\",\\n \\\"66647\\\",\\n \\\"53881\\\",\\n \\\"17161\\\",\\n \\\"79797\\\",\\n \\\"37157\\\",\\n \\\"21254\\\"}\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003eReturns: 8\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"24\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"91537\\\",\\n \\\"41784\\\",\\n \\\"69889\\\",\\n \\\"34173\\\",\\n \\\"98359\\\",\\n \\\"51734\\\",\\n \\\"28245\\\",\\n \\\"55655\\\",\\n \\\"77376\\\",\\n \\\"34588\\\",\\n \\\"89951\\\",\\n \\\"41298\\\",\\n \\\"88865\\\",\\n \\\"58532\\\",\\n \\\"82777\\\",\\n \\\"75829\\\",\\n \\\"25514\\\",\\n \\\"15824\\\",\\n \\\"55337\\\",\\n \\\"87587\\\",\\n \\\"36374\\\",\\n \\\"56765\\\",\\n \\\"33188\\\",\\n \\\"16837\\\",\\n \\\"23729\\\",\\n \\\"68835\\\",\\n \\\"46861\\\",\\n \\\"66647\\\",\\n \\\"53881\\\",\\n \\\"17161\\\",\\n \\\"79797\\\",\\n \\\"37157\\\",\\n \\\"21254\\\"}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e20\u003c/p\u003e\\n\u003cp\u003eReturns: 102\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"25\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"68233335836531\\\",\\n \\\"57244363483169\\\",\\n \\\"92744511826738\\\",\\n \\\"76864574378195\\\",\\n \\\"39927887799237\\\",\\n \\\"89447973623642\\\",\\n \\\"19758793475135\\\",\\n \\\"33857155647757\\\",\\n \\\"82987352116383\\\",\\n \\\"18813823791825\\\",\\n \\\"91772225881964\\\",\\n \\\"46692256258431\\\",\\n \\\"41961397519198\\\",\\n \\\"48265328441524\\\",\\n \\\"31422961925492\\\",\\n \\\"17844758382392\\\",\\n \\\"47549368526297\\\",\\n \\\"27955796939522\\\",\\n \\\"59699922792416\\\",\\n \\\"56366572279148\\\",\\n \\\"26884644728715\\\",\\n \\\"98234493558879\\\",\\n \\\"38984599399327\\\",\\n \\\"66812381124583\\\",\\n \\\"73833939626911\\\",\\n \\\"13681831986111\\\",\\n \\\"69237772565286\\\",\\n \\\"34347792857462\\\"}\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: 11\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"26\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"44435\\\",\\n \\\"44425\\\",\\n \\\"44445\\\",\\n \\\"32445\\\",\\n \\\"55555\\\"}\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003eReturns: 13\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"27\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"123454321\\\",  \\\"123454321\\\",  \\\"123454321\\\",  \\\"123454321\\\",  \\\"123454321\\\",  \\\"123454321\\\",  \\\"123454321\\\",  \\\"123454321\\\" }\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003eReturns: 72\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"28\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{ \\\"123454321\\\",  \\\"123454321\\\",  \\\"123454321\\\",  \\\"123454321\\\",  \\\"123454321\\\",  \\\"123454321\\\",  \\\"123454321\\\",  \\\"123454321\\\" }\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003eReturns: 72\u003c/p\u003e\"}}]}]]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

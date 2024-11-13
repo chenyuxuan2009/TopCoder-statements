@@ -1,0 +1,212 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->BuffetLine<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div><p xmlns="http://topcoder.com">
+Before the final round of the TCCC, audience members head to the buffet for lunch.
+The buffet line contains a number of food items, in a fixed order.
+Those indulging line up at the buffet, each intending to sample a subset of the items available.
+</p>
+
+<p xmlns="http://topcoder.com">
+It takes each person exactly 10 seconds to help themselves to a food item.
+Every 10 seconds, each person moves up as far as they can (without passing by any food they want, of course!). This movement takes no time.
+The first person in line moves immediately to each item he wants, in order, spending 10 seconds at each item.
+Depending on which items the rest of the people want, they may be able to move up to each item immediately, but also may have to spend some time waiting for the person they are following.
+</p>
+
+<p xmlns="http://topcoder.com">
+Each person is always either waiting in line before reaching the first food item, standing in front of exactly one food item, or has passed the last food item and is looking for a place to sit.
+Two people may not stand in front of the same food item at the same time.
+Also, people always remain in the order in which they lined up, and they never move backward in line.
+No one ever passes another person in line -- even after they have taken all the food they want, they still exit the buffet in line.
+People can only take a food item that they are standing directly in front of.
+Anyone who cannot reach the next food item they want (because they are waiting for the person in front of them) will advance as far as possible in line, to avoid blocking the people behind them unnecessarily.
+</p>
+
+<p xmlns="http://topcoder.com">
+Anxious to get back to the TCCC event, the people wish to get the group through the buffet line as quickly as possible.
+Given the list of food items in the buffet and the items that each person wants, return the optimal order in which the people should line up at the buffet so that everyone can get all the food they desire in the least total amount of time.
+</p>
+
+<p xmlns="http://topcoder.com">
+The food items available at the buffet will be given as a <type>String</type> <b>food</b>.
+Each item in <b>food</b> will contain only letters ('a'-'z', 'A'-'Z'), and there will be exactly one space between each pair of adjacent items.
+Each item in <b>food</b> will be unique.
+The order of items in <b>food</b> is the order they appear in the buffet line, with the first item in <b>food</b> being the first item available.
+The items each person wants are given in a <type>String[]</type> <b>cravings</b>.
+There will be one element in <b>cravings</b> for each person.
+Each element in <b>cravings</b> will be a list of food items found in <b>food</b>, with exactly one space between each food items.
+Within each element of <b>cravings</b>, each food item will be unique.
+</p>
+
+<p xmlns="http://topcoder.com">
+Return a <type>int[]</type> containing the optimal order, where each element is the 0-based index of a person in <b>cravings</b>, and elements are ordered from first to last in line.  If there are multiple solutions, return the one that comes first lexicographically.  A <type>int[]</type> a1 comes before a <type>int[]</type> a2 lexicographically if, at the first element at which they differ, a1 contains the smaller value.
+</p></div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>BuffetLine</span></dd><dt>Method:</dt><dd><span>order</span></dd><dt>Parameters:</dt><dd><span>String, String[]</span></dd><dt>Returns:</dt><dd><span>int[]</span></dd><dt>Method signature:</dt><dd><span>int[] order(String food, String[] cravings)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul><li><span>food will contain between 1 and 50 characters, inclusive.</span></li><li><span>food will be formatted as described in the problem statement and contain between 1 and 8 items, inclusive.</span></li><li><span>food will not contain any duplicate items.</span></li><li><span>cravings will contain between 1 and 12 elements, inclusive.</span></li><li><span>Each element of cravings will contain between 0 and 50 characters, inclusive.</span></li><li><span>Each element of cravings will be formatted as described in the problem statement.</span></li><li><span>Each word in each element of cravings will be an item from food.</span></li><li><span>Each element of cravings will not contain any duplicate items.</span></li></ul></div><div><h3>Examples</h3><ol><li><div><p>"applesauce beans carrots dates eggplant"</p>
+<p>{ "beans",
+  "applesauce",
+  "dates" }</p>
+<p>Returns: {2, 0, 1 }</p>
+<p>All three people can get through the line in 10 seconds if the person who wants dates goes first, followed by the person who wants beans, and then the person who wants applesauce.  Any other order would require 20 or 30 seconds.</p></div></li><li><div><p>"applesauce beans carrots dates eggplant"</p>
+<p>{ "beans",
+  "applesauce",
+  "beans",
+  "dates" }</p>
+<p>Returns: {0, 1, 3, 2 }</p>
+<p>In this example there are two people who want beans.  Since only one person can take any given food item at once, it will take at least 20 seconds for all 4 people to get through the line.  There are several orders that get them through in 20 seconds, and { 0, 1, 3, 2 } is selected according to the tiebreaking rules.</p></div></li><li><div><p>"bread water"</p>
+<p>{ "" }</p>
+<p>Returns: {0 }</p>
+<p></p></div></li><li><div><p>"A B C D E F"</p>
+<p>{ "A C E D",
+  "A B D E F",
+  "B C A D",
+  "B C F D E",
+  "B D C F" }</p>
+<p>Returns: {3, 1, 0, 4, 2 }</p>
+<p>
+
+</p></div></li><li><div><p>"F D C E A G B H"</p>
+<p>{ "A D H C E B",
+  "E B A",
+  "A C E H F D G",
+  "G B F A D H",
+  "D H E F",
+  "H F A E B C G",
+  "E C",
+  "D A H",
+  "H C G B F",
+  "H A D G",
+  "G A F D",
+  "E D B G H" }</p>
+<p>Returns: {1, 6, 7, 4, 3, 8, 9, 5, 0, 2, 11, 10 }</p>
+<p>
+
+</p></div></li><li><div><p>"A B C"</p>
+<p>{ "A", "A", "A", "A",
+  "B", "B", "B", "B",
+  "C", "C", "C", "C" }</p>
+<p>Returns: {8, 4, 0, 9, 5, 1, 10, 6, 2, 11, 7, 3 }</p>
+<p></p></div></li><li><div><p>"A B C D E F G H"</p>
+<p>{ "A B C D E F G H",
+  "A B C D E F G H",
+  "A B C D F G H",
+  "A B C D E F G H",
+  "A B C D E F G H",
+  "A B C D E F G H",
+  "A B C D E F G H",
+  "B C D E F G H",
+  "A B C D E F G H",
+  "A B C D E F G",
+  "A B C D E F G H",
+  "A B C D E F G H" }</p>
+<p>Returns: {7, 0, 1, 2, 3, 4, 5, 6, 8, 10, 11, 9 }</p>
+<p></p></div></li><li><div><p>"A G E F D B H C"</p>
+<p>{ "D C A H",
+  "H B F G A",
+  "B F G D",
+  "F C E B A G",
+  "D H B C",
+  "B A D F G",
+  "E B C F D",
+  "A D H E B G",
+  "A H B G E C",
+  "F D A B C",
+  "B D A G C",
+  "A G E C F" }
+</p>
+<p>Returns: {0, 4, 1, 10, 9, 6, 2, 3, 11, 8, 7, 5 }</p>
+<p></p></div></li><li><div><p>"F B H D A E G C"</p>
+<p>{ "D A F",
+  "F H",
+  "H B A F D",
+  "E B A",
+  "F H B E G C",
+  "C D F H A",
+  "D",
+  "C E H F G A",
+  "B H C",
+  "G D F A H",
+  "G F",
+  "C G D E" }
+</p>
+<p>Returns: {0, 3, 5, 8, 4, 10, 7, 11, 9, 2, 6, 1 }</p>
+<p></p></div></li><li><div><p>"B E A F H G D C"</p>
+<p>{ "E B G H D A",
+  "B E D C A F G",
+  "F G D E A H",
+  "D G B F",
+  "A G H D B F E C",
+  "E B H F D C G",
+  "A H C E D F",
+  "E A D F H G C",
+  "C B F H D E A",
+  "E H D F A C",
+  "A C F B H E",
+  "C H E G F B" }</p>
+<p>Returns: {2, 1, 4, 5, 6, 7, 0, 10, 8, 11, 9, 3 }</p>
+<p></p></div></li><li><div><p>"E F G A C B D H"</p>
+<p>{ "E C",
+  "B F H",
+  "H E",
+  "H",
+  "E G",
+  "",
+  "D G E",
+  "B C G H",
+  "G",
+  "E A",
+  "F A E",
+  "" }</p>
+<p>Returns: {0, 1, 2, 3, 5, 7, 6, 10, 4, 9, 8, 11 }</p>
+<p></p></div></li><li><div><p>"A"</p>
+<p>{ "", "", "", "", "", "", "", "", "", "", "", ""  }</p>
+<p>Returns: {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 }</p>
+<p></p></div></li><li><div><p>"B C A"</p>
+<p>{ "B",
+  "B",
+  "A B",
+  "A",
+  "C B A",
+  "C B A",
+  "C B A",
+  "C",
+  "A B C",
+  "C",
+  "B C",
+  "C B" }</p>
+<p>Returns: {0, 3, 7, 2, 9, 4, 5, 6, 8, 10, 11, 1 }</p>
+<p></p></div></li><li><div><p>"B A C"</p>
+<p>{ "B C A",
+  "A C",
+  "A C",
+  "C",
+  "B C A",
+  "A B",
+  "C B",
+  "C",
+  "A B",
+  "",
+  "A C",
+  "B C A" }
+</p>
+<p>Returns: {3, 1, 0, 2, 4, 5, 6, 7, 10, 11, 8, 9 }</p>
+<p></p></div></li><li><div><p>"C H B E D F A G"</p>
+<p>{ "H D C A E G B",
+  "G A C H B D F",
+  "E D C F G",
+  "C D G F H E" }
+</p>
+<p>Returns: {1, 0, 2, 3 }</p>
+<p></p></div></li><li><div><p>"E C G D A F B H"</p>
+<p>{ "F C B E D G H",
+  "A B E F",
+  "D C E B H G F",
+  "D A E H G C" }
+</p>
+<p>Returns: {0, 2, 1, 3 }</p>
+<p></p></div></li><li><div><p>"A B C D E F G H"</p>
+<p>{ "A C E G",
+  "B D G H",
+  "B D G H",
+  "A C E G" }</p>
+<p>Returns: {1, 0, 2, 3 }</p>
+<p></p></div></li><li><div><p>"A B C D E"</p>
+<p>{ "B C", "A C E", "C D" }</p>
+<p>Returns: {2, 1, 0 }</p>
+<p></p></div></li></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/6830/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"6830\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"6830\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"6830\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"6830\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"6830\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\n"])</script><script>self.__next_f.push([1,"f:Td01,"])</script><script>self.__next_f.push([1,"\u003cp xmlns=\"http://topcoder.com\"\u003e\nBefore the final round of the TCCC, audience members head to the buffet for lunch.\nThe buffet line contains a number of food items, in a fixed order.\nThose indulging line up at the buffet, each intending to sample a subset of the items available.\n\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nIt takes each person exactly 10 seconds to help themselves to a food item.\nEvery 10 seconds, each person moves up as far as they can (without passing by any food they want, of course!). This movement takes no time.\nThe first person in line moves immediately to each item he wants, in order, spending 10 seconds at each item.\nDepending on which items the rest of the people want, they may be able to move up to each item immediately, but also may have to spend some time waiting for the person they are following.\n\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nEach person is always either waiting in line before reaching the first food item, standing in front of exactly one food item, or has passed the last food item and is looking for a place to sit.\nTwo people may not stand in front of the same food item at the same time.\nAlso, people always remain in the order in which they lined up, and they never move backward in line.\nNo one ever passes another person in line -- even after they have taken all the food they want, they still exit the buffet in line.\nPeople can only take a food item that they are standing directly in front of.\nAnyone who cannot reach the next food item they want (because they are waiting for the person in front of them) will advance as far as possible in line, to avoid blocking the people behind them unnecessarily.\n\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nAnxious to get back to the TCCC event, the people wish to get the group through the buffet line as quickly as possible.\nGiven the list of food items in the buffet and the items that each person wants, return the optimal order in which the people should line up at the buffet so that everyone can get all the food they desire in the least total amount of time.\n\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nThe food items available at the buffet will be given as a \u003ctype\u003eString\u003c/type\u003e \u003cb\u003efood\u003c/b\u003e.\nEach item in \u003cb\u003efood\u003c/b\u003e will contain only letters ('a'-'z', 'A'-'Z'), and there will be exactly one space between each pair of adjacent items.\nEach item in \u003cb\u003efood\u003c/b\u003e will be unique.\nThe order of items in \u003cb\u003efood\u003c/b\u003e is the order they appear in the buffet line, with the first item in \u003cb\u003efood\u003c/b\u003e being the first item available.\nThe items each person wants are given in a \u003ctype\u003eString[]\u003c/type\u003e \u003cb\u003ecravings\u003c/b\u003e.\nThere will be one element in \u003cb\u003ecravings\u003c/b\u003e for each person.\nEach element in \u003cb\u003ecravings\u003c/b\u003e will be a list of food items found in \u003cb\u003efood\u003c/b\u003e, with exactly one space between each food items.\nWithin each element of \u003cb\u003ecravings\u003c/b\u003e, each food item will be unique.\n\u003c/p\u003e\n\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nReturn a \u003ctype\u003eint[]\u003c/type\u003e containing the optimal order, where each element is the 0-based index of a person in \u003cb\u003ecravings\u003c/b\u003e, and elements are ordered from first to last in line.  If there are multiple solutions, return the one that comes first lexicographically.  A \u003ctype\u003eint[]\u003c/type\u003e a1 comes before a \u003ctype\u003eint[]\u003c/type\u003e a2 lexicographically if, at the first element at which they differ, a1 contains the smaller value.\n\u003c/p\u003e"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"BuffetLine\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"BuffetLine\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"order\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String, String[]\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int[]\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int[] order(String food, String[] cravings)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"food will contain between 1 and 50 characters, inclusive.\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"food will be formatted as described in the problem statement and contain between 1 and 8 items, inclusive.\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"food will not contain any duplicate items.\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"cravings will contain between 1 and 12 elements, inclusive.\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Each element of cravings will contain between 0 and 50 characters, inclusive.\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Each element of cravings will be formatted as described in the problem statement.\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Each word in each element of cravings will be an item from food.\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Each element of cravings will not contain any duplicate items.\"}}]}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"applesauce beans carrots dates eggplant\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"beans\\\",\\n  \\\"applesauce\\\",\\n  \\\"dates\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {2, 0, 1 }\u003c/p\u003e\\n\u003cp\u003eAll three people can get through the line in 10 seconds if the person who wants dates goes first, followed by the person who wants beans, and then the person who wants applesauce.  Any other order would require 20 or 30 seconds.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"applesauce beans carrots dates eggplant\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"beans\\\",\\n  \\\"applesauce\\\",\\n  \\\"beans\\\",\\n  \\\"dates\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {0, 1, 3, 2 }\u003c/p\u003e\\n\u003cp\u003eIn this example there are two people who want beans.  Since only one person can take any given food item at once, it will take at least 20 seconds for all 4 people to get through the line.  There are several orders that get them through in 20 seconds, and { 0, 1, 3, 2 } is selected according to the tiebreaking rules.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"bread water\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {0 }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"A B C D E F\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"A C E D\\\",\\n  \\\"A B D E F\\\",\\n  \\\"B C A D\\\",\\n  \\\"B C F D E\\\",\\n  \\\"B D C F\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {3, 1, 0, 4, 2 }\u003c/p\u003e\\n\u003cp\u003e\\n\\n\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"F D C E A G B H\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"A D H C E B\\\",\\n  \\\"E B A\\\",\\n  \\\"A C E H F D G\\\",\\n  \\\"G B F A D H\\\",\\n  \\\"D H E F\\\",\\n  \\\"H F A E B C G\\\",\\n  \\\"E C\\\",\\n  \\\"D A H\\\",\\n  \\\"H C G B F\\\",\\n  \\\"H A D G\\\",\\n  \\\"G A F D\\\",\\n  \\\"E D B G H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {1, 6, 7, 4, 3, 8, 9, 5, 0, 2, 11, 10 }\u003c/p\u003e\\n\u003cp\u003e\\n\\n\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"A B C\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"A\\\", \\\"A\\\", \\\"A\\\", \\\"A\\\",\\n  \\\"B\\\", \\\"B\\\", \\\"B\\\", \\\"B\\\",\\n  \\\"C\\\", \\\"C\\\", \\\"C\\\", \\\"C\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {8, 4, 0, 9, 5, 1, 10, 6, 2, 11, 7, 3 }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"A B C D E F G H\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"A B C D E F G H\\\",\\n  \\\"A B C D E F G H\\\",\\n  \\\"A B C D F G H\\\",\\n  \\\"A B C D E F G H\\\",\\n  \\\"A B C D E F G H\\\",\\n  \\\"A B C D E F G H\\\",\\n  \\\"A B C D E F G H\\\",\\n  \\\"B C D E F G H\\\",\\n  \\\"A B C D E F G H\\\",\\n  \\\"A B C D E F G\\\",\\n  \\\"A B C D E F G H\\\",\\n  \\\"A B C D E F G H\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {7, 0, 1, 2, 3, 4, 5, 6, 8, 10, 11, 9 }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"A G E F D B H C\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"D C A H\\\",\\n  \\\"H B F G A\\\",\\n  \\\"B F G D\\\",\\n  \\\"F C E B A G\\\",\\n  \\\"D H B C\\\",\\n  \\\"B A D F G\\\",\\n  \\\"E B C F D\\\",\\n  \\\"A D H E B G\\\",\\n  \\\"A H B G E C\\\",\\n  \\\"F D A B C\\\",\\n  \\\"B D A G C\\\",\\n  \\\"A G E C F\\\" }\\n\u003c/p\u003e\\n\u003cp\u003eReturns: {0, 4, 1, 10, 9, 6, 2, 3, 11, 8, 7, 5 }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"8\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"F B H D A E G C\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"D A F\\\",\\n  \\\"F H\\\",\\n  \\\"H B A F D\\\",\\n  \\\"E B A\\\",\\n  \\\"F H B E G C\\\",\\n  \\\"C D F H A\\\",\\n  \\\"D\\\",\\n  \\\"C E H F G A\\\",\\n  \\\"B H C\\\",\\n  \\\"G D F A H\\\",\\n  \\\"G F\\\",\\n  \\\"C G D E\\\" }\\n\u003c/p\u003e\\n\u003cp\u003eReturns: {0, 3, 5, 8, 4, 10, 7, 11, 9, 2, 6, 1 }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"9\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"B E A F H G D C\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"E B G H D A\\\",\\n  \\\"B E D C A F G\\\",\\n  \\\"F G D E A H\\\",\\n  \\\"D G B F\\\",\\n  \\\"A G H D B F E C\\\",\\n  \\\"E B H F D C G\\\",\\n  \\\"A H C E D F\\\",\\n  \\\"E A D F H G C\\\",\\n  \\\"C B F H D E A\\\",\\n  \\\"E H D F A C\\\",\\n  \\\"A C F B H E\\\",\\n  \\\"C H E G F B\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {2, 1, 4, 5, 6, 7, 0, 10, 8, 11, 9, 3 }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"10\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"E F G A C B D H\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"E C\\\",\\n  \\\"B F H\\\",\\n  \\\"H E\\\",\\n  \\\"H\\\",\\n  \\\"E G\\\",\\n  \\\"\\\",\\n  \\\"D G E\\\",\\n  \\\"B C G H\\\",\\n  \\\"G\\\",\\n  \\\"E A\\\",\\n  \\\"F A E\\\",\\n  \\\"\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {0, 1, 2, 3, 5, 7, 6, 10, 4, 9, 8, 11 }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"11\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"A\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"\\\", \\\"\\\", \\\"\\\", \\\"\\\", \\\"\\\", \\\"\\\", \\\"\\\", \\\"\\\", \\\"\\\", \\\"\\\", \\\"\\\", \\\"\\\"  }\u003c/p\u003e\\n\u003cp\u003eReturns: {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"12\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"B C A\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"B\\\",\\n  \\\"B\\\",\\n  \\\"A B\\\",\\n  \\\"A\\\",\\n  \\\"C B A\\\",\\n  \\\"C B A\\\",\\n  \\\"C B A\\\",\\n  \\\"C\\\",\\n  \\\"A B C\\\",\\n  \\\"C\\\",\\n  \\\"B C\\\",\\n  \\\"C B\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {0, 3, 7, 2, 9, 4, 5, 6, 8, 10, 11, 1 }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"13\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"B A C\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"B C A\\\",\\n  \\\"A C\\\",\\n  \\\"A C\\\",\\n  \\\"C\\\",\\n  \\\"B C A\\\",\\n  \\\"A B\\\",\\n  \\\"C B\\\",\\n  \\\"C\\\",\\n  \\\"A B\\\",\\n  \\\"\\\",\\n  \\\"A C\\\",\\n  \\\"B C A\\\" }\\n\u003c/p\u003e\\n\u003cp\u003eReturns: {3, 1, 0, 2, 4, 5, 6, 7, 10, 11, 8, 9 }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"14\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"C H B E D F A G\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"H D C A E G B\\\",\\n  \\\"G A C H B D F\\\",\\n  \\\"E D C F G\\\",\\n  \\\"C D G F H E\\\" }\\n\u003c/p\u003e\\n\u003cp\u003eReturns: {1, 0, 2, 3 }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"15\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"E C G D A F B H\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"F C B E D G H\\\",\\n  \\\"A B E F\\\",\\n  \\\"D C E B H G F\\\",\\n  \\\"D A E H G C\\\" }\\n\u003c/p\u003e\\n\u003cp\u003eReturns: {0, 2, 1, 3 }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"16\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"A B C D E F G H\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"A C E G\\\",\\n  \\\"B D G H\\\",\\n  \\\"B D G H\\\",\\n  \\\"A C E G\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {1, 0, 2, 3 }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"17\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e\\\"A B C D E\\\"\u003c/p\u003e\\n\u003cp\u003e{ \\\"B C\\\", \\\"A C E\\\", \\\"C D\\\" }\u003c/p\u003e\\n\u003cp\u003eReturns: {2, 1, 0 }\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}]]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

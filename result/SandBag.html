@@ -1,0 +1,124 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->SandBag<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div><pre xmlns="http://topcoder.com">PROBLEM STATEMENT
+
+You are a natural disaster control engineer.  You know an area of land is about
+to be flooded, and that there only is a single house in that area.  Your
+workers are asking how to place sandbags in such a way as to stop this house
+from being flooded using the fewest bags.  Worse, you only have 4 sandbags at
+your disposal, which may not be enough.
+
+The house lies on a square plot of land, no more than 8 meters by 8 meters in
+size, which is surrounded by irrigation canals.  These canals will soon flood
+to 3 meters above their normal flood levels.  You are given a map of the plot
+of land - with the elevations of each 1 meter by 1 meter section relative to
+normal flood level.
+
+Create a class SandBag that contains the method minNumber, which takes two int
+arguments that define the x and y positions of the house, and an argument map
+which represents the map of the elevation of the land, and returns the minimum
+number of sandbags needed to save the house, or -1 if it is impossible with
+only 4 bags (or impossible altogether).  map will be a list of strings
+containing only the characters [0-9], inclusive, such that the first character
+of the first string represents the elevation of the top-left (x=0, y=0) 1 meter
+by 1 meter cell, the last character of the first string will be the elevation
+of the top right (x=max, y=0), the first character of the last string will be
+for the bottom left, etc....
+
+
+DEFINITION
+Class: SandBag
+Method: minNumber
+Parameters: int, int, String[]
+Returns: int
+The method signature is as follows (be sure your method is public): int
+minNumber(int x, int y, String[] map);
+
+
+NOTES
+- The water will come from the canals on all 4 sides just off the map.
+- Sandbags will only be placed on an even 1 meter by 1 meter cell, and they
+block water from traveling through that entire cell completely, regardless of
+elevation.  Sandbags do not need to be stacked.
+- Sandbags will NOT be placed on the same cell as the house.
+- Water can travel from one cell to another in all of the 8 cardinal directions
+(left, right, up, down, diagonal).
+- Sandbags must be placed on the map, not off the map in a canal.
+- Land elevated 3 meters or more stops the flow of the flood waters through
+that cell, even if the land on the other side of it is at a lower elevation.
+- If the house is on high ground that won't be flooded (3 or higher), this
+house is in no danger and no sandbags are needed - return 0.
+- If the house is not on high ground and is next to an irrigation canal (is on
+an edge of the map), there is nothing that can be done to save the house -
+return -1.
+- If the house is not on high ground, but there is no path for the water to get
+to the house that is not blocked by high ground, the house is in no danger and
+no sandbags are needed - return 0.
+- map need not be square (see the fourth example).
+
+
+TopCoder will ensure the validity of the inputs.  Inputs are valid if all of
+the following criteria are met:
+- The strings of map will contain only numerals ('0' - '9', inclusive).
+- Each string of map will be the same length, which will be between 1 and 8
+characters (inclusive).
+- There will be between 1 and 8 strings (inclusive) in this map list.
+- The given location of the house (x, y) will be a valid location on the map.
+
+
+EXAMPLES
+
+In each of these examples, quotes ('"'), commas (','), and parenthesis ('(' and
+')') are included for clarity only.  They are never part of the input or output.
+
+Example #1)
+x = 3
+y = 3
+map = {"99999999", "90000009", "90000009", "90000009", "90000009", "90000009",
+"90000009", "99999999"}
+return 0
+This house is already safe - it is surrounded by tall hills (the '9's are each
+higher than 3 meters).  Here is the map (where "H" is the house's location):
+
+	99999999
+	90000009
+	90000009
+	900H0009
+	90000009
+	90000009
+	90000009
+	99999999
+
+
+Example #2)
+x = 1
+y = 1
+map = {"111", "111", "111"}
+return -1
+This house would take more than 4 bags to save.  It would have to be surrounded
+by 8:
+
+	111
+	1H1
+	111
+
+Example #3)
+x = 1
+y = 1
+map = {"33330", "30003", "30003", "30003", "33333"}
+return 1
+This house can be saved by simply putting a sandbag at position (4, 0), or at
+(3, 1).  Either way, it would only take 1 bag to save this house.
+
+Example #4)
+x = 3
+y = 0
+map = {"0123210"}
+return 0
+This house is already on high ground.
+
+Example #5)
+x = 3
+y = 3
+map = {"0000", "0000", "0055", "0050", "0055"}
+return -1
+This house is right next to the canal and is not on high ground.  It can not be
+saved.</pre></div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>SandBag</span></dd><dt>Method:</dt><dd><span>minNumber</span></dd><dt>Parameters:</dt><dd><span>int, int, String[]</span></dd><dt>Returns:</dt><dd><span>int</span></dd><dt>Method signature:</dt><dd><span>int minNumber(int param0, int param1, String[] param2)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul></ul></div><div><h3>Examples</h3><ol></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/585/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"585\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"585\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"585\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"585\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"585\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\nf:T11a9,"])</script><script>self.__next_f.push([1,"\u003cpre xmlns=\"http://topcoder.com\"\u003ePROBLEM STATEMENT\n\nYou are a natural disaster control engineer.  You know an area of land is about\nto be flooded, and that there only is a single house in that area.  Your\nworkers are asking how to place sandbags in such a way as to stop this house\nfrom being flooded using the fewest bags.  Worse, you only have 4 sandbags at\nyour disposal, which may not be enough.\n\nThe house lies on a square plot of land, no more than 8 meters by 8 meters in\nsize, which is surrounded by irrigation canals.  These canals will soon flood\nto 3 meters above their normal flood levels.  You are given a map of the plot\nof land - with the elevations of each 1 meter by 1 meter section relative to\nnormal flood level.\n\nCreate a class SandBag that contains the method minNumber, which takes two int\narguments that define the x and y positions of the house, and an argument map\nwhich represents the map of the elevation of the land, and returns the minimum\nnumber of sandbags needed to save the house, or -1 if it is impossible with\nonly 4 bags (or impossible altogether).  map will be a list of strings\ncontaining only the characters [0-9], inclusive, such that the first character\nof the first string represents the elevation of the top-left (x=0, y=0) 1 meter\nby 1 meter cell, the last character of the first string will be the elevation\nof the top right (x=max, y=0), the first character of the last string will be\nfor the bottom left, etc....\n\n\nDEFINITION\nClass: SandBag\nMethod: minNumber\nParameters: int, int, String[]\nReturns: int\nThe method signature is as follows (be sure your method is public): int\nminNumber(int x, int y, String[] map);\n\n\nNOTES\n- The water will come from the canals on all 4 sides just off the map.\n- Sandbags will only be placed on an even 1 meter by 1 meter cell, and they\nblock water from traveling through that entire cell completely, regardless of\nelevation.  Sandbags do not need to be stacked.\n- Sandbags will NOT be placed on the same cell as the house.\n- Water can travel from one cell to another in all of the 8 cardinal directions\n(left, right, up, down, diagonal).\n- Sandbags must be placed on the map, not off the map in a canal.\n- Land elevated 3 meters or more stops the flow of the flood waters through\nthat cell, even if the land on the other side of it is at a lower elevation.\n- If the house is on high ground that won't be flooded (3 or higher), this\nhouse is in no danger and no sandbags are needed - return 0.\n- If the house is not on high ground and is next to an irrigation canal (is on\nan edge of the map), there is nothing that can be done to save the house -\nreturn -1.\n- If the house is not on high ground, but there is no path for the water to get\nto the house that is not blocked by high ground, the house is in no danger and\nno sandbags are needed - return 0.\n- map need not be square (see the fourth example).\n\n\nTopCoder will ensure the validity of the inputs.  Inputs are valid if all of\nthe following criteria are met:\n- The strings of map will contain only numerals ('0' - '9', inclusive).\n- Each string of map will be the same length, which will be between 1 and 8\ncharacters (inclusive).\n- There will be between 1 and 8 strings (inclusive) in this map list.\n- The given location of the house (x, y) will be a valid location on the map.\n\n\nEXAMPLES\n\nIn each of these examples, quotes ('\"'), commas (','), and parenthesis ('(' and\n')') are included for clarity only.  They are never part of the input or output.\n\nExample #1)\nx = 3\ny = 3\nmap = {\"99999999\", \"90000009\", \"90000009\", \"90000009\", \"90000009\", \"90000009\",\n\"90000009\", \"99999999\"}\nreturn 0\nThis house is already safe - it is surrounded by tall hills (the '9's are each\nhigher than 3 meters).  Here is the map (where \"H\" is the house's location):\n\n\t99999999\n\t90000009\n\t90000009\n\t900H0009\n\t90000009\n\t90000009\n\t90000009\n\t99999999\n\n\nExample #2)\nx = 1\ny = 1\nmap = {\"111\", \"111\", \"111\"}\nreturn -1\nThis house would take more than 4 bags to save.  It would have to be surrounded\nby 8:\n\n\t111\n\t1H1\n\t111\n\nExample #3)\nx = 1\ny = 1\nmap = {\"33330\", \"30003\", \"30003\", \"30003\", \"33333\"}\nreturn 1\nThis house can be saved by simply putting a sandbag at position (4, 0), or at\n(3, 1).  Either way, it would only take 1 bag to save this house.\n\nExample #4)\nx = 3\ny = 0\nmap = {\"0123210\"}\nreturn 0\nThis house is already on high ground.\n\nExample #5)\nx = 3\ny = 3\nmap = {\"0000\", \"0000\", \"0055\", \"0050\", \"0055\"}\nreturn -1\nThis house is right next to the canal and is not on high ground.  It can not be\nsaved.\u003c/pre\u003e"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"SandBag\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"SandBag\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"minNumber\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int, int, String[]\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int minNumber(int param0, int param1, String[] param2)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

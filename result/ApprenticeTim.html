@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->ApprenticeTim<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div><pre xmlns="http://topcoder.com">Tim the (Apprentice) Enchanter
+
+PROBLEM STATEMENT
+
+Apprentice Tim is learning how to use magic. However, he has a poor memory and
+can't remember the exact magic words needed to cast a particular spell. In
+order to figure out which magic words create which spell, he wants to just say
+a long string of magic words and see what happens. But since doing so could be
+hazardous (he could accidentally blow something up), he's decided that it would
+be better to have a computer program tell him what happens based on what he says.
+
+Casting a spell is as easy as saying all the magic words of the spell, in the
+right order. Also, magic is a forgiving art. It is possible to cast a spell by
+saying words that don't belong in the spell, as long as the correct words are
+said in the correct order (the words need not be consecutive).
+
+Given a list of all possible spells and the magic words to trigger them, and
+the words that Tim chants, determine which spell was cast, if any.
+
+DEFINITION
+Class: ApprenticeTim
+Method: spellCast
+Parameters: String[], String
+Returns: String
+Method signature (be sure your method is public):  String spellCast(String[]
+spellbook, String chant)
+
+Each entry in spellbook will consist of the name of a spell, followed by one or
+more magic words that must be said in order to cast that spell, all separated
+by spaces. The name of the spell and the magic words themselves may not contain
+spaces. The chant string will contain zero or more words, also separated by
+spaces.
+
+NOTES
+- The first spell that is completed should be returned, even if there are
+additional words spoken beyond the one that completed the spell.
+- If multiple spells are completed with the same word, the spell that appears
+first in the spellbook should be returned.
+- If the method determines that no valid spell was cast, it should return an
+empty string ("").
+- All words are case sensitive. ("poof", "Poof", and "POOF" are all different.)
+
+TopCoder will ensure the validity of the inputs.  Inputs are valid if all of
+the following criteria are met:
+- All Strings (both in spellbook and chant) contain only letters and spaces.
+- Every pair of words in every String is separated by exactly one space, and
+there are no other spaces anywhere else in the String.
+- spellbook contains between 1 and 20 Strings, inclusive.
+- Each String in spellbook is between 3 and 50 characters in length, inclusive.
+- The chant String is between 0 and 50 characters in length, inclusive.
+
+EXAMPLES
+
+In each of these examples, quotes ('"'), commas (','), and curly braces ('{'
+and '}') are included for clarity only.  They are never part of the input or
+output.
+
+#1:
+spellbook = {"FloatingLady Abracadabra", "RabbitOutOfHat Hocus Pocus",
+"DisappearingCash Alakazam"}
+chant = "Hocus Pocus"
+
+Tim cast the second spell. The method should return "RabbitOutOfHat".
+
+#2:
+spellbook = {"FloatingLady Abracadabra", "RabbitOutOfHat Hocus Pocus",
+"DisappearingCash Alakazam"}
+chant = "Hocus Pakus er um no its Pocus"
+
+Even with the messed up words in between, Tim still said "Hocus" and "Pocus",
+in that order. The method should return "RabbitOutOfHat".
+
+#3:
+spellbook = {"PUFF Tal Ken Ni Zap", "POOF Tal Ken Ni", "BOOM Tal Ken"}
+chant = "Tal Ken Ni Zap"
+
+The third spell is the first to finish; the remaining two words in the chant
+are ignored. The method should return "BOOM".
+
+#4:
+spellbook = {"WhiteSmoke Nini Weep", "RedSmoke Weep Bom", "YellowSmoke Bah
+Bom", "GreenSmoke Yaya Bom", "BlueSmoke Nini Bom", "PurpleSmoke Grahna Bom"}
+chant = "Bah Weep Grahna Weep Nini Bom"
+
+The word "Bom" completed four spells all at once. The method should return the
+one that appears first in the spellbook, "RedSmoke". Note that the first spell
+"WhiteSmoke" is not completed; even though both "Nini" and "Weep" appear in
+chant, they are in the wrong order.
+
+#5:
+spellbook = {"Fun YAY"}
+chant = "yay"
+
+"YAY" and "yay" are not the same. The method should return "".
+
+#6:
+spellbook = {"Fun YAY"}
+chant = ""
+
+No chant, no spell. The method should return "".
+</pre></div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>ApprenticeTim</span></dd><dt>Method:</dt><dd><span>spellCast</span></dd><dt>Parameters:</dt><dd><span>String[], String</span></dd><dt>Returns:</dt><dd><span>String</span></dd><dt>Method signature:</dt><dd><span>String spellCast(String[] param0, String param1)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul></ul></div><div><h3>Examples</h3><ol></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/836/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"836\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"836\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"836\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"836\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"836\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\nf:Tfcd,"])</script><script>self.__next_f.push([1,"\u003cpre xmlns=\"http://topcoder.com\"\u003eTim the (Apprentice) Enchanter\n\nPROBLEM STATEMENT\n\nApprentice Tim is learning how to use magic. However, he has a poor memory and\ncan't remember the exact magic words needed to cast a particular spell. In\norder to figure out which magic words create which spell, he wants to just say\na long string of magic words and see what happens. But since doing so could be\nhazardous (he could accidentally blow something up), he's decided that it would\nbe better to have a computer program tell him what happens based on what he says.\n\nCasting a spell is as easy as saying all the magic words of the spell, in the\nright order. Also, magic is a forgiving art. It is possible to cast a spell by\nsaying words that don't belong in the spell, as long as the correct words are\nsaid in the correct order (the words need not be consecutive).\n\nGiven a list of all possible spells and the magic words to trigger them, and\nthe words that Tim chants, determine which spell was cast, if any.\n\nDEFINITION\nClass: ApprenticeTim\nMethod: spellCast\nParameters: String[], String\nReturns: String\nMethod signature (be sure your method is public):  String spellCast(String[]\nspellbook, String chant)\n\nEach entry in spellbook will consist of the name of a spell, followed by one or\nmore magic words that must be said in order to cast that spell, all separated\nby spaces. The name of the spell and the magic words themselves may not contain\nspaces. The chant string will contain zero or more words, also separated by\nspaces.\n\nNOTES\n- The first spell that is completed should be returned, even if there are\nadditional words spoken beyond the one that completed the spell.\n- If multiple spells are completed with the same word, the spell that appears\nfirst in the spellbook should be returned.\n- If the method determines that no valid spell was cast, it should return an\nempty string (\"\").\n- All words are case sensitive. (\"poof\", \"Poof\", and \"POOF\" are all different.)\n\nTopCoder will ensure the validity of the inputs.  Inputs are valid if all of\nthe following criteria are met:\n- All Strings (both in spellbook and chant) contain only letters and spaces.\n- Every pair of words in every String is separated by exactly one space, and\nthere are no other spaces anywhere else in the String.\n- spellbook contains between 1 and 20 Strings, inclusive.\n- Each String in spellbook is between 3 and 50 characters in length, inclusive.\n- The chant String is between 0 and 50 characters in length, inclusive.\n\nEXAMPLES\n\nIn each of these examples, quotes ('\"'), commas (','), and curly braces ('{'\nand '}') are included for clarity only.  They are never part of the input or\noutput.\n\n#1:\nspellbook = {\"FloatingLady Abracadabra\", \"RabbitOutOfHat Hocus Pocus\",\n\"DisappearingCash Alakazam\"}\nchant = \"Hocus Pocus\"\n\nTim cast the second spell. The method should return \"RabbitOutOfHat\".\n\n#2:\nspellbook = {\"FloatingLady Abracadabra\", \"RabbitOutOfHat Hocus Pocus\",\n\"DisappearingCash Alakazam\"}\nchant = \"Hocus Pakus er um no its Pocus\"\n\nEven with the messed up words in between, Tim still said \"Hocus\" and \"Pocus\",\nin that order. The method should return \"RabbitOutOfHat\".\n\n#3:\nspellbook = {\"PUFF Tal Ken Ni Zap\", \"POOF Tal Ken Ni\", \"BOOM Tal Ken\"}\nchant = \"Tal Ken Ni Zap\"\n\nThe third spell is the first to finish; the remaining two words in the chant\nare ignored. The method should return \"BOOM\".\n\n#4:\nspellbook = {\"WhiteSmoke Nini Weep\", \"RedSmoke Weep Bom\", \"YellowSmoke Bah\nBom\", \"GreenSmoke Yaya Bom\", \"BlueSmoke Nini Bom\", \"PurpleSmoke Grahna Bom\"}\nchant = \"Bah Weep Grahna Weep Nini Bom\"\n\nThe word \"Bom\" completed four spells all at once. The method should return the\none that appears first in the spellbook, \"RedSmoke\". Note that the first spell\n\"WhiteSmoke\" is not completed; even though both \"Nini\" and \"Weep\" appear in\nchant, they are in the wrong order.\n\n#5:\nspellbook = {\"Fun YAY\"}\nchant = \"yay\"\n\n\"YAY\" and \"yay\" are not the same. The method should return \"\".\n\n#6:\nspellbook = {\"Fun YAY\"}\nchant = \"\"\n\nNo chant, no spell. The method should return \"\".\n\u003c/pre\u003e"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"ApprenticeTim\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"ApprenticeTim\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"spellCast\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String[], String\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String spellCast(String[] param0, String param1)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

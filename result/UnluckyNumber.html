@@ -1,0 +1,218 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->UnluckyNumber<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div><p xmlns="http://topcoder.com">
+You are given a simple undirected graph consisting of <b>n</b> vertices and <b>m</b> edges.
+The vertices are numbered 1, 2, ..., <b>n</b>.
+You are also given an unlucky number <b>z</b>.
+</p>
+<p xmlns="http://topcoder.com">
+We need to colour each vertex of the graph with one of <b>k</b> colours.
+The colours are numbered 1, 2, ..., <b>k</b>.
+</p>
+<p xmlns="http://topcoder.com">
+Let c[i] be the color assigned to vertex i.
+A coloring is valid if for each edge (i, j) the value c[i] + c[j] does not equal the unlucky number <b>z</b>.
+</p>
+<p xmlns="http://topcoder.com">
+Find the number of such colourings modulo 10<sup>9</sup> + 7.
+</p>
+<br xmlns="http://topcoder.com"/>
+<p xmlns="http://topcoder.com">
+You are given:
+</p>
+<ul xmlns="http://topcoder.com">
+<li>The number of vertices and edges: <b>n</b> and <b>m</b>.</li>
+<li>The number of colours and the unlucky number that should not be the sum of colours for any edge: <b>k</b> and <b>z</b>.</li>
+<li>The list of edges: two <type>int[]</type>s <b>x</b> and <b>y</b> with <b>m</b> elements each. For each valid index i, there is an edge connecting <b>x</b>[i] and <b>y</b>[i].</li>
+</ul></div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>UnluckyNumber</span></dd><dt>Method:</dt><dd><span>numberOfColourings</span></dd><dt>Parameters:</dt><dd><span>int, int, int, int, int[], int[]</span></dd><dt>Returns:</dt><dd><span>int</span></dd><dt>Method signature:</dt><dd><span>int numberOfColourings(int n, int m, int k, int z, int[] x, int[] y)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul><li><span>1 &lt;= n &lt;= 18</span></li><li><span>0 &lt;= m &lt;= min(18, n*(n - 1)/2)</span></li><li><span>1 &lt;= k &lt;= 10^9</span></li><li><span>2 &lt;= z &lt;= 2*k</span></li><li><span>x and y will each contain m elements</span></li><li><span>1 &lt;= x[i], y[i] &lt;= n</span></li><li><span>There will be no self-loops and all edges will be distinct.</span></li></ul></div><div><h3>Examples</h3><ol><li><div><p>10</p>
+<p>0</p>
+<p>1000000000</p>
+<p>1000000000</p>
+<p>{}</p>
+<p>{}</p>
+<p>Returns: 282475249</p>
+<p></p></div></li><li><div><p>8</p>
+<p>8</p>
+<p>8</p>
+<p>7</p>
+<p>{2,4,6,1,7,7,2,7}</p>
+<p>{6,2,5,5,5,6,8,3}</p>
+<p>Returns: 7973470</p>
+<p></p></div></li><li><div><p>18</p>
+<p>17</p>
+<p>485143292</p>
+<p>789442323</p>
+<p>{11,9,14,17,8,13,2,2,12,15,1,3,11,6,14,1,14}</p>
+<p>{15,10,7,2,5,9,1,11,13,16,5,7,4,8,3,13,18}</p>
+<p>Returns: 132252671</p>
+<p></p></div></li><li><div><p>18</p>
+<p>18</p>
+<p>851585380</p>
+<p>843932797</p>
+<p>{9,17,3,6,4,7,11,14,1,11,15,8,10,12,8,7,11,7}</p>
+<p>{10,9,9,10,7,17,13,18,6,14,3,10,3,1,7,3,7,16}</p>
+<p>Returns: 28992842</p>
+<p></p></div></li><li><div><p>18</p>
+<p>18</p>
+<p>799257293</p>
+<p>867145571</p>
+<p>{15,12,6,12,16,16,14,4,18,1,11,8,16,6,9,4,16,15}</p>
+<p>{13,7,1,15,4,2,16,8,5,11,4,9,6,13,17,1,8,17}</p>
+<p>Returns: 248587326</p>
+<p></p></div></li><li><div><p>18</p>
+<p>18</p>
+<p>231765493</p>
+<p>38059746</p>
+<p>{9,6,5,8,14,11,5,1,9,2,2,3,8,4,8,11,11,7}</p>
+<p>{6,4,13,18,3,7,9,12,2,15,18,1,10,14,16,8,1,18}</p>
+<p>Returns: 859819896</p>
+<p></p></div></li><li><div><p>18</p>
+<p>18</p>
+<p>702323918</p>
+<p>7585356</p>
+<p>{8,12,17,11,18,2,1,11,8,2,13,1,18,16,12,10,4,2}</p>
+<p>{4,8,18,6,6,5,5,13,1,10,16,15,11,10,1,3,17,11}</p>
+<p>Returns: 89375431</p>
+<p></p></div></li><li><div><p>18</p>
+<p>18</p>
+<p>471637323</p>
+<p>557791830</p>
+<p>{7,4,1,15,1,4,12,10,14,6,14,14,14,7,8,11,3,13}</p>
+<p>{18,5,5,7,6,15,17,12,5,4,9,4,18,1,7,15,6,9}</p>
+<p>Returns: 342923050</p>
+<p></p></div></li><li><div><p>18</p>
+<p>18</p>
+<p>158652516</p>
+<p>51203285</p>
+<p>{12,10,12,3,3,5,4,8,11,1,11,10,7,1,8,11,11,10}</p>
+<p>{11,14,2,14,10,14,10,11,4,11,9,13,12,7,2,6,2,12}</p>
+<p>Returns: 560737328</p>
+<p></p></div></li><li><div><p>17</p>
+<p>18</p>
+<p>481984326</p>
+<p>958964766</p>
+<p>{6,4,11,13,10,4,9,8,7,10,1,14,9,9,8,8,6,5}</p>
+<p>{11,5,5,15,2,3,13,4,13,9,11,11,8,3,3,7,15,10}</p>
+<p>Returns: 150325301</p>
+<p></p></div></li><li><div><p>2</p>
+<p>1</p>
+<p>5</p>
+<p>2</p>
+<p>{1}</p>
+<p>{2}</p>
+<p>Returns: 24</p>
+<p>The two vertices can be coloured with any of the colours {1, 2, 3, 4, 5} except for the case where both are coloured 1. Thus, there are 5*5 - 1 = 24 possible colourings.
+</p></div></li><li><div><p>5</p>
+<p>0</p>
+<p>5</p>
+<p>2</p>
+<p>{}</p>
+<p>{}</p>
+<p>Returns: 3125</p>
+<p>The graph is not necessarily connected. This graph consists of five isolated vertices. Each can be colored independently of the others, so the answer is 5^5 = 3125.</p></div></li><li><div><p>5</p>
+<p>1</p>
+<p>5</p>
+<p>2</p>
+<p>{1 }</p>
+<p>{3 }</p>
+<p>Returns: 3000</p></div></li><li><div><p>18</p>
+<p>18</p>
+<p>1000000000</p>
+<p>1234567890</p>
+<p>{1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7 }</p>
+<p>{2, 4, 7, 3, 5, 7, 8, 4, 7, 9, 7, 8, 9, 7, 9, 7, 8, 9 }</p>
+<p>Returns: 906691319</p></div></li><li><div><p>5</p>
+<p>5</p>
+<p>5</p>
+<p>8</p>
+<p>{1, 2, 3, 4, 5 }</p>
+<p>{2, 3, 4, 5, 1 }</p>
+<p>Returns: 1744</p></div></li><li><div><p>2</p>
+<p>1</p>
+<p>5</p>
+<p>2</p>
+<p>{1 }</p>
+<p>{2 }</p>
+<p>Returns: 24</p></div></li><li><div><p>4</p>
+<p>6</p>
+<p>10</p>
+<p>10</p>
+<p>{1, 1, 1, 2, 2, 3 }</p>
+<p>{2, 3, 4, 3, 4, 4 }</p>
+<p>Returns: 5773</p></div></li><li><div><p>18</p>
+<p>3</p>
+<p>1000000000</p>
+<p>1500000000</p>
+<p>{1, 1, 2 }</p>
+<p>{2, 3, 3 }</p>
+<p>Returns: 836590874</p></div></li><li><div><p>13</p>
+<p>14</p>
+<p>17</p>
+<p>10</p>
+<p>{1, 2, 3, 4, 5, 5, 6, 7, 3, 3, 9, 12, 13, 8 }</p>
+<p>{2, 3, 4, 5, 6, 7, 8, 8, 9, 10, 10, 7, 12, 13 }</p>
+<p>Returns: 546745005</p></div></li><li><div><p>2</p>
+<p>0</p>
+<p>1000000000</p>
+<p>478000000</p>
+<p>{ }</p>
+<p>{ }</p>
+<p>Returns: 49</p></div></li><li><div><p>3</p>
+<p>3</p>
+<p>1</p>
+<p>2</p>
+<p>{1, 1, 2 }</p>
+<p>{2, 3, 3 }</p>
+<p>Returns: 0</p></div></li><li><div><p>3</p>
+<p>3</p>
+<p>5</p>
+<p>8</p>
+<p>{1, 1, 2 }</p>
+<p>{2, 3, 3 }</p>
+<p>Returns: 88</p></div></li><li><div><p>5</p>
+<p>5</p>
+<p>100</p>
+<p>200</p>
+<p>{1, 2, 3, 4, 5 }</p>
+<p>{2, 3, 4, 5, 1 }</p>
+<p>Returns: 995049936</p></div></li><li><div><p>2</p>
+<p>1</p>
+<p>10</p>
+<p>17</p>
+<p>{1 }</p>
+<p>{2 }</p>
+<p>Returns: 96</p></div></li><li><div><p>3</p>
+<p>3</p>
+<p>2</p>
+<p>4</p>
+<p>{1, 2, 3 }</p>
+<p>{2, 3, 1 }</p>
+<p>Returns: 4</p></div></li><li><div><p>10</p>
+<p>11</p>
+<p>98456789</p>
+<p>48456789</p>
+<p>{1, 1, 1, 2, 2, 3, 3, 4, 6, 6, 7 }</p>
+<p>{2, 4, 5, 4, 3, 5, 4, 5, 7, 8, 8 }</p>
+<p>Returns: 725995540</p></div></li><li><div><p>3</p>
+<p>3</p>
+<p>2</p>
+<p>3</p>
+<p>{1, 2, 3 }</p>
+<p>{2, 3, 1 }</p>
+<p>Returns: 2</p></div></li><li><div><p>18</p>
+<p>18</p>
+<p>956479451</p>
+<p>1756479451</p>
+<p>{1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5 }</p>
+<p>{2, 3, 4, 5, 6, 7, 8, 9, 3, 4, 5, 6, 4, 5, 6, 5, 6, 6 }</p>
+<p>Returns: 922870014</p></div></li><li><div><p>5</p>
+<p>4</p>
+<p>6</p>
+<p>10</p>
+<p>{1, 2, 3, 4 }</p>
+<p>{2, 3, 1, 5 }</p>
+<p>Returns: 5610</p></div></li><li><div><p>5</p>
+<p>2</p>
+<p>5</p>
+<p>8</p>
+<p>{1, 3 }</p>
+<p>{2, 4 }</p>
+<p>Returns: 2420</p></div></li></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/16402/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"16402\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"16402\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"16402\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"16402\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"16402\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\n"])</script><script>self.__next_f.push([1,"f:T494,"])</script><script>self.__next_f.push([1,"\u003cp xmlns=\"http://topcoder.com\"\u003e\nYou are given a simple undirected graph consisting of \u003cb\u003en\u003c/b\u003e vertices and \u003cb\u003em\u003c/b\u003e edges.\nThe vertices are numbered 1, 2, ..., \u003cb\u003en\u003c/b\u003e.\nYou are also given an unlucky number \u003cb\u003ez\u003c/b\u003e.\n\u003c/p\u003e\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nWe need to colour each vertex of the graph with one of \u003cb\u003ek\u003c/b\u003e colours.\nThe colours are numbered 1, 2, ..., \u003cb\u003ek\u003c/b\u003e.\n\u003c/p\u003e\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nLet c[i] be the color assigned to vertex i.\nA coloring is valid if for each edge (i, j) the value c[i] + c[j] does not equal the unlucky number \u003cb\u003ez\u003c/b\u003e.\n\u003c/p\u003e\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nFind the number of such colourings modulo 10\u003csup\u003e9\u003c/sup\u003e + 7.\n\u003c/p\u003e\n\u003cbr xmlns=\"http://topcoder.com\"/\u003e\n\u003cp xmlns=\"http://topcoder.com\"\u003e\nYou are given:\n\u003c/p\u003e\n\u003cul xmlns=\"http://topcoder.com\"\u003e\n\u003cli\u003eThe number of vertices and edges: \u003cb\u003en\u003c/b\u003e and \u003cb\u003em\u003c/b\u003e.\u003c/li\u003e\n\u003cli\u003eThe number of colours and the unlucky number that should not be the sum of colours for any edge: \u003cb\u003ek\u003c/b\u003e and \u003cb\u003ez\u003c/b\u003e.\u003c/li\u003e\n\u003cli\u003eThe list of edges: two \u003ctype\u003eint[]\u003c/type\u003es \u003cb\u003ex\u003c/b\u003e and \u003cb\u003ey\u003c/b\u003e with \u003cb\u003em\u003c/b\u003e elements each. For each valid index i, there is an edge connecting \u003cb\u003ex\u003c/b\u003e[i] and \u003cb\u003ey\u003c/b\u003e[i].\u003c/li\u003e\n\u003c/ul\u003e"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"UnluckyNumber\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"UnluckyNumber\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"numberOfColourings\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int, int, int, int, int[], int[]\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"int numberOfColourings(int n, int m, int k, int z, int[] x, int[] y)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"1 \u0026lt;= n \u0026lt;= 18\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"0 \u0026lt;= m \u0026lt;= min(18, n*(n - 1)/2)\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"1 \u0026lt;= k \u0026lt;= 10^9\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"2 \u0026lt;= z \u0026lt;= 2*k\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"x and y will each contain m elements\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"1 \u0026lt;= x[i], y[i] \u0026lt;= n\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"There will be no self-loops and all edges will be distinct.\"}}]}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e1000000000\u003c/p\u003e\\n\u003cp\u003e1000000000\u003c/p\u003e\\n\u003cp\u003e{}\u003c/p\u003e\\n\u003cp\u003e{}\u003c/p\u003e\\n\u003cp\u003eReturns: 282475249\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003e7\u003c/p\u003e\\n\u003cp\u003e{2,4,6,1,7,7,2,7}\u003c/p\u003e\\n\u003cp\u003e{6,2,5,5,5,6,8,3}\u003c/p\u003e\\n\u003cp\u003eReturns: 7973470\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e17\u003c/p\u003e\\n\u003cp\u003e485143292\u003c/p\u003e\\n\u003cp\u003e789442323\u003c/p\u003e\\n\u003cp\u003e{11,9,14,17,8,13,2,2,12,15,1,3,11,6,14,1,14}\u003c/p\u003e\\n\u003cp\u003e{15,10,7,2,5,9,1,11,13,16,5,7,4,8,3,13,18}\u003c/p\u003e\\n\u003cp\u003eReturns: 132252671\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e851585380\u003c/p\u003e\\n\u003cp\u003e843932797\u003c/p\u003e\\n\u003cp\u003e{9,17,3,6,4,7,11,14,1,11,15,8,10,12,8,7,11,7}\u003c/p\u003e\\n\u003cp\u003e{10,9,9,10,7,17,13,18,6,14,3,10,3,1,7,3,7,16}\u003c/p\u003e\\n\u003cp\u003eReturns: 28992842\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e799257293\u003c/p\u003e\\n\u003cp\u003e867145571\u003c/p\u003e\\n\u003cp\u003e{15,12,6,12,16,16,14,4,18,1,11,8,16,6,9,4,16,15}\u003c/p\u003e\\n\u003cp\u003e{13,7,1,15,4,2,16,8,5,11,4,9,6,13,17,1,8,17}\u003c/p\u003e\\n\u003cp\u003eReturns: 248587326\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e231765493\u003c/p\u003e\\n\u003cp\u003e38059746\u003c/p\u003e\\n\u003cp\u003e{9,6,5,8,14,11,5,1,9,2,2,3,8,4,8,11,11,7}\u003c/p\u003e\\n\u003cp\u003e{6,4,13,18,3,7,9,12,2,15,18,1,10,14,16,8,1,18}\u003c/p\u003e\\n\u003cp\u003eReturns: 859819896\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e702323918\u003c/p\u003e\\n\u003cp\u003e7585356\u003c/p\u003e\\n\u003cp\u003e{8,12,17,11,18,2,1,11,8,2,13,1,18,16,12,10,4,2}\u003c/p\u003e\\n\u003cp\u003e{4,8,18,6,6,5,5,13,1,10,16,15,11,10,1,3,17,11}\u003c/p\u003e\\n\u003cp\u003eReturns: 89375431\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e471637323\u003c/p\u003e\\n\u003cp\u003e557791830\u003c/p\u003e\\n\u003cp\u003e{7,4,1,15,1,4,12,10,14,6,14,14,14,7,8,11,3,13}\u003c/p\u003e\\n\u003cp\u003e{18,5,5,7,6,15,17,12,5,4,9,4,18,1,7,15,6,9}\u003c/p\u003e\\n\u003cp\u003eReturns: 342923050\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"8\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e158652516\u003c/p\u003e\\n\u003cp\u003e51203285\u003c/p\u003e\\n\u003cp\u003e{12,10,12,3,3,5,4,8,11,1,11,10,7,1,8,11,11,10}\u003c/p\u003e\\n\u003cp\u003e{11,14,2,14,10,14,10,11,4,11,9,13,12,7,2,6,2,12}\u003c/p\u003e\\n\u003cp\u003eReturns: 560737328\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"9\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e17\u003c/p\u003e\\n\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e481984326\u003c/p\u003e\\n\u003cp\u003e958964766\u003c/p\u003e\\n\u003cp\u003e{6,4,11,13,10,4,9,8,7,10,1,14,9,9,8,8,6,5}\u003c/p\u003e\\n\u003cp\u003e{11,5,5,15,2,3,13,4,13,9,11,11,8,3,3,7,15,10}\u003c/p\u003e\\n\u003cp\u003eReturns: 150325301\u003c/p\u003e\\n\u003cp\u003e\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"10\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e{1}\u003c/p\u003e\\n\u003cp\u003e{2}\u003c/p\u003e\\n\u003cp\u003eReturns: 24\u003c/p\u003e\\n\u003cp\u003eThe two vertices can be coloured with any of the colours {1, 2, 3, 4, 5} except for the case where both are coloured 1. Thus, there are 5*5 - 1 = 24 possible colourings.\\n\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"11\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e{}\u003c/p\u003e\\n\u003cp\u003e{}\u003c/p\u003e\\n\u003cp\u003eReturns: 3125\u003c/p\u003e\\n\u003cp\u003eThe graph is not necessarily connected. This graph consists of five isolated vertices. Each can be colored independently of the others, so the answer is 5^5 = 3125.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"12\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e{1 }\u003c/p\u003e\\n\u003cp\u003e{3 }\u003c/p\u003e\\n\u003cp\u003eReturns: 3000\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"13\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e1000000000\u003c/p\u003e\\n\u003cp\u003e1234567890\u003c/p\u003e\\n\u003cp\u003e{1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7 }\u003c/p\u003e\\n\u003cp\u003e{2, 4, 7, 3, 5, 7, 8, 4, 7, 9, 7, 8, 9, 7, 9, 7, 8, 9 }\u003c/p\u003e\\n\u003cp\u003eReturns: 906691319\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"14\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003e{1, 2, 3, 4, 5 }\u003c/p\u003e\\n\u003cp\u003e{2, 3, 4, 5, 1 }\u003c/p\u003e\\n\u003cp\u003eReturns: 1744\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"15\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e{1 }\u003c/p\u003e\\n\u003cp\u003e{2 }\u003c/p\u003e\\n\u003cp\u003eReturns: 24\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"16\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e{1, 1, 1, 2, 2, 3 }\u003c/p\u003e\\n\u003cp\u003e{2, 3, 4, 3, 4, 4 }\u003c/p\u003e\\n\u003cp\u003eReturns: 5773\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"17\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e1000000000\u003c/p\u003e\\n\u003cp\u003e1500000000\u003c/p\u003e\\n\u003cp\u003e{1, 1, 2 }\u003c/p\u003e\\n\u003cp\u003e{2, 3, 3 }\u003c/p\u003e\\n\u003cp\u003eReturns: 836590874\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"18\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e13\u003c/p\u003e\\n\u003cp\u003e14\u003c/p\u003e\\n\u003cp\u003e17\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e{1, 2, 3, 4, 5, 5, 6, 7, 3, 3, 9, 12, 13, 8 }\u003c/p\u003e\\n\u003cp\u003e{2, 3, 4, 5, 6, 7, 8, 8, 9, 10, 10, 7, 12, 13 }\u003c/p\u003e\\n\u003cp\u003eReturns: 546745005\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"19\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003e1000000000\u003c/p\u003e\\n\u003cp\u003e478000000\u003c/p\u003e\\n\u003cp\u003e{ }\u003c/p\u003e\\n\u003cp\u003e{ }\u003c/p\u003e\\n\u003cp\u003eReturns: 49\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"20\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e{1, 1, 2 }\u003c/p\u003e\\n\u003cp\u003e{2, 3, 3 }\u003c/p\u003e\\n\u003cp\u003eReturns: 0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"21\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003e{1, 1, 2 }\u003c/p\u003e\\n\u003cp\u003e{2, 3, 3 }\u003c/p\u003e\\n\u003cp\u003eReturns: 88\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"22\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e100\u003c/p\u003e\\n\u003cp\u003e200\u003c/p\u003e\\n\u003cp\u003e{1, 2, 3, 4, 5 }\u003c/p\u003e\\n\u003cp\u003e{2, 3, 4, 5, 1 }\u003c/p\u003e\\n\u003cp\u003eReturns: 995049936\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"23\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e17\u003c/p\u003e\\n\u003cp\u003e{1 }\u003c/p\u003e\\n\u003cp\u003e{2 }\u003c/p\u003e\\n\u003cp\u003eReturns: 96\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"24\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e{1, 2, 3 }\u003c/p\u003e\\n\u003cp\u003e{2, 3, 1 }\u003c/p\u003e\\n\u003cp\u003eReturns: 4\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"25\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003e98456789\u003c/p\u003e\\n\u003cp\u003e48456789\u003c/p\u003e\\n\u003cp\u003e{1, 1, 1, 2, 2, 3, 3, 4, 6, 6, 7 }\u003c/p\u003e\\n\u003cp\u003e{2, 4, 5, 4, 3, 5, 4, 5, 7, 8, 8 }\u003c/p\u003e\\n\u003cp\u003eReturns: 725995540\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"26\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e{1, 2, 3 }\u003c/p\u003e\\n\u003cp\u003e{2, 3, 1 }\u003c/p\u003e\\n\u003cp\u003eReturns: 2\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"27\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e956479451\u003c/p\u003e\\n\u003cp\u003e1756479451\u003c/p\u003e\\n\u003cp\u003e{1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5 }\u003c/p\u003e\\n\u003cp\u003e{2, 3, 4, 5, 6, 7, 8, 9, 3, 4, 5, 6, 4, 5, 6, 5, 6, 6 }\u003c/p\u003e\\n\u003cp\u003eReturns: 922870014\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"28\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e{1, 2, 3, 4 }\u003c/p\u003e\\n\u003cp\u003e{2, 3, 1, 5 }\u003c/p\u003e\\n\u003cp\u003eReturns: 5610\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"29\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003e{1, 3 }\u003c/p\u003e\\n\u003cp\u003e{2, 4 }\u003c/p\u003e\\n\u003cp\u003eReturns: 2420\u003c/p\u003e\"}}]}]]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->RecordingArtistRoyalties<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div>Recording artist royalties for commercial music albums are sometimes paid as a percentage of the album's wholesale price.  First, a packaging percentage is subtracted from the wholesale price of the album (since it is paid for by the record company).  Then, a percentage of the remaining price is set aside for artist royalties.  This amount is multiplied by the number of units sold.  However, the record company usually gives the artist cash advances during the recording process (for studio time, equipment, etc...).  These advances must be recouped by the record company before any royalties are paid out.  Also, wholesale prices vary among different sales channels - for example, record clubs will typically get the album at a lower wholesale price than retail stores.  Given the wholesale price (formatted as "$XX.XX", where each X is a single digit) and number of units sold for each sales channel, the packaging percentage, the royalty percentage, and the advances given by the record company (in dollars), determine how much the recording artist will earn in royalties.  Return this value as a <type xmlns="http://topcoder.com">double</type> representing the number of dollars earned by the artist.  If the royalty total after subtracting advances is negative, return 0.  The wholesale prices and sales figures for the various sales channels will be given in the <type xmlns="http://topcoder.com">String[]</type> <b xmlns="http://topcoder.com">prices</b> and the <type xmlns="http://topcoder.com">int[]</type> <b xmlns="http://topcoder.com">unitsSold</b>.  Element i of <b xmlns="http://topcoder.com">prices</b> and element i of <b xmlns="http://topcoder.com">unitsSold</b> represent the wholesale price and sales reported by the ith sales channel.  See the examples for a more detailed explanation.</div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>RecordingArtistRoyalties</span></dd><dt>Method:</dt><dd><span>royalties</span></dd><dt>Parameters:</dt><dd><span>String[], int[], int, int</span></dd><dt>Returns:</dt><dd><span>double</span></dd><dt>Method signature:</dt><dd><span>double royalties(String[] prices, int[] unitsSold, int royaltyPercentage, int advances)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Notes</h3><ul><li>The return value must have an absolute or relative error of 1e-9.</li></ul></div><div><h3>Constraints</h3><ul><li><span>prices will contain between 1 and 10 elements, inclusive.</span></li><li><span>Each element of prices will be formatted as "$XX.XX", where each X is a single digit ('0'-'9'). There will be exactly two digits on both sides of the decimal point.</span></li><li><span>unitsSold will contain the same number of elements as prices.</span></li><li><span>Each element of unitsSold will be between 0 and 1000000, inclusive.</span></li><li><span>royaltyPercentage will be between 1 and 50, inclusive.</span></li><li><span>advances will be between 0 and 500000, inclusive.</span></li></ul></div><div><h3>Examples</h3><ol><li><div><p>{"$09.00", "$12.00"}</p>
+<p>{5000, 90000}</p>
+<p>15</p>
+<p>100000</p>
+<p>Returns: 68750.0</p>
+<p>There are two sales channels - one receives the album at a wholesale price of $9.00 and sells 5000 copies, and the other receives the album at a wholesale price of $12.00 and sells 90,000 copies.  15% of (9*5000 + 12*90,000) is $168,750.  The record company must recoup $100,000 in advances, so that amount is subtracted from the total given to the artist.</p></div></li><li><div><p>{"$00.99", "$49.99", "$09.99"}</p>
+<p>{10099, 50000, 500}</p>
+<p>20</p>
+<p>0</p>
+<p>Returns: 502898.602</p>
+<p>The artist is owed approximately $502,898.60.</p></div></li><li><div><p>{"$19.71"}</p>
+<p>{9000}</p>
+<p>50</p>
+<p>100000</p>
+<p>Returns: 0.0</p>
+<p>Even with a 50% royalty rate, this artist will remain in debt to the record company because of the $100,000 advance.</p></div></li><li><div><p>{"$99.99", "$00.00"}</p>
+<p>{0, 1000000}</p>
+<p>15</p>
+<p>0</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$99.99", "$99.99", "$99.99", "$99.99", "$99.99", "$99.99", "$99.99", "$99.99", "$99.99", "$99.99"}</p>
+<p>{1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000}</p>
+<p>50</p>
+<p>5</p>
+<p>Returns: 4.99949995E8</p></div></li><li><div><p>{"$18.08","$53.09","$03.03","$08.27","$36.89","$01.41"}</p>
+<p>{378800,718602,28546,307083,765369,94372}</p>
+<p>27</p>
+<p>248981</p>
+<p>Returns: 2.0269097113E7</p></div></li><li><div><p>{"$81.28","$68.21","$72.04"}</p>
+<p>{116523,962222,784027}</p>
+<p>34</p>
+<p>381261</p>
+<p>Returns: 4.4357794427600004E7</p></div></li><li><div><p>{"$94.18","$87.49","$04.41","$48.83","$02.39","$34.89","$88.33"}</p>
+<p>{858205,55063,144051,290783,764766,339346,82086}</p>
+<p>11</p>
+<p>457085</p>
+<p>Returns: 1.28964350293E7</p></div></li><li><div><p>{"$74.63","$65.58","$56.67","$77.17","$58.57","$43.66","$15.28","$12.31"}</p>
+<p>{504997,42713,719432,917976,518560,685999,875175,167821}</p>
+<p>32</p>
+<p>308219</p>
+<p>Returns: 7.26072338192E7</p></div></li><li><div><p>{"$36.37","$62.90","$73.75","$75.84","$04.17","$28.83","$21.41","$23.69","$94.67"}</p>
+<p>{546160,117266,686164,876164,392473,671705,624209,739339,419382}</p>
+<p>34</p>
+<p>368924</p>
+<p>Returns: 7.98291745564E7</p></div></li><li><div><p>{"$22.61"}</p>
+<p>{57632}</p>
+<p>23</p>
+<p>37614</p>
+<p>Returns: 262089.6896</p></div></li><li><div><p>{"$87.21","$61.06","$08.62","$86.34","$43.34"}</p>
+<p>{821856,831906,519907,415532,801726}</p>
+<p>30</p>
+<p>338997</p>
+<p>Returns: 5.8933706454E7</p></div></li><li><div><p>{"$39.78","$50.61","$03.47","$75.39","$27.57","$38.94","$77.51","$44.01","$79.96","$88.64"}</p>
+<p>{620952,670640,758215,939948,839595,633232,86539,715789,764010,310823}</p>
+<p>3</p>
+<p>446526</p>
+<p>Returns: 8757265.1118</p></div></li><li><div><p>{"$68.04"}</p>
+<p>{549970}</p>
+<p>42</p>
+<p>208540</p>
+<p>Returns: 1.5507842695999999E7</p></div></li><li><div><p>{"$98.21","$70.35","$22.77","$80.70","$63.71","$94.93","$66.68","$15.26"}</p>
+<p>{974912,390843,100532,659236,960116,576624,42506,309360}</p>
+<p>26</p>
+<p>148228</p>
+<p>Returns: 7.842231906019999E7</p></div></li><li><div><p>{"$68.11","$24.88","$22.89","$84.73","$91.11","$04.31","$67.03","$81.44","$47.72"}</p>
+<p>{232227,834460,545064,191700,459549,48623,713863,590133,38293}</p>
+<p>35</p>
+<p>327040</p>
+<p>Returns: 7.1463100317E7</p></div></li><li><div><p>{"$47.72","$03.81","$21.59"}</p>
+<p>{630034,966855,717871}</p>
+<p>23</p>
+<p>259028</p>
+<p>Returns: 1.1067960231599998E7</p></div></li><li><div><p>{"$77.62","$00.57","$74.96","$31.94"}</p>
+<p>{549059,815933,211679,639490}</p>
+<p>11</p>
+<p>19142</p>
+<p>Returns: 8712197.0813</p></div></li><li><div><p>{"$45.14","$12.13","$57.64","$35.65","$88.01","$17.83","$42.89","$83.98","$21.99"}</p>
+<p>{545091,468712,967032,275271,554606,693916,793677,955317,93744}</p>
+<p>11</p>
+<p>432822</p>
+<p>Returns: 2.9636467252199993E7</p></div></li><li><div><p>{"$17.11","$05.39","$51.27","$02.40","$74.98","$09.20","$26.00"}</p>
+<p>{309323,821055,379017,411696,355408,858868,37735}</p>
+<p>4</p>
+<p>136044</p>
+<p>Returns: 2490734.4964</p></div></li><li><div><p>{"$08.00","$59.91","$28.96"}</p>
+<p>{58324,171049,690389}</p>
+<p>38</p>
+<p>167592</p>
+<p>Returns: 1.1501373151400002E7</p></div></li><li><div><p>{"$59.90","$25.89","$58.48","$00.99","$62.35","$27.50","$78.55","$95.89"}</p>
+<p>{81350,892150,815119,722365,310445,611261,25456,331438}</p>
+<p>11</p>
+<p>219257</p>
+<p>Returns: 1.5873854192400001E7</p></div></li><li><div><p>{"$63.76","$49.67"}</p>
+<p>{442716,307079}</p>
+<p>3</p>
+<p>325355</p>
+<p>Returns: 979050.5827000001</p></div></li><li><div><p>{"$20.13","$50.00","$61.26","$09.71"}</p>
+<p>{307682,738575,504501,563050}</p>
+<p>3</p>
+<p>299501</p>
+<p>Returns: 2085359.0625999998</p></div></li><li><div><p>{"$44.29","$98.38","$08.12","$40.71"}</p>
+<p>{52651,234188,482845,335103}</p>
+<p>40</p>
+<p>461564</p>
+<p>Returns: 1.6712065104E7</p></div></li><li><div><p>{"$42.74","$99.46","$39.81","$57.77","$67.65","$44.01"}</p>
+<p>{646102,783796,376538,278222,993463,269171}</p>
+<p>22</p>
+<p>281317</p>
+<p>Returns: 4.716995500439999E7</p></div></li><li><div><p>{"$13.18","$26.35"}</p>
+<p>{248993,148784}</p>
+<p>31</p>
+<p>495722</p>
+<p>Returns: 1736955.7034</p></div></li><li><div><p>{"$38.84","$92.75","$23.82","$28.96","$27.63","$05.14","$87.41","$65.59"}</p>
+<p>{26953,788933,192451,632776,217018,824173,984303,724292}</p>
+<p>49</p>
+<p>391820</p>
+<p>Returns: 1.1765234545879999E8</p></div></li><li><div><p>{"$43.05","$57.56"}</p>
+<p>{749219,79939}</p>
+<p>2</p>
+<p>108272</p>
+<p>Returns: 628831.3358</p></div></li><li><div><p>{"$22.19","$14.81","$25.68","$42.46","$46.52","$36.49","$59.03","$38.40","$38.70"}</p>
+<p>{998680,262561,49238,162516,372598,834413,148204,209458,275615}</p>
+<p>13</p>
+<p>23746</p>
+<p>Returns: 1.4205151534799999E7</p></div></li><li><div><p>{"$45.26","$90.31","$31.31","$91.05","$05.47","$89.36"}</p>
+<p>{380291,164822,486012,133971,340997,782386}</p>
+<p>14</p>
+<p>170035</p>
+<p>Returns: 1.8210762022E7</p></div></li><li><div><p>{"$45.62","$65.21","$19.64"}</p>
+<p>{365538,902792,921307}</p>
+<p>9</p>
+<p>17546</p>
+<p>Returns: 8410178.1424</p></div></li><li><div><p>{"$20.22","$21.18","$46.31"}</p>
+<p>{725129,585218,106804}</p>
+<p>31</p>
+<p>350379</p>
+<p>Returns: 9570587.846600002</p></div></li><li><div><p>{"$78.73","$20.66"}</p>
+<p>{181301,842140}</p>
+<p>41</p>
+<p>291261</p>
+<p>Returns: 1.26944394533E7</p></div></li><li><div><p>{"$65.45","$94.88"}</p>
+<p>{823241,703349}</p>
+<p>34</p>
+<p>107976</p>
+<p>Returns: 4.09010820338E7</p></div></li><li><div><p>{"$74.89","$81.06","$59.25","$58.89"}</p>
+<p>{463298,564529,583564,837932}</p>
+<p>21</p>
+<p>373343</p>
+<p>Returns: 3.41462659924E7</p></div></li><li><div><p>{"$40.02","$11.59","$08.92","$95.25","$79.88","$83.17","$84.36"}</p>
+<p>{889152,879392,406766,364191,447824,615459,585819}</p>
+<p>3</p>
+<p>11589</p>
+<p>Returns: 6602605.7634000005</p></div></li><li><div><p>{"$89.50","$18.85","$35.58","$06.18"}</p>
+<p>{24412,944267,676429,279425}</p>
+<p>13</p>
+<p>16668</p>
+<p>Returns: 5934536.6451</p></div></li><li><div><p>{"$55.68","$59.02","$35.78","$26.89","$76.16","$81.49"}</p>
+<p>{739275,935634,749308,453307,67583,931365}</p>
+<p>22</p>
+<p>8245</p>
+<p>Returns: 4.76058426816E7</p></div></li><li><div><p>{"$70.60","$61.31","$58.47","$96.93","$44.67","$88.91","$85.98"}</p>
+<p>{267537,8232,216869,397696,202301,856054,123674}</p>
+<p>8</p>
+<p>239245</p>
+<p>Returns: 1.30730635728E7</p></div></li><li><div><p>{"$23.61","$24.07","$72.31","$66.75","$80.05","$41.28"}</p>
+<p>{953244,123023,534051,827631,57815,57732}</p>
+<p>40</p>
+<p>62128</p>
+<p>Returns: 5.047391968799999E7</p></div></li><li><div><p>{"$11.41","$96.87","$78.59","$56.29","$06.97","$94.13","$51.96"}</p>
+<p>{115539,179846,785065,76115,570117,214626,787658}</p>
+<p>6</p>
+<p>288395</p>
+<p>Returns: 8701160.4556</p></div></li><li><div><p>{"$61.04","$89.60"}</p>
+<p>{850730,885027}</p>
+<p>48</p>
+<p>473722</p>
+<p>Returns: 6.2515227632E7</p></div></li><li><div><p>{"$85.69","$31.71","$78.62"}</p>
+<p>{27587,367248,66535}</p>
+<p>38</p>
+<p>490260</p>
+<p>Returns: 6821071.4078</p></div></li><li><div><p>{"$38.54"}</p>
+<p>{74962}</p>
+<p>4</p>
+<p>496646</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$88.68","$47.99","$19.27","$11.43","$01.11","$67.58","$06.02","$06.91"}</p>
+<p>{624659,752647,252629,712517,475357,232892,496325,926168}</p>
+<p>2</p>
+<p>23719</p>
+<p>Returns: 2579895.096</p></div></li><li><div><p>{"$25.38"}</p>
+<p>{869265}</p>
+<p>16</p>
+<p>83972</p>
+<p>Returns: 3445939.312</p></div></li><li><div><p>{"$27.74","$93.78","$35.11","$93.35","$41.90","$69.71","$06.80"}</p>
+<p>{819512,757536,872731,608695,424475,213173,263308}</p>
+<p>41</p>
+<p>176472</p>
+<p>Returns: 8.825008913350001E7</p></div></li><li><div><p>{"$61.02"}</p>
+<p>{30140}</p>
+<p>43</p>
+<p>393703</p>
+<p>Returns: 397128.40400000004</p></div></li><li><div><p>{"$80.18","$20.65","$23.28","$26.15","$21.63","$29.75","$02.14","$65.81","$16.58"}</p>
+<p>{414712,571925,747024,215310,276535,847488,70042,548122,171176}</p>
+<p>48</p>
+<p>356099</p>
+<p>Returns: 6.60456857008E7</p></div></li><li><div><p>{"$94.36"}</p>
+<p>{934767}</p>
+<p>28</p>
+<p>200246</p>
+<p>Returns: 2.44970459536E7</p></div></li><li><div><p>{"$72.87"}</p>
+<p>{337536}</p>
+<p>41</p>
+<p>454302</p>
+<p>Returns: 9630159.8112</p></div></li><li><div><p>{"$50.75","$22.15"}</p>
+<p>{990714,509971}</p>
+<p>32</p>
+<p>85844</p>
+<p>Returns: 1.9618025808E7</p></div></li><li><div><p>{"$66.67","$25.45","$70.06","$90.73","$77.10"}</p>
+<p>{860715,720711,617932,885101,681256}</p>
+<p>21</p>
+<p>255753</p>
+<p>Returns: 5.26323965625E7</p></div></li><li><div><p>{"$56.32"}</p>
+<p>{173347}</p>
+<p>41</p>
+<p>251790</p>
+<p>Returns: 3751000.2464</p></div></li><li><div><p>{"$15.03","$25.00","$59.73","$99.73","$69.66","$83.22","$34.66","$14.10","$00.84"}</p>
+<p>{57,69,49,100,37,10,71,8,40}</p>
+<p>13</p>
+<p>226570</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$13.73","$30.19","$10.33","$30.95","$79.32","$96.85","$94.11","$44.02","$16.93"}</p>
+<p>{2,31,72,18,2,66,15,71,86}</p>
+<p>5</p>
+<p>141679</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$86.25"}</p>
+<p>{65}</p>
+<p>32</p>
+<p>65305</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$66.46","$89.41","$93.51","$74.46","$96.29","$36.24"}</p>
+<p>{98,61,63,59,41,7}</p>
+<p>22</p>
+<p>486512</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$44.46","$34.14","$59.37"}</p>
+<p>{92,82,99}</p>
+<p>44</p>
+<p>162833</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$99.72"}</p>
+<p>{48}</p>
+<p>20</p>
+<p>162917</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$17.57","$72.69","$55.82","$22.53"}</p>
+<p>{59,78,15,78}</p>
+<p>17</p>
+<p>208134</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$58.05","$62.96","$01.99","$06.30"}</p>
+<p>{41,93,16,49}</p>
+<p>26</p>
+<p>265744</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$16.21","$60.93","$34.78","$87.17","$33.56"}</p>
+<p>{13,2,44,95,22}</p>
+<p>2</p>
+<p>381222</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$24.81","$51.81","$70.05","$23.55","$16.35","$59.34","$95.15","$32.33","$24.27","$78.78"}</p>
+<p>{88,42,96,95,65,83,71,98,66,71}</p>
+<p>33</p>
+<p>43479</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$01.61","$08.62","$68.82"}</p>
+<p>{91,33,75}</p>
+<p>40</p>
+<p>318980</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$42.51","$12.51","$31.29","$61.78","$50.19","$12.57","$26.09","$14.70","$21.55"}</p>
+<p>{92,53,72,25,79,8,4,0,68}</p>
+<p>42</p>
+<p>405162</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$22.35","$82.73"}</p>
+<p>{1,80}</p>
+<p>17</p>
+<p>158303</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$13.18"}</p>
+<p>{38}</p>
+<p>49</p>
+<p>118161</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$78.12","$43.71","$60.91","$71.57","$17.00"}</p>
+<p>{96,40,38,16,42}</p>
+<p>20</p>
+<p>209234</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$16.21","$93.64","$26.26","$62.66"}</p>
+<p>{99,66,0,29}</p>
+<p>3</p>
+<p>273851</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$01.65","$95.48","$34.49","$60.09","$22.77","$51.99","$15.83","$00.29","$08.59","$00.75"}</p>
+<p>{8,8,25,48,11,85,28,11,41,35}</p>
+<p>33</p>
+<p>367001</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$49.39","$00.32","$71.73","$89.12","$78.56","$03.23","$68.06","$49.35"}</p>
+<p>{33,89,28,9,23,9,80,65}</p>
+<p>42</p>
+<p>392806</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$86.36","$74.17","$95.16","$88.68","$56.56","$37.88","$66.23","$33.71","$92.17"}</p>
+<p>{89,98,21,17,31,9,24,12,57}</p>
+<p>22</p>
+<p>227242</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$59.93","$89.87","$08.71","$02.39","$56.74","$15.63","$20.19"}</p>
+<p>{42,90,16,41,65,83,58}</p>
+<p>46</p>
+<p>95407</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$11.52","$12.86","$79.16"}</p>
+<p>{22,86,7}</p>
+<p>43</p>
+<p>457639</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$32.14","$39.96","$51.51","$10.36","$78.55","$06.65","$58.79","$35.72","$81.75","$80.45"}</p>
+<p>{24,73,27,87,23,64,86,77,52,77}</p>
+<p>46</p>
+<p>94562</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$55.44","$65.12","$38.46","$54.09","$48.25","$62.63","$49.72"}</p>
+<p>{12,65,38,74,28,32,95}</p>
+<p>27</p>
+<p>477954</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$84.40","$19.51","$87.36","$89.91","$15.05","$17.72"}</p>
+<p>{91,77,65,48,4,42}</p>
+<p>10</p>
+<p>283176</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$34.47","$13.26","$55.05","$11.56","$14.07","$71.46"}</p>
+<p>{30,29,86,43,61,85}</p>
+<p>48</p>
+<p>133486</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$89.89","$35.23","$72.91","$60.35","$01.87","$74.95","$78.91","$77.64","$43.20"}</p>
+<p>{53,9,62,40,73,57,48,83,77}</p>
+<p>31</p>
+<p>232871</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$72.96","$17.53"}</p>
+<p>{97,68}</p>
+<p>1</p>
+<p>46153</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$26.59","$45.95","$98.09","$61.20","$91.15"}</p>
+<p>{13,6,43,0,87}</p>
+<p>41</p>
+<p>338609</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$06.31","$17.03","$82.94","$61.23","$99.82","$77.35","$54.25","$74.58","$43.76"}</p>
+<p>{13,32,0,3,32,75,59,91,30}</p>
+<p>34</p>
+<p>454034</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$11.84","$70.39","$34.20","$70.26","$62.11","$80.00"}</p>
+<p>{84,75,20,52,24,4}</p>
+<p>13</p>
+<p>490528</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$94.80","$19.13","$81.91","$00.56","$11.29","$52.42"}</p>
+<p>{3,2,0,61,74,12}</p>
+<p>16</p>
+<p>262411</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$38.14","$23.40","$71.96","$78.69","$59.02","$67.34","$51.26","$41.34"}</p>
+<p>{54,53,22,19,35,14,63,18}</p>
+<p>27</p>
+<p>362336</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$52.81","$90.86","$11.46","$66.85","$50.40","$53.05","$44.48","$07.03"}</p>
+<p>{86,41,63,79,57,31,83,9}</p>
+<p>31</p>
+<p>121491</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$73.69","$76.28","$29.61"}</p>
+<p>{88,67,69}</p>
+<p>39</p>
+<p>17259</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$92.43","$56.15","$93.82"}</p>
+<p>{70,67,49}</p>
+<p>5</p>
+<p>493410</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$45.15","$58.04","$34.55","$90.49","$55.64","$77.92","$04.40","$31.88","$56.66"}</p>
+<p>{100,76,39,89,23,11,99,73,25}</p>
+<p>3</p>
+<p>268495</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$63.07","$22.05"}</p>
+<p>{78,65}</p>
+<p>15</p>
+<p>54607</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$10.97","$17.51"}</p>
+<p>{74,7}</p>
+<p>19</p>
+<p>44681</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$64.77","$34.79","$53.91","$84.86","$79.75","$90.73"}</p>
+<p>{2,26,58,42,43,59}</p>
+<p>34</p>
+<p>128159</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$52.13","$07.39"}</p>
+<p>{10,32}</p>
+<p>29</p>
+<p>481403</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$61.79","$30.06"}</p>
+<p>{44,81}</p>
+<p>6</p>
+<p>75992</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$94.53","$20.29","$88.95","$61.11","$73.33","$00.57","$59.78","$31.06","$00.73"}</p>
+<p>{89,56,4,30,37,49,20,53,82}</p>
+<p>38</p>
+<p>99994</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$44.36","$38.97","$57.71"}</p>
+<p>{53,9,47}</p>
+<p>18</p>
+<p>219585</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$39.21","$92.03","$62.09","$34.30","$47.09","$26.92","$59.85","$70.41"}</p>
+<p>{73,76,92,66,67,7,37,57}</p>
+<p>29</p>
+<p>361288</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$38.20","$78.60","$81.44","$18.05","$44.42","$78.46","$03.47","$92.40"}</p>
+<p>{79,21,80,38,80,17,47,27}</p>
+<p>10</p>
+<p>233851</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$52.19","$61.39","$78.84","$68.79"}</p>
+<p>{35,71,61,56}</p>
+<p>20</p>
+<p>44048</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$94.22","$12.74","$31.20","$32.65","$59.99","$84.97","$53.98","$60.61","$98.75","$84.16"}</p>
+<p>{16,45,68,0,36,89,13,48,42,94}</p>
+<p>40</p>
+<p>390868</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$26.18","$22.92"}</p>
+<p>{88,94}</p>
+<p>11</p>
+<p>195453</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$40.47","$90.93","$48.22","$03.08","$01.94","$97.66","$23.91","$79.39","$86.52","$79.12"}</p>
+<p>{28,3,86,70,41,17,96,82,45,51}</p>
+<p>22</p>
+<p>76744</p>
+<p>Returns: 0.0</p></div></li><li><div><p>{"$76.44","$74.20","$64.33"}</p>
+<p>{31,93,89}</p>
+<p>19</p>
+<p>488321</p>
+<p>Returns: 0.0</p></div></li></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/3434/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"3434\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"3434\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"3434\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"3434\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"3434\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\nf:T710,"])</script><script>self.__next_f.push([1,"Recording artist royalties for commercial music albums are sometimes paid as a percentage of the album's wholesale price.  First, a packaging percentage is subtracted from the wholesale price of the album (since it is paid for by the record company).  Then, a percentage of the remaining price is set aside for artist royalties.  This amount is multiplied by the number of units sold.  However, the record company usually gives the artist cash advances during the recording process (for studio time, equipment, etc...).  These advances must be recouped by the record company before any royalties are paid out.  Also, wholesale prices vary among different sales channels - for example, record clubs will typically get the album at a lower wholesale price than retail stores.  Given the wholesale price (formatted as \"$XX.XX\", where each X is a single digit) and number of units sold for each sales channel, the packaging percentage, the royalty percentage, and the advances given by the record company (in dollars), determine how much the recording artist will earn in royalties.  Return this value as a \u003ctype xmlns=\"http://topcoder.com\"\u003edouble\u003c/type\u003e representing the number of dollars earned by the artist.  If the royalty total after subtracting advances is negative, return 0.  The wholesale prices and sales figures for the various sales channels will be given in the \u003ctype xmlns=\"http://topcoder.com\"\u003eString[]\u003c/type\u003e \u003cb xmlns=\"http://topcoder.com\"\u003eprices\u003c/b\u003e and the \u003ctype xmlns=\"http://topcoder.com\"\u003eint[]\u003c/type\u003e \u003cb xmlns=\"http://topcoder.com\"\u003eunitsSold\u003c/b\u003e.  Element i of \u003cb xmlns=\"http://topcoder.com\"\u003eprices\u003c/b\u003e and element i of \u003cb xmlns=\"http://topcoder.com\"\u003eunitsSold\u003c/b\u003e represent the wholesale price and sales reported by the ith sales channel.  See the examples for a more detailed explanation."])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"RecordingArtistRoyalties\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"RecordingArtistRoyalties\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"royalties\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String[], int[], int, int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"double\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"double royalties(String[] prices, int[] unitsSold, int royaltyPercentage, int advances)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Notes\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":\"The return value must have an absolute or relative error of 1e-9.\"}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"prices will contain between 1 and 10 elements, inclusive.\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Each element of prices will be formatted as \\\"$XX.XX\\\", where each X is a single digit ('0'-'9'). There will be exactly two digits on both sides of the decimal point.\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"unitsSold will contain the same number of elements as prices.\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Each element of unitsSold will be between 0 and 1000000, inclusive.\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"royaltyPercentage will be between 1 and 50, inclusive.\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"advances will be between 0 and 500000, inclusive.\"}}]}]]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[[\"$\",\"li\",\"0\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$09.00\\\", \\\"$12.00\\\"}\u003c/p\u003e\\n\u003cp\u003e{5000, 90000}\u003c/p\u003e\\n\u003cp\u003e15\u003c/p\u003e\\n\u003cp\u003e100000\u003c/p\u003e\\n\u003cp\u003eReturns: 68750.0\u003c/p\u003e\\n\u003cp\u003eThere are two sales channels - one receives the album at a wholesale price of $9.00 and sells 5000 copies, and the other receives the album at a wholesale price of $12.00 and sells 90,000 copies.  15% of (9*5000 + 12*90,000) is $168,750.  The record company must recoup $100,000 in advances, so that amount is subtracted from the total given to the artist.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"1\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$00.99\\\", \\\"$49.99\\\", \\\"$09.99\\\"}\u003c/p\u003e\\n\u003cp\u003e{10099, 50000, 500}\u003c/p\u003e\\n\u003cp\u003e20\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: 502898.602\u003c/p\u003e\\n\u003cp\u003eThe artist is owed approximately $502,898.60.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"2\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$19.71\\\"}\u003c/p\u003e\\n\u003cp\u003e{9000}\u003c/p\u003e\\n\u003cp\u003e50\u003c/p\u003e\\n\u003cp\u003e100000\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\\n\u003cp\u003eEven with a 50% royalty rate, this artist will remain in debt to the record company because of the $100,000 advance.\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"3\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$99.99\\\", \\\"$00.00\\\"}\u003c/p\u003e\\n\u003cp\u003e{0, 1000000}\u003c/p\u003e\\n\u003cp\u003e15\u003c/p\u003e\\n\u003cp\u003e0\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"4\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$99.99\\\", \\\"$99.99\\\", \\\"$99.99\\\", \\\"$99.99\\\", \\\"$99.99\\\", \\\"$99.99\\\", \\\"$99.99\\\", \\\"$99.99\\\", \\\"$99.99\\\", \\\"$99.99\\\"}\u003c/p\u003e\\n\u003cp\u003e{1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000}\u003c/p\u003e\\n\u003cp\u003e50\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003eReturns: 4.99949995E8\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"5\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$18.08\\\",\\\"$53.09\\\",\\\"$03.03\\\",\\\"$08.27\\\",\\\"$36.89\\\",\\\"$01.41\\\"}\u003c/p\u003e\\n\u003cp\u003e{378800,718602,28546,307083,765369,94372}\u003c/p\u003e\\n\u003cp\u003e27\u003c/p\u003e\\n\u003cp\u003e248981\u003c/p\u003e\\n\u003cp\u003eReturns: 2.0269097113E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"6\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$81.28\\\",\\\"$68.21\\\",\\\"$72.04\\\"}\u003c/p\u003e\\n\u003cp\u003e{116523,962222,784027}\u003c/p\u003e\\n\u003cp\u003e34\u003c/p\u003e\\n\u003cp\u003e381261\u003c/p\u003e\\n\u003cp\u003eReturns: 4.4357794427600004E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"7\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$94.18\\\",\\\"$87.49\\\",\\\"$04.41\\\",\\\"$48.83\\\",\\\"$02.39\\\",\\\"$34.89\\\",\\\"$88.33\\\"}\u003c/p\u003e\\n\u003cp\u003e{858205,55063,144051,290783,764766,339346,82086}\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003e457085\u003c/p\u003e\\n\u003cp\u003eReturns: 1.28964350293E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"8\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$74.63\\\",\\\"$65.58\\\",\\\"$56.67\\\",\\\"$77.17\\\",\\\"$58.57\\\",\\\"$43.66\\\",\\\"$15.28\\\",\\\"$12.31\\\"}\u003c/p\u003e\\n\u003cp\u003e{504997,42713,719432,917976,518560,685999,875175,167821}\u003c/p\u003e\\n\u003cp\u003e32\u003c/p\u003e\\n\u003cp\u003e308219\u003c/p\u003e\\n\u003cp\u003eReturns: 7.26072338192E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"9\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$36.37\\\",\\\"$62.90\\\",\\\"$73.75\\\",\\\"$75.84\\\",\\\"$04.17\\\",\\\"$28.83\\\",\\\"$21.41\\\",\\\"$23.69\\\",\\\"$94.67\\\"}\u003c/p\u003e\\n\u003cp\u003e{546160,117266,686164,876164,392473,671705,624209,739339,419382}\u003c/p\u003e\\n\u003cp\u003e34\u003c/p\u003e\\n\u003cp\u003e368924\u003c/p\u003e\\n\u003cp\u003eReturns: 7.98291745564E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"10\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$22.61\\\"}\u003c/p\u003e\\n\u003cp\u003e{57632}\u003c/p\u003e\\n\u003cp\u003e23\u003c/p\u003e\\n\u003cp\u003e37614\u003c/p\u003e\\n\u003cp\u003eReturns: 262089.6896\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"11\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$87.21\\\",\\\"$61.06\\\",\\\"$08.62\\\",\\\"$86.34\\\",\\\"$43.34\\\"}\u003c/p\u003e\\n\u003cp\u003e{821856,831906,519907,415532,801726}\u003c/p\u003e\\n\u003cp\u003e30\u003c/p\u003e\\n\u003cp\u003e338997\u003c/p\u003e\\n\u003cp\u003eReturns: 5.8933706454E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"12\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$39.78\\\",\\\"$50.61\\\",\\\"$03.47\\\",\\\"$75.39\\\",\\\"$27.57\\\",\\\"$38.94\\\",\\\"$77.51\\\",\\\"$44.01\\\",\\\"$79.96\\\",\\\"$88.64\\\"}\u003c/p\u003e\\n\u003cp\u003e{620952,670640,758215,939948,839595,633232,86539,715789,764010,310823}\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e446526\u003c/p\u003e\\n\u003cp\u003eReturns: 8757265.1118\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"13\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$68.04\\\"}\u003c/p\u003e\\n\u003cp\u003e{549970}\u003c/p\u003e\\n\u003cp\u003e42\u003c/p\u003e\\n\u003cp\u003e208540\u003c/p\u003e\\n\u003cp\u003eReturns: 1.5507842695999999E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"14\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$98.21\\\",\\\"$70.35\\\",\\\"$22.77\\\",\\\"$80.70\\\",\\\"$63.71\\\",\\\"$94.93\\\",\\\"$66.68\\\",\\\"$15.26\\\"}\u003c/p\u003e\\n\u003cp\u003e{974912,390843,100532,659236,960116,576624,42506,309360}\u003c/p\u003e\\n\u003cp\u003e26\u003c/p\u003e\\n\u003cp\u003e148228\u003c/p\u003e\\n\u003cp\u003eReturns: 7.842231906019999E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"15\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$68.11\\\",\\\"$24.88\\\",\\\"$22.89\\\",\\\"$84.73\\\",\\\"$91.11\\\",\\\"$04.31\\\",\\\"$67.03\\\",\\\"$81.44\\\",\\\"$47.72\\\"}\u003c/p\u003e\\n\u003cp\u003e{232227,834460,545064,191700,459549,48623,713863,590133,38293}\u003c/p\u003e\\n\u003cp\u003e35\u003c/p\u003e\\n\u003cp\u003e327040\u003c/p\u003e\\n\u003cp\u003eReturns: 7.1463100317E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"16\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$47.72\\\",\\\"$03.81\\\",\\\"$21.59\\\"}\u003c/p\u003e\\n\u003cp\u003e{630034,966855,717871}\u003c/p\u003e\\n\u003cp\u003e23\u003c/p\u003e\\n\u003cp\u003e259028\u003c/p\u003e\\n\u003cp\u003eReturns: 1.1067960231599998E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"17\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$77.62\\\",\\\"$00.57\\\",\\\"$74.96\\\",\\\"$31.94\\\"}\u003c/p\u003e\\n\u003cp\u003e{549059,815933,211679,639490}\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003e19142\u003c/p\u003e\\n\u003cp\u003eReturns: 8712197.0813\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"18\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$45.14\\\",\\\"$12.13\\\",\\\"$57.64\\\",\\\"$35.65\\\",\\\"$88.01\\\",\\\"$17.83\\\",\\\"$42.89\\\",\\\"$83.98\\\",\\\"$21.99\\\"}\u003c/p\u003e\\n\u003cp\u003e{545091,468712,967032,275271,554606,693916,793677,955317,93744}\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003e432822\u003c/p\u003e\\n\u003cp\u003eReturns: 2.9636467252199993E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"19\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$17.11\\\",\\\"$05.39\\\",\\\"$51.27\\\",\\\"$02.40\\\",\\\"$74.98\\\",\\\"$09.20\\\",\\\"$26.00\\\"}\u003c/p\u003e\\n\u003cp\u003e{309323,821055,379017,411696,355408,858868,37735}\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e136044\u003c/p\u003e\\n\u003cp\u003eReturns: 2490734.4964\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"20\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$08.00\\\",\\\"$59.91\\\",\\\"$28.96\\\"}\u003c/p\u003e\\n\u003cp\u003e{58324,171049,690389}\u003c/p\u003e\\n\u003cp\u003e38\u003c/p\u003e\\n\u003cp\u003e167592\u003c/p\u003e\\n\u003cp\u003eReturns: 1.1501373151400002E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"21\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$59.90\\\",\\\"$25.89\\\",\\\"$58.48\\\",\\\"$00.99\\\",\\\"$62.35\\\",\\\"$27.50\\\",\\\"$78.55\\\",\\\"$95.89\\\"}\u003c/p\u003e\\n\u003cp\u003e{81350,892150,815119,722365,310445,611261,25456,331438}\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003e219257\u003c/p\u003e\\n\u003cp\u003eReturns: 1.5873854192400001E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"22\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$63.76\\\",\\\"$49.67\\\"}\u003c/p\u003e\\n\u003cp\u003e{442716,307079}\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e325355\u003c/p\u003e\\n\u003cp\u003eReturns: 979050.5827000001\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"23\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$20.13\\\",\\\"$50.00\\\",\\\"$61.26\\\",\\\"$09.71\\\"}\u003c/p\u003e\\n\u003cp\u003e{307682,738575,504501,563050}\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e299501\u003c/p\u003e\\n\u003cp\u003eReturns: 2085359.0625999998\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"24\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$44.29\\\",\\\"$98.38\\\",\\\"$08.12\\\",\\\"$40.71\\\"}\u003c/p\u003e\\n\u003cp\u003e{52651,234188,482845,335103}\u003c/p\u003e\\n\u003cp\u003e40\u003c/p\u003e\\n\u003cp\u003e461564\u003c/p\u003e\\n\u003cp\u003eReturns: 1.6712065104E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"25\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$42.74\\\",\\\"$99.46\\\",\\\"$39.81\\\",\\\"$57.77\\\",\\\"$67.65\\\",\\\"$44.01\\\"}\u003c/p\u003e\\n\u003cp\u003e{646102,783796,376538,278222,993463,269171}\u003c/p\u003e\\n\u003cp\u003e22\u003c/p\u003e\\n\u003cp\u003e281317\u003c/p\u003e\\n\u003cp\u003eReturns: 4.716995500439999E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"26\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$13.18\\\",\\\"$26.35\\\"}\u003c/p\u003e\\n\u003cp\u003e{248993,148784}\u003c/p\u003e\\n\u003cp\u003e31\u003c/p\u003e\\n\u003cp\u003e495722\u003c/p\u003e\\n\u003cp\u003eReturns: 1736955.7034\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"27\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$38.84\\\",\\\"$92.75\\\",\\\"$23.82\\\",\\\"$28.96\\\",\\\"$27.63\\\",\\\"$05.14\\\",\\\"$87.41\\\",\\\"$65.59\\\"}\u003c/p\u003e\\n\u003cp\u003e{26953,788933,192451,632776,217018,824173,984303,724292}\u003c/p\u003e\\n\u003cp\u003e49\u003c/p\u003e\\n\u003cp\u003e391820\u003c/p\u003e\\n\u003cp\u003eReturns: 1.1765234545879999E8\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"28\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$43.05\\\",\\\"$57.56\\\"}\u003c/p\u003e\\n\u003cp\u003e{749219,79939}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e108272\u003c/p\u003e\\n\u003cp\u003eReturns: 628831.3358\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"29\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$22.19\\\",\\\"$14.81\\\",\\\"$25.68\\\",\\\"$42.46\\\",\\\"$46.52\\\",\\\"$36.49\\\",\\\"$59.03\\\",\\\"$38.40\\\",\\\"$38.70\\\"}\u003c/p\u003e\\n\u003cp\u003e{998680,262561,49238,162516,372598,834413,148204,209458,275615}\u003c/p\u003e\\n\u003cp\u003e13\u003c/p\u003e\\n\u003cp\u003e23746\u003c/p\u003e\\n\u003cp\u003eReturns: 1.4205151534799999E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"30\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$45.26\\\",\\\"$90.31\\\",\\\"$31.31\\\",\\\"$91.05\\\",\\\"$05.47\\\",\\\"$89.36\\\"}\u003c/p\u003e\\n\u003cp\u003e{380291,164822,486012,133971,340997,782386}\u003c/p\u003e\\n\u003cp\u003e14\u003c/p\u003e\\n\u003cp\u003e170035\u003c/p\u003e\\n\u003cp\u003eReturns: 1.8210762022E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"31\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$45.62\\\",\\\"$65.21\\\",\\\"$19.64\\\"}\u003c/p\u003e\\n\u003cp\u003e{365538,902792,921307}\u003c/p\u003e\\n\u003cp\u003e9\u003c/p\u003e\\n\u003cp\u003e17546\u003c/p\u003e\\n\u003cp\u003eReturns: 8410178.1424\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"32\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$20.22\\\",\\\"$21.18\\\",\\\"$46.31\\\"}\u003c/p\u003e\\n\u003cp\u003e{725129,585218,106804}\u003c/p\u003e\\n\u003cp\u003e31\u003c/p\u003e\\n\u003cp\u003e350379\u003c/p\u003e\\n\u003cp\u003eReturns: 9570587.846600002\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"33\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$78.73\\\",\\\"$20.66\\\"}\u003c/p\u003e\\n\u003cp\u003e{181301,842140}\u003c/p\u003e\\n\u003cp\u003e41\u003c/p\u003e\\n\u003cp\u003e291261\u003c/p\u003e\\n\u003cp\u003eReturns: 1.26944394533E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"34\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$65.45\\\",\\\"$94.88\\\"}\u003c/p\u003e\\n\u003cp\u003e{823241,703349}\u003c/p\u003e\\n\u003cp\u003e34\u003c/p\u003e\\n\u003cp\u003e107976\u003c/p\u003e\\n\u003cp\u003eReturns: 4.09010820338E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"35\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$74.89\\\",\\\"$81.06\\\",\\\"$59.25\\\",\\\"$58.89\\\"}\u003c/p\u003e\\n\u003cp\u003e{463298,564529,583564,837932}\u003c/p\u003e\\n\u003cp\u003e21\u003c/p\u003e\\n\u003cp\u003e373343\u003c/p\u003e\\n\u003cp\u003eReturns: 3.41462659924E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"36\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$40.02\\\",\\\"$11.59\\\",\\\"$08.92\\\",\\\"$95.25\\\",\\\"$79.88\\\",\\\"$83.17\\\",\\\"$84.36\\\"}\u003c/p\u003e\\n\u003cp\u003e{889152,879392,406766,364191,447824,615459,585819}\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e11589\u003c/p\u003e\\n\u003cp\u003eReturns: 6602605.7634000005\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"37\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$89.50\\\",\\\"$18.85\\\",\\\"$35.58\\\",\\\"$06.18\\\"}\u003c/p\u003e\\n\u003cp\u003e{24412,944267,676429,279425}\u003c/p\u003e\\n\u003cp\u003e13\u003c/p\u003e\\n\u003cp\u003e16668\u003c/p\u003e\\n\u003cp\u003eReturns: 5934536.6451\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"38\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$55.68\\\",\\\"$59.02\\\",\\\"$35.78\\\",\\\"$26.89\\\",\\\"$76.16\\\",\\\"$81.49\\\"}\u003c/p\u003e\\n\u003cp\u003e{739275,935634,749308,453307,67583,931365}\u003c/p\u003e\\n\u003cp\u003e22\u003c/p\u003e\\n\u003cp\u003e8245\u003c/p\u003e\\n\u003cp\u003eReturns: 4.76058426816E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"39\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$70.60\\\",\\\"$61.31\\\",\\\"$58.47\\\",\\\"$96.93\\\",\\\"$44.67\\\",\\\"$88.91\\\",\\\"$85.98\\\"}\u003c/p\u003e\\n\u003cp\u003e{267537,8232,216869,397696,202301,856054,123674}\u003c/p\u003e\\n\u003cp\u003e8\u003c/p\u003e\\n\u003cp\u003e239245\u003c/p\u003e\\n\u003cp\u003eReturns: 1.30730635728E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"40\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$23.61\\\",\\\"$24.07\\\",\\\"$72.31\\\",\\\"$66.75\\\",\\\"$80.05\\\",\\\"$41.28\\\"}\u003c/p\u003e\\n\u003cp\u003e{953244,123023,534051,827631,57815,57732}\u003c/p\u003e\\n\u003cp\u003e40\u003c/p\u003e\\n\u003cp\u003e62128\u003c/p\u003e\\n\u003cp\u003eReturns: 5.047391968799999E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"41\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$11.41\\\",\\\"$96.87\\\",\\\"$78.59\\\",\\\"$56.29\\\",\\\"$06.97\\\",\\\"$94.13\\\",\\\"$51.96\\\"}\u003c/p\u003e\\n\u003cp\u003e{115539,179846,785065,76115,570117,214626,787658}\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003e288395\u003c/p\u003e\\n\u003cp\u003eReturns: 8701160.4556\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"42\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$61.04\\\",\\\"$89.60\\\"}\u003c/p\u003e\\n\u003cp\u003e{850730,885027}\u003c/p\u003e\\n\u003cp\u003e48\u003c/p\u003e\\n\u003cp\u003e473722\u003c/p\u003e\\n\u003cp\u003eReturns: 6.2515227632E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"43\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$85.69\\\",\\\"$31.71\\\",\\\"$78.62\\\"}\u003c/p\u003e\\n\u003cp\u003e{27587,367248,66535}\u003c/p\u003e\\n\u003cp\u003e38\u003c/p\u003e\\n\u003cp\u003e490260\u003c/p\u003e\\n\u003cp\u003eReturns: 6821071.4078\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"44\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$38.54\\\"}\u003c/p\u003e\\n\u003cp\u003e{74962}\u003c/p\u003e\\n\u003cp\u003e4\u003c/p\u003e\\n\u003cp\u003e496646\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"45\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$88.68\\\",\\\"$47.99\\\",\\\"$19.27\\\",\\\"$11.43\\\",\\\"$01.11\\\",\\\"$67.58\\\",\\\"$06.02\\\",\\\"$06.91\\\"}\u003c/p\u003e\\n\u003cp\u003e{624659,752647,252629,712517,475357,232892,496325,926168}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e23719\u003c/p\u003e\\n\u003cp\u003eReturns: 2579895.096\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"46\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$25.38\\\"}\u003c/p\u003e\\n\u003cp\u003e{869265}\u003c/p\u003e\\n\u003cp\u003e16\u003c/p\u003e\\n\u003cp\u003e83972\u003c/p\u003e\\n\u003cp\u003eReturns: 3445939.312\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"47\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$27.74\\\",\\\"$93.78\\\",\\\"$35.11\\\",\\\"$93.35\\\",\\\"$41.90\\\",\\\"$69.71\\\",\\\"$06.80\\\"}\u003c/p\u003e\\n\u003cp\u003e{819512,757536,872731,608695,424475,213173,263308}\u003c/p\u003e\\n\u003cp\u003e41\u003c/p\u003e\\n\u003cp\u003e176472\u003c/p\u003e\\n\u003cp\u003eReturns: 8.825008913350001E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"48\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$61.02\\\"}\u003c/p\u003e\\n\u003cp\u003e{30140}\u003c/p\u003e\\n\u003cp\u003e43\u003c/p\u003e\\n\u003cp\u003e393703\u003c/p\u003e\\n\u003cp\u003eReturns: 397128.40400000004\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"49\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$80.18\\\",\\\"$20.65\\\",\\\"$23.28\\\",\\\"$26.15\\\",\\\"$21.63\\\",\\\"$29.75\\\",\\\"$02.14\\\",\\\"$65.81\\\",\\\"$16.58\\\"}\u003c/p\u003e\\n\u003cp\u003e{414712,571925,747024,215310,276535,847488,70042,548122,171176}\u003c/p\u003e\\n\u003cp\u003e48\u003c/p\u003e\\n\u003cp\u003e356099\u003c/p\u003e\\n\u003cp\u003eReturns: 6.60456857008E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"50\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$94.36\\\"}\u003c/p\u003e\\n\u003cp\u003e{934767}\u003c/p\u003e\\n\u003cp\u003e28\u003c/p\u003e\\n\u003cp\u003e200246\u003c/p\u003e\\n\u003cp\u003eReturns: 2.44970459536E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"51\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$72.87\\\"}\u003c/p\u003e\\n\u003cp\u003e{337536}\u003c/p\u003e\\n\u003cp\u003e41\u003c/p\u003e\\n\u003cp\u003e454302\u003c/p\u003e\\n\u003cp\u003eReturns: 9630159.8112\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"52\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$50.75\\\",\\\"$22.15\\\"}\u003c/p\u003e\\n\u003cp\u003e{990714,509971}\u003c/p\u003e\\n\u003cp\u003e32\u003c/p\u003e\\n\u003cp\u003e85844\u003c/p\u003e\\n\u003cp\u003eReturns: 1.9618025808E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"53\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$66.67\\\",\\\"$25.45\\\",\\\"$70.06\\\",\\\"$90.73\\\",\\\"$77.10\\\"}\u003c/p\u003e\\n\u003cp\u003e{860715,720711,617932,885101,681256}\u003c/p\u003e\\n\u003cp\u003e21\u003c/p\u003e\\n\u003cp\u003e255753\u003c/p\u003e\\n\u003cp\u003eReturns: 5.26323965625E7\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"54\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$56.32\\\"}\u003c/p\u003e\\n\u003cp\u003e{173347}\u003c/p\u003e\\n\u003cp\u003e41\u003c/p\u003e\\n\u003cp\u003e251790\u003c/p\u003e\\n\u003cp\u003eReturns: 3751000.2464\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"55\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$15.03\\\",\\\"$25.00\\\",\\\"$59.73\\\",\\\"$99.73\\\",\\\"$69.66\\\",\\\"$83.22\\\",\\\"$34.66\\\",\\\"$14.10\\\",\\\"$00.84\\\"}\u003c/p\u003e\\n\u003cp\u003e{57,69,49,100,37,10,71,8,40}\u003c/p\u003e\\n\u003cp\u003e13\u003c/p\u003e\\n\u003cp\u003e226570\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"56\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$13.73\\\",\\\"$30.19\\\",\\\"$10.33\\\",\\\"$30.95\\\",\\\"$79.32\\\",\\\"$96.85\\\",\\\"$94.11\\\",\\\"$44.02\\\",\\\"$16.93\\\"}\u003c/p\u003e\\n\u003cp\u003e{2,31,72,18,2,66,15,71,86}\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e141679\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"57\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$86.25\\\"}\u003c/p\u003e\\n\u003cp\u003e{65}\u003c/p\u003e\\n\u003cp\u003e32\u003c/p\u003e\\n\u003cp\u003e65305\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"58\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$66.46\\\",\\\"$89.41\\\",\\\"$93.51\\\",\\\"$74.46\\\",\\\"$96.29\\\",\\\"$36.24\\\"}\u003c/p\u003e\\n\u003cp\u003e{98,61,63,59,41,7}\u003c/p\u003e\\n\u003cp\u003e22\u003c/p\u003e\\n\u003cp\u003e486512\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"59\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$44.46\\\",\\\"$34.14\\\",\\\"$59.37\\\"}\u003c/p\u003e\\n\u003cp\u003e{92,82,99}\u003c/p\u003e\\n\u003cp\u003e44\u003c/p\u003e\\n\u003cp\u003e162833\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"60\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$99.72\\\"}\u003c/p\u003e\\n\u003cp\u003e{48}\u003c/p\u003e\\n\u003cp\u003e20\u003c/p\u003e\\n\u003cp\u003e162917\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"61\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$17.57\\\",\\\"$72.69\\\",\\\"$55.82\\\",\\\"$22.53\\\"}\u003c/p\u003e\\n\u003cp\u003e{59,78,15,78}\u003c/p\u003e\\n\u003cp\u003e17\u003c/p\u003e\\n\u003cp\u003e208134\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"62\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$58.05\\\",\\\"$62.96\\\",\\\"$01.99\\\",\\\"$06.30\\\"}\u003c/p\u003e\\n\u003cp\u003e{41,93,16,49}\u003c/p\u003e\\n\u003cp\u003e26\u003c/p\u003e\\n\u003cp\u003e265744\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"63\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$16.21\\\",\\\"$60.93\\\",\\\"$34.78\\\",\\\"$87.17\\\",\\\"$33.56\\\"}\u003c/p\u003e\\n\u003cp\u003e{13,2,44,95,22}\u003c/p\u003e\\n\u003cp\u003e2\u003c/p\u003e\\n\u003cp\u003e381222\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"64\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$24.81\\\",\\\"$51.81\\\",\\\"$70.05\\\",\\\"$23.55\\\",\\\"$16.35\\\",\\\"$59.34\\\",\\\"$95.15\\\",\\\"$32.33\\\",\\\"$24.27\\\",\\\"$78.78\\\"}\u003c/p\u003e\\n\u003cp\u003e{88,42,96,95,65,83,71,98,66,71}\u003c/p\u003e\\n\u003cp\u003e33\u003c/p\u003e\\n\u003cp\u003e43479\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"65\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$01.61\\\",\\\"$08.62\\\",\\\"$68.82\\\"}\u003c/p\u003e\\n\u003cp\u003e{91,33,75}\u003c/p\u003e\\n\u003cp\u003e40\u003c/p\u003e\\n\u003cp\u003e318980\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"66\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$42.51\\\",\\\"$12.51\\\",\\\"$31.29\\\",\\\"$61.78\\\",\\\"$50.19\\\",\\\"$12.57\\\",\\\"$26.09\\\",\\\"$14.70\\\",\\\"$21.55\\\"}\u003c/p\u003e\\n\u003cp\u003e{92,53,72,25,79,8,4,0,68}\u003c/p\u003e\\n\u003cp\u003e42\u003c/p\u003e\\n\u003cp\u003e405162\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"67\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$22.35\\\",\\\"$82.73\\\"}\u003c/p\u003e\\n\u003cp\u003e{1,80}\u003c/p\u003e\\n\u003cp\u003e17\u003c/p\u003e\\n\u003cp\u003e158303\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"68\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$13.18\\\"}\u003c/p\u003e\\n\u003cp\u003e{38}\u003c/p\u003e\\n\u003cp\u003e49\u003c/p\u003e\\n\u003cp\u003e118161\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"69\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$78.12\\\",\\\"$43.71\\\",\\\"$60.91\\\",\\\"$71.57\\\",\\\"$17.00\\\"}\u003c/p\u003e\\n\u003cp\u003e{96,40,38,16,42}\u003c/p\u003e\\n\u003cp\u003e20\u003c/p\u003e\\n\u003cp\u003e209234\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"70\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$16.21\\\",\\\"$93.64\\\",\\\"$26.26\\\",\\\"$62.66\\\"}\u003c/p\u003e\\n\u003cp\u003e{99,66,0,29}\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e273851\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"71\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$01.65\\\",\\\"$95.48\\\",\\\"$34.49\\\",\\\"$60.09\\\",\\\"$22.77\\\",\\\"$51.99\\\",\\\"$15.83\\\",\\\"$00.29\\\",\\\"$08.59\\\",\\\"$00.75\\\"}\u003c/p\u003e\\n\u003cp\u003e{8,8,25,48,11,85,28,11,41,35}\u003c/p\u003e\\n\u003cp\u003e33\u003c/p\u003e\\n\u003cp\u003e367001\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"72\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$49.39\\\",\\\"$00.32\\\",\\\"$71.73\\\",\\\"$89.12\\\",\\\"$78.56\\\",\\\"$03.23\\\",\\\"$68.06\\\",\\\"$49.35\\\"}\u003c/p\u003e\\n\u003cp\u003e{33,89,28,9,23,9,80,65}\u003c/p\u003e\\n\u003cp\u003e42\u003c/p\u003e\\n\u003cp\u003e392806\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"73\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$86.36\\\",\\\"$74.17\\\",\\\"$95.16\\\",\\\"$88.68\\\",\\\"$56.56\\\",\\\"$37.88\\\",\\\"$66.23\\\",\\\"$33.71\\\",\\\"$92.17\\\"}\u003c/p\u003e\\n\u003cp\u003e{89,98,21,17,31,9,24,12,57}\u003c/p\u003e\\n\u003cp\u003e22\u003c/p\u003e\\n\u003cp\u003e227242\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"74\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$59.93\\\",\\\"$89.87\\\",\\\"$08.71\\\",\\\"$02.39\\\",\\\"$56.74\\\",\\\"$15.63\\\",\\\"$20.19\\\"}\u003c/p\u003e\\n\u003cp\u003e{42,90,16,41,65,83,58}\u003c/p\u003e\\n\u003cp\u003e46\u003c/p\u003e\\n\u003cp\u003e95407\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"75\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$11.52\\\",\\\"$12.86\\\",\\\"$79.16\\\"}\u003c/p\u003e\\n\u003cp\u003e{22,86,7}\u003c/p\u003e\\n\u003cp\u003e43\u003c/p\u003e\\n\u003cp\u003e457639\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"76\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$32.14\\\",\\\"$39.96\\\",\\\"$51.51\\\",\\\"$10.36\\\",\\\"$78.55\\\",\\\"$06.65\\\",\\\"$58.79\\\",\\\"$35.72\\\",\\\"$81.75\\\",\\\"$80.45\\\"}\u003c/p\u003e\\n\u003cp\u003e{24,73,27,87,23,64,86,77,52,77}\u003c/p\u003e\\n\u003cp\u003e46\u003c/p\u003e\\n\u003cp\u003e94562\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"77\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$55.44\\\",\\\"$65.12\\\",\\\"$38.46\\\",\\\"$54.09\\\",\\\"$48.25\\\",\\\"$62.63\\\",\\\"$49.72\\\"}\u003c/p\u003e\\n\u003cp\u003e{12,65,38,74,28,32,95}\u003c/p\u003e\\n\u003cp\u003e27\u003c/p\u003e\\n\u003cp\u003e477954\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"78\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$84.40\\\",\\\"$19.51\\\",\\\"$87.36\\\",\\\"$89.91\\\",\\\"$15.05\\\",\\\"$17.72\\\"}\u003c/p\u003e\\n\u003cp\u003e{91,77,65,48,4,42}\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e283176\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"79\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$34.47\\\",\\\"$13.26\\\",\\\"$55.05\\\",\\\"$11.56\\\",\\\"$14.07\\\",\\\"$71.46\\\"}\u003c/p\u003e\\n\u003cp\u003e{30,29,86,43,61,85}\u003c/p\u003e\\n\u003cp\u003e48\u003c/p\u003e\\n\u003cp\u003e133486\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"80\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$89.89\\\",\\\"$35.23\\\",\\\"$72.91\\\",\\\"$60.35\\\",\\\"$01.87\\\",\\\"$74.95\\\",\\\"$78.91\\\",\\\"$77.64\\\",\\\"$43.20\\\"}\u003c/p\u003e\\n\u003cp\u003e{53,9,62,40,73,57,48,83,77}\u003c/p\u003e\\n\u003cp\u003e31\u003c/p\u003e\\n\u003cp\u003e232871\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"81\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$72.96\\\",\\\"$17.53\\\"}\u003c/p\u003e\\n\u003cp\u003e{97,68}\u003c/p\u003e\\n\u003cp\u003e1\u003c/p\u003e\\n\u003cp\u003e46153\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"82\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$26.59\\\",\\\"$45.95\\\",\\\"$98.09\\\",\\\"$61.20\\\",\\\"$91.15\\\"}\u003c/p\u003e\\n\u003cp\u003e{13,6,43,0,87}\u003c/p\u003e\\n\u003cp\u003e41\u003c/p\u003e\\n\u003cp\u003e338609\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"83\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$06.31\\\",\\\"$17.03\\\",\\\"$82.94\\\",\\\"$61.23\\\",\\\"$99.82\\\",\\\"$77.35\\\",\\\"$54.25\\\",\\\"$74.58\\\",\\\"$43.76\\\"}\u003c/p\u003e\\n\u003cp\u003e{13,32,0,3,32,75,59,91,30}\u003c/p\u003e\\n\u003cp\u003e34\u003c/p\u003e\\n\u003cp\u003e454034\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"84\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$11.84\\\",\\\"$70.39\\\",\\\"$34.20\\\",\\\"$70.26\\\",\\\"$62.11\\\",\\\"$80.00\\\"}\u003c/p\u003e\\n\u003cp\u003e{84,75,20,52,24,4}\u003c/p\u003e\\n\u003cp\u003e13\u003c/p\u003e\\n\u003cp\u003e490528\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"85\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$94.80\\\",\\\"$19.13\\\",\\\"$81.91\\\",\\\"$00.56\\\",\\\"$11.29\\\",\\\"$52.42\\\"}\u003c/p\u003e\\n\u003cp\u003e{3,2,0,61,74,12}\u003c/p\u003e\\n\u003cp\u003e16\u003c/p\u003e\\n\u003cp\u003e262411\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"86\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$38.14\\\",\\\"$23.40\\\",\\\"$71.96\\\",\\\"$78.69\\\",\\\"$59.02\\\",\\\"$67.34\\\",\\\"$51.26\\\",\\\"$41.34\\\"}\u003c/p\u003e\\n\u003cp\u003e{54,53,22,19,35,14,63,18}\u003c/p\u003e\\n\u003cp\u003e27\u003c/p\u003e\\n\u003cp\u003e362336\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"87\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$52.81\\\",\\\"$90.86\\\",\\\"$11.46\\\",\\\"$66.85\\\",\\\"$50.40\\\",\\\"$53.05\\\",\\\"$44.48\\\",\\\"$07.03\\\"}\u003c/p\u003e\\n\u003cp\u003e{86,41,63,79,57,31,83,9}\u003c/p\u003e\\n\u003cp\u003e31\u003c/p\u003e\\n\u003cp\u003e121491\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"88\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$73.69\\\",\\\"$76.28\\\",\\\"$29.61\\\"}\u003c/p\u003e\\n\u003cp\u003e{88,67,69}\u003c/p\u003e\\n\u003cp\u003e39\u003c/p\u003e\\n\u003cp\u003e17259\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"89\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$92.43\\\",\\\"$56.15\\\",\\\"$93.82\\\"}\u003c/p\u003e\\n\u003cp\u003e{70,67,49}\u003c/p\u003e\\n\u003cp\u003e5\u003c/p\u003e\\n\u003cp\u003e493410\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"90\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$45.15\\\",\\\"$58.04\\\",\\\"$34.55\\\",\\\"$90.49\\\",\\\"$55.64\\\",\\\"$77.92\\\",\\\"$04.40\\\",\\\"$31.88\\\",\\\"$56.66\\\"}\u003c/p\u003e\\n\u003cp\u003e{100,76,39,89,23,11,99,73,25}\u003c/p\u003e\\n\u003cp\u003e3\u003c/p\u003e\\n\u003cp\u003e268495\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"91\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$63.07\\\",\\\"$22.05\\\"}\u003c/p\u003e\\n\u003cp\u003e{78,65}\u003c/p\u003e\\n\u003cp\u003e15\u003c/p\u003e\\n\u003cp\u003e54607\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"92\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$10.97\\\",\\\"$17.51\\\"}\u003c/p\u003e\\n\u003cp\u003e{74,7}\u003c/p\u003e\\n\u003cp\u003e19\u003c/p\u003e\\n\u003cp\u003e44681\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"93\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$64.77\\\",\\\"$34.79\\\",\\\"$53.91\\\",\\\"$84.86\\\",\\\"$79.75\\\",\\\"$90.73\\\"}\u003c/p\u003e\\n\u003cp\u003e{2,26,58,42,43,59}\u003c/p\u003e\\n\u003cp\u003e34\u003c/p\u003e\\n\u003cp\u003e128159\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"94\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$52.13\\\",\\\"$07.39\\\"}\u003c/p\u003e\\n\u003cp\u003e{10,32}\u003c/p\u003e\\n\u003cp\u003e29\u003c/p\u003e\\n\u003cp\u003e481403\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"95\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$61.79\\\",\\\"$30.06\\\"}\u003c/p\u003e\\n\u003cp\u003e{44,81}\u003c/p\u003e\\n\u003cp\u003e6\u003c/p\u003e\\n\u003cp\u003e75992\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"96\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$94.53\\\",\\\"$20.29\\\",\\\"$88.95\\\",\\\"$61.11\\\",\\\"$73.33\\\",\\\"$00.57\\\",\\\"$59.78\\\",\\\"$31.06\\\",\\\"$00.73\\\"}\u003c/p\u003e\\n\u003cp\u003e{89,56,4,30,37,49,20,53,82}\u003c/p\u003e\\n\u003cp\u003e38\u003c/p\u003e\\n\u003cp\u003e99994\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"97\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$44.36\\\",\\\"$38.97\\\",\\\"$57.71\\\"}\u003c/p\u003e\\n\u003cp\u003e{53,9,47}\u003c/p\u003e\\n\u003cp\u003e18\u003c/p\u003e\\n\u003cp\u003e219585\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"98\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$39.21\\\",\\\"$92.03\\\",\\\"$62.09\\\",\\\"$34.30\\\",\\\"$47.09\\\",\\\"$26.92\\\",\\\"$59.85\\\",\\\"$70.41\\\"}\u003c/p\u003e\\n\u003cp\u003e{73,76,92,66,67,7,37,57}\u003c/p\u003e\\n\u003cp\u003e29\u003c/p\u003e\\n\u003cp\u003e361288\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"99\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$38.20\\\",\\\"$78.60\\\",\\\"$81.44\\\",\\\"$18.05\\\",\\\"$44.42\\\",\\\"$78.46\\\",\\\"$03.47\\\",\\\"$92.40\\\"}\u003c/p\u003e\\n\u003cp\u003e{79,21,80,38,80,17,47,27}\u003c/p\u003e\\n\u003cp\u003e10\u003c/p\u003e\\n\u003cp\u003e233851\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"100\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$52.19\\\",\\\"$61.39\\\",\\\"$78.84\\\",\\\"$68.79\\\"}\u003c/p\u003e\\n\u003cp\u003e{35,71,61,56}\u003c/p\u003e\\n\u003cp\u003e20\u003c/p\u003e\\n\u003cp\u003e44048\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"101\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$94.22\\\",\\\"$12.74\\\",\\\"$31.20\\\",\\\"$32.65\\\",\\\"$59.99\\\",\\\"$84.97\\\",\\\"$53.98\\\",\\\"$60.61\\\",\\\"$98.75\\\",\\\"$84.16\\\"}\u003c/p\u003e\\n\u003cp\u003e{16,45,68,0,36,89,13,48,42,94}\u003c/p\u003e\\n\u003cp\u003e40\u003c/p\u003e\\n\u003cp\u003e390868\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"102\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$26.18\\\",\\\"$22.92\\\"}\u003c/p\u003e\\n\u003cp\u003e{88,94}\u003c/p\u003e\\n\u003cp\u003e11\u003c/p\u003e\\n\u003cp\u003e195453\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"103\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$40.47\\\",\\\"$90.93\\\",\\\"$48.22\\\",\\\"$03.08\\\",\\\"$01.94\\\",\\\"$97.66\\\",\\\"$23.91\\\",\\\"$79.39\\\",\\\"$86.52\\\",\\\"$79.12\\\"}\u003c/p\u003e\\n\u003cp\u003e{28,3,86,70,41,17,96,82,45,51}\u003c/p\u003e\\n\u003cp\u003e22\u003c/p\u003e\\n\u003cp\u003e76744\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}],[\"$\",\"li\",\"104\",{\"children\":[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cp\u003e{\\\"$76.44\\\",\\\"$74.20\\\",\\\"$64.33\\\"}\u003c/p\u003e\\n\u003cp\u003e{31,93,89}\u003c/p\u003e\\n\u003cp\u003e19\u003c/p\u003e\\n\u003cp\u003e488321\u003c/p\u003e\\n\u003cp\u003eReturns: 0.0\u003c/p\u003e\"}}]}]]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>

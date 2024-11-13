@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="font" href="/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="preload" as="font" href="/_next/static/media/92f44bb82993d879-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/d3df112486f97f47.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/ce229e8280b65b88.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/67cd89eb2f8905c7.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-f608cced2fbc4acf.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-44fe9588d0e5e7bc.js" async=""></script><script src="/_next/static/chunks/596-8d845297122c6823.js" async=""></script><script src="/_next/static/chunks/main-app-f07f8834a8b67325.js" async=""></script><title>TopCoder Statistics - Problem Statement</title><meta name="description" content="TopCoder Statistics - Problem Archive"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script></head><body class="__className_aaf875"><main><h1><a href="/">Statistics</a></h1><h2>Problem Statement for &quot;<!-- -->Triage<!-- -->&quot;</h2><section class="__className_c9cbed"><article><div><h3>Problem Statement</h3><div><pre xmlns="http://topcoder.com">PROBLEM STATEMENT
+
+As the triage nurse in a hospital's emergency room, you have a duty to admit
+patients first in order of problem severity, and then in order of when they
+came in.  You are given a String[] of patients to admit.  The Strings will be
+formatted as follows:
+
+"TIME:NAME,PRIORITY"
+
+Where time is the time the patient came in (in minutes), name is a string name
+of the patient, and priority is the integer priority.  The higher the integer,
+the higher the priority.  The higher a patient's priority, the sooner she needs
+to be seen by a doctor.  Write a function admitPatients which will take in this
+String[] and the frequency (in minutes) in which there are openings, and return
+a String[] of who is admitted at each frequency interval.  If no patient is in
+the waiting room at a given interval, place an empty String for that interval.
+When a patient walks into an empty waiting room, she must still wait for the
+next interval, regardless of whether or not someone was let in the last time
+around.
+
+If a patient arrives in the waiting room when a interval starts, she has to
+spend time registering and waits until the next interval, even if the waiting
+room was empty.
+
+Patients are chosen as follows:
+*The patient with the highest priority in the waiting room who is already
+registered (see above).
+*If two or more patients have the same highest priority, choose patients in the
+order they arrived (the ordering of the String[] represents the order in which
+patients arrive).
+
+DEFINITION
+
+Class name: Triage
+Method name: admitPatients
+Parameters: String[], int
+Returns: String[]
+The method signature is:
+String[] admitPatients(String[] patients, int frequency)
+Be sure your method is public.
+
+TopCoder will ensure the validity of the inputs.  Inputs are valid if all of
+the following criteria are met:
+*patients contains between 1 and 20 elements, inclusive
+*each element of patients will be a String formatted as "TIME:NAME,PRIORITY"
+*name may contain characters [a-z] and [A-Z]
+*time will be from 0 to 100, inclusive
+*priority will be from 0 to 10, inclusive
+*frequency will be from 5 to 10, inclusive
+*each name will be unique (Alex and aLex are to be treated as two unique names)
+
+The first interval is at time = frequency.  Do not place an element in the
+return String[] at time = 0.  See examples to clarify.
+The function should return when all patients have been admitted.
+
+EXAMPLES
+patients =
+{"0:Alex,0",
+ "3:Bob,0",
+ "6:Tim,0",
+ "9:Greg,1"
+}
+frequency = 5
+
+First frequency = 5:
+Alex is admitted.
+frequency = 10:
+Greg is admitted, since his priority was higher.
+frequency = 15:
+Bob is admitted.
+frequency = 20:
+Tim is admitted.
+
+return = {"Alex","Greg","Bob","Tim"}
+
+patients =
+{"3:Albert,0",
+ "4:Bobby,5",
+ "5:Charlene,4",
+ "8:Darren,4",
+ "16:Eric,0",
+ "40:Frances,0"
+}
+frequency = 6
+
+return = {"Bobby","Charlene","Darren","Albert","Eric","","Frances"}
+
+patients =
+{"48:Tony,8",
+ "49:Helen,0",
+ "50:Madeline,9"
+}
+frequency = 10
+
+return = {"","","","","Tony","Madeline","Helen"}</pre></div></div><div><h3>Definition</h3><dl><dt>Class:</dt><dd><span>Triage</span></dd><dt>Method:</dt><dd><span>admitPatients</span></dd><dt>Parameters:</dt><dd><span>String[], int</span></dd><dt>Returns:</dt><dd><span>String[]</span></dd><dt>Method signature:</dt><dd><span>String[] admitPatients(String[] param0, int param1)</span></dd><dt>(be sure your method is public)</dt></dl></div><div><h3>Constraints</h3><ul></ul></div><div><h3>Examples</h3><ol></ol></div></article><hr/><span>This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.</span><hr/></section><section><span>This problem was used for:</span><div><ul></ul></div></section></main><script src="/_next/static/chunks/webpack-f608cced2fbc4acf.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/d3df112486f97f47.css\",{\"as\":\"style\"}]\n3:HL[\"/_next/static/css/ce229e8280b65b88.css\",{\"as\":\"style\"}]\n0:\"$L4\"\n"])</script><script>self.__next_f.push([1,"5:HL[\"/_next/static/media/92f44bb82993d879-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n6:HL[\"/_next/static/css/67cd89eb2f8905c7.css\",{\"as\":\"style\"}]\n"])</script><script>self.__next_f.push([1,"7:I{\"id\":7948,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\n9:I{\"id\":6628,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":7767,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"5"])</script><script>self.__next_f.push([1,"96:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\nb:I{\"id\":7920,\"chunks\":[\"272:static/chunks/webpack-f608cced2fbc4acf.js\",\"971:static/chunks/fd9d1056-44fe9588d0e5e7bc.js\",\"596:static/chunks/596-8d845297122c6823.js\"],\"name\":\"default\",\"async\":false}\ne:I{\"id\":1221,\"chunks\":[\"334:static/chunks/334-8828ae4f59410144.js\",\"185:static/chunks/app/layout-ec819519d0132115.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"4:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/d3df112486f97f47.css\",\"precedence\":\"next\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ce229e8280b65b88.css\",\"precedence\":\"next\"}]],[\"$\",\"$L7\",null,{\"buildId\":\"7VpN_WliezDw3Rx1lULsj\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/ProblemStatement/pm/257/\",\"initialTree\":[\"\",{\"children\":[\"ProblemStatement\",{\"children\":[\"pm\",{\"children\":[[\"problemId\",\"257\",\"d\"],{\"children\":[\"__PAGE__?{\\\"problemId\\\":\\\"257\\\"}\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L8\"],\"globalErrorComponent\":\"$9\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_aaf875\",\"children\":[[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"ProblemStatement\",\"children\",\"pm\",\"children\",[\"problemId\",\"257\",\"d\"],\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lc\",\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"problemId\\\":\\\"257\\\"}\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/67cd89eb2f8905c7.css\",\"precedence\":\"next\"}]]}],\"segment\":[\"problemId\",\"257\",\"d\"]},\"styles\":[]}],\"segment\":\"pm\"},\"styles\":[]}],\"segment\":\"ProblemStatement\"},\"styles\":[]}],[\"$\",\"$Le\",null,{}]]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"8:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"TopCoder Statistics - Problem Statement\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"TopCoder Statistics - Problem Archive\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\nc:null\nf:Tbe2,"])</script><script>self.__next_f.push([1,"\u003cpre xmlns=\"http://topcoder.com\"\u003ePROBLEM STATEMENT\n\nAs the triage nurse in a hospital's emergency room, you have a duty to admit\npatients first in order of problem severity, and then in order of when they\ncame in.  You are given a String[] of patients to admit.  The Strings will be\nformatted as follows:\n\n\"TIME:NAME,PRIORITY\"\n\nWhere time is the time the patient came in (in minutes), name is a string name\nof the patient, and priority is the integer priority.  The higher the integer,\nthe higher the priority.  The higher a patient's priority, the sooner she needs\nto be seen by a doctor.  Write a function admitPatients which will take in this\nString[] and the frequency (in minutes) in which there are openings, and return\na String[] of who is admitted at each frequency interval.  If no patient is in\nthe waiting room at a given interval, place an empty String for that interval.\nWhen a patient walks into an empty waiting room, she must still wait for the\nnext interval, regardless of whether or not someone was let in the last time\naround.\n\nIf a patient arrives in the waiting room when a interval starts, she has to\nspend time registering and waits until the next interval, even if the waiting\nroom was empty.\n\nPatients are chosen as follows:\n*The patient with the highest priority in the waiting room who is already\nregistered (see above).\n*If two or more patients have the same highest priority, choose patients in the\norder they arrived (the ordering of the String[] represents the order in which\npatients arrive).\n\nDEFINITION\n\nClass name: Triage\nMethod name: admitPatients\nParameters: String[], int\nReturns: String[]\nThe method signature is:\nString[] admitPatients(String[] patients, int frequency)\nBe sure your method is public.\n\nTopCoder will ensure the validity of the inputs.  Inputs are valid if all of\nthe following criteria are met:\n*patients contains between 1 and 20 elements, inclusive\n*each element of patients will be a String formatted as \"TIME:NAME,PRIORITY\"\n*name may contain characters [a-z] and [A-Z]\n*time will be from 0 to 100, inclusive\n*priority will be from 0 to 10, inclusive\n*frequency will be from 5 to 10, inclusive\n*each name will be unique (Alex and aLex are to be treated as two unique names)\n\nThe first interval is at time = frequency.  Do not place an element in the\nreturn String[] at time = 0.  See examples to clarify.\nThe function should return when all patients have been admitted.\n\nEXAMPLES\npatients =\n{\"0:Alex,0\",\n \"3:Bob,0\",\n \"6:Tim,0\",\n \"9:Greg,1\"\n}\nfrequency = 5\n\nFirst frequency = 5:\nAlex is admitted.\nfrequency = 10:\nGreg is admitted, since his priority was higher.\nfrequency = 15:\nBob is admitted.\nfrequency = 20:\nTim is admitted.\n\nreturn = {\"Alex\",\"Greg\",\"Bob\",\"Tim\"}\n\npatients =\n{\"3:Albert,0\",\n \"4:Bobby,5\",\n \"5:Charlene,4\",\n \"8:Darren,4\",\n \"16:Eric,0\",\n \"40:Frances,0\"\n}\nfrequency = 6\n\nreturn = {\"Bobby\",\"Charlene\",\"Darren\",\"Albert\",\"Eric\",\"\",\"Frances\"}\n\npatients =\n{\"48:Tony,8\",\n \"49:Helen,0\",\n \"50:Madeline,9\"\n}\nfrequency = 10\n\nreturn = {\"\",\"\",\"\",\"\",\"Tony\",\"Madeline\",\"Helen\"}\u003c/pre\u003e"])</script><script>self.__next_f.push([1,"d:[\"$\",\"main\",null,{\"children\":[[\"$\",\"h1\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"children\":\"Statistics\"}]}],[\"$\",\"h2\",null,{\"children\":[\"Problem Statement for \\\"\",\"Triage\",\"\\\"\"]}],[\"$\",\"section\",null,{\"className\":\"__className_c9cbed\",\"children\":[[\"$\",\"article\",null,{\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Problem Statement\"}],[\"$\",\"div\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$f\"}}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Definition\"}],[\"$\",\"dl\",null,{\"children\":[[\"$\",\"dt\",null,{\"children\":\"Class:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"Triage\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"admitPatients\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Parameters:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String[], int\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Returns:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String[]\"}}]}],[\"$\",\"dt\",null,{\"children\":\"Method signature:\"}],[\"$\",\"dd\",null,{\"children\":[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"String[] admitPatients(String[] param0, int param1)\"}}]}],[\"$\",\"dt\",null,{\"children\":\"(be sure your method is public)\"}]]}]]}],null,[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Constraints\"}],[\"$\",\"ul\",null,{\"children\":[]}]]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h3\",null,{\"children\":\"Examples\"}],[\"$\",\"ol\",null,{\"children\":[]}]]}]]}],[\"$\",\"hr\",null,{}],[\"$\",\"span\",null,{\"children\":\"This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2024, TopCoder, Inc. All rights reserved.\"}],[\"$\",\"hr\",null,{}]]}],[\"$\",\"section\",null,{\"children\":[[\"$\",\"span\",null,{\"children\":\"This problem was used for:\"}],[\"$\",\"div\",null,{\"children\":[\"$\",\"ul\",null,{\"children\":[]}]}]]}]]}]\n"])</script></body></html>
